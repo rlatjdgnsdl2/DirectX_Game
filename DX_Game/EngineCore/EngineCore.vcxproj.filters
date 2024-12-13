@@ -1,19 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="EngineCore.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="IContentsCore.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="EngineCore.h" />
-    <ClInclude Include="IContentsCore.h">
-      <Filter>Interface</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Interface">
-      <UniqueIdentifier>{f85a6b09-9776-4a31-9d48-f2c2cdb3ce0b}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="PreCompile.cpp" />
+    <ClCompile Include="EngineCore.cpp" />
   </ItemGroup>
 </Project>
