@@ -10,9 +10,6 @@
 // user header
 #include <EngineBase/EngineMath.h>
 
-
-// 정신 잘 붙
-
 // 설명 :
 class UEngineWindow
 {

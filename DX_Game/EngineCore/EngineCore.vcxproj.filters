@@ -1,12 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="IContentsCore.h" />
-    <ClInclude Include="PreCompile.h" />
-    <ClInclude Include="EngineCore.h" />
+    <ClInclude Include="PreCompile.h">
+      <Filter>Pch</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IContentsCore.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PreCompile.cpp" />
-    <ClCompile Include="EngineCore.cpp" />
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>Pch</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Pch">
+      <UniqueIdentifier>{5dbbeb39-4825-465d-9e4b-35c67354ca0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{3b5e1934-b5c0-457d-a1c5-43b508ed966c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{015b6f7c-88a1-4e5b-9773-659400f71d14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

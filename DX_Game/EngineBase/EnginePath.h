@@ -11,7 +11,6 @@ public:
 	ENGINEAPI UEnginePath(std::filesystem::path _Path);
 	ENGINEAPI virtual ~UEnginePath();
 
-
 	bool IsExists();
 	void MoveParent();
 

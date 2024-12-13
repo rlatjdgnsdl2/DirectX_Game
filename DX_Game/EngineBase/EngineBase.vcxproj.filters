@@ -1,22 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="EngineDebug.cpp" />
-    <ClCompile Include="EngineDirectory.cpp" />
-    <ClCompile Include="EngineFile.cpp" />
-    <ClCompile Include="EngineMath.cpp" />
-    <ClCompile Include="EnginePath.cpp" />
-    <ClCompile Include="EngineSerializer.cpp" />
-    <ClCompile Include="PreCompile.cpp" />
+    <ClCompile Include="EngineDirectory.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineFile.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePath.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSerializer.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>Define\Pch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EngineDebug.h" />
-    <ClInclude Include="EngineDefine.h" />
-    <ClInclude Include="EngineDirectory.h" />
-    <ClInclude Include="EngineFile.h" />
-    <ClInclude Include="EngineMath.h" />
-    <ClInclude Include="EnginePath.h" />
-    <ClInclude Include="EngineSerializer.h" />
-    <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="EngineDirectory.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineFile.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePath.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSerializer.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDefine.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>Define\Pch</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="IO">
+      <UniqueIdentifier>{b828def6-24b6-4d87-af4a-fe1606104d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{1f9bd22b-eda2-4341-9ee3-f33027f0dbd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{29f06c11-7d35-4ffc-a677-35a27c31b013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Define">
+      <UniqueIdentifier>{c6ce98dd-a447-4ba3-91b9-83069bc10402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Define\Pch">
+      <UniqueIdentifier>{2eeb74af-f694-4da1-b7cd-b8366de536ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

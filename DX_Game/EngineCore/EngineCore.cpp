@@ -39,7 +39,7 @@ void UEngineCore::LoadContents(std::string_view _DllName)
 	UEngineFile File = Dir.GetFile(_DllName);
 
 	std::string FullPath = File.GetPathToString();
-	// 규칙이 생길수밖에 없다.
+	
 	ContentsDLL = LoadLibraryA(FullPath.c_str());
 
 	if (nullptr == ContentsDLL)
@@ -73,36 +73,19 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 
 	LoadContents(_DllName);
 
-
-
-	// 윈도우와는 무관합니다.
 	UEngineWindow::WindowMessageLoop(
 		[]()
 		{
 			UEngineInitData Data;
 			Core->EngineStart(Data);
-
 			MainWindow.SetWindowPosAndScale(Data.WindowPos, Data.WindowSize);
-
-
-			// 시작할때 하고 싶은것
-			// 1. 윈도우창 크기 바꾸고 싶다.
-			//    문제 : 컨텐츠만이 할수 있다.
 		},
 		[]()
 		{
-			// 엔진이 돌아갈때 하고 싶은것
+			
 		},
 		[]()
 		{
-			// 엔진이 끝났을때 하고 싶은것.
+			
 		});
-
-
-	// 게임 엔진이 시작되었다.
-	// 윈도우창은 엔진이 알아서 띄워줘야 하고.
-
-	// Window 띄워줘야 한다.
-
-
 }
