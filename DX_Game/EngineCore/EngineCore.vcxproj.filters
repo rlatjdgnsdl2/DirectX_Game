@@ -7,5 +7,13 @@
   <ItemGroup>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="EngineCore.h" />
+    <ClInclude Include="IContentsCore.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{f85a6b09-9776-4a31-9d48-f2c2cdb3ce0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
