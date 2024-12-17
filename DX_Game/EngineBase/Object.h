@@ -3,7 +3,7 @@
 #include <memory>
 
 // Ό³Έν :
-class UObject
+class UObject : public std::enable_shared_from_this<UObject>
 {
 public:
 	ENGINEAPI UObject();
@@ -12,6 +12,13 @@ public:
 	UObject(UObject&& _Other) noexcept = delete;
 	UObject& operator=(const UObject& _Other) = delete;
 	UObject& operator=(UObject&& _Other) noexcept = delete;
+
+	template<typename ChildPtrType>
+	std::shared_ptr<ChildPtrType> GetThis()
+	{
+		return std::dynamic_pointer_cast<ChildPtrType>(shared_from_this());
+	}
+
 
 	std::string GetName() const{
 		return Name;
@@ -87,9 +94,20 @@ public:
 		IsDebugValue = !IsDebugValue;
 	}
 
+	int GetOrder()
+	{
+		return Order;
+	}
+
+	virtual void SetOrder(int _Order)
+	{
+		Order = _Order;
+	}
+
 protected:
 
 private:
+	int Order = 0;
 	std::string Name;
 	bool IsDestroyValue = false;
 	bool IsActiveValue = true;

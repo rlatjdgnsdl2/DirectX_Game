@@ -1,7 +1,6 @@
 #pragma once
 #include "ActorComponent.h"
 
-// #include "PreCompile.h"
 
 // Ό³Έν :
 class USceneComponent : public UActorComponent
@@ -23,7 +22,6 @@ protected:
 private:
 
 	FTransform Transform;
-
 	USceneComponent* Parent;
 	std::list<std::shared_ptr<USceneComponent>> Childs;
 };

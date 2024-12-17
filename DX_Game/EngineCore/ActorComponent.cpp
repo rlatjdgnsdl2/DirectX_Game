@@ -9,7 +9,3 @@ UActorComponent::~UActorComponent()
 {
 }
 
-std::shared_ptr<class AActor> UActorComponent::GetActor()
-{
-	return nullptr;
-}

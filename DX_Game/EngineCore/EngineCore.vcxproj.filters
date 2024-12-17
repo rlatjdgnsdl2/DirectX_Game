@@ -28,6 +28,9 @@
     <ClInclude Include="Pawn.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
