@@ -32,7 +32,6 @@ public:
 		{
 			MSGASSERT("액터를 상속받지 않은 클래스를 SpawnActor하려고 했습니다.");
 			return nullptr;
-			// static_assert
 		}
 
 		char* ActorMemory = new char[sizeof(ActorType)];
@@ -40,7 +39,8 @@ public:
 		ActorPtr->World = this;
 
 		ActorType* NewPtr = reinterpret_cast<ActorType*>(ActorMemory);
-		std::shared_ptr<ActorType> NewActor(NewPtr = new(ActorMemory) ActorType());
+		NewPtr = new(ActorMemory) ActorType();
+		std::shared_ptr<ActorType> NewActor(NewPtr);
 
 		BeginPlayList.push_back(NewActor);
 

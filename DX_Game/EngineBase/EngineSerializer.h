@@ -1,5 +1,16 @@
 #pragma once
-#include "EngineMath.h"
+
+
+class FVector;
+class FIntPoint;
+class UEngineSerializer;
+
+class ISerializObject
+{
+public:
+	virtual void Serialize(UEngineSerializer& _Ser) = 0;
+	virtual void DeSerialize(UEngineSerializer& _Ser) = 0;
+};
 
 // Ό³Έν :
 class UEngineSerializer
@@ -48,7 +59,7 @@ public:
 		}
 	}
 
-	void operator<<(class ISerializObject& _Data);
+	void operator<<(ISerializObject& _Data);
 
 	template<typename DataType>
 	void operator<<(std::vector<DataType>& _vector)
@@ -137,9 +148,3 @@ private:
 };
 
 
-class ISerializObject
-{
-public:
-	virtual void Serialize(UEngineSerializer& _Ser) = 0;
-	virtual void DeSerialize(UEngineSerializer& _Ser) = 0;
-};

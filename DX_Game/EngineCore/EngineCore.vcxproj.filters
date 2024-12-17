@@ -31,6 +31,9 @@
     <ClInclude Include="Renderer.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="UEngineGraphicsDevice.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -60,6 +63,9 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="UEngineGraphicsDevice.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
@@ -76,6 +82,9 @@
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{336e553c-f6b3-49e4-a912-283dd8b21407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{db931201-43c4-4616-83ff-8b4a7fe68e0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

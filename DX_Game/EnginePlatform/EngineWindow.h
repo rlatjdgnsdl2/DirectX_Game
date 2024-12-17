@@ -1,14 +1,6 @@
 #pragma once
-// Os Header
-#include <Windows.h>
-
-// std Header
 #include <map>
-#include <string>
-#include <functional>
 
-// user header
-#include <EngineBase/EngineMath.h>
 
 // Ό³Έν :
 class UEngineWindow

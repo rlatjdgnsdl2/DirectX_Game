@@ -35,13 +35,13 @@ public:
 		}
 
 		char* ComponentMemory = new char[sizeof(ComponentType)];
-
 		UActorComponent* ComponentPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
 		ComponentPtr->Actor = this;
 
-		//ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
+		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
+		NewPtr = new(ComponentMemory) ComponentType();
 		
-		std::shared_ptr<ComponentType> NewCom(new(ComponentMemory) ComponentType());
+		std::shared_ptr<ComponentType> NewComponent(NewPtr);
 
 		if (std::is_base_of_v<USceneComponent, ComponentType>)
 		{
@@ -49,18 +49,18 @@ public:
 			{
 				MSGASSERT("아직 기하구조를 만들지 않았습니다.");
 			}
-			RootComponent = NewCom;
+			RootComponent = NewComponent;
 		}
 		else if (std::is_base_of_v<UActorComponent, ComponentType>)
 		{
-			ActorComponentList.push_back(NewCom);
+			ActorComponentList.push_back(NewComponent);
 		}
 		else
 		{
 			MSGASSERT("말도 안됨");
 		}
 
-		return NewCom;
+		return NewComponent;
 	}
 
 	ULevel* GetWorld()
@@ -71,7 +71,7 @@ public:
 protected:
 
 private:
-	// 스폰액터 방식이 변경되었으므로 초기화 x, 생성자 호출 전에 먼저 Level이 초기화됨.
+	//생성자 호출 전에 먼저 World가 초기화됨 -> 미리 초기화x.
 	ULevel* World;
 
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;

@@ -1,14 +1,27 @@
 #include "PreCompile.h"
 #include "EnginePath.h"
+
 #include "EngineDebug.h"
 
-UEnginePath::UEnginePath() : Path(std::filesystem::current_path()) {}
+UEnginePath::UEnginePath() : Path(std::filesystem::current_path()) 
+{
 
-UEnginePath::UEnginePath(std::string_view _Path) : Path(_Path) {}
+}
 
-UEnginePath::UEnginePath(std::filesystem::path _Path) : Path(_Path) {}
+UEnginePath::UEnginePath(std::string_view _Path) : Path(_Path)
+{
 
-UEnginePath::~UEnginePath() {}
+}
+
+UEnginePath::UEnginePath(std::filesystem::path _Path) : Path(_Path) 
+{
+
+}
+
+UEnginePath::~UEnginePath() 
+{
+
+}
 
 std::string UEnginePath::GetPathToString()
 {

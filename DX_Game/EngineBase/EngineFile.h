@@ -1,9 +1,10 @@
 #pragma once
 #include <io.h>
-
 #include "EnginePath.h"
 
 const int MAXPATH = 256;
+
+class UEngineSerializer;
 
 class UEngineFile : public UEnginePath
 {
@@ -16,8 +17,8 @@ public:
 	ENGINEAPI ~UEngineFile();
 
 	// Write
-	void Write(class UEngineSerializer& _Ser);
-	void Read(class UEngineSerializer& _Ser);
+	void Write(UEngineSerializer& _Ser);
+	void Read(UEngineSerializer& _Ser);
 
 	void Write(const void* _Ptr, size_t _Size);
 	void Read(void* _Ptr, size_t _Size);
@@ -28,7 +29,6 @@ public:
 	int GetFileSize();
 
 private:
-	
 	FILE* File = nullptr;
 };
 

@@ -1,10 +1,7 @@
 #pragma once
-#include <EngineBase/EngineDefine.h>
 #include <EnginePlatform/EngineWindow.h>
 #include "IContentsCore.h"
 #include "Level.h"
-#include <memory>
-
 
 // Ό³Έν :
 class UEngineCore

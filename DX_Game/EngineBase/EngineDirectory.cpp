@@ -3,14 +3,29 @@
 #include "EngineFile.h"
 #include "EngineDebug.h"
 
-UEngineDirectory::UEngineDirectory() : UEnginePath() {}
 
-UEngineDirectory::UEngineDirectory(std::string_view _Path) : UEnginePath(_Path) {}
+UEngineDirectory::UEngineDirectory()
+	: UEnginePath()
+{
 
-UEngineDirectory::UEngineDirectory(std::filesystem::path _Path) : UEnginePath(_Path) {}
+}
 
-UEngineDirectory::~UEngineDirectory() {}
+UEngineDirectory::UEngineDirectory(std::string_view _Path)
+	: UEnginePath(_Path)
+{
 
+}
+
+UEngineDirectory::UEngineDirectory(std::filesystem::path _Path)
+	: UEnginePath(_Path)
+{
+
+}
+
+UEngineDirectory::~UEngineDirectory()
+{
+
+}
 
 std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive /*= true*/)
 {

@@ -2,6 +2,9 @@
 #include "EnginePath.h"
 
 // Ό³Έν : 
+class UEngineFile;
+class UEngineDirectory;
+
 class UEngineDirectory : public UEnginePath
 {
 public:
@@ -10,14 +13,13 @@ public:
 	ENGINEAPI UEngineDirectory(std::filesystem::path _Path);
 	ENGINEAPI ~UEngineDirectory();
 
-	std::vector<class UEngineFile> GetAllFile(bool _IsRecursive = true);
-	std::vector<class UEngineDirectory> GetAllDirectory();
 	ENGINEAPI UEngineFile GetFile(std::string_view _FileName);
+	ENGINEAPI std::vector<UEngineFile> GetAllFile(bool _IsRecursive = true);
+	ENGINEAPI std::vector<UEngineDirectory> GetAllDirectory();
 
 protected:
 
 private:
-	void GetAllFileRecursive(std::filesystem::path _Path, std::vector<class UEngineFile>& _Result);
-
+	void GetAllFileRecursive(std::filesystem::path _Path, std::vector<UEngineFile>& _Result);
 };
 

@@ -1,7 +1,12 @@
 #include "PreCompile.h"
 #include "EngineCore.h"
+
 #include <EngineBase/EngineDebug.h>
+#include <EngineBase/EngineDirectory.h>
+#include <EngineBase/EngineFile.h>
+
 #include <EnginePlatform/EngineWindow.h>
+
 #include "IContentsCore.h"
 #include "Level.h"
 

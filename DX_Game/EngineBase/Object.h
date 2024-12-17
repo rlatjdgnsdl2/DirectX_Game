@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
 #include <memory>
+
+
 
 // 설명 :
 class UObject : public std::enable_shared_from_this<UObject>
@@ -16,33 +17,38 @@ public:
 	template<typename ChildPtrType>
 	std::shared_ptr<ChildPtrType> GetThis()
 	{
+		static_assert(std::is_base_of_v<UObject, ChildPtrType>, "UObject를 상속받지 않은 클래스를 GetThis하려고 했습니다.");
 		return std::dynamic_pointer_cast<ChildPtrType>(shared_from_this());
 	}
 
-
-	std::string GetName() const{
+	// name
+	std::string GetName() const
+	{
 		return Name;
 	}
-
-	std::string_view GetNameView() const{
+	std::string_view GetNameView() const
+	{
 		return Name.c_str();
 	}
-
-	virtual void SetName(std::string_view _Name){
+	virtual void SetName(std::string_view _Name)
+	{
 		Name = _Name.data();
 	}
 
-	virtual bool IsActive(){
+	virtual bool IsActive()
+	{
 		return IsActiveValue && false == IsDestroyValue;
 	}
-
-	virtual bool IsDestroy(){
+	virtual bool IsDestroy()
+	{
 		return IsDestroyValue;
 	}
 
-	void Destroy(float _Time = 0.0f){
+	void Destroy(float _Time = 0.0f)
+	{
 		DeathTime = _Time;
-		if (0.0f < _Time){
+		if (0.0f < _Time)
+		{
 			IsDeathTimeCheck = true;
 			return;
 		}
@@ -55,9 +61,7 @@ public:
 		{
 			return;
 		}
-
 		CurDeathTime += _DeltaTime;
-
 		if (DeathTime <= CurDeathTime)
 		{
 			IsDestroyValue = true;
@@ -107,8 +111,10 @@ public:
 protected:
 
 private:
-	int Order = 0;
 	std::string Name;
+
+	int Order = 0;
+
 	bool IsDestroyValue = false;
 	bool IsActiveValue = true;
 

@@ -2,8 +2,6 @@
 #include <EngineBase/Object.h>
 
 
-#include <memory>
-
 // Ό³Έν :
 class UActorComponent : public UObject
 {
