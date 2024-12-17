@@ -50,7 +50,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="UEngineGraphicsDevice.h">
+    <ClInclude Include="EngineGraphicDevice.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -91,7 +91,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="UEngineGraphicsDevice.cpp">
+    <ClCompile Include="EngineGraphicDevice.cpp">
       <SubType>
       </SubType>
     </ClCompile>

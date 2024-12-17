@@ -40,14 +40,13 @@ public:
 
 		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
 		NewPtr = new(ComponentMemory) ComponentType();
-		
 		std::shared_ptr<ComponentType> NewComponent(NewPtr);
 
 		if (std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			if (nullptr != RootComponent)
 			{
-				MSGASSERT("아직 기하구조를 만들지 않았습니다.");
+				MSGASSERT("아직 RootComponent를 만들지 않았습니다.");
 			}
 			RootComponent = NewComponent;
 		}
@@ -57,7 +56,7 @@ public:
 		}
 		else
 		{
-			MSGASSERT("말도 안됨");
+			MSGASSERT("");
 		}
 
 		return NewComponent;

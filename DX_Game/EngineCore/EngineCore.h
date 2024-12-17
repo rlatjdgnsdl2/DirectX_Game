@@ -1,6 +1,8 @@
 #pragma once
 #include <EnginePlatform/EngineWindow.h>
+
 #include "IContentsCore.h"
+#include "EngineGraphicDevice.h"
 #include "Level.h"
 
 // Ό³Έν :
@@ -25,6 +27,7 @@ public:
 protected:
 
 private:
+	static UEngineGraphicDevice Device;
 	static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;

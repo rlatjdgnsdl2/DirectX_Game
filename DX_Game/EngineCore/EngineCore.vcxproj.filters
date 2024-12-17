@@ -31,7 +31,7 @@
     <ClInclude Include="Renderer.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="UEngineGraphicsDevice.h">
+    <ClInclude Include="EngineGraphicDevice.h">
       <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,7 +63,7 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="UEngineGraphicsDevice.cpp">
+    <ClCompile Include="EngineGraphicDevice.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>

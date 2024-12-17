@@ -10,6 +10,7 @@
 #include "IContentsCore.h"
 #include "Level.h"
 
+UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
@@ -87,8 +88,10 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 		[]()
 		{
 			UEngineInitData Data;
+			Device.CreateDeviceAndContext();
 			Core->EngineStart(Data);
 			MainWindow.SetWindowPosAndScale(Data.WindowPos, Data.WindowSize);
+			Device.CreateBackBuffer(MainWindow);
 
 
 
