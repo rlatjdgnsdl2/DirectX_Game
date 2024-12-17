@@ -22,6 +22,9 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>Define\Pch</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineDirectory.h">
@@ -48,6 +51,9 @@
     <ClInclude Include="PreCompile.h">
       <Filter>Define\Pch</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -64,6 +70,9 @@
     </Filter>
     <Filter Include="Define\Pch">
       <UniqueIdentifier>{2eeb74af-f694-4da1-b7cd-b8366de536ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{adf9c489-ccf5-498f-b218-59c3de110788}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

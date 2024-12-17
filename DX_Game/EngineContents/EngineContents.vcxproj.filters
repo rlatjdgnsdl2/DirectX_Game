@@ -7,6 +7,12 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>Pch</Filter>
     </ClCompile>
+    <ClCompile Include="TempGameMode.cpp">
+      <Filter>Temp</Filter>
+    </ClCompile>
+    <ClCompile Include="TempPawn.cpp">
+      <Filter>Temp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -15,6 +21,12 @@
     <ClInclude Include="PreCompile.h">
       <Filter>Pch</Filter>
     </ClInclude>
+    <ClInclude Include="TempGameMode.h">
+      <Filter>Temp</Filter>
+    </ClInclude>
+    <ClInclude Include="TempPawn.h">
+      <Filter>Temp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -22,6 +34,9 @@
     </Filter>
     <Filter Include="Pch">
       <UniqueIdentifier>{5af08b32-4a9e-4d36-a9a7-da1bcafae03d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Temp">
+      <UniqueIdentifier>{cfbf59d6-11af-47a3-8110-866e537de941}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
