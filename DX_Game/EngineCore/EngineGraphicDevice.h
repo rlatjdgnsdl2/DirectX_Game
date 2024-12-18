@@ -52,5 +52,6 @@ protected:
 private:
 	ID3D11Device* Device = nullptr;
 	ID3D11DeviceContext* Context = nullptr;
+	
 };
 

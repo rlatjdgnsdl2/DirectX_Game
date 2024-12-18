@@ -23,23 +23,27 @@ public:
 	ENGINEAPI void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
 	ENGINEAPI void Open(std::string_view _TitleName = "Window");
 
-	inline FVector GetWindowSize() const
+	ENGINEAPI inline FVector GetWindowSize() const
 	{
 		return WindowSize;
 	}
 
-	inline void SetWindowTitle(std::string_view Text)
+	ENGINEAPI inline void SetWindowTitle(std::string_view Text)
 	{
 		SetWindowTextA(WindowHandle, Text.data());
 	}
 
 	ENGINEAPI void SetWindowPosAndScale(FVector _Pos, FVector _Scale);
 
-	FVector GetMousePos();
+	ENGINEAPI FVector GetMousePos();
 
-	void ApplicationOff()
+	ENGINEAPI void ApplicationOff()
 	{
 		LoopActive = false;
+	}
+	ENGINEAPI HWND GetWindowHandle() const
+	{
+		return WindowHandle;
 	}
 
 protected:
