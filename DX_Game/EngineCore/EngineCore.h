@@ -23,11 +23,12 @@ public:
 		return NewLevel;
 	}
 	ENGINEAPI static void OpenLevel(std::string_view _Name);
+	static UEngineGraphicDevice Device;
+	
 
 protected:
 
 private:
-	static UEngineGraphicDevice Device;
 	static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;

@@ -1,6 +1,13 @@
 #pragma once
 #include "SceneComponent.h"
 
+struct EngineVertex
+{
+	FVector Pos;
+	FVector Color;
+};
+
+
 // Ό³Έν :
 class URenderer : public USceneComponent
 {
@@ -20,9 +27,13 @@ public:
 	void SetOrder(int _Order) override;
 protected:
 	ENGINEAPI void BeginPlay() override;
+	virtual void Render(float _DeltaTime);
 
 private:
-	virtual void Render(float _DeltaTime);
+	ID3D11Buffer* VertexBuffer = nullptr;
+	ID3D11Buffer* IndexBuffer = nullptr;
+	void InitInputAssembler1();
+	void SetInputAssembler1();
 
 };
 

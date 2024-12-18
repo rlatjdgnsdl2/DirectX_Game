@@ -5,16 +5,7 @@
 
 #include "EngineDefine.h"
 
-// FVector로 통일하겠습니다.
-// FVector xy
-// FVector3D xyz
-// FVector4D xyzw
-// FVector4D == FVector;
-
-// #include <DirectXMath.h>
-
-
-class ENGINEAPI  UEngineMath
+class ENGINEAPI UEngineMath
 {
 public:
 	// 상수 정의
@@ -104,6 +95,7 @@ public:
 	{
 
 	}
+	
 
 	FVector(float _X, float _Y, float _Z, float _W) : X(_X), Y(_Y), Z(_Z), W(_W)
 	{

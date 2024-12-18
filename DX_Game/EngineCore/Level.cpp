@@ -3,6 +3,8 @@
 #include "Actor.h"
 #include "Renderer.h"
 
+#include "EngineCore.h"
+
 
 ULevel::ULevel()
 {
@@ -49,6 +51,7 @@ void ULevel::Tick(float _DeltaTime)
 
 void ULevel::Render(float _DeltaTime)
 {
+	UEngineCore::Device.RenderStart();
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
@@ -58,6 +61,7 @@ void ULevel::Render(float _DeltaTime)
 			Renderer->Render(_DeltaTime);
 		}
 	}
+	UEngineCore::Device.RenderEnd();
 }
 
 

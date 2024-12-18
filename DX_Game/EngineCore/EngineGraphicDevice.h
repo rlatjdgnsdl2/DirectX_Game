@@ -15,7 +15,6 @@
 // 이녀석이 그 함수들을 가지고 있다.
 #pragma comment(lib, "DXGI") 
 
-
 // 내일 4시 전까지 
 // 첫번째 목표 블루스크린(단색스크린)
 // 다이렉트 x기반으로한 구조를 완성하면 
@@ -39,19 +38,38 @@ public:
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& _Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& _Other) noexcept = delete;
 
-	void Release();
-
 	void CreateDeviceAndContext();
 
 	void CreateBackBuffer(const UEngineWindow& _Window);
 
 	IDXGIAdapter* GetHighPerFormanceAdapter();
 
+	void Release();
+	void RenderStart();
+	void RenderEnd();
+
+	ENGINEAPI ID3D11Device* GetDevice() const
+	{
+		return Device;
+	}
+	ENGINEAPI ID3D11DeviceContext* GetContext() const
+	{
+		return Context;
+	}
+
+
+
 protected:
 
 private:
 	ID3D11Device* Device = nullptr;
 	ID3D11DeviceContext* Context = nullptr;
-	
+
+	IDXGISwapChain* SwapChain = nullptr;
+	IDXGIAdapter* MainAdapter = nullptr;
+
+	ID3D11Texture2D* DXBackBufferTexture = nullptr;
+	ID3D11RenderTargetView* RTV = nullptr;
+
 };
 

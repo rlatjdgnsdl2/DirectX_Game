@@ -15,3 +15,4 @@ int APIENTRY wWinMain(_In_ HINSTANCE _hInstance,
 	UEngineCore::EngineStart(_hInstance, "EngineContents.dll");
 	return 0;
 }
+

@@ -37,7 +37,7 @@ public:
 
 	ENGINEAPI FVector GetMousePos();
 
-	ENGINEAPI void ApplicationOff()
+	ENGINEAPI static void ApplicationOff()
 	{
 		LoopActive = false;
 	}
@@ -51,7 +51,7 @@ protected:
 private:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	static HINSTANCE hInstance;
-	static bool LoopActive;
+	inline static bool LoopActive = true;
 	static std::map<std::string, WNDCLASSEXA> WindowClasss;
 
 	FVector WindowSize;
