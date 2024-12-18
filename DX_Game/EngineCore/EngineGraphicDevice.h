@@ -39,28 +39,18 @@ public:
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& _Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& _Other) noexcept = delete;
 
+	void Release();
+
 	void CreateDeviceAndContext();
 
 	void CreateBackBuffer(const UEngineWindow& _Window);
 
-	// Adapter 그래픽카드의 정보를 가지고 있는 인터페이스
-	void GetHighPerFormanceAdapter();
+	IDXGIAdapter* GetHighPerFormanceAdapter();
 
 protected:
 
 private:
-	// 그래픽디바이스
-	// 9에서는 그려라와 로드해라를 다했다.
-
-	// 11로 오면서 인터페이스를 2가지 부류로 분류했다.
-
-	// 절대 안지울 거니까.
-
-	// 메모리 로드해라 관련
-	// 그래픽카드에한테 그림 저장좀 해달라고 할수 있습니다.
 	ID3D11Device* Device = nullptr;
-
-	// 랜더링 그려라 관련
 	ID3D11DeviceContext* Context = nullptr;
 };
 
