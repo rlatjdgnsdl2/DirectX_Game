@@ -1,7 +1,6 @@
 #pragma once
 // 기본적으로 지원해주기 때문
 // windowsdk에 포함되어 있고 windowsdk 폴더는 여러분들 설정중 디렉토리에 자동포함되어 있습니다.
-
 #include <wrl.h>
 #include <d3d11_4.h> // directx 11 버전4용 헤더
 #include <d3dcompiler.h> // 쉐이더 컴파일러용 인터페이스 쉐이더는 추후 설명
@@ -43,35 +42,58 @@ public:
 
 	void CreateBackBuffer(const UEngineWindow& _Window);
 
+	// Adapter 그래픽카드의 정보를 가지고 있는 인터페이스
+	// 다이렉트 x 디바이스가 되죠.
 	IDXGIAdapter* GetHighPerFormanceAdapter();
 
 	void Release();
+
 	void RenderStart();
+
 	void RenderEnd();
 
-	ENGINEAPI ID3D11Device* GetDevice() const
+	ENGINEAPI ID3D11Device* GetDevice()
 	{
 		return Device.Get();
 	}
-	ENGINEAPI ID3D11DeviceContext* GetContext() const
+
+	ENGINEAPI ID3D11DeviceContext* GetContext()
 	{
 		return Context.Get();
 	}
 
-
+	ENGINEAPI ID3D11RenderTargetView* GetRTV()
+	{
+		return RTV.Get();
+	}
 
 protected:
 
 private:
+	// 그래픽디바이스
+	// 9에서는 그려라와 로드해라를 다했다.
+
+	// 11로 오면서 인터페이스를 2가지 부류로 분류했다.
+
+	// 절대 안지울 거니까.
+
+	// 메모리 로드해라 관련
+	// 그래픽카드에한테 그림 저장좀 해달라고 할수 있습니다.
 	Microsoft::WRL::ComPtr<ID3D11Device> Device = nullptr;
+
+	// 랜더링 그려라 관련
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> Context = nullptr;
 
+	// 다이렉트 x에서는 백버퍼를 스왑 체인이라고 부르고
+	// 내가 교체나 
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
 
 	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RTV = nullptr;
+
+	//FVector ClearColor = FVector::BLUE;
 
 };
 

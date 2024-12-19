@@ -3,7 +3,7 @@
 
 struct EngineVertex
 {
-	float4 POSITIONR;
+	float4 POSITION;
 	float4 COLOR;
 };
 
@@ -55,15 +55,19 @@ public:
 	void InputAssembler2Init();
 	void InputAssembler2Setting();
 
+	D3D11_VIEWPORT ViewPortInfo;
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> RasterizerState = nullptr;
 	void RasterizerInit();
 	void RasterizerSetting();
 
+	// 쉐이더이기 때문에 버텍스쉐이더랑 비슷합니다. 
 	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
 	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr; // 중간 컴파일 결과물
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> PixelShader = nullptr;
-	void VertexShaderInit();
-	void VertexShaderSetting();
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
+	void PixelShaderInit();
+	void PixelShaderSetting();
+
+	void OutPutMergeSetting();
 
 };
 
