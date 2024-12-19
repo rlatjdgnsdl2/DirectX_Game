@@ -2,6 +2,7 @@
 // 기본적으로 지원해주기 때문
 // windowsdk에 포함되어 있고 windowsdk 폴더는 여러분들 설정중 디렉토리에 자동포함되어 있습니다.
 
+#include <wrl.h>
 #include <d3d11_4.h> // directx 11 버전4용 헤더
 #include <d3dcompiler.h> // 쉐이더 컴파일러용 인터페이스 쉐이더는 추후 설명
 #include <EnginePlatform/EngineWindow.h>
@@ -50,11 +51,11 @@ public:
 
 	ENGINEAPI ID3D11Device* GetDevice() const
 	{
-		return Device;
+		return Device.Get();
 	}
 	ENGINEAPI ID3D11DeviceContext* GetContext() const
 	{
-		return Context;
+		return Context.Get();
 	}
 
 
@@ -62,14 +63,15 @@ public:
 protected:
 
 private:
-	ID3D11Device* Device = nullptr;
-	ID3D11DeviceContext* Context = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Device> Device = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> Context = nullptr;
 
-	IDXGISwapChain* SwapChain = nullptr;
-	IDXGIAdapter* MainAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
 
-	ID3D11Texture2D* DXBackBufferTexture = nullptr;
-	ID3D11RenderTargetView* RTV = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RTV = nullptr;
 
 };
 
