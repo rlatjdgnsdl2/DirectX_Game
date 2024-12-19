@@ -2,15 +2,19 @@
 #include <EngineCore/Pawn.h>
 
 //	Ό³Έν:
-class TempPawn : public APawn
+class ATempPawn : public APawn
 {
 public:
-	TempPawn();
-	virtual ~TempPawn();
-	TempPawn(const TempPawn& _Other) = delete;
-	TempPawn(TempPawn&& _Other) noexcept = delete;
-	TempPawn& operator=(const TempPawn& _Other) = delete;
-	TempPawn& operator=(TempPawn&& _Other) noexcept = delete;
+	ATempPawn();
+	virtual ~ATempPawn();
+	ATempPawn(const ATempPawn& _Other) = delete;
+	ATempPawn(ATempPawn&& _Other) noexcept = delete;
+	ATempPawn& operator=(const ATempPawn& _Other) = delete;
+	ATempPawn& operator=(ATempPawn&& _Other) noexcept = delete;
+
+
+	virtual void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 protected:
 

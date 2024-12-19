@@ -1,15 +1,15 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 //	Ό³Έν:
-class TempGameMode : public AGameMode
+class ATempGameMode : public AGameMode
 {
 public:
-	TempGameMode();
-	virtual ~TempGameMode();
-	TempGameMode(const TempGameMode& _Other) = delete;
-	TempGameMode(TempGameMode&& _Other) noexcept = delete;
-	TempGameMode& operator=(const TempGameMode& _Other) = delete;
-	TempGameMode& operator=(TempGameMode&& _Other) noexcept = delete;
+	ATempGameMode();
+	virtual ~ATempGameMode();
+	ATempGameMode(const ATempGameMode& _Other) = delete;
+	ATempGameMode(ATempGameMode&& _Other) noexcept = delete;
+	ATempGameMode& operator=(const ATempGameMode& _Other) = delete;
+	ATempGameMode& operator=(ATempGameMode&& _Other) noexcept = delete;
 
 protected:
 

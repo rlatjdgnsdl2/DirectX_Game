@@ -13,6 +13,9 @@
     <ClCompile Include="TempPawn.cpp">
       <Filter>Temp</Filter>
     </ClCompile>
+    <ClCompile Include="TempActor.cpp">
+      <Filter>Temp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -25,6 +28,9 @@
       <Filter>Temp</Filter>
     </ClInclude>
     <ClInclude Include="TempPawn.h">
+      <Filter>Temp</Filter>
+    </ClInclude>
+    <ClInclude Include="TempActor.h">
       <Filter>Temp</Filter>
     </ClInclude>
   </ItemGroup>

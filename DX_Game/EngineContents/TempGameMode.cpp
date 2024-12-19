@@ -1,13 +1,14 @@
 #include "PreCompile.h"
 #include "TempGameMode.h"
+#include "TempActor.h"
 
 
-TempGameMode::TempGameMode() 
+ATempGameMode::ATempGameMode() 
 {
-
+	GetWorld()->SpawnActor<ATempActor>();
 }
 
-TempGameMode::~TempGameMode() 
+ATempGameMode::~ATempGameMode() 
 {
 
 }

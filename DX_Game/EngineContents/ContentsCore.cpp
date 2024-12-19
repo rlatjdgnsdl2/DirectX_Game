@@ -29,7 +29,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 {
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1280, 720 };
-	UEngineCore::CreateLevel<TempGameMode, TempPawn>("TempLevel");
+	UEngineCore::CreateLevel<ATempGameMode, ATempPawn>("TempLevel");
 	UEngineCore::OpenLevel("TempLevel");
 }
 
