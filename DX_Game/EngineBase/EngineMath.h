@@ -829,18 +829,6 @@ public:
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
 
-	FVector Scale;
-	FVector Rotation;
-	FVector Location;
-
-	FMatrix World;
-	FMatrix View;
-	FMatrix Projection;
-	FMatrix WVP;
-
-	// FMatrix WVP;
-
-
 
 	FVector ZAxisCenterLeftTop() const
 	{

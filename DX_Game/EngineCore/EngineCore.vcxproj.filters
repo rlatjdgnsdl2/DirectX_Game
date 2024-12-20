@@ -35,6 +35,7 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="EngineCamera.h" />
+    <ClInclude Include="CameraActor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -68,6 +69,7 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="EngineCamera.cpp" />
+    <ClCompile Include="CameraActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
