@@ -1,20 +1,25 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
-//	설명:
+// 설명 :
 class ATempActor : public AActor
 {
 public:
+	// constrcuter destructer
 	ATempActor();
-	virtual ~ATempActor();
+	~ATempActor();
+
+	// delete Function
 	ATempActor(const ATempActor& _Other) = delete;
 	ATempActor(ATempActor&& _Other) noexcept = delete;
 	ATempActor& operator=(const ATempActor& _Other) = delete;
 	ATempActor& operator=(ATempActor&& _Other) noexcept = delete;
 
 protected:
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 private:
-
+	std::shared_ptr<class URenderer> TempRenderer;
 };
 

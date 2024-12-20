@@ -3,11 +3,26 @@
 #include <string>
 #include <functional>
 
-#include "EngineDefine.h"
 #include <DirectXMath.h>
 #include <DirectXCollision.h>
 
-class ENGINEAPI UEngineMath
+#include "EngineDefine.h"
+
+// FVector로 통일하겠습니다.
+// FVector xy
+// FVector3D xyz
+// FVector4D xyzw
+// FVector4D == FVector;
+
+// #include <DirectXMath.h>
+
+// directx는 SIMD연산을 위해서
+// directx는 아예 자료형을 새로 만들었습니다.
+// xmmatrix
+// xmvector
+
+
+class ENGINEAPI  UEngineMath
 {
 public:
 	// 상수 정의
@@ -66,6 +81,7 @@ public:
 	static const FVector FORWARD;
 	static const FVector BACK;
 
+
 public:
 	union
 	{
@@ -79,6 +95,7 @@ public:
 
 		float Arr2D[1][4];
 		float Arr1D[4];
+		// 다이렉트 simd 연산 전용 벡터.
 		DirectX::XMVECTOR DirectVector;
 	};
 
@@ -98,7 +115,6 @@ public:
 	{
 
 	}
-	
 
 	FVector(float _X, float _Y, float _Z, float _W) : X(_X), Y(_Y), Z(_Z), W(_W)
 	{
@@ -515,7 +531,6 @@ public:
 			float _33;
 		};
 
-
 	};
 
 	FMatrix()
@@ -529,10 +544,7 @@ public:
 	// 정규화 항등행렬 만드는 함수
 	void Identity()
 	{
-		Arr2D[0][0] = 1.0f;
-		Arr2D[1][1] = 1.0f;
-		Arr2D[2][2] = 1.0f;
-		Arr2D[3][3] = 1.0f;
+		DirectMatrix = DirectX::XMMatrixIdentity();
 	}
 
 	FVector GetFoward()
@@ -556,8 +568,7 @@ public:
 		return Dir;
 	}
 
-	FMatrix operator*(const FMatrix& _Value);
-
+	ENGINEAPI FMatrix operator*(const FMatrix& _Value);
 
 	void Scale(const FVector& _Value)
 	{
@@ -579,6 +590,7 @@ public:
 		DirectMatrix = DirectX::XMMatrixRotationRollPitchYawFromVector(_Angle.DirectVector);
 	}
 
+
 	void Transpose()
 	{
 		for (size_t y = 0; y < 4; y++)
@@ -596,86 +608,17 @@ public:
 	// View행렬의 인자입니다.
 	void View(const FVector& _Pos, const FVector& _Dir, const FVector& _Up)
 	{
-		// _Pos 카메라가 어디서 바라보고 있나요?
-		// _Dir 어딜보고 있나요?
-		// _Up 바라보는 방향과 수직으로 직교하는 벡터를 넣어주세요.
-
-		// -90
-		FVector Forward = _Dir.NormalizeReturn();
-		FVector Up = _Up.NormalizeReturn();
-		FVector Right = FVector::Cross(Up, Forward);
-		Right.Normalize();
-
-
-		ArrVector[2] = Forward;
-		ArrVector[1] = Up;
-		ArrVector[0] = Right;
-
-		ArrVector[2].W = 0.0f;
-		ArrVector[1].W = 0.0f;
-		ArrVector[0].W = 0.0f;
-
-		// 나의 회전행렬 구했죠?
-		// 90 
-		Transpose();
-
-		FMatrix OrginRot = *this;
-
-		FVector NPos = -_Pos;
-
-		ArrVector[3].X = FVector::Dot(Right, NPos);
-		ArrVector[3].Y = FVector::Dot(Up, NPos);
-		ArrVector[3].Z = FVector::Dot(Forward, NPos);
-
-		FVector Move = ArrVector[3];
-		FVector OriginMove = NPos * OrginRot;
-
+		Identity();
+		DirectMatrix = DirectX::XMMatrixLookToLH(_Pos.DirectVector, _Dir.DirectVector, _Up.DirectVector);
 		return;
 	}
 
-	// 여기서 왼손 오른 손 좌표계도 바꿀수 있습니다.
-
-	// _Widht 너비와 <= 윈도우 크기 넣는게 일반적
-	// _Height 높의 화면을
-	// 
-	// 내 앞에있는 _Far거리 안에 있는 애들까지 보겠다.
-	// 내 앞에있는 _Near부터 보겠다. 
-
-	//                 
 	void OrthographicLH(float _Width, float _Height, float _Near, float _Far)
 	{
 		Identity();
-
-		// 1000;
-		// 250 * (2 / 1000);
-		// 크기를 바꾸는 행렬이다 
-		// 직교는 더더욱 
-
-		//                      11      1      
-		float fRange = 1.0f / (_Far - _Near);
-
-		// [*][ ][ ][ ]
-		// [ ][*][ ][ ]
-		// [ ][ ][*][ ]
-		// [ ][ ][*][ ]
-
-		Arr2D[0][0] = 2.0f / _Width;
-		Arr2D[1][1] = 2.0f / _Height;
-		Arr2D[2][2] = fRange;
-
-		// Camera의 z와 near와 사이에 있는 존재들을 z -축으로 보내기 위해서 이다.
-		// 큰의미는 없다. 숫자가 너무 작어
-		Arr2D[3][2] = -fRange * _Near;
-		// 그만큼 앞으로 땡겨서 모니터에 딱 붙여주려고 하는것.
-		// 직교 투영은 -1~1사이의 값이 되게 만들어 줄겁니다.
-
+		DirectMatrix = DirectX::XMMatrixOrthographicLH(_Width, _Height, _Near, _Far);
 	}
 
-	// 인자중의 하나는 
-
-	// 화면의 크기를 정의하기 위한 _Width, _Height X
-	// 화면의 비율을 정의하기 위한 _Width, _Height O
-	// _FovAngle => x축에서 바라봤을대의 각도를 알려달라.
 	void PerspectiveFovDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
 	{
 		PerspectiveFovRad(_FovAngle * UEngineMath::D2R, _Width, _Height, _Near, _Far);
@@ -685,25 +628,8 @@ public:
 	{
 		Identity();
 
-		float ScreenRatio = _Width / _Height;
-		float DivFov = _FovAngle / 2.0f;
-
-		// / z를 해야하니까.
-		// / z를 하기 전까지의 값은 추출해 낼수 있다.
-
-		Arr2D[2][3] = 1.0f;
-		Arr2D[3][3] = 0.0f;
-
-		// x * 1.0f / (tanf(DivFov) * ScreenRatio) / z
-		Arr2D[0][0] = 1.0f / (tanf(DivFov) * ScreenRatio);
-		// y * 1.0f / (tanf(DivFov) * ScreenRatio)
-		Arr2D[1][1] = 1.0f / tanf(DivFov);
-		// z값을 0, 1사이의 값으로 만드는 것이 목적이다.
-		// 여기에서 z * 가 되는 값이다.
-		Arr2D[2][2] = (_Far + _Near) / (_Far - _Near);
-		// 0~ 1사이의 값으로 만들수가 있나요?
-
-		Arr2D[3][2] = -2 * (_Near * _Far) / (_Far - _Near);
+		Identity();
+		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(_FovAngle, _Width / _Height, _Near, _Far);
 	}
 
 	// 화면 확대 -1~1사이의 값이 됐으니까
@@ -797,7 +723,7 @@ struct FTransform
 	// transformupdate는 
 	// 아래의 값들을 다 적용해서
 	// WVP를 만들어내는 함수이다.
-	FVector Scale;
+	FVector Scale = { 1.0f, 1.0f, 1.0f };
 	FVector Rotation;
 	FVector Location;
 
@@ -811,6 +737,7 @@ struct FTransform
 
 public:
 	ENGINEAPI void TransformUpdate();
+
 private:
 	friend class CollisionFunctionInit;
 
@@ -828,7 +755,6 @@ public:
 
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
-
 
 	FVector ZAxisCenterLeftTop() const
 	{
