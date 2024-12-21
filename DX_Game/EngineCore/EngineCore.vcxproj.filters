@@ -36,6 +36,9 @@
     </ClInclude>
     <ClInclude Include="EngineCamera.h" />
     <ClInclude Include="CameraActor.h" />
+    <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
+      <Filter>ThirdParty\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -90,5 +93,27 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{db931201-43c4-4616-83ff-8b4a7fe68e0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{f34c140b-5bab-4fa7-b387-521275a1d02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Debug">
+      <UniqueIdentifier>{26486088-fc3c-438f-96b1-09c2648d0b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Release">
+      <UniqueIdentifier>{2e258443-2928-427b-afcf-e221822f55fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\Inc">
+      <UniqueIdentifier>{e5b0f8f6-92d8-4bf4-a25a-a7eee4c2f1ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
+      <Filter>ThirdParty\Inc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Bin\Debug\DirectXTex.lib">
+      <Filter>ThirdParty\Debug</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

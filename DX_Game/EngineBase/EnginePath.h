@@ -1,15 +1,21 @@
 #pragma once
 #include <filesystem>
-#include "EngineDefine.h"
 
 // 설명 :
 class UEnginePath
 {
 public:
+	// constrcuter destructer
 	ENGINEAPI UEnginePath();
 	ENGINEAPI UEnginePath(std::string_view _Path);
 	ENGINEAPI UEnginePath(std::filesystem::path _Path);
 	ENGINEAPI virtual ~UEnginePath();
+
+	//// delete Function
+	//UEnginePath(const UEnginePath& _Other) = delete;
+	//UEnginePath(UEnginePath&& _Other) noexcept = delete;
+	//UEnginePath& operator=(const UEnginePath& _Other) = delete;
+	//UEnginePath& operator=(UEnginePath&& _Other) noexcept = delete;
 
 	bool IsExists();
 	void MoveParent();
@@ -23,7 +29,8 @@ public:
 	std::string GetDirectoryName();
 
 	// 확장자
-	std::string GetExtension();
+	ENGINEAPI std::string GetExtension();
+
 
 	ENGINEAPI bool MoveParentToDirectory(std::string_view _Path);
 
