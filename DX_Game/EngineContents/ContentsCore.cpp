@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ContentsCore.h"
+#include <EngineCore/EngineCore.h>
 
 #include "TempGameMode.h"
 #include "TempPawn.h"

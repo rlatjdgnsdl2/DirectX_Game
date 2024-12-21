@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "EngineCamera.h"
+
+#include "EngineCore.h"
 #include "Renderer.h"
 
 UEngineCamera::UEngineCamera()
