@@ -6,6 +6,7 @@
 #include "Level.h"
 #include "Actor.h"
 #include "EngineCore.h"
+#include "EngineTexture.h"
 #include "ThirdParty/DirectxTex/Inc/DirectXTex.h"
 #pragma comment(lib, "DirectXTex.lib")
 
@@ -26,7 +27,6 @@ void URenderer::SetOrder(int _Order)
 	int PrevOrder = GetOrder();
 	UObject::SetOrder(_Order);
 	ULevel* Level = GetActor()->GetWorld();
-
 	std::shared_ptr<URenderer> RendererPtr = GetThis<URenderer>();
 	Level->ChangeRenderGroup(0, PrevOrder, RendererPtr);
 }
@@ -35,21 +35,41 @@ void URenderer::SetOrder(int _Order)
 ENGINEAPI void URenderer::BeginPlay()
 {
 	SetOrder(0);
-
-
 	InputAssembler1Init();
 	VertexShaderInit();
 	InputAssembler2Init();
 	RasterizerInit();
 	PixelShaderInit();
 	ShaderResInit();
+}
+
+void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
+{
+	FTransform& CameraTrans = _Camera->GetTransformRef();
+	FTransform& RendererTrans = GetTransformRef();
+
+	RendererTrans.View = CameraTrans.View;
+	RendererTrans.Projection = CameraTrans.Projection;
+	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
+
+	ShaderResSetting();
+	InputAssembler1Setting();
+	VertexShaderSetting();
+	InputAssembler2Setting();
+	RasterizerSetting();
+	PixelShaderSetting();
+	OutPutMergeSetting();
+	UEngineCore::Device.GetContext()->DrawIndexed(6, 0, 0);
 
 }
+
 
 void URenderer::ShaderResInit()
 {
 	D3D11_BUFFER_DESC BufferInfo = { 0 };
 	BufferInfo.ByteWidth = sizeof(FTransform);
+	
+	// 상수버퍼
 	BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
 	BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
@@ -121,9 +141,21 @@ void URenderer::ShaderResInit()
 
 	UEngineCore::Device.GetDevice()->CreateSamplerState(&SampInfo, &SamplerState);
 
-
-
 }
+
+void URenderer::SetTexture(std::string_view _Value)
+{
+	std::string UpperName = UEngineString::ToUpper(_Value);
+
+	Texture = UEngineTexture::Find(UpperName);
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("존재하지 않는 텍스처를 사용하려고 했습니다.");
+	}
+}
+
+
 
 void URenderer::ShaderResSetting()
 {
@@ -137,15 +169,12 @@ void URenderer::ShaderResSetting()
 	{
 		MSGASSERT("그래픽카드가 수정을 거부했습니다.");
 	}
-
 	memcpy_s(Data.pData, sizeof(FTransform), &RendererTrans, sizeof(FTransform));
-
 
 	UEngineCore::Device.GetContext()->Unmap(TransformConstBuffer.Get(), 0);
 
 	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
 	UEngineCore::Device.GetContext()->VSSetConstantBuffers(0, 1, ArrPtr);
-
 
 	ID3D11ShaderResourceView* ArrSRV[16] = { SRV.Get() };
 	UEngineCore::Device.GetContext()->PSSetShaderResources(0, 1, ArrSRV);
@@ -154,30 +183,6 @@ void URenderer::ShaderResSetting()
 	UEngineCore::Device.GetContext()->PSSetSamplers(0, 1, ArrSMP);
 }
 
-void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
-{
-	FTransform& CameraTrans = _Camera->GetTransformRef();
-
-	FTransform& RendererTrans = GetTransformRef();
-
-	RendererTrans.View = CameraTrans.View;
-	RendererTrans.Projection = CameraTrans.Projection;
-
-	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
-
-
-
-
-	ShaderResSetting();
-	InputAssembler1Setting();
-	VertexShaderSetting();
-	InputAssembler2Setting();
-	RasterizerSetting();
-	PixelShaderSetting();
-	OutPutMergeSetting();
-	UEngineCore::Device.GetContext()->DrawIndexed(6, 0, 0);
-
-}
 
 
 
@@ -191,8 +196,6 @@ void URenderer::InputAssembler1Init()
 	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
 	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 1.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
 	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
-
-
 
 	D3D11_BUFFER_DESC BufferInfo = { 0 };
 
@@ -258,9 +261,6 @@ void URenderer::InputAssembler1LayOut()
 		InputLayOutData.push_back(Desc);
 	}
 
-
-
-
 	{
 		D3D11_INPUT_ELEMENT_DESC Desc;
 		Desc.SemanticName = "COLOR";
@@ -273,8 +273,6 @@ void URenderer::InputAssembler1LayOut()
 		Desc.InstanceDataStepRate = 0;
 		InputLayOutData.push_back(Desc);
 	}
-
-
 
 	HRESULT Result = UEngineCore::Device.GetDevice()->CreateInputLayout(
 		&InputLayOutData[0],
@@ -296,10 +294,7 @@ void URenderer::VertexShaderInit()
 	UEngineDirectory CurDir;
 	CurDir.MoveParentToDirectory("EngineShader");
 	UEngineFile File = CurDir.GetFile("EngineSpriteShader.fx");
-
-
 	std::string Path = File.GetPathToString();
-
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 
 	std::string version = "vs_5_0";
@@ -310,7 +305,7 @@ void URenderer::VertexShaderInit()
 #ifdef _DEBUG
 	Flag0 = D3D10_SHADER_DEBUG;
 #endif
-
+	//행기준
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
 
@@ -358,8 +353,7 @@ void URenderer::RasterizerInit()
 	D3D11_RASTERIZER_DESC Desc = {};
 
 
-	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
-
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
@@ -390,7 +384,6 @@ void URenderer::InputAssembler2Init()
 	Indexs.push_back(1);
 	Indexs.push_back(3);
 	Indexs.push_back(2);
-
 
 	D3D11_BUFFER_DESC BufferInfo = { 0 };
 	BufferInfo.ByteWidth = sizeof(unsigned int) * static_cast<int>(Indexs.size());

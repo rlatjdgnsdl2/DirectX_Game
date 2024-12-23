@@ -28,9 +28,6 @@
     <ClInclude Include="Pawn.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -38,6 +35,18 @@
     <ClInclude Include="CameraActor.h" />
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
       <Filter>ThirdParty\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Components\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Components\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineResources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTexture.h">
+      <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -65,14 +74,23 @@
     <ClCompile Include="Pawn.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="EngineGraphicDevice.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="EngineCamera.cpp" />
     <ClCompile Include="CameraActor.cpp" />
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Components\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Components\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineResources.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTexture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
@@ -104,6 +122,12 @@
     </Filter>
     <Filter Include="ThirdParty\Inc">
       <UniqueIdentifier>{e5b0f8f6-92d8-4bf4-a25a-a7eee4c2f1ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Render">
+      <UniqueIdentifier>{8a64298f-93d0-4948-b73f-8de865bd1256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{eed0a0bf-7ad4-4e4e-a10f-2c15fd4bc50a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

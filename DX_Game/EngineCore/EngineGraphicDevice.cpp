@@ -136,7 +136,6 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 {
-
 	FVector Size = _Window.GetWindowSize();
 
 	DXGI_SWAP_CHAIN_DESC ScInfo = { 0 };
@@ -163,14 +162,10 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 	ScInfo.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	ScInfo.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-
-	IDXGIFactory* pF = nullptr;
-
-	MainAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pF));
-
-
-	pF->CreateSwapChain(Device.Get(), &ScInfo, &SwapChain);
-	pF->Release();
+	IDXGIFactory* PFactory = nullptr;
+	MainAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&PFactory));
+	PFactory->CreateSwapChain(Device.Get(), &ScInfo, &SwapChain);
+	PFactory->Release();
 	MainAdapter->Release();
 
 	if (nullptr == SwapChain)
@@ -178,20 +173,15 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 		MSGASSERT("스왑체인 제작에 실패했습니다.");
 	}
 
-
-
 	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(DXBackBufferTexture.GetAddressOf())))
 	{
 		MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
 	};
 
-
-
 	if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture.Get(), nullptr, &RTV))
 	{
 		MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
 	}
-
 }
 
 
