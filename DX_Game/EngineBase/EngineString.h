@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "EngineDefine.h"
 
 // 설명 : 문자열에 관련된 static 함수들만 만들겁니다.
 //        헬퍼클래스 문자열에 도움주는 클래스

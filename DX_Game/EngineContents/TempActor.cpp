@@ -1,11 +1,13 @@
 #include "PreCompile.h"
 #include "TempActor.h"
-#include <EngineCore/Renderer.h>
+#include <EngineCore/SpriteRenderer.h>
 
 ATempActor::ATempActor()
 {
 	// 랜더러를 만든다.
-	TempRenderer = CreateDefaultSubObject<URenderer>();
+	TempRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	TempRenderer->SetSprite("Player.png");
+
 
 	SetActorRelativeScale3D({ 100.0f, 100.0f, 1.0f });
 
