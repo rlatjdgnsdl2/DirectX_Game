@@ -17,16 +17,17 @@ public:
 	ENGINEAPI ~UEngineFile();
 
 	// Write
-	void Write(UEngineSerializer& _Ser);
-	void Read(UEngineSerializer& _Ser);
+	ENGINEAPI void Write(UEngineSerializer& _Ser);
+	ENGINEAPI void Read(UEngineSerializer& _Ser);
 
-	void Write(const void* _Ptr, size_t _Size);
-	void Read(void* _Ptr, size_t _Size);
+	ENGINEAPI void Write(const void* _Ptr, size_t _Size);
+	ENGINEAPI void Read(void* _Ptr, size_t _Size);
 
-	void FileOpen(const char* _Mode);
-	void Close();
+	ENGINEAPI void FileOpen(const char* _Mode);
+	ENGINEAPI void Close();
 
-	int GetFileSize();
+	ENGINEAPI int GetFileSize();
+	ENGINEAPI std::string GetAllFileText();
 
 private:
 	FILE* File = nullptr;

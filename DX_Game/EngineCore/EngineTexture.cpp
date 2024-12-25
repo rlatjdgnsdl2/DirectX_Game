@@ -1,10 +1,8 @@
 #include "PreCompile.h"
 #include "EngineTexture.h"
 
-#include "EngineCore.h"
-
 #ifdef _DEBUG
-#pragma comment(lib, "DirectXTex.lib")
+#pragma comment(lib, "DirectXTex_Debug.lib")
 #else
 #pragma comment(lib, "DirectXTex_Release.lib")
 #endif
@@ -43,8 +41,6 @@ void UEngineTexture::ResLoad()
 	std::wstring wLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
 	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
 
-	DirectX::TexMetadata Metadata;
-	DirectX::ScratchImage ImageData;
 
 	if (UpperExt == ".DDS")
 	{
@@ -82,4 +78,7 @@ void UEngineTexture::ResLoad()
 		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다..");
 		return;
 	}
+
+	Size.X = static_cast<float>(Metadata.width);
+	Size.Y = static_cast<float>(Metadata.height);
 }

@@ -11,9 +11,13 @@ public:
 	ATempGameMode& operator=(const ATempGameMode& _Other) = delete;
 	ATempGameMode& operator=(ATempGameMode&& _Other) noexcept = delete;
 
+	virtual void Tick(float _DeltaTime) override;
+
+
 protected:
 
 private:
+	std::shared_ptr<class ATempActor> TempActor;
 
 };
 

@@ -11,10 +11,10 @@
       <Filter>Interface</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Actor.h">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="ActorComponent.h">
       <Filter>Components</Filter>
@@ -23,10 +23,10 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GameMode.h">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h">
       <Filter>Graphics</Filter>
@@ -48,6 +48,39 @@
     <ClInclude Include="EngineTexture.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="EngineGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineGUIWindow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx11.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>GUI\IMGUI\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSprite.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -57,10 +90,10 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
       <Filter>Components</Filter>
@@ -69,10 +102,10 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="GameMode.cpp">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
-      <Filter>Object</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="EngineGraphicDevice.cpp">
       <Filter>Graphics</Filter>
@@ -91,6 +124,33 @@
     <ClCompile Include="EngineTexture.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="EngineGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineGUIWindow.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx11.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>GUI\IMGUI\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSprite.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
@@ -101,9 +161,6 @@
     </Filter>
     <Filter Include="Interface">
       <UniqueIdentifier>{015b6f7c-88a1-4e5b-9773-659400f71d14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{38e053bd-ed02-4846-85e4-923c6ae63f90}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{336e553c-f6b3-49e4-a912-283dd8b21407}</UniqueIdentifier>
@@ -129,6 +186,21 @@
     <Filter Include="Resource">
       <UniqueIdentifier>{eed0a0bf-7ad4-4e4e-a10f-2c15fd4bc50a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{1853f14f-f162-4246-a2b2-d0d6d21db53d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI">
+      <UniqueIdentifier>{e3e6d47d-4701-42cc-9f65-8dcb0eec91a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI\Header">
+      <UniqueIdentifier>{453c0362-79c0-49b2-a0b3-9420e8699535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\IMGUI\Cpp">
+      <UniqueIdentifier>{27d480ec-1bbb-4eff-8f21-767f90f33877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{38e053bd-ed02-4846-85e4-923c6ae63f90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
@@ -136,7 +208,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
       <Filter>ThirdParty\Debug</Filter>
     </CopyFileToFolders>
   </ItemGroup>
