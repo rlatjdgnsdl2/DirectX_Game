@@ -31,6 +31,9 @@
     <ClCompile Include="EngineTimer.cpp">
       <Filter>Time</Filter>
     </ClCompile>
+    <ClCompile Include="EngineDelegate.cpp">
+      <Filter>Delegate</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineDirectory.h">
@@ -66,6 +69,9 @@
     <ClInclude Include="EngineTimer.h">
       <Filter>Time</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDelegate.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">
@@ -88,6 +94,9 @@
     </Filter>
     <Filter Include="Time">
       <UniqueIdentifier>{eb5b94a6-dae6-4655-80ca-9b37f8146620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Delegate">
+      <UniqueIdentifier>{0a5b3a71-30b3-4e1a-9f16-84ce953e3f8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

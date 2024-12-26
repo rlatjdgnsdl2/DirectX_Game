@@ -2,6 +2,7 @@
 #include "EngineCore.h"
 #include <EngineBase/EngineDebug.h>
 #include <EnginePlatform/EngineWindow.h>
+#include <EnginePlatform/EngineInput.h>
 #include "IContentsCore.h"
 #include "EngineResources.h"
 #include "EngineGUI.h"
@@ -177,6 +178,7 @@ void UEngineCore::EngineFrame()
 
 	Timer.TimeCheck();
 	float DeltaTime = Timer.GetDeltaTime();
+	UEngineInput::KeyCheck(DeltaTime);
 
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);
@@ -198,6 +200,6 @@ void UEngineCore::EngineEnd()
 	NextLevel = nullptr;
 	LevelMap.clear();
 
-
+	
 
 }

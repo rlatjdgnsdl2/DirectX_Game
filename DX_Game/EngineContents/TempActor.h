@@ -29,5 +29,6 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> TempRenderer;
+	std::shared_ptr<class USpriteRenderer> Child;
 };
 

@@ -5,16 +5,25 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>Pch</Filter>
     </ClCompile>
+    <ClCompile Include="EngineInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineWindow.h" />
     <ClInclude Include="PreCompile.h">
       <Filter>Pch</Filter>
     </ClInclude>
+    <ClInclude Include="EngineInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
       <UniqueIdentifier>{88281f6b-e648-40ac-9c3a-9514e7c545eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{c457e77d-969a-4b85-9630-970edff21989}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

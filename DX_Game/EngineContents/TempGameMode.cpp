@@ -28,7 +28,7 @@ public:
 ATempGameMode::ATempGameMode() 
 {
 	TempActor = GetWorld()->SpawnActor<ATempActor>();
-	TempActor->SetActorLocation(FVector{ 100.0f, 100.0f, 0.0f });
+	TempActor->SetActorLocation({ 300.0f, 0.0f, 0.0f });
 	TempActor->GetRenderer()->SetSpriteData(4);
 
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
@@ -44,4 +44,5 @@ ATempGameMode::~ATempGameMode()
 
 void ATempGameMode::Tick(float _DeltaTime)
 {
+	AActor::Tick(_DeltaTime);
 }

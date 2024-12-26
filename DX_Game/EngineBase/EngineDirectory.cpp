@@ -2,12 +2,12 @@
 #include "EngineDirectory.h"
 #include "EngineFile.h"
 #include "EngineDebug.h"
-
+#include "EngineString.h"
 
 UEngineDirectory::UEngineDirectory()
 	: UEnginePath()
 {
-
+	// 만들어지면 현재로 
 }
 
 UEngineDirectory::UEngineDirectory(std::string_view _Path)
@@ -22,14 +22,24 @@ UEngineDirectory::UEngineDirectory(std::filesystem::path _Path)
 
 }
 
+
 UEngineDirectory::~UEngineDirectory()
 {
-
 }
 
-std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive /*= true*/)
+
+std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive, std::vector<std::string> _Exts)
 {
+	std::vector<std::string> UpperExts;
+
+	for (size_t i = 0; i < _Exts.size(); i++)
+	{
+		UpperExts.push_back(UEngineString::ToUpper(_Exts[i]));
+	}
+
 	std::vector<class UEngineFile> Result;
+
+	// 경로를 넣어주면 그 경로의 첫번째 파일을 가리키게 된다.
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(Path);
 
 	while (false == Diriter._At_end())
@@ -48,6 +58,25 @@ std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive /*
 			continue;
 		}
 
+		bool Check = true;
+
+		for (size_t i = 0; i < UpperExts.size(); i++)
+		{
+			std::string CurUpperExt = UEngineString::ToUpper(Path.GetExtension());
+
+			if (CurUpperExt == UpperExts[i])
+			{
+				Check = false;
+				break;
+			}
+		}
+
+		if (true == Check)
+		{
+			++Diriter;
+			continue;
+		}
+
 		Result.push_back(UEngineFile(FilePath));
 		++Diriter;
 	}
@@ -59,6 +88,7 @@ std::vector<class UEngineDirectory> UEngineDirectory::GetAllDirectory()
 {
 	std::vector<class UEngineDirectory> Result;
 
+	// 경로를 넣어주면 그 경로의 첫번째 파일을 가리키게 된다.
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(Path);
 
 	while (false == Diriter._At_end())
@@ -79,8 +109,11 @@ std::vector<class UEngineDirectory> UEngineDirectory::GetAllDirectory()
 	return Result;
 }
 
-void UEngineDirectory::GetAllFileRecursive(std::filesystem::path _Path, std::vector<class UEngineFile>& _Result)
+
+void UEngineDirectory::GetAllFileRecursive(std::filesystem::path _Path
+	, std::vector<class UEngineFile>& _Result)
 {
+	// 경로를 넣어주면 그 경로의 첫번째 파일을 가리키게 된다.
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(_Path);
 
 	while (false == Diriter._At_end())

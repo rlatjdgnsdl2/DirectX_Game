@@ -1,7 +1,5 @@
 #include "PreCompile.h"
 #include "EngineCamera.h"
-
-#include "EngineCore.h"
 #include "Renderer.h"
 
 UEngineCamera::UEngineCamera()
@@ -18,6 +16,7 @@ void UEngineCamera::BeginPlay()
 
 UEngineCamera::~UEngineCamera()
 {
+	Renderers.clear();
 }
 
 void UEngineCamera::Tick(float _DetlaTime)
