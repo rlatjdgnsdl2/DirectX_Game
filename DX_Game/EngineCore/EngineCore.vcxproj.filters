@@ -16,12 +16,6 @@
     <ClInclude Include="Actor.h">
       <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="ActorComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="GameMode.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -31,8 +25,6 @@
     <ClInclude Include="EngineGraphicDevice.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCamera.h" />
-    <ClInclude Include="CameraActor.h" />
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h">
       <Filter>ThirdParty\Inc</Filter>
     </ClInclude>
@@ -81,18 +73,36 @@
     <ClInclude Include="EngineSprite.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultSceneComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="RenderUnit.h">
       <Filter>Components\Render</Filter>
     </ClInclude>
-    <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="EngineVertex.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="IndexBuffer.h" />
-    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraActor.h">
+      <Filter>Components\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCamera.h">
+      <Filter>Components\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultSceneComponent.h">
+      <Filter>Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Components\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -107,12 +117,6 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="ActorComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="GameMode.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -122,8 +126,6 @@
     <ClCompile Include="EngineGraphicDevice.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCamera.cpp" />
-    <ClCompile Include="CameraActor.cpp" />
     <ClCompile Include="Renderer.cpp">
       <Filter>Components\Render</Filter>
     </ClCompile>
@@ -163,21 +165,39 @@
     <ClCompile Include="EngineSprite.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultSceneComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="RenderUnit.cpp">
       <Filter>Components\Render</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="EngineGraphicDevice_Resources.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="EngineVertex.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="IndexBuffer.cpp" />
-    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Components\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCamera.cpp">
+      <Filter>Components\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorComponent.cpp">
+      <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultSceneComponent.cpp">
+      <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Components\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
@@ -228,6 +248,9 @@
     <Filter Include="Level">
       <UniqueIdentifier>{38e053bd-ed02-4846-85e4-923c6ae63f90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Base">
+      <UniqueIdentifier>{48de8f8e-6917-4b8e-ba7b-b92b289755b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl">
@@ -237,6 +260,9 @@
   <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex_Debug.lib">
       <Filter>ThirdParty\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex_Release.lib">
+      <Filter>ThirdParty\Release</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
