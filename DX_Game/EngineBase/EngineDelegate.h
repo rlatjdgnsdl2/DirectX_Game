@@ -14,15 +14,10 @@ public:
 
 	ENGINEAPI  ~EngineDelegate();
 
-	// delete Function
-	//EngineDelegate(const EngineDelegate& _Other) = delete;
-	//EngineDelegate(EngineDelegate&& _Other) noexcept = delete;
-	//EngineDelegate& operator=(const EngineDelegate& _Other) = delete;
-	//EngineDelegate& operator=(EngineDelegate&& _Other) noexcept = delete;
-
-	bool IsBind()
+	bool IsEmpty()
 	{
-		return false == Functions.empty();
+		bool EmptyValue = Functions.empty();
+		return EmptyValue;
 	}
 
 	void operator+=(std::function<void()> _Function)
@@ -32,12 +27,7 @@ public:
 
 	void operator()()
 	{
-		std::list<std::function<void()>>::iterator StartIter = Functions.begin();
-		std::list<std::function<void()>>::iterator EndIter = Functions.end();
-
-		for (; StartIter != EndIter; ++StartIter)
-		{
-			std::function<void()>& Function = *StartIter;
+		for (std::function<void()>& Function : Functions) {
 			Function();
 		}
 	}
