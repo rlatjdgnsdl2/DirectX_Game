@@ -7,7 +7,6 @@
 UEngineDirectory::UEngineDirectory()
 	: UEnginePath()
 {
-	// 만들어지면 현재로 
 }
 
 UEngineDirectory::UEngineDirectory(std::string_view _Path)
@@ -39,7 +38,6 @@ std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive, s
 
 	std::vector<class UEngineFile> Result;
 
-	// 경로를 넣어주면 그 경로의 첫번째 파일을 가리키게 된다.
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(Path);
 
 	while (false == Diriter._At_end())
@@ -88,7 +86,6 @@ std::vector<class UEngineDirectory> UEngineDirectory::GetAllDirectory()
 {
 	std::vector<class UEngineDirectory> Result;
 
-	// 경로를 넣어주면 그 경로의 첫번째 파일을 가리키게 된다.
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(Path);
 
 	while (false == Diriter._At_end())
@@ -113,7 +110,6 @@ std::vector<class UEngineDirectory> UEngineDirectory::GetAllDirectory()
 void UEngineDirectory::GetAllFileRecursive(std::filesystem::path _Path
 	, std::vector<class UEngineFile>& _Result)
 {
-	// 경로를 넣어주면 그 경로의 첫번째 파일을 가리키게 된다.
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(_Path);
 
 	while (false == Diriter._At_end())

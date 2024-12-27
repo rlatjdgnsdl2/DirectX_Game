@@ -12,7 +12,6 @@ namespace UEngineDebug
 
 	// 분리해야 하겠네요
 	ENGINEAPI void OutPutString(const std::string& Text);
-
 	
 }
 
