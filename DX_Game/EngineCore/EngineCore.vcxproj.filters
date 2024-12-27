@@ -84,6 +84,15 @@
     <ClInclude Include="DefaultSceneComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="RenderUnit.h">
+      <Filter>Components\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="EngineVertex.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="Mesh.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -157,6 +166,18 @@
     <ClCompile Include="DefaultSceneComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="RenderUnit.cpp">
+      <Filter>Components\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="EngineGraphicDevice_Resources.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineVertex.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">
