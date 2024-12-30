@@ -2,6 +2,7 @@
 #include "Player.h"
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EnginePlatform/EngineInput.h>
 
 
 APlayer::APlayer() 
@@ -24,4 +25,13 @@ APlayer::APlayer()
 APlayer::~APlayer() 
 {
 
+}
+
+void APlayer::Tick(float _DeltaTime)
+{
+	AActor::Tick(_DeltaTime);
+
+	if (UEngineInput::IsPress(VK_LEFT)) {
+		
+	}
 }

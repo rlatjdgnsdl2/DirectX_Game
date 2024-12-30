@@ -188,3 +188,5 @@ FVector UEngineSprite::GetSpriteScaleToReal(size_t _Index)
 
 	return Result;
 }
+
+

@@ -13,8 +13,8 @@ class UActorComponent : public UObject
 
 public:
 	// constrcuter destructer
-	UActorComponent();
-	~UActorComponent();
+	ENGINEAPI UActorComponent();
+	ENGINEAPI virtual ~UActorComponent();
 
 	// delete Function
 	UActorComponent(const UActorComponent& _Other) = delete;

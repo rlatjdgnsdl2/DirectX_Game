@@ -6,6 +6,8 @@
 ACarcion_Ishfira_Map::ACarcion_Ishfira_Map() 
 {
 	BackRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	BackRenderer->CreateAnimation("Ishfira", "Ishfira",0,9);
+	BackRenderer->ChangeAnimation("Ishfira");
 
 }
 
