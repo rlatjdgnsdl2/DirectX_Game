@@ -7,13 +7,20 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>Pch</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerStat.cpp" />
     <ClCompile Include="Carcion_Ishfira.cpp">
       <Filter>Carcion\Ishfira</Filter>
     </ClCompile>
     <ClCompile Include="Carcion_Ishfira_map.cpp">
       <Filter>Carcion\Ishfira</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStat.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDataManager.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -23,13 +30,20 @@
     <ClInclude Include="PreCompile.h">
       <Filter>Pch</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerStat.h" />
     <ClInclude Include="Carcion_Ishfira.h">
       <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
     <ClInclude Include="Carcion_Ishfira_map.h">
       <Filter>Carcion\Ishfira</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStat.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDataManager.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +58,9 @@
     </Filter>
     <Filter Include="Carcion\Ishfira">
       <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{e09d7acd-c040-4b85-8a10-bf004406165d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
