@@ -18,7 +18,7 @@ public:
 	std::shared_ptr<class UEngineCamera> CameraComponent = nullptr;
 
 	void BeginPlay() override;
-	void Tick(float _DeltaTime);
+	void Tick(float _DeltaTime) override;
 
 
 protected:

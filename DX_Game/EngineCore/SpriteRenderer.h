@@ -86,6 +86,9 @@ public:
 		CurAnimationSpeed = 1.0f;
 	}
 
+	void SetSprite(UEngineSprite* _Sprite);
+	void SetSprite(std::string_view _Value);
+
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
@@ -93,11 +96,11 @@ protected:
 
 
 private:
-	
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
+	UEngineSprite* Sprite = nullptr;
 };
 

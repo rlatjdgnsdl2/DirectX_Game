@@ -7,14 +7,13 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>Pch</Filter>
     </ClCompile>
-    <ClCompile Include="TempGameMode.cpp">
-      <Filter>Temp</Filter>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerStat.cpp" />
+    <ClCompile Include="Carcion_Ishfira.cpp">
+      <Filter>Carcion\Ishfira</Filter>
     </ClCompile>
-    <ClCompile Include="TempPawn.cpp">
-      <Filter>Temp</Filter>
-    </ClCompile>
-    <ClCompile Include="TempActor.cpp">
-      <Filter>Temp</Filter>
+    <ClCompile Include="Carcion_Ishfira_map.cpp">
+      <Filter>Carcion\Ishfira</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -24,14 +23,13 @@
     <ClInclude Include="PreCompile.h">
       <Filter>Pch</Filter>
     </ClInclude>
-    <ClInclude Include="TempGameMode.h">
-      <Filter>Temp</Filter>
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerStat.h" />
+    <ClInclude Include="Carcion_Ishfira.h">
+      <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
-    <ClInclude Include="TempPawn.h">
-      <Filter>Temp</Filter>
-    </ClInclude>
-    <ClInclude Include="TempActor.h">
-      <Filter>Temp</Filter>
+    <ClInclude Include="Carcion_Ishfira_map.h">
+      <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +39,11 @@
     <Filter Include="Pch">
       <UniqueIdentifier>{5af08b32-4a9e-4d36-a9a7-da1bcafae03d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Temp">
-      <UniqueIdentifier>{cfbf59d6-11af-47a3-8110-866e537de941}</UniqueIdentifier>
+    <Filter Include="Carcion">
+      <UniqueIdentifier>{0e83acb3-09af-4d80-8ee7-121f29208148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Carcion\Ishfira">
+      <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -86,6 +86,8 @@ void UEngineGraphicDevice::BlendInit()
 	Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
+
+
 	UEngineBlend::Create("AlphaBlend", Desc);
 }
 
