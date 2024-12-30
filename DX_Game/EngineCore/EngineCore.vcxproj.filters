@@ -76,9 +76,6 @@
     <ClInclude Include="RenderUnit.h">
       <Filter>Components\Render</Filter>
     </ClInclude>
-    <ClInclude Include="EngineVertex.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>Resource</Filter>
     </ClInclude>
@@ -102,6 +99,12 @@
     </ClInclude>
     <ClInclude Include="SceneComponent.h">
       <Filter>Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVertex.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineBlend.h">
+      <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -171,9 +174,6 @@
     <ClCompile Include="EngineGraphicDevice_Resources.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="EngineVertex.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
@@ -197,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="SceneComponent.cpp">
       <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineBlend.cpp">
+      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

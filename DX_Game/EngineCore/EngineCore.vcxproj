@@ -32,6 +32,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="DefaultSceneComponent.h" />
+    <ClInclude Include="EngineBlend.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineCamera.h">
       <SubType>
       </SubType>
@@ -48,10 +52,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="EngineVertex.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="EngineVertex.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -122,6 +123,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DefaultSceneComponent.cpp" />
+    <ClCompile Include="EngineBlend.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineCamera.cpp">
       <SubType>
       </SubType>
@@ -135,10 +140,6 @@
     </ClCompile>
     <ClCompile Include="EngineSprite.cpp" />
     <ClCompile Include="EngineTexture.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="EngineVertex.cpp">
       <SubType>
       </SubType>
     </ClCompile>

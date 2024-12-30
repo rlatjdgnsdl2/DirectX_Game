@@ -25,6 +25,7 @@ public:
 	UEngineSprite& operator=(UEngineSprite&& _Other) noexcept = delete;
 
 	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToMeta(std::string_view _Name, std::string_view _DataFileExt);
+	ENGINEAPI static std::shared_ptr<UEngineSprite> CreateSpriteToFolder(std::string_view _Name);
 
 	ENGINEAPI ID3D11ShaderResourceView* GetSRV();
 

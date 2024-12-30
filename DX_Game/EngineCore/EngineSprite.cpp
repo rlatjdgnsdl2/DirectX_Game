@@ -24,12 +24,6 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string_vie
 	PushRes<UEngineSprite>(NewRes, _Name, "");
 	NewRes->Texture = Tex.get();
 
-
-	// 파싱 문자열을 자르고 쪼개서 의미를 부여하는 것을 파싱이라고 합니다.
-	// 문자가 일정 규칙으로 구성되어있다는 것을 파악하고 
-	// 이걸 기반으로 한 언어들을 스트럭처드 언어라고 부른다.
-	// 대표적으로 xml json 등등이 있다.
-
 	UEnginePath Path = Tex->GetPath();
 	std::string FileName = Path.GetFileName();
 	FileName += _DataFileExt;
@@ -102,15 +96,12 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string_vie
 			SpriteData.Pivot.Y = static_cast<float>(atof(Number.c_str()));
 		}
 
-
-
 		SpriteData.CuttingPos.Y = TexSize.Y - SpriteData.CuttingPos.Y - SpriteData.CuttingSize.Y;
 
 		SpriteData.CuttingPos.X /= TexSize.X;
 		SpriteData.CuttingPos.Y /= TexSize.Y;
 		SpriteData.CuttingSize.X /= TexSize.X;
 		SpriteData.CuttingSize.Y /= TexSize.Y;
-
 
 		TestData.push_back(SpriteData);
 	}
@@ -120,6 +111,11 @@ std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToMeta(std::string_vie
 
 	return NewRes;
 
+}
+
+std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_view _Name)
+{
+	
 }
 
 
