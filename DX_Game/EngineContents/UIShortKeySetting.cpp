@@ -5,12 +5,7 @@
 
 UIShortKeySetting::UIShortKeySetting() 
 {
-	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-	Back = CreateDefaultSubObject<USpriteRenderer>();
-	Back->SetupAttachment(RootComponent);
-	Back->SetSprite("Player_Walk");
-	
-	
+		
 }
 
 UIShortKeySetting::~UIShortKeySetting() 
