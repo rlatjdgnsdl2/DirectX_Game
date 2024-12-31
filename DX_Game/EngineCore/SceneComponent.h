@@ -1,8 +1,6 @@
 #pragma once
 #include "ActorComponent.h"
 
-// #include "PreCompile.h"
-
 // Ό³Έν :
 class USceneComponent : public UActorComponent
 {
@@ -70,9 +68,11 @@ public:
 	}
 
 	ENGINEAPI void SetupAttachment(std::shared_ptr<USceneComponent> _Parent);
-	ENGINEAPI void TransformUpdate();
-
 	void SetupAttachment(USceneComponent* _Parent);
+
+	ENGINEAPI void TransformUpdate();
+	ENGINEAPI void BeginPlay() override;
+
 
 
 protected:
@@ -80,7 +80,6 @@ protected:
 
 	FTransform Transform;
 
-	ENGINEAPI void BeginPlay() override;
 
 	void ParentMatrixCheck();
 
