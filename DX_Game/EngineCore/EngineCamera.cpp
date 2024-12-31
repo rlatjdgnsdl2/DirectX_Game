@@ -19,16 +19,14 @@ UEngineCamera::~UEngineCamera()
 	Renderers.clear();
 }
 
-void UEngineCamera::Tick(float _DetlaTime)
+void UEngineCamera::ComponentTick(float _DetlaTime)
 {
-	// 카메라는 틱에서 자신의 뷰와 프로젝트를 계산한다음 랜더러들에게 전달해줄 겁니다.
 	Transform.View;
 	Transform.Projection;
 }
 
 void UEngineCamera::Render(float _DetlaTime)
 {
-	//// Ranged for를 돌릴때는 복사가 일어나므로
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
@@ -54,5 +52,4 @@ void UEngineCamera::CalculateViewAndProjection()
 
 	Trans.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
 
-	int a = 0;
 }

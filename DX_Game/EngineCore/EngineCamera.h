@@ -4,10 +4,6 @@
 #include "Renderer.h"
 #include "SceneComponent.h"
 
-// MinimapCamera;
-// PlayerCamera
-// PlayCamera
-// UICamera
 
 // Ό³Έν :
 class UEngineCamera : public USceneComponent
@@ -29,7 +25,7 @@ public:
 
 	void Render(float _DetlaTime);
 
-	void Tick(float _DetlaTime);
+	void ComponentTick(float _DetlaTime) override;
 
 	void CalculateViewAndProjection();
 
