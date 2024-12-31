@@ -36,6 +36,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayerStat.cpp">
       <SubType>
       </SubType>
@@ -62,6 +66,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerDataManager.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerInput.h">
       <SubType>
       </SubType>
     </ClInclude>

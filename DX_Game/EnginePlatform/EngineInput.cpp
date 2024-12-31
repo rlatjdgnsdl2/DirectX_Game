@@ -1,22 +1,15 @@
 #include "PreCompile.h"
 #include "EngineInput.h"
 
-// UEngineInput UEngineInput::Inst = UEngineInput();
-// UEngineInput* UEngineInput::Inst = nullptr;
 
-// Input 내부에 Key 내부의 keyCheck 함수
 void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 {
-	// if (true == GetAsyncKeyState('B'))
 	if (0 != GetAsyncKeyState(Key))
 	{
-		// 게임엔진에서 시간재는법
-		// 특정 float을 만들어 놓고 그 float 계속 델타타임을 더해주면
 		if (true == IsPress)
 		{
 			PressTime += _DeltaTime;
 		}
-		// 이전전까지 안눌려있어다면
 		if (true == IsFree)
 		{
 			IsDown = true;
@@ -24,9 +17,8 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 			IsFree = false;
 			IsUp = false;
 		}
-		else if(true == IsDown)
+		else if (true == IsDown)
 		{
-			// 한프레임을 지연시킨것.
 			FreeTime = 0.0f;
 			IsDown = false;
 			IsPress = true;
@@ -34,16 +26,14 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 			IsUp = false;
 		}
 
-		// B키가 눌렸다면
-	} else 
+	}
+	else
 	{
-		// 안누른 시간 누적되는데
 		if (true == IsFree)
 		{
 			FreeTime += _DeltaTime;
 		}
-		
-		// B키가 안눌렸다면
+
 		if (true == IsPress)
 		{
 			IsDown = false;
@@ -100,42 +90,27 @@ void UEngineInput::UEngineKey::EventCheck()
 
 UEngineInput& UEngineInput::GetInst()
 {
-	// 플랫폼
 	static UEngineInput Inst = UEngineInput();
 	return Inst;
 }
 
 UEngineInput::UEngineInput()
 {
-	// 여기에 
-	// 기본 알파뱃
-	Keys.insert({ 'Q', UEngineKey('Q') });
-	Keys.insert({ 'W', UEngineKey('W') });
-	Keys.insert({ 'E', UEngineKey('E') });
-	Keys.insert({ 'R', UEngineKey('R') });
-	Keys.insert({ 'T', UEngineKey('T') });
-	Keys.insert({ 'Y', UEngineKey('Y') });
-	Keys.insert({ 'U', UEngineKey('U') });
-	Keys.insert({ 'I', UEngineKey('I') });
-	Keys.insert({ 'O', UEngineKey('O') });
-	Keys.insert({ 'P', UEngineKey('P') });
-	Keys.insert({ 'A', UEngineKey('A') });
-	Keys.insert({ 'S', UEngineKey('S') });
-	Keys.insert({ 'D', UEngineKey('D') });
-	Keys.insert({ 'F', UEngineKey('F') });
-	Keys.insert({ 'G', UEngineKey('G') });
-	Keys.insert({ 'H', UEngineKey('H') });
-	Keys.insert({ 'J', UEngineKey('J') });
-	Keys.insert({ 'K', UEngineKey('K') });
-	Keys.insert({ 'L', UEngineKey('L') });
-	Keys.insert({ 'Z', UEngineKey('Z') });
-	Keys.insert({ 'X', UEngineKey('X') });
-	Keys.insert({ 'C', UEngineKey('C') });
-	Keys.insert({ 'V', UEngineKey('V') });
-	Keys.insert({ 'B', UEngineKey('B') });
-	Keys.insert({ 'N', UEngineKey('N') });
-	Keys.insert({ 'M', UEngineKey('M') });
+	Keys.insert({ 'ESC'		, UEngineKey(VK_ESCAPE) });
+	Keys.insert({ 'F1'		, UEngineKey(VK_F1) });
+	Keys.insert({ 'F2'		, UEngineKey(VK_F2) });
+	Keys.insert({ 'F3'		, UEngineKey(VK_F3) });
+	Keys.insert({ 'F4'		, UEngineKey(VK_F4) });
+	Keys.insert({ 'F5'		, UEngineKey(VK_F5) });
+	Keys.insert({ 'F6'		, UEngineKey(VK_F6) });
+	Keys.insert({ 'F7'		, UEngineKey(VK_F7) });
+	Keys.insert({ 'F8'		, UEngineKey(VK_F8) });
+	Keys.insert({ 'F9'		, UEngineKey(VK_F9) });
+	Keys.insert({ 'F10'		, UEngineKey(VK_F10) });
+	Keys.insert({ 'F11'		, UEngineKey(VK_F11) });
+	Keys.insert({ 'F12'		, UEngineKey(VK_F12) });
 
+	Keys.insert({ '`', UEngineKey(VK_OEM_3) });
 	Keys.insert({ '1', UEngineKey('1') });
 	Keys.insert({ '2', UEngineKey('2') });
 	Keys.insert({ '3', UEngineKey('3') });
@@ -146,6 +121,64 @@ UEngineInput::UEngineInput()
 	Keys.insert({ '8', UEngineKey('8') });
 	Keys.insert({ '9', UEngineKey('9') });
 	Keys.insert({ '0', UEngineKey('0') });
+	Keys.insert({ '-', UEngineKey(VK_OEM_MINUS) });
+	Keys.insert({ '=', UEngineKey(VK_OEM_PLUS) });
+
+	Keys.insert({ 'Back', UEngineKey(VK_BACK) });
+
+	Keys.insert({ 'TAB', UEngineKey(VK_TAB) });
+
+	Keys.insert({ 'Q', UEngineKey('Q') });
+	Keys.insert({ 'W', UEngineKey('W') });
+	Keys.insert({ 'E', UEngineKey('E') });
+	Keys.insert({ 'R', UEngineKey('R') });
+	Keys.insert({ 'T', UEngineKey('T') });
+	Keys.insert({ 'Y', UEngineKey('Y') });
+	Keys.insert({ 'U', UEngineKey('U') });
+	Keys.insert({ 'I', UEngineKey('I') });
+	Keys.insert({ 'O', UEngineKey('O') });
+	Keys.insert({ 'P', UEngineKey('P') });
+
+	Keys.insert({ '[', UEngineKey(VK_OEM_4) });
+	Keys.insert({ ']', UEngineKey(VK_OEM_6) });
+	Keys.insert({ '\\', UEngineKey(VK_OEM_5) });
+
+	Keys.insert({ 'A', UEngineKey('A') });
+	Keys.insert({ 'S', UEngineKey('S') });
+	Keys.insert({ 'D', UEngineKey('D') });
+	Keys.insert({ 'F', UEngineKey('F') });
+	Keys.insert({ 'G', UEngineKey('G') });
+	Keys.insert({ 'H', UEngineKey('H') });
+	Keys.insert({ 'J', UEngineKey('J') });
+	Keys.insert({ 'K', UEngineKey('K') });
+	Keys.insert({ 'L', UEngineKey('L') });
+	Keys.insert({ ';', UEngineKey(VK_OEM_1) });
+	Keys.insert({ '\'', UEngineKey(VK_OEM_7) });
+
+	Keys.insert({ 'Z', UEngineKey('Z') });
+	Keys.insert({ 'X', UEngineKey('X') });
+	Keys.insert({ 'C', UEngineKey('C') });
+	Keys.insert({ 'V', UEngineKey('V') });
+	Keys.insert({ 'B', UEngineKey('B') });
+	Keys.insert({ 'N', UEngineKey('N') });
+	Keys.insert({ 'M', UEngineKey('M') });
+	Keys.insert({ ',', UEngineKey(VK_OEM_COMMA) });
+	Keys.insert({ '.', UEngineKey(VK_OEM_PERIOD) });
+	Keys.insert({ '/', UEngineKey(VK_OEM_2) });
+
+	Keys.insert({ VK_LCONTROL, UEngineKey(VK_LCONTROL) });
+	Keys.insert({ VK_LSHIFT, UEngineKey(VK_LSHIFT) });
+	Keys.insert({ VK_LMENU, UEngineKey(VK_LMENU) });
+	Keys.insert({ VK_SPACE		, UEngineKey(VK_SPACE) });
+
+	Keys.insert({ VK_INSERT		, UEngineKey(VK_INSERT) });
+	Keys.insert({ VK_DELETE		, UEngineKey(VK_DELETE) });
+	Keys.insert({ VK_HOME		, UEngineKey(VK_HOME) });
+	Keys.insert({ VK_END		, UEngineKey(VK_END) });
+	Keys.insert({ VK_PRIOR		, UEngineKey(VK_HOME) });
+	Keys.insert({ VK_NEXT		, UEngineKey(VK_HOME) });
+
+
 
 	Keys.insert({ VK_LBUTTON , UEngineKey(VK_LBUTTON) });
 	Keys.insert({ VK_RBUTTON , UEngineKey(VK_RBUTTON) });
@@ -153,25 +186,6 @@ UEngineInput::UEngineInput()
 	Keys.insert({ VK_RIGHT , UEngineKey(VK_RIGHT) });
 	Keys.insert({ VK_UP , UEngineKey(VK_UP) });
 	Keys.insert({ VK_DOWN , UEngineKey(VK_DOWN) });
-
-	Keys.insert({ VK_LEFT, UEngineKey(VK_LEFT) });
-	Keys.insert({ VK_RIGHT, UEngineKey(VK_RIGHT) });
-	Keys.insert({ VK_UP, UEngineKey(VK_UP) });
-	Keys.insert({ VK_DOWN, UEngineKey(VK_DOWN) });
-
-	Keys.insert({ VK_SPACE		, UEngineKey(VK_SPACE) });
-	Keys.insert({ VK_PRIOR		, UEngineKey(VK_PRIOR) });
-	Keys.insert({ VK_NEXT		, UEngineKey(VK_NEXT) });
-	Keys.insert({ VK_END		, UEngineKey(VK_END) });
-	Keys.insert({ VK_HOME		, UEngineKey(VK_HOME) });
-	Keys.insert({ VK_SELECT		, UEngineKey(VK_SELECT) });
-	Keys.insert({ VK_PRINT		, UEngineKey(VK_PRINT) });
-	Keys.insert({ VK_EXECUTE	, UEngineKey(VK_EXECUTE) });
-	Keys.insert({ VK_SNAPSHOT	, UEngineKey(VK_SNAPSHOT) });
-	Keys.insert({ VK_INSERT		, UEngineKey(VK_INSERT) });
-	Keys.insert({ VK_DELETE		, UEngineKey(VK_DELETE) });
-	Keys.insert({ VK_HELP		, UEngineKey(VK_HELP) });
-
 
 	Keys.insert({ VK_NUMPAD0	, UEngineKey(VK_NUMPAD0) });
 	Keys.insert({ VK_NUMPAD1	, UEngineKey(VK_NUMPAD1) });
@@ -189,30 +203,6 @@ UEngineInput::UEngineInput()
 	Keys.insert({ VK_SUBTRACT	, UEngineKey(VK_SUBTRACT) });
 	Keys.insert({ VK_DECIMAL	, UEngineKey(VK_DECIMAL) });
 	Keys.insert({ VK_DIVIDE	, UEngineKey(VK_DIVIDE) });
-	Keys.insert({ VK_F1		, UEngineKey(VK_F1) });
-	Keys.insert({ VK_F2		, UEngineKey(VK_F2) });
-	Keys.insert({ VK_F3		, UEngineKey(VK_F3) });
-	Keys.insert({ VK_F4		, UEngineKey(VK_F4) });
-	Keys.insert({ VK_F5		, UEngineKey(VK_F5) });
-	Keys.insert({ VK_F6		, UEngineKey(VK_F6) });
-	Keys.insert({ VK_F7		, UEngineKey(VK_F7) });
-	Keys.insert({ VK_F8		, UEngineKey(VK_F8) });
-	Keys.insert({ VK_F9		, UEngineKey(VK_F9) });
-	Keys.insert({ VK_F10		, UEngineKey(VK_F10) });
-	Keys.insert({ VK_F11		, UEngineKey(VK_F11) });
-	Keys.insert({ VK_F12		, UEngineKey(VK_F12) });
-	Keys.insert({ VK_F13		, UEngineKey(VK_F13) });
-	Keys.insert({ VK_F14		, UEngineKey(VK_F14) });
-	Keys.insert({ VK_F15		, UEngineKey(VK_F15) });
-	Keys.insert({ VK_F16		, UEngineKey(VK_F16) });
-	Keys.insert({ VK_F17		, UEngineKey(VK_F17) });
-	Keys.insert({ VK_F18		, UEngineKey(VK_F18) });
-	Keys.insert({ VK_F19		, UEngineKey(VK_F19) });
-	Keys.insert({ VK_F20		, UEngineKey(VK_F20) });
-	Keys.insert({ VK_F21		, UEngineKey(VK_F21) });
-	Keys.insert({ VK_F22		, UEngineKey(VK_F22) });
-	Keys.insert({ VK_F23		, UEngineKey(VK_F23) });
-	Keys.insert({ VK_F24		, UEngineKey(VK_F24) });
 
 }
 
@@ -223,7 +213,6 @@ void UEngineInput::EventCheck(float _DeltaTime)
 
 	for (; StartIter != EndIter; ++StartIter)
 	{
-		// 명시적이기 잖고 디버깅이 힘들어서 별로 좋아하지 않게 되었다.
 		UEngineKey& CurKey = StartIter->second;
 		CurKey.EventCheck();
 	}
@@ -236,7 +225,6 @@ void UEngineInput::KeyCheck(float _DeltaTime)
 
 	for (; StartIter != EndIter; ++StartIter)
 	{
-		// 명시적이기 잖고 디버깅이 힘들어서 별로 좋아하지 않게 되었다.
 		UEngineKey& CurKey = StartIter->second;
 		CurKey.KeyCheck(_DeltaTime);
 	}

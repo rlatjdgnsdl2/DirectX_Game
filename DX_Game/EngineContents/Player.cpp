@@ -31,7 +31,7 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	if (UEngineInput::IsPress(VK_LEFT)) {
-		
+	if (UEngineInput::IsPress('=')) {
+		AddActorRotation(FVector(30,30));
 	}
 }

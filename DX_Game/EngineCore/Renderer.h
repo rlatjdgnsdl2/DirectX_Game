@@ -35,8 +35,6 @@ protected:
 	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
 private:
-
-public:
 	class UMesh* Mesh = nullptr;
 	class UEngineBlend* Blend = nullptr;
 

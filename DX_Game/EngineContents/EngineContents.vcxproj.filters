@@ -22,6 +22,9 @@
     <ClCompile Include="PlayerDataManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -43,6 +46,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerDataManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInput.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
