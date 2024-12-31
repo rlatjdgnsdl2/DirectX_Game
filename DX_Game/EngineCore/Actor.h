@@ -121,6 +121,20 @@ public:
 	}
 	void AttachToActor(AActor* _Parent);
 
+	// 트랜스폼 자체를 고칠수는 없다. 복사본을 주는 함수.
+	FTransform GetActorTransform()
+	{
+		if (nullptr == RootComponent)
+		{
+			return FTransform();
+		}
+
+		return RootComponent->GetTransformRef();
+	}
+	ENGINEAPI FVector GetActorUpVector();
+	ENGINEAPI FVector GetActorRightVector();
+	ENGINEAPI FVector GetActorForwardVector();
+
 
 protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;

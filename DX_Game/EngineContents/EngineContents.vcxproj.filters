@@ -25,6 +25,12 @@
     <ClCompile Include="PlayerInput.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="UIShortKeySetting.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -51,6 +57,12 @@
     <ClInclude Include="PlayerInput.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="UIShortKeySetting.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -67,6 +79,9 @@
     </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{e09d7acd-c040-4b85-8a10-bf004406165d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{f2decb38-dac4-4bb8-88b6-80e3bfd8bc7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

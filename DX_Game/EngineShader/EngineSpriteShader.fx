@@ -60,6 +60,11 @@ cbuffer FSpriteData : register(b1)
     float4 Pivot; // 0.5 0.0f
 };
 
+cbuffer FUVValue : register(b2)
+{
+    float4 PlusUVValue;
+};
+
 // 버텍스쉐이더를 다 만들었다.
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
@@ -86,7 +91,8 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 	
     OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
     OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
-	
+    OutPut.UV.x += PlusUVValue.x;
+    OutPut.UV.y += PlusUVValue.y;
 	
 	
     OutPut.COLOR = _Vertex.COLOR;
@@ -97,6 +103,19 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 cbuffer MatColor : register(b1)
 {
     float4 Albedo;
+};
+
+
+struct OutTargetColor
+{
+    float4 Target0 : SV_Target0; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target1 : SV_Target1; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target2 : SV_Target2; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target3 : SV_Target3; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target4 : SV_Target4; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target5 : SV_Target5; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target6 : SV_Target6; // 뷰포트행렬이 곱해지는 포지션입니다.
+    float4 Target7 : SV_Target7; // 뷰포트행렬이 곱해지는 포지션입니다.
 };
 
 
@@ -112,4 +131,6 @@ float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 	// ImageTexture.Load({0,0));
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
     return Color;
-}
+	
+	// return float4(1.0f, 0.0f, 0.0f, 1.0f);
+};

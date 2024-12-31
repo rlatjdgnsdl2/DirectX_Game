@@ -1,26 +1,28 @@
 #pragma once
 #include <EngineCore/ActorComponent.h>
+#include <EngineBase/EngineDelegate.h>
 
 
 
 
 //	Ό³Έν:
-class PlayerInput :public UActorComponent
+class UPlayerInput :public UActorComponent
 {
 public:
-	PlayerInput();
-	virtual ~PlayerInput();
-	PlayerInput(const PlayerInput& _Other) = delete;
-	PlayerInput(PlayerInput&& _Other) noexcept = delete;
-	PlayerInput& operator=(const PlayerInput& _Other) = delete;
-	PlayerInput& operator=(PlayerInput&& _Other) noexcept = delete;
+	UPlayerInput();
+	virtual ~UPlayerInput();
+	UPlayerInput(const UPlayerInput& _Other) = delete;
+	UPlayerInput(UPlayerInput&& _Other) noexcept = delete;
+	UPlayerInput& operator=(const UPlayerInput& _Other) = delete;
+	UPlayerInput& operator=(UPlayerInput&& _Other) noexcept = delete;
 
 	void ComponentTick(float _DeltaTime) override;
+
 
 protected:
 
 private:
-	std::map<int, std::function<void()>> KeySetting;
+	std::map<int, EngineDelegate> KeySetting;
 
 };
 
