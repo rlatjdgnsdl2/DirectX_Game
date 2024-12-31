@@ -1,10 +1,11 @@
 #pragma once
+#include <EngineCore/ActorComponent.h>
 
 
 
 
 //	Ό³Έν:
-class PlayerInput
+class PlayerInput :public UActorComponent
 {
 public:
 	PlayerInput();
@@ -13,6 +14,8 @@ public:
 	PlayerInput(PlayerInput&& _Other) noexcept = delete;
 	PlayerInput& operator=(const PlayerInput& _Other) = delete;
 	PlayerInput& operator=(PlayerInput&& _Other) noexcept = delete;
+
+	void ComponentTick(float _DeltaTime) override;
 
 protected:
 

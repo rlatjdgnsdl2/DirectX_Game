@@ -124,7 +124,7 @@ UEngineInput::UEngineInput()
 	Keys.insert({ '-', UEngineKey(VK_OEM_MINUS) });
 	Keys.insert({ '=', UEngineKey(VK_OEM_PLUS) });
 
-	Keys.insert({ 'Back', UEngineKey(VK_BACK) });
+	Keys.insert({ 'BACK', UEngineKey(VK_BACK) });
 
 	Keys.insert({ 'TAB', UEngineKey(VK_TAB) });
 
