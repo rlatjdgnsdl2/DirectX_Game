@@ -30,6 +30,9 @@
 #include "EngineDirectory.h"
 #include "EnginePath.h"
 #include "EngineFile.h"
+#include "EngineString.h"
 #include "EngineSerializer.h"
+
+#include "Object.h"
 
 

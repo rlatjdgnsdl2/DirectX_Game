@@ -9,8 +9,5 @@ UActorComponent::~UActorComponent()
 {
 }
 
-class AActor* UActorComponent::GetActor()
-{
-	return Actor;
-}
+
 

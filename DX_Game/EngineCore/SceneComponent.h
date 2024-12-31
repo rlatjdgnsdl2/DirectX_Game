@@ -7,13 +7,7 @@
 class USceneComponent : public UActorComponent
 {
 	friend class AActor;
-
-	// Local 부모영향 받음
-	// World 안받음
-	// 아무것도 없음 안받음
-
 public:
-	// constrcuter destructer
 	USceneComponent();
 	virtual ~USceneComponent() = 0;
 
@@ -64,17 +58,11 @@ public:
 
 	// local
 	void SetRelativeScale3D(const FVector& _Value)
-	{
-		// 절대값이라는 뜻
-		// 이게 true가 되면 부모가 있건 없건
-		// 100 100 100
-		// 10 10 10
-		// 나는 무조건 이값에 해당하는 행렬이 되어야 한다는 뜻으로 
+	{ 
 		Transform.Scale = _Value;
 		Transform.Scale.W = 0.0f;
 		TransformUpdate();
 	}
-
 
 	FTransform& GetTransformRef()
 	{
@@ -82,10 +70,10 @@ public:
 	}
 
 	ENGINEAPI void SetupAttachment(std::shared_ptr<USceneComponent> _Parent);
+	ENGINEAPI void TransformUpdate();
 
 	void SetupAttachment(USceneComponent* _Parent);
 
-	ENGINEAPI void TransformUpdate();
 
 protected:
 	bool IsAbsolute = false;
