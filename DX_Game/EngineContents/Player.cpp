@@ -17,8 +17,6 @@ APlayer::APlayer()
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0,2,0.33f);
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 0.25f);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
-	
-
 
 	SpriteRenderer->ChangeAnimation("Stand");
 }
@@ -34,8 +32,9 @@ void APlayer::Tick(float _DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		SpriteRenderer->ChangeAnimation("Walk");
-		AddRelativeLocation(FVector{ -100.0f * _DeltaTime, 0.0f, 0.0f });
+		//SpriteRenderer->ChangeAnimation("Walk");
+		SetActorRelativeScale3D(FVector{ 1.0f,1.0f,1.0f });
+		//AddRelativeLocation(FVector{ -10.0f * _DeltaTime, 0.0f, 0.0f });
 	}
 	if (UEngineInput::IsPress('C'))
 	{
@@ -44,7 +43,8 @@ void APlayer::Tick(float _DeltaTime)
 	
 	if (UEngineInput::IsPress('D'))
 	{
-		AddRelativeLocation(FVector{ 100.0f * _DeltaTime, 0.0f, 0.0f });
+		SetActorRelativeScale3D(FVector{ -1.0f,1.0f,1.0f });
+		//AddRelativeLocation(FVector{ 100.0f * _DeltaTime, 0.0f, 0.0f });
 	}
 
 	if (UEngineInput::IsPress('W'))
