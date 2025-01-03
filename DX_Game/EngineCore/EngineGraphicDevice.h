@@ -99,5 +99,8 @@ private:
 
 	ENGINEAPI void MeshInit();
 	ENGINEAPI void BlendInit();
+	ENGINEAPI void ShaderInit();
+	ENGINEAPI void MaterialInit();
+	ENGINEAPI void RasterizerStateInit();
 };
 

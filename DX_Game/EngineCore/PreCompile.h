@@ -28,8 +28,8 @@
 #include "EngineVertex.h"
 #include "EngineTexture.h"
 #include "EngineSprite.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
+#include "EngineVertexBuffer.h"
+#include "EngineIndexBuffer.h"
 #include "Mesh.h"
 
 

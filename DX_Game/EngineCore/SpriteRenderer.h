@@ -87,7 +87,6 @@ public:
 	}
 
 	void SetSprite(UEngineSprite* _Sprite);
-	
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
@@ -96,6 +95,8 @@ protected:
 
 
 private:
+	URenderUnit* MainUnit;
+
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
 

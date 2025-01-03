@@ -12,6 +12,13 @@ void UEngineCamera::BeginPlay()
 	FVector Scale = UEngineCore::GetScreenScale();
 
 	ProjectionScale = Scale;
+
+	ViewPortInfo.Width = UEngineCore::GetScreenScale().X;
+	ViewPortInfo.Height = UEngineCore::GetScreenScale().Y;
+	ViewPortInfo.TopLeftX = 0.0f;
+	ViewPortInfo.TopLeftY = 0.0f;
+	ViewPortInfo.MinDepth = 0.0f;
+	ViewPortInfo.MaxDepth = 1.0f;
 }
 
 UEngineCamera::~UEngineCamera()
@@ -19,14 +26,19 @@ UEngineCamera::~UEngineCamera()
 	Renderers.clear();
 }
 
-void UEngineCamera::ComponentTick(float _DetlaTime)
+void UEngineCamera::Tick(float _DetlaTime)
 {
+	// 카메라는 틱에서 자신의 뷰와 프로젝트를 계산한다음 랜더러들에게 전달해줄 겁니다.
 	Transform.View;
 	Transform.Projection;
 }
 
 void UEngineCamera::Render(float _DetlaTime)
 {
+	// 랜더링 진입하기 전에 한번 뷰포트 세팅하고 
+	UEngineCore::GetDevice().GetContext()->RSSetViewports(1, &ViewPortInfo);
+
+	//// Ranged for를 돌릴때는 복사가 일어나므로
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
@@ -50,6 +62,17 @@ void UEngineCamera::CalculateViewAndProjection()
 
 	Trans.View.View(Trans.World.ArrVector[3], Trans.World.GetFoward(), Trans.World.GetUp());
 
-	Trans.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
+	switch (Type)
+	{
+	case EProjectionType::Perspective:
+		Trans.Projection.PerspectiveFovDeg(FOV, ProjectionScale.X, ProjectionScale.Y, Near, Far);
+		break;
+	case EProjectionType::Orthographic:
+		Trans.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
+		break;
+	default:
+		break;
+	}
 
+	int a = 0;
 }

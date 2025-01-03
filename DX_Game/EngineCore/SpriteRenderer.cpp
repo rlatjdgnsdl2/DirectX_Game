@@ -13,15 +13,16 @@ void USpriteRenderer::SetSprite(std::string_view _Name, size_t _Index)
 {
 	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
 
-	URenderer::SetTexture(Sprite->GetTexture(_Index));
-	SetSpriteData(Sprite, _Index);
+	// URenderer::SetTexture(Sprite->GetTexture(_Index));
+	// SetSpriteData(Sprite, _Index);
 }
 
 void USpriteRenderer::BeginPlay()
 {
 	URenderer::BeginPlay();
+	CreateRenderUnit();
 	SetMesh("Rect");
-	SetBlend("AlphaBlend");
+	SetMaterial("SpriteMaterial");
 }
 
 USpriteRenderer::FrameAnimation* USpriteRenderer::FindAnimation(std::string_view _AnimationName)
@@ -41,8 +42,9 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	if (nullptr != CurAnimation)
 	{
 		UEngineSprite* Sprite = CurAnimation->Sprite;
-		URenderer::SetTexture(Sprite->GetTexture(CurIndex));
-		URenderer::SetSpriteData(Sprite, CurIndex);
+
+		// URenderer::SetTexture(Sprite->GetTexture(CurIndex));
+		// URenderer::SetSpriteData(Sprite, CurIndex);
 	}
 
 	URenderer::Render(_Camera, _DeltaTime);
@@ -229,7 +231,12 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
 
-	// Sprite = CurAnimation->Sprite;
+	if (true == CurAnimation->IsAutoScale)
+	{
+		FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
+		Scale.Z = 1.0f;
+		SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
+	}
 }
 
 
@@ -277,4 +284,3 @@ void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
 		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
 	}
 }
-

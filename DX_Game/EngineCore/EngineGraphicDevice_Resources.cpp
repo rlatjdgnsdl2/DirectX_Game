@@ -1,30 +1,50 @@
 #include "PreCompile.h"
 #include "EngineGraphicDevice.h"
 #include "EngineVertex.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
+#include "EngineVertexBuffer.h"
+#include "EngineIndexBuffer.h"
 #include "Mesh.h"
 #include "EngineBlend.h"
+#include "EngineShader.h"
+#include "EngineMaterial.h"
 
 void UEngineGraphicDevice::DefaultResourcesInit()
 {
+	ShaderInit();
 	MeshInit();
 	BlendInit();
+	RasterizerStateInit();
+	MaterialInit();
 }
+
+void UEngineGraphicDevice::ShaderInit()
+{
+	UEngineDirectory CurDir;
+	CurDir.MoveParentToDirectory("EngineShader");
+
+	std::vector<UEngineFile> ShaderFiles = CurDir.GetAllFile(true, { ".fx", ".hlsl" });
+
+	for (size_t i = 0; i < ShaderFiles.size(); i++)
+	{
+		UEngineShader::ReflectionCompile(ShaderFiles[i]);
+	}
+}
+
+
 
 void UEngineGraphicDevice::MeshInit()
 {
 	int a = 0;
 
 	{
-		std::vector<EngineVertex> Vertexs;
+		std::vector<FEngineVertex> Vertexs;
 		Vertexs.resize(4);
-		Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
-		Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
-		Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
-		Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
+		Vertexs[0] = FEngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+		Vertexs[1] = FEngineVertex{ FVector(0.5f, 0.5f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
+		Vertexs[2] = FEngineVertex{ FVector(-0.5f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
+		Vertexs[3] = FEngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
 
-		UVertexBuffer::Create("Rect", Vertexs);
+		UEngineVertexBuffer::Create("Rect", Vertexs);
 	}
 
 	{
@@ -37,12 +57,13 @@ void UEngineGraphicDevice::MeshInit()
 		Indexs.push_back(1);
 		Indexs.push_back(3);
 		Indexs.push_back(2);
-		UIndexBuffer::Create("Rect", Indexs);
+		UEngineIndexBuffer::Create("Rect", Indexs);
 	}
 
 	{
 		UMesh::Create("Rect");
 	}
+
 }
 
 void UEngineGraphicDevice::BlendInit()
@@ -91,3 +112,22 @@ void UEngineGraphicDevice::BlendInit()
 	UEngineBlend::Create("AlphaBlend", Desc);
 }
 
+void UEngineGraphicDevice::RasterizerStateInit()
+{
+	D3D11_RASTERIZER_DESC Desc = {};
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
+	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+
+	UEngineRasterizerState::Create("EngineBase", Desc);
+}
+
+void UEngineGraphicDevice::MaterialInit()
+{
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
+		Mat->SetVertexShader("EngineSpriteShader.fx");
+		Mat->SetPixelShader("EngineSpriteShader.fx");
+		Mat->SetRasterizerState("EngineBase");
+		Mat->SetBlend("AlphaBlend");
+	}
+}
