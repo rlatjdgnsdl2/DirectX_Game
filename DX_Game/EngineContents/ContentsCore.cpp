@@ -10,15 +10,6 @@
 
 
 CreateContentsCoreDefine(UContentsCore);
-//STDAPI_(__declspec(dllexport) INT_PTR) CreateContentsCore(std::shared_ptr<IContentsCore>& _Test)
-//{ 
-//	_Test = std::make_shared<UContentsCore>();
-//	if (nullptr == _Test) 
-//	{ 
-//		MSGASSERT("컨텐츠 모듈 생성에 실패했습니다."); 
-//	} 
-//	return 0; 
-//}
 
 UContentsCore::UContentsCore()
 {
@@ -48,29 +39,9 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 			UEngineTexture::Load(FilePath);
 		}
 	}
-
-
-
-	{
-		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Resources"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			return;
-		}
-		Dir.Append("Image//Player//Player_Walk");
-		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-	}
-	{
-		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("Resources"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			return;
-		}
-		Dir.Append("Image//Player//Player_Idle");
-		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-	}
+	UEngineSprite::CreateSpriteToMeta("Player_Stand.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Player_Walk.png", ".sdata");
+	UEngineSprite::CreateSpriteToMeta("Player_Jump.png", ".sdata");
 
 	UEngineCore::CreateLevel<ACarcion_Ishfira, APlayer>("Carcion_Ishfira");
 	UEngineCore::OpenLevel("Carcion_Ishfira");

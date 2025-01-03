@@ -35,7 +35,6 @@ protected:
 
 private:
 	ENGINEAPI void ResLoad();
-
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> ShaderRes = nullptr;
 };
 

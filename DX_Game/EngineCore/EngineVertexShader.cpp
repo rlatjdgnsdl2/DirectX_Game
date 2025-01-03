@@ -44,14 +44,11 @@ void UEngineVertexShader::ResLoad()
 	Flag0 = D3D10_SHADER_DEBUG;
 #endif
 
-	// 행렬을 집어넣게 될것이다.
-	// 조금 느려진다고하는 하는데 느낀적은 없습니다.
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
 	D3DCompileFromFile(
 		WPath.c_str(),
-		nullptr, // Define TEST 등으로 전처리기를 넣을수.
-		nullptr,
+		nullptr, nullptr,
 		EntryName.c_str(),
 		version.c_str(),
 		Flag0,

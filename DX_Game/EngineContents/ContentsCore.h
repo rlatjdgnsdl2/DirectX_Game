@@ -18,9 +18,9 @@ public:
 	UContentsCore& operator=(UContentsCore&& _Other) noexcept = delete;
 
 protected:
-	void EngineStart(UEngineInitData& _Data);
-	void EngineTick(float _DeltaTime);
-	void EngineEnd();
+	void EngineStart(UEngineInitData& _Data) override;
+	void EngineTick(float _DeltaTime) override;
+	void EngineEnd() override;
 
 private:
 
