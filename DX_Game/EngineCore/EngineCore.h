@@ -46,8 +46,6 @@ public:
 protected:
 
 private:
-	// 데이터영역에 있죠? => 언제 삭제될까요?
-	// 릭체크는 
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
 	static UEngineInitData Data;

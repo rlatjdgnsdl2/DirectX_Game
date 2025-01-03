@@ -9,9 +9,6 @@
 namespace UEngineDebug
 {
 	ENGINEAPI void LeakCheck();
-
-	// 분리해야 하겠네요
 	ENGINEAPI void OutPutString(const std::string& Text);
-
 }
 

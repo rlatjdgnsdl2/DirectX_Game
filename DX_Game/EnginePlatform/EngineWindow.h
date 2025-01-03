@@ -1,19 +1,13 @@
 #pragma once
-// Os Header
 #include <Windows.h>
 
-// std Header
 #include <map>
 #include <string>
 #include <functional>
-
-// user header
 #include <EngineBase/EngineMath.h>
 
 
-// 정신 잘 붙
 
-// 설명 :
 class UEngineWindow
 {
 public:
@@ -22,11 +16,9 @@ public:
 	ENGINEAPI static int WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction, std::function<void()> _EndFunction = nullptr);
 
 
-	// constrcuter destructer
 	ENGINEAPI UEngineWindow();
 	ENGINEAPI ~UEngineWindow();
 
-	// delete Function
 	UEngineWindow(const UEngineWindow& _Other) = delete;
 	UEngineWindow(UEngineWindow&& _Other) noexcept = delete;
 	UEngineWindow& operator=(const UEngineWindow& _Other) = delete;
@@ -75,12 +67,9 @@ private:
 	ENGINEAPI static std::function<bool(HWND, UINT, WPARAM, LPARAM)> CustomProc;
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-	// static HINSTANCE hInstance; 있을거야
-	// 진짜는 cpp안에 있어.
 
 	ENGINEAPI static HINSTANCE hInstance;
 
-	// 헤더쪽에서 초기화하는 방법
 	inline static bool LoopActive = true;
 
 	ENGINEAPI static std::map<std::string, WNDCLASSEXA> WindowClasss;
