@@ -130,6 +130,7 @@
     <ClInclude Include="EngineVertex.h">
       <Filter>Resource\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="EngineSampler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -249,6 +250,7 @@
     <ClCompile Include="EngineVertex.cpp">
       <Filter>Resource\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="EngineSampler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

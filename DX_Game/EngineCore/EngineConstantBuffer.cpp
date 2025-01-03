@@ -13,6 +13,11 @@ UEngineConstantBuffer::~UEngineConstantBuffer()
 
 std::shared_ptr<UEngineConstantBuffer> UEngineConstantBuffer::CreateOrFind(UINT _Byte, const std::string_view& _Name)
 {
+	if (0 == _Byte)
+	{
+		MSGASSERT("0바이트 상수버퍼가 만들어지려고 했습니다.");
+	}
+
 	std::string UpperName = UEngineString::ToUpper(_Name);
 
 	if (true == BufferMap.contains(_Byte))
@@ -34,7 +39,6 @@ std::shared_ptr<UEngineConstantBuffer> UEngineConstantBuffer::CreateOrFind(UINT 
 void UEngineConstantBuffer::ResCreate(UINT _Byte)
 {
 	{
-		D3D11_BUFFER_DESC BufferInfo = { 0 };
 		BufferInfo.ByteWidth = _Byte;
 		BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
@@ -67,7 +71,7 @@ void UEngineConstantBuffer::ChangeData(void* _Data, UINT _Size)
 	{
 		MSGASSERT("그래픽카드가 수정을 거부했습니다.");
 	}
-	memcpy_s(Data.pData, sizeof(FTransform), _Data, sizeof(FTransform));
+	memcpy_s(Data.pData, BufferInfo.ByteWidth, _Data, BufferInfo.ByteWidth);
 	UEngineCore::GetDevice().GetContext()->Unmap(Buffer.Get(), 0);
 }
 

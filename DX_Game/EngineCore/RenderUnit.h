@@ -20,6 +20,8 @@ public:
 	URenderUnit();
 	~URenderUnit();
 
+	URenderer* ParentRenderer = nullptr;
+
 	// 매쉬(육체) 
 	std::shared_ptr<UMesh> Mesh;
 	// 머티리얼(피부)
@@ -36,6 +38,17 @@ public:
 	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
 
 	void MaterialResourcesCheck();
+
+	template<typename Data>
+	void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
+	{
+		ConstantBufferLinkData(_Name, reinterpret_cast<void*>(&_Data));
+	}
+
+	void ConstantBufferLinkData(std::string_view Name, void* _Data);
+
+	void SetTexture(std::string_view _Name, std::string_view _ResName);
+	void SetSampler(std::string_view Name, std::string_view _ResName);
 
 private:
 	// 자신만의 리소스를 가지고 있습니다.
