@@ -22,6 +22,8 @@ public:
 	void ChangeData(void* _Data, UINT _Size);
 	void Setting(EShaderType _Type, UINT _BindIndex);
 
+	static void Release();
+
 protected:
 
 private:

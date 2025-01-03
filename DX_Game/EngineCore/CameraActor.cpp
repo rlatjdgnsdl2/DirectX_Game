@@ -22,6 +22,7 @@ void ACameraActor::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	CameraComponent->CalculateViewAndProjection();
+
 }
 
 
@@ -45,6 +46,4 @@ FVector ACameraActor::ScreenMousePosToWorldPos()
 	MousePos = MousePos * CameraTransform.View.InverseReturn();
 
 	return MousePos;
-	// 마우스 좌표가 100, 100
-	// 크기 이동 회전 공전 부모 * view * 투영 * viewport
 }
