@@ -32,18 +32,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerDataManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerInput.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerStat.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -51,10 +39,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="UIShortKeySetting.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -73,24 +57,8 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerDataManager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerInput.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerStat.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="UIManager.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="UIShortKeySetting.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -36,19 +36,20 @@ public:
 
 	ENGINEAPI static void OpenLevel(std::string_view _Name);
 
-	ENGINEAPI static UEngineWindow MainWindow;
 
 	ENGINEAPI static FVector GetScreenScale();
 
 	ENGINEAPI static UEngineGraphicDevice& GetDevice();
+	ENGINEAPI static UEngineWindow& GetMainWindow();
 
-	ENGINEAPI static UEngineGraphicDevice Device;
 protected:
 
 private:
+	static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
 	static UEngineInitData Data;
+	static UEngineGraphicDevice Device;
 
 	static UEngineTimer Timer;
 

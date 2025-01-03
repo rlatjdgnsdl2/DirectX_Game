@@ -9,13 +9,7 @@
 #include "Level.h"
 
 
-UEngineGraphicDevice& UEngineCore::GetDevice()
-{
-	return Device;
-}
 
-// 리얼 본체죠?
-// UEngineGraphicDevice EngienCore.dll::UEngineCore::Device;
 UEngineGraphicDevice UEngineCore::Device;
 
 UEngineWindow UEngineCore::MainWindow;
@@ -29,6 +23,15 @@ std::shared_ptr<class ULevel> UEngineCore::NextLevel;
 std::shared_ptr<class ULevel> UEngineCore::CurLevel = nullptr;
 
 std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::LevelMap;
+
+UEngineGraphicDevice& UEngineCore::GetDevice()
+{
+	return Device;
+}
+UEngineWindow& UEngineCore::GetMainWindow()
+{
+	return MainWindow;
+}
 
 FVector UEngineCore::GetScreenScale()
 {

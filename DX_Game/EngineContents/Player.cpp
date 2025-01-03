@@ -3,13 +3,12 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineInput.h>
-#include "PlayerInput.h"
+
 
 
 APlayer::APlayer()
 {
-	PlayerInput = CreateDefaultSubObject<UPlayerInput>();
-
+	
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;

@@ -16,18 +16,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerStat.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerDataManager.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerInput.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="UIShortKeySetting.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -47,18 +35,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerStat.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerDataManager.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerInput.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="UIShortKeySetting.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>UI</Filter>
