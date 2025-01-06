@@ -58,4 +58,23 @@ void APlayer::Tick(float _DeltaTime)
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C')).Down();
 		
 	}
+
+
+	if (UEngineInput::IsPress('W')) {
+		GetWorld()->GetMainCamera()->AddRelativeLocation(FVector(0.0f,500.0f * _DeltaTime,0.0f));
+	}
+	if (UEngineInput::IsPress('A')) {
+		GetWorld()->GetMainCamera()->AddRelativeLocation(FVector(-500.0f * _DeltaTime, 0.0f, 0.0f));
+	}
+	if (UEngineInput::IsPress('S')) {
+		GetWorld()->GetMainCamera()->AddRelativeLocation(FVector(0.0f , -500.0f * _DeltaTime, 0.0f));
+	}
+	if (UEngineInput::IsPress('D')) {
+		GetWorld()->GetMainCamera()->AddRelativeLocation(FVector(500.0f * _DeltaTime, 0.0f, 0.0f));
+	}
+
+
+
+
+
 }
