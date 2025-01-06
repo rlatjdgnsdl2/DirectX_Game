@@ -15,7 +15,7 @@ public:
 protected:
 
 private:
-	std::shared_ptr<class USpriteRenderer> BackRenderer;
+	//std::shared_ptr<class USpriteRenderer> BackRenderer;
 
 
 };
