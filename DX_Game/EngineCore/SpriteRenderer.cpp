@@ -31,6 +31,25 @@ void USpriteRenderer::SetSprite(std::string_view _Name, size_t _Index)
 
 	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(_Index)->GetName());
 	SpriteData = Sprite->GetSpriteData(_Index);
+
+	CurIndex = _Index;
+}
+
+void USpriteRenderer::SetTexture(std::string_view _Name, bool AutoScale /*= false*/, float _Ratio /*= 1.0f*/)
+{
+	std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Find<UEngineTexture>(_Name);
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("로드하지 않은 텍스처를 사용하려고 했습니다.");
+	}
+
+	GetRenderUnit().SetTexture("ImageTexture", _Name);
+
+	if (true == AutoScale)
+	{
+		SetRelativeScale3D(Texture->GetTextureSize() * _Ratio);
+	}
 }
 
 void USpriteRenderer::BeginPlay()
@@ -55,10 +74,17 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 {
 	if (nullptr != CurAnimation)
 	{
-		UEngineSprite* Sprite = CurAnimation->Sprite;
+		Sprite = CurAnimation->Sprite;
 
 		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
 		SpriteData = Sprite->GetSpriteData(CurIndex);
+	}
+
+	if (true == IsAutoScale && nullptr != Sprite)
+	{
+		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
+		Scale.Z = 1.0f;
+		SetRelativeScale3D(Scale * AutoScaleRatio);
 	}
 
 	URenderer::Render(_Camera, _DeltaTime);
@@ -66,7 +92,7 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 void USpriteRenderer::ComponentTick(float _DeltaTime)
 {
-	// URenderer::ComponentTick(_DeltaTime);
+	URenderer::ComponentTick(_DeltaTime);
 
 	// 애니메이션 진행시키는 코드를 ComponentTick으로 옮겼다. 
 	if (nullptr != CurAnimation)
@@ -126,12 +152,6 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
-		if (true == CurAnimation->IsAutoScale)
-		{
-			FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
-			Scale.Z = 1.0f;
-			SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
-		}
 	}
 
 
@@ -245,11 +265,11 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
 
-	if (true == CurAnimation->IsAutoScale)
+	if (true == IsAutoScale)
 	{
 		FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
 		Scale.Z = 1.0f;
-		SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
+		SetRelativeScale3D(Scale * AutoScaleRatio);
 	}
 }
 

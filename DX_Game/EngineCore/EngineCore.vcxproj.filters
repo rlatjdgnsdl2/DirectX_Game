@@ -70,12 +70,6 @@
     <ClInclude Include="RenderUnit.h">
       <Filter>Components\Render</Filter>
     </ClInclude>
-    <ClInclude Include="CameraActor.h">
-      <Filter>Components\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineCamera.h">
-      <Filter>Components\Render</Filter>
-    </ClInclude>
     <ClInclude Include="ActorComponent.h">
       <Filter>Components\Base</Filter>
     </ClInclude>
@@ -131,6 +125,16 @@
       <Filter>Resource\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="EngineSampler.h" />
+    <ClInclude Include="EngineCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraActor.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDepthStencilState.h" />
+    <ClInclude Include="TimeEventComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -193,12 +197,6 @@
     <ClCompile Include="EngineGraphicDevice_Resources.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="CameraActor.cpp">
-      <Filter>Components\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineCamera.cpp">
-      <Filter>Components\Render</Filter>
-    </ClCompile>
     <ClCompile Include="ActorComponent.cpp">
       <Filter>Components\Base</Filter>
     </ClCompile>
@@ -251,6 +249,16 @@
       <Filter>Resource\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="EngineSampler.cpp" />
+    <ClCompile Include="CameraActor.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDepthStencilState.cpp" />
+    <ClCompile Include="TimeEventComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -315,6 +323,9 @@
     </Filter>
     <Filter Include="Resource\Mesh">
       <UniqueIdentifier>{bce13e5d-a630-45d1-be57-0fd1c92fd650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{7dfd567a-6818-40e2-bd0b-85ae46ba6e94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

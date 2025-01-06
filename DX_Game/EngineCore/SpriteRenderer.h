@@ -25,15 +25,13 @@ public:
 		UEngineSprite* Sprite = nullptr;
 		std::vector<int> FrameIndex;
 		std::vector<float> FrameTime;
-		std::map<int, EngineDelegate> Events;
+		std::map<int, UEngineDelegate> Events;
 
 		int CurIndex = 0;
 		int ResultIndex = 0;
 		float CurTime = 0.0f;
 		bool Loop = true;
 		bool IsEnd = false;
-		bool IsAutoScale = true;
-		float AutoScaleRatio = 1.0f;
 
 		void Reset()
 		{
@@ -84,6 +82,8 @@ public:
 
 	ENGINEAPI void SetSprite(std::string_view _Name, size_t _CurIndex = 0);
 
+	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
+
 	bool IsCurAnimationEnd()
 	{
 		return CurAnimation->IsEnd;
@@ -99,9 +99,22 @@ public:
 		CurAnimationSpeed = 1.0f;
 	}
 
+	void SetAutoScale(bool _Value)
+	{
+		IsAutoScale = _Value;
+	}
+
+	void SetAutoScaleRatio(float _Scale)
+	{
+		AutoScaleRatio = _Scale;
+	}
+
+
 	void SetSprite(UEngineSprite* _Sprite);
 
 	ResultColor ColorData;
+	FUVValue UVValue;
+	FSpriteData SpriteData;
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
@@ -118,8 +131,7 @@ private:
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
 	UEngineSprite* Sprite = nullptr;
-	FUVValue UVValue;
-	FSpriteData SpriteData;
-
+	bool IsAutoScale = true;
+	float AutoScaleRatio = 1.0f;
 };
 

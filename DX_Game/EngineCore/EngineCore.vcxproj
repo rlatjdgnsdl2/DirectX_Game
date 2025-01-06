@@ -45,6 +45,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineCore.h" />
+    <ClInclude Include="EngineDepthStencilState.h" />
     <ClInclude Include="EngineDeviceBuffer.h">
       <SubType>
       </SubType>
@@ -149,6 +150,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h" />
+    <ClInclude Include="TimeEventComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp">
@@ -177,6 +179,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineCore.cpp" />
+    <ClCompile Include="EngineDepthStencilState.cpp" />
     <ClCompile Include="EngineDeviceBuffer.cpp">
       <SubType>
       </SubType>
@@ -282,6 +285,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineGraphicDevice_Resources.cpp" />
+    <ClCompile Include="TimeEventComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectxTex\Inc\DirectXTex.inl" />

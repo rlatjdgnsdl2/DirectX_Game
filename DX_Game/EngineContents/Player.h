@@ -19,6 +19,10 @@ protected:
 private:
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
 
+	std::shared_ptr<class UShortKeyComponent> ShortKeyComponent;
+
+
+
 
 };
 

@@ -615,10 +615,6 @@ void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 	//	OutPutMergeSetting();
 	// 랜더타겟이라는 것을 바뀔겁니다.
 	Material->GetBlend()->Setting();
-	ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRTV();
-	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
-	ArrRtv[0] = RTV; // SV_Target0
-	UEngineCore::GetDevice().GetContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
 
 	UEngineCore::GetDevice().GetContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }

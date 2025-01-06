@@ -4,7 +4,6 @@
 
 UEngineCamera::UEngineCamera()
 {
-
 }
 
 void UEngineCamera::BeginPlay()
@@ -28,6 +27,7 @@ UEngineCamera::~UEngineCamera()
 
 void UEngineCamera::Tick(float _DetlaTime)
 {
+	// 카메라는 틱에서 자신의 뷰와 프로젝트를 계산한다음 랜더러들에게 전달해줄 겁니다.
 	Transform.View;
 	Transform.Projection;
 }
@@ -42,11 +42,27 @@ void UEngineCamera::Render(float _DetlaTime)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
 
+		if (true == RendererZSort[RenderGroup.first])
+		{
+			// 둘의 z값이 완전히 겹쳐있을때는 답이 없다.
+			// 크기 비교해서 크기가 더 작은쪽을 왼쪽으로 옮긴다.
+			RenderList.sort([](std::shared_ptr<URenderer>& _Left, std::shared_ptr<URenderer>& _Right)
+				{
+					return _Left->GetTransformRef().WorldLocation.Z > _Right->GetTransformRef().WorldLocation.Z;
+				});
+		}
+
+
 		for (std::shared_ptr<URenderer> Renderer : RenderList)
 		{
 			Renderer->Render(this, _DetlaTime);
 		}
 	}
+}
+
+void UEngineCamera::SetZSort(int _Order, bool _Value)
+{
+	RendererZSort[_Order] = _Value;
 }
 
 void UEngineCamera::ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer)
@@ -72,4 +88,6 @@ void UEngineCamera::CalculateViewAndProjection()
 	default:
 		break;
 	}
+
+	int a = 0;
 }
