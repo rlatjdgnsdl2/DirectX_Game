@@ -4,17 +4,13 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineInput.h>
 
-#include "PlayerFuncManager.h"
-#include "PlayerFunction.h"
+
 
 
 
 APlayer::APlayer()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-
-	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>();
-
 	
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetupAttachment(RootComponent);
