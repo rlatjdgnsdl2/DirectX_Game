@@ -52,7 +52,7 @@ public:
 	USpriteRenderer& operator=(const USpriteRenderer& _Other) = delete;
 	USpriteRenderer& operator=(USpriteRenderer&& _Other) noexcept = delete;
 
-	int GetCurIndex()
+	int GetCurIndex() const 
 	{
 		return CurIndex;
 	}

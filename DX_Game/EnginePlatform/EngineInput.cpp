@@ -96,21 +96,21 @@ UEngineInput& UEngineInput::GetInst()
 
 UEngineInput::UEngineInput()
 {
-	Keys.insert({ 'ESC'		,	UEngineKey(VK_ESCAPE) });
-	Keys.insert({ 'F1'		,	UEngineKey(VK_F1) });
-	Keys.insert({ 'F2'		,	UEngineKey(VK_F2) });
-	Keys.insert({ 'F3'		,	UEngineKey(VK_F3) });
-	Keys.insert({ 'F4'		,	UEngineKey(VK_F4) });
-	Keys.insert({ 'F5'		,	UEngineKey(VK_F5) });
-	Keys.insert({ 'F6'		,	UEngineKey(VK_F6) });
-	Keys.insert({ 'F7'		,	UEngineKey(VK_F7) });
-	Keys.insert({ 'F8'		,	UEngineKey(VK_F8) });
-	Keys.insert({ 'F9'		,	UEngineKey(VK_F9) });
-	Keys.insert({ 'F10'		,	UEngineKey(VK_F10) });
-	Keys.insert({ 'F11'		,	UEngineKey(VK_F11) });
-	Keys.insert({ 'F12'		,	UEngineKey(VK_F12) });
+	Keys.insert({ VK_ESCAPE	,	UEngineKey(VK_ESCAPE) });
+	Keys.insert({ VK_F1 	,	UEngineKey(VK_F1) });
+	Keys.insert({ VK_F2	,	UEngineKey(VK_F2) });
+	Keys.insert({ VK_F3 	,	UEngineKey(VK_F3) });
+	Keys.insert({ VK_F4	,	UEngineKey(VK_F4) });
+	Keys.insert({ VK_F5 	,	UEngineKey(VK_F5) });
+	Keys.insert({ VK_F6 	,	UEngineKey(VK_F6) });
+	Keys.insert({ VK_F7 	,	UEngineKey(VK_F7) });
+	Keys.insert({ VK_F8 	,	UEngineKey(VK_F8) });
+	Keys.insert({ VK_F9 	,	UEngineKey(VK_F9) });
+	Keys.insert({ VK_F10 	,	UEngineKey(VK_F10) });
+	Keys.insert({ VK_F11 	,	UEngineKey(VK_F11) });
+	Keys.insert({ VK_F12 	,	UEngineKey(VK_F12) });
 
-	Keys.insert({ '`'		,	UEngineKey(VK_OEM_3) });
+	Keys.insert({ VK_OEM_3		,	UEngineKey(VK_OEM_3) });
 	Keys.insert({ '1'		,	UEngineKey('1') });
 	Keys.insert({ '2'		,	UEngineKey('2') });
 	Keys.insert({ '3'		,	UEngineKey('3') });
@@ -121,12 +121,12 @@ UEngineInput::UEngineInput()
 	Keys.insert({ '8'		,	UEngineKey('8') });
 	Keys.insert({ '9'		,	UEngineKey('9') });
 	Keys.insert({ '0'		,	UEngineKey('0') });
-	Keys.insert({ '-'		,	UEngineKey(VK_OEM_MINUS) });
-	Keys.insert({ '='		,	UEngineKey(VK_OEM_PLUS) });
+	Keys.insert({ VK_OEM_MINUS		,	UEngineKey(VK_OEM_MINUS) });
+	Keys.insert({ VK_OEM_PLUS 		,	UEngineKey(VK_OEM_PLUS) });
 
-	Keys.insert({ 'BACK'	,	UEngineKey(VK_BACK) });
+	Keys.insert({ VK_BACK	,	UEngineKey(VK_BACK) });
 
-	Keys.insert({ 'TAB'		,	UEngineKey(VK_TAB) });
+	Keys.insert({ VK_TAB		,	UEngineKey(VK_TAB) });
 
 	Keys.insert({ 'Q'		,	UEngineKey('Q') });
 	Keys.insert({ 'W'		,	UEngineKey('W') });
@@ -139,9 +139,9 @@ UEngineInput::UEngineInput()
 	Keys.insert({ 'O'		,	UEngineKey('O') });
 	Keys.insert({ 'P'		,	UEngineKey('P') });
 
-	Keys.insert({ ']'		,	UEngineKey(VK_OEM_6) });
-	Keys.insert({ '['		,	UEngineKey(VK_OEM_4) });
-	Keys.insert({ '\\'		,	UEngineKey(VK_OEM_5) });
+	Keys.insert({ VK_OEM_6		,	UEngineKey(VK_OEM_6) });
+	Keys.insert({ VK_OEM_4		,	UEngineKey(VK_OEM_4) });
+	Keys.insert({ VK_OEM_5		,	UEngineKey(VK_OEM_5) });
 
 	Keys.insert({ 'A'		,	UEngineKey('A') });
 	Keys.insert({ 'S'		,	UEngineKey('S') });
@@ -152,8 +152,8 @@ UEngineInput::UEngineInput()
 	Keys.insert({ 'J'		,	UEngineKey('J') });
 	Keys.insert({ 'K'		,	UEngineKey('K') });
 	Keys.insert({ 'L'		,	UEngineKey('L') });
-	Keys.insert({ ';'		,	UEngineKey(VK_OEM_1) });
-	Keys.insert({ '\''		,	UEngineKey(VK_OEM_7) });
+	Keys.insert({ VK_OEM_1,	UEngineKey(VK_OEM_1) });
+	Keys.insert({ VK_OEM_7,	UEngineKey(VK_OEM_7) });
 
 	Keys.insert({ 'Z'		,	UEngineKey('Z') });
 	Keys.insert({ 'X'		,	UEngineKey('X') });
@@ -162,9 +162,9 @@ UEngineInput::UEngineInput()
 	Keys.insert({ 'B'		,	UEngineKey('B') });
 	Keys.insert({ 'N'		,	UEngineKey('N') });
 	Keys.insert({ 'M'		,	UEngineKey('M') });
-	Keys.insert({ ','		,	UEngineKey(VK_OEM_COMMA) });
-	Keys.insert({ '.'		,	UEngineKey(VK_OEM_PERIOD) });
-	Keys.insert({ '/'		,	UEngineKey(VK_OEM_2) });
+	Keys.insert({ VK_OEM_COMMA,	UEngineKey(VK_OEM_COMMA) });
+	Keys.insert({ VK_OEM_PERIOD,	UEngineKey(VK_OEM_PERIOD) });
+	Keys.insert({ VK_OEM_2,	UEngineKey(VK_OEM_2) });
 
 	Keys.insert({ VK_LCONTROL	,	UEngineKey(VK_LCONTROL) });
 	Keys.insert({ VK_LSHIFT		,	UEngineKey(VK_LSHIFT) });

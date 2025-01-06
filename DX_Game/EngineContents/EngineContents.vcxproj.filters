@@ -16,6 +16,15 @@
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerFunc.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFuncManager.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="UIShortKey.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -31,6 +40,15 @@
       <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFunc.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFuncManager.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="UIShortKey.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
