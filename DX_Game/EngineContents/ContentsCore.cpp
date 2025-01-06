@@ -39,6 +39,23 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 			UEngineTexture::Load(FilePath);
 		}
 	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image//Player//Ultimate_Drive");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+
+
+
+
+
 	UEngineSprite::CreateSpriteToMeta("Player_Stand.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Player_Walk.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Player_Jump.png", ".sdata");

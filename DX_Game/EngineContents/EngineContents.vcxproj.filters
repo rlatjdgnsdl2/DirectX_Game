@@ -51,6 +51,7 @@
     <ClInclude Include="UIShortKey.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsEnum.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

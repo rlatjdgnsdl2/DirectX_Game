@@ -14,12 +14,22 @@ APlayer::APlayer()
 	
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetupAttachment(RootComponent);
-
+	SpriteRenderer->AddRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Player)));
+	
 
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0,2,0.33f);
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 0.25f);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
 	SpriteRenderer->ChangeAnimation("Stand");
+	
+	
+
+	TestRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	TestRenderer->SetupAttachment(RootComponent);
+	TestRenderer->AddRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill)));
+	TestRenderer->CreateAnimation("Test", "Ultimate_Drive", 0, 5, 0.1f);
+	TestRenderer->ChangeAnimation("Test");
+	
 
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>();
 	PlayerFuncManager->SetFuncName(VK_LEFT, "Walk_Left");

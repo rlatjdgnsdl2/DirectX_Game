@@ -52,6 +52,7 @@ public:
 	}
 
 	ENGINEAPI FVector GetSpriteScaleToReal(size_t _Index);
+
 	
 
 

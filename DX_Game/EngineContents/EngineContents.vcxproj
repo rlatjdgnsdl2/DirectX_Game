@@ -61,6 +61,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsCore.h" />
+    <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
