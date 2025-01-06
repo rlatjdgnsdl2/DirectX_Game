@@ -16,9 +16,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="ShortKeyComponent.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -34,9 +31,6 @@
       <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="ShortKeyComponent.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>

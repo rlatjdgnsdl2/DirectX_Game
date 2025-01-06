@@ -14,12 +14,21 @@ public:
 
 	void Tick(float _DeltaTime) override;
 
+	class USpriteRenderer* GetSprtieRenderer()
+	{
+		return SpriteRenderer.get();
+	}
+	float GetDeltaTime()
+	{
+		return DeltaTime;
+	}
+
 protected:
 
 private:
+	float DeltaTime = 0.0f;
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
-
-	std::shared_ptr<class UShortKeyComponent> ShortKeyComponent;
+	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 
 
 

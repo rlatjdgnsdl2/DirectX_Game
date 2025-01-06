@@ -25,7 +25,7 @@ USpriteRenderer::~USpriteRenderer()
 {
 }
 
-void USpriteRenderer::SetSprite(std::string_view _Name, size_t _Index)
+void USpriteRenderer::SetSprite(std::string_view _Name, UINT _Index)
 {
 	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
 
@@ -295,16 +295,16 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 			Check = true;
 			break;
 		}
+
+		if (false == Check)
+		{
+			MSGASSERT("존재하지 않는 프레임에 이벤트를 생성하려고 했습니다" + std::string(_AnimationName));
+			return;
+		}
+
+		ChangeAnimation->Events[_Frame] += _Function;
+
 	}
-
-	if (false == Check)
-	{
-		MSGASSERT("존재하지 않는 프레임에 이벤트를 생성하려고 했습니다" + std::string(_AnimationName));
-		return;
-	}
-
-	ChangeAnimation->Events[_Frame] += _Function;
-
 }
 
 

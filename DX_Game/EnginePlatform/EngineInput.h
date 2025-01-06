@@ -113,7 +113,7 @@ public:
 		return GetInst().Keys[_KeyIndex].IsFree;
 	}
 
-	void BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void()> _Function);
+	ENGINEAPI static void BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void()> _Function);
 
 protected:
 

@@ -1,15 +1,19 @@
 #pragma once
+#include <string>
 #include <memory>
-#include "EngineDefine.h"
 
-
-
-// 설명 :
+// 설명 : std::enable_shared_from_this<UObject>
 class UObject : public std::enable_shared_from_this<UObject>
 {
 public:
+	// constrcuter destructer
 	ENGINEAPI UObject();
-	ENGINEAPI virtual ~UObject() = 0;
+
+	// 혹여나 자식들의 소멸자가 호출 안되는 경우를 막기위에서
+	// 가상함수 테이블을 만들 것이므로 왠만하면 자식쪽의 소멸자가 호출안되는 경우는 없을 것이다.
+	ENGINEAPI virtual ~UObject();
+
+	// delete Function
 	UObject(const UObject& _Other) = delete;
 	UObject(UObject&& _Other) noexcept = delete;
 	UObject& operator=(const UObject& _Other) = delete;
@@ -18,41 +22,48 @@ public:
 	template<typename ChildPtrType>
 	std::shared_ptr<ChildPtrType> GetThis()
 	{
-		static_assert(std::is_base_of_v<UObject, ChildPtrType>, "UObject를 상속받지 않은 클래스를 GetThis하려고 했습니다.");
-		return std::dynamic_pointer_cast<ChildPtrType>(shared_from_this());
+		return std::static_pointer_cast<ChildPtrType>(shared_from_this());
 	}
 
-	// name
 	std::string GetName() const
 	{
 		return Name;
 	}
+
 	std::string_view GetNameView() const
 	{
 		return Name.c_str();
 	}
-	virtual void SetName(std::string_view _Name)
+
+	// 이름 지정할때 뭔가 하고 싶으면 오버라이드해.
+	ENGINEAPI virtual void SetName(std::string_view _Name)
 	{
 		Name = _Name.data();
 	}
 
+	// bool IsActive()
 	virtual bool IsActive()
 	{
 		return IsActiveValue && false == IsDestroyValue;
 	}
+
 	virtual bool IsDestroy()
 	{
 		return IsDestroyValue;
 	}
 
+	// 바로 죽겠죠?
+	// _Time 시간후에 죽어라.
 	void Destroy(float _Time = 0.0f)
 	{
 		DeathTime = _Time;
+
 		if (0.0f < _Time)
 		{
 			IsDeathTimeCheck = true;
 			return;
 		}
+
 		IsDestroyValue = true;
 	}
 
@@ -62,13 +73,22 @@ public:
 		{
 			return;
 		}
+
 		CurDeathTime += _DeltaTime;
+
 		if (DeathTime <= CurDeathTime)
 		{
 			IsDestroyValue = true;
 		}
 	}
 
+	virtual void ReleaseCheck(float _DeltaTime)
+	{
+
+	}
+
+	// 모든 기능 정지.
+	// 얼음 외부에서 다른 객체가 풀어줘야 한다.
 	void SetActive(bool _IsActive)
 	{
 		IsActiveValue = _IsActive;
@@ -112,8 +132,6 @@ public:
 protected:
 
 private:
-	std::string Name;
-
 	int Order = 0;
 
 	bool IsDestroyValue = false;
@@ -122,6 +140,8 @@ private:
 	bool IsDeathTimeCheck = false;
 	float DeathTime = 0.0f;
 	float CurDeathTime = 0.0f;
+
+	std::string Name;
 
 	bool IsDebugValue = false;
 };

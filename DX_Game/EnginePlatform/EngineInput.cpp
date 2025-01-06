@@ -236,7 +236,7 @@ UEngineInput::~UEngineInput()
 
 void UEngineInput::BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void() > _Function)
 {
-	if (false == Keys.contains(_KeyIndex))
+	if (false == GetInst().Keys.contains(_KeyIndex))
 	{
 		MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 		return;
@@ -245,16 +245,16 @@ void UEngineInput::BindAction(int _KeyIndex, KeyEvent _EventType, std::function<
 	switch (_EventType)
 	{
 	case KeyEvent::Down:
-		Keys[_KeyIndex].DownEvents.push_back(_Function);
+		GetInst().Keys[_KeyIndex].DownEvents.push_back(_Function);
 		break;
 	case KeyEvent::Press:
-		Keys[_KeyIndex].PressEvents.push_back(_Function);
+		GetInst().Keys[_KeyIndex].PressEvents.push_back(_Function);
 		break;
 	case KeyEvent::Free:
-		Keys[_KeyIndex].FreeEvents.push_back(_Function);
+		GetInst().Keys[_KeyIndex].FreeEvents.push_back(_Function);
 		break;
 	case KeyEvent::Up:
-		Keys[_KeyIndex].UpEvents.push_back(_Function);
+		GetInst().Keys[_KeyIndex].UpEvents.push_back(_Function);
 		break;
 	default:
 		break;
