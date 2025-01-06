@@ -112,14 +112,19 @@ public:
 
 	void SetSprite(UEngineSprite* _Sprite);
 
-	ResultColor ColorData;
-	FUVValue UVValue;
-	FSpriteData SpriteData;
+	ENGINEAPI void SetPivot(FVector _Pivot)
+	{
+		SpriteData.Pivot = _Pivot;
+	}
+
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;
+	ResultColor ColorData;
+	FUVValue UVValue;
+	FSpriteData SpriteData;
 
 
 private:
