@@ -24,9 +24,7 @@ void UTimeEventComponent::AddUpdateEvent(float _Time, std::function<void(float, 
 
 void UTimeEventComponent::AddEvent(float _Time, std::function<void(float, float)> _TimeUpdateEvent, std::function<void()> _TimeEndEvent, bool _Loop /*= false*/)
 {
-	// 기본 생성자로 새로운 원소를 바로 만들어내는 
-	// 기본 생성자가 없는 클래스는 만들수가 없다.
-	// 더 정확하게 이야기하자면 템플릿가변인자를 통해서 생성자에 무작위 패턴에 대응할수 있게 만들어져 있는데.
+	
 	FTimeEvent& NewEvent = Events.emplace_back();
 	NewEvent.MaxTime = _Time;
 	NewEvent.CurTime = 0.0f;
@@ -38,7 +36,7 @@ void UTimeEventComponent::AddEvent(float _Time, std::function<void(float, float)
 
 void UTimeEventComponent::BeginPlay()
 {
-
+	UActorComponent::BeginPlay();
 }
 
 void UTimeEventComponent::ComponentTick(float _DeltaTime)

@@ -28,6 +28,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsCore.cpp" />
+    <ClCompile Include="ContentsCore_PlayerResRoad.cpp" />
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>

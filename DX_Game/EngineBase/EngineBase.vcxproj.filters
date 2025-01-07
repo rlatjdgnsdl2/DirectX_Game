@@ -10,9 +10,6 @@
     <ClCompile Include="EnginePath.cpp">
       <Filter>IO</Filter>
     </ClCompile>
-    <ClCompile Include="EngineMath.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
     <ClCompile Include="EngineSerializer.cpp">
       <Filter>IO</Filter>
     </ClCompile>
@@ -34,6 +31,10 @@
     <ClCompile Include="EngineDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="EngineRandom.cpp" />
+    <ClCompile Include="EngineMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineDirectory.h">
@@ -44,9 +45,6 @@
     </ClInclude>
     <ClInclude Include="EnginePath.h">
       <Filter>IO</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineMath.h">
-      <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="EngineSerializer.h">
       <Filter>IO</Filter>
@@ -71,6 +69,10 @@
     </ClInclude>
     <ClInclude Include="EngineDebug.h">
       <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineRandom.h" />
+    <ClInclude Include="EngineMath.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

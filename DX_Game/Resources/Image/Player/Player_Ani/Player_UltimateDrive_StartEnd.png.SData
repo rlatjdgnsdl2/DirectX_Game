@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: ed98f563b2aeeab45bf2f17a8895be5a
+guid: 1e20c0026359a7d44bd58fb91f71f27c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -688399747926251461
-    second: Player_Stand_0
+      213: -4549871927518758641
+    second: Test_0
   - first:
-      213: -70573204736542894
-    second: Player_Stand_1
+      213: -2479046135300248059
+    second: Test_2
   - first:
-      213: -8218435944527227812
-    second: Player_Stand_2
+      213: 2337254253927600879
+    second: Test_4
+  - first:
+      213: -6001904153802634705
+    second: Test_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -29,7 +32,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -46,7 +49,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -77,20 +80,8 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 8192
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
+    textureCompression: 2
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -100,64 +91,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Stand_0
+      name: Test_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 28
-        width: 64
-        height: 73
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 54
+        y: 323
+        width: 119
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5802846, y: 0.25594968}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b38236993105276f0800000000000000
-      internalID: -688399747926251461
+      spriteID: f09f8b2969b9bd0c0800000000000000
+      internalID: -4549871927518758641
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Stand_1
+      name: Test_2
       rect:
         serializedVersion: 2
-        x: 160
-        y: 28
-        width: 64
-        height: 73
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 310
+        y: 323
+        width: 119
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5875831, y: 0.24877173}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25774015b06450ff0800000000000000
-      internalID: -70573204736542894
+      spriteID: 50eaf9baca8a89dd0800000000000000
+      internalID: -2479046135300248059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Stand_2
+      name: Test_4
       rect:
         serializedVersion: 2
-        x: 288
-        y: 28
-        width: 64
-        height: 73
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 54
+        y: 67
+        width: 119
+        height: 121
+      alignment: 9
+      pivot: {x: 0.572986, y: 0.24877167}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5417253d0042fd80800000000000000
-      internalID: -8218435944527227812
+      spriteID: fe210235c589f6020800000000000000
+      internalID: 2337254253927600879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Test_6
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 67
+        width: 119
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5802846, y: 0.26312754}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a07a8b8f3f4bca0800000000000000
+      internalID: -6001904153802634705
       vertices: []
       indices: 
       edges: []
@@ -165,7 +177,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3d243aeeeafdb2e41a9e4ee847f239a3
+    spriteID: d205dc1c4ee720642935594975cbaacd
     internalID: 0
     vertices: []
     indices: 

@@ -7,32 +7,16 @@
 #include <list>
 #include <vector>
 #include <map>
-#include <unordered_map>
-#include <set>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <algorithm>
-#include <filesystem>
 #include <string>
 #include <iostream>
 #include <functional>
+// 쉐어드 Ptr을 사용하기 위한 헤더
 #include <memory>
 
-// User
 #include "EngineMath.h"
-
-#include "EngineTimer.h"
-
+#include "EngineDirectory.h"
+#include "EngineFile.h"
+#include "EngineSerializer.h"
+#include "EnginePath.h"
 #include "EngineDebug.h"
 #include "EngineDefine.h"
-
-#include "EngineDirectory.h"
-#include "EnginePath.h"
-#include "EngineFile.h"
-#include "EngineString.h"
-#include "EngineSerializer.h"
-
-#include "Object.h"
-
-

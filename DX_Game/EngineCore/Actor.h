@@ -48,7 +48,7 @@ public:
 		else if (!std::is_base_of_v<UActorComponent, ComponentType>
 			&& !std::is_base_of_v<USceneComponent, ComponentType>)
 		{
-			MSGASSERT("말도 안됨");
+			MSGASSERT("Actor나 Secne컴포넌트를 상속받아야 합니다");
 		}
 
 		return NewCom;

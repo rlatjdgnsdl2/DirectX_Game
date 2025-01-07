@@ -17,17 +17,20 @@ APlayer::APlayer()
 	SpriteRenderer->AddRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Player)));
 	
 
-	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0,2,0.5f/3);
-	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 0.5/4);
+	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0,2);
+	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
-	SpriteRenderer->ChangeAnimation("Stand");
+	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
+
+	
+	SpriteRenderer->ChangeAnimation("UltimateDrive_KeyDown");
 	
 	
 
 	TestRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	TestRenderer->SetupAttachment(RootComponent);
 	TestRenderer->AddRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill)));
-	TestRenderer->CreateAnimation("Test", "Ultimate_Drive", 0, 5, 0.5f/6);
+	TestRenderer->CreateAnimation("Test", "UltimateDrive_KeyDown_Effect_Front", 0, 5);
 	TestRenderer->ChangeAnimation("Test");
 	
 

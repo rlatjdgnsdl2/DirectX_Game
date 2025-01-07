@@ -32,6 +32,7 @@ public:
 	ENGINEAPI bool IsFile();
 
 	ENGINEAPI void Append(std::string_view _AppendName);
+	ENGINEAPI void BackDir();
 
 
 protected:

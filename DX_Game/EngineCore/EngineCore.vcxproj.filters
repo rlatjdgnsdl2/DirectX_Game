@@ -135,6 +135,9 @@
     <ClInclude Include="TimeEventComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -257,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="EngineDepthStencilState.cpp" />
     <ClCompile Include="TimeEventComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

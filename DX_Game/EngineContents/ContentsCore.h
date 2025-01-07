@@ -22,7 +22,9 @@ protected:
 	void EngineTick(float _DeltaTime) override;
 	void EngineEnd() override;
 
-private:
+	
 
+private:
+	void LoadPlayerResources();
 };
 

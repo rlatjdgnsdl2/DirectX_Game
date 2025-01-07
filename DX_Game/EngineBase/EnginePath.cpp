@@ -94,6 +94,14 @@ void UEnginePath::Append(std::string_view _AppendName)
 	Path.append(_AppendName);
 }
 
+ENGINEAPI void UEnginePath::BackDir()
+{
+	std::string PathString = Path.string();
+	int Index = PathString.find_last_of("\\");
+	PathString = PathString.substr(0, Index);
+	Path = PathString;
+}
+
 bool UEnginePath::MoveParentToDirectory(std::string_view _Path)
 {
 	UEnginePath DummyPath = UEnginePath(Path);

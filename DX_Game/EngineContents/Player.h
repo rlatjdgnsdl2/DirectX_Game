@@ -14,6 +14,12 @@ public:
 
 	void Tick(float _DeltaTime) override;
 
+	template<typename SkillName>
+	void SpawnSkill() {
+		GetWorld()->SpawnActor<SkillName>();
+	}
+
+
 	class USpriteRenderer* GetSprtieRenderer()
 	{
 		return SpriteRenderer.get();
