@@ -34,6 +34,12 @@ protected:
 private:
 	float DeltaTime = 0.0f;
 
+	FVector Gravity = FVector(0.0f, -9.8f, 0.0f);
+	bool IsGround = false;
+	bool IsJumping = false;
+	bool IsFalling = false;
+	bool IsAttacking = false;
+
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
 	std::shared_ptr<class USpriteRenderer> TestRenderer;

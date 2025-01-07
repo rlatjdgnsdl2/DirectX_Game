@@ -25,12 +25,13 @@ ACarcion_Ishfira::ACarcion_Ishfira()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 
 	}
-
-	Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
 	GetWorld()->CreateCollisionProfile("Player");
 	GetWorld()->CreateCollisionProfile("Monster");
 	GetWorld()->CreateCollisionProfile("FootHold");
 	GetWorld()->CreateCollisionProfile("UI");
+	GetWorld()->CreateCollisionProfile("EndArea");
+
+	Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
 
 }
 

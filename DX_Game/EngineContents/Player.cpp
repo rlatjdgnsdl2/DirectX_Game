@@ -81,7 +81,7 @@ void APlayer::Tick(float _DeltaTime)
 		
 	}
 	if (UEngineInput::IsDown('Z')) {
-		GetWorld()->SpawnActor<UIShortKey>();
+
 	}
 
 	

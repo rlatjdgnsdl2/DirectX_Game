@@ -15,7 +15,12 @@ public:
 protected:
 
 private:
+	std::map<std::string_view, std::shared_ptr<class UCollision>> EndArea;
+	std::map<int, std::shared_ptr<class USpriteRenderer>> FootHoldRenderers;
+	std::map<int, std::shared_ptr<class UCollision>> FootHoldCollisions;
+
 	std::shared_ptr<class USpriteRenderer> BackRenderer;
+
 
 
 };
