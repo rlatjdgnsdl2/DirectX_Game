@@ -5,7 +5,7 @@
 #include <EngineCore/EngineSprite.h>
 
 
-ACarcion_Ishfira::ACarcion_Ishfira() 
+ACarcion_Ishfira::ACarcion_Ishfira()
 {
 	{
 		UEngineDirectory Dir;
@@ -14,31 +14,27 @@ ACarcion_Ishfira::ACarcion_Ishfira()
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image//Carcion");
+		Dir.Append("Image\\Carcion");
 		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
 		}
+		Dir.Append("Ishfira");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 
-		{
-			UEngineDirectory Dir;
-			if (false == Dir.MoveParentToDirectory("Resources"))
-			{
-				MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-				return;
-			}
-			Dir.Append("Image//Carcion//Ishfira");
-			UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-		}
-		
 	}
 
 	Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
+	GetWorld()->CreateCollisionProfile("Player");
+	GetWorld()->CreateCollisionProfile("Monster");
+	GetWorld()->CreateCollisionProfile("FootHold");
+	GetWorld()->CreateCollisionProfile("UI");
+
 }
 
-ACarcion_Ishfira::~ACarcion_Ishfira() 
+ACarcion_Ishfira::~ACarcion_Ishfira()
 {
 	Carcion_Ishfira_Map = nullptr;
 }

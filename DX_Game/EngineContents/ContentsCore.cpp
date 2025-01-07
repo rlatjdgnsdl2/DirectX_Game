@@ -25,7 +25,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowSize = { 1280, 720 };
 
 	
-	LoadPlayerResources();
+	LoadResources();
 
 	UEngineCore::CreateLevel<ACarcion_Ishfira, APlayer>("Carcion_Ishfira");
 	UEngineCore::OpenLevel("Carcion_Ishfira");

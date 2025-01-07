@@ -31,6 +31,8 @@
 #include "RenderUnit.h"
 #include "Renderer.h"
 #include "SpriteRenderer.h"
+#include "Collision.h"
+
 #include "EngineCamera.h"
 #include "CameraActor.h"
 

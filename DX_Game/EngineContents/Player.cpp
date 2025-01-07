@@ -1,9 +1,15 @@
 #include "PreCompile.h"
 #include "Player.h"
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
-#include <EnginePlatform/EngineInput.h>
+#include <EngineCore/Collision.h>
+
 #include "PlayerFuncManager.h"
+
+
+
+#include "UIShortKey.h"
 
 
 
@@ -14,29 +20,32 @@ APlayer::APlayer()
 	
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetupAttachment(RootComponent);
+
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("Player");
+	Collision->SetScale3D(FVector(40.0f, 60.0f, 1.0f));
+	Collision->SetRelativeLocation(FVector::UP*30.0f);
+
+
+
 	SpriteRenderer->AddRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Player)));
 	
 
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0,2);
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
+	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
+	SpriteRenderer->CreateAnimation("UltimateDrive_StartEnd", "Player_UltimateDrive_StartEnd.png", 0, 3);
 	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
-
 	
-	SpriteRenderer->ChangeAnimation("UltimateDrive_KeyDown");
-	
-	
-
-	TestRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	TestRenderer->SetupAttachment(RootComponent);
-	TestRenderer->AddRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill)));
-	TestRenderer->CreateAnimation("Test", "UltimateDrive_KeyDown_Effect_Front", 0, 5);
-	TestRenderer->ChangeAnimation("Test");
-	
-
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>();
 	PlayerFuncManager->SetFuncName(VK_LEFT, "Walk_Left");
 	PlayerFuncManager->SetFuncName(VK_RIGHT, "Walk_Right");
+	PlayerFuncManager->SetFuncName('C', "Jump");
+	PlayerFuncManager->SetFuncName('Z', "UltimateDrive");
+
+	SpriteRenderer->ChangeAnimation("Stand");
 	
 }
 
@@ -70,6 +79,9 @@ void APlayer::Tick(float _DeltaTime)
 	if (UEngineInput::IsDown('C')) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C')).Down();
 		
+	}
+	if (UEngineInput::IsDown('Z')) {
+		GetWorld()->SpawnActor<UIShortKey>();
 	}
 
 	

@@ -25,6 +25,6 @@ protected:
 	
 
 private:
-	void LoadPlayerResources();
+	void LoadResources();
 };
 

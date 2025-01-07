@@ -9,3 +9,8 @@ enum class Z_ORDER
 	Back
 	
 };
+
+enum class Input 
+{
+	
+};

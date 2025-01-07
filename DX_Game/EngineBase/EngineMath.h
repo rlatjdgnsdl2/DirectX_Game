@@ -571,7 +571,6 @@ public:
 
 
 using FVector = TVector<float>;
-
 using float4 = TVector<float>;
 
 // 행렬 은 보통 매트릭스 라고 합니다.
