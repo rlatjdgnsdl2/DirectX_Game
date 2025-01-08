@@ -21,35 +21,52 @@ public:
 	template<typename GameModeType, typename MainPawnType>
 	static class std::shared_ptr<class ULevel> CreateLevel(std::string_view _Name)
 	{
+		// 1 유지하고 있겠죠.
+		// shared_ptr을 사용하므로 new UEngineLevel()
 		std::shared_ptr<ULevel> NewLevel = NewLevelCreate(_Name);
-		NewLevel->SpawnActor<GameModeType>();
-		NewLevel->SpawnActor<MainPawnType>();
+		// std::make_shared
+		// new UEngineLevel();
+
+		std::shared_ptr<GameModeType> GameMode = NewLevel->SpawnActor<GameModeType>();
+		std::shared_ptr<MainPawnType> Pawn = NewLevel->SpawnActor<MainPawnType>();
+
+		NewLevel->InitLevel(GameMode.get(), Pawn.get());
+
+		// 2가 됩니다
 		return NewLevel;
 	}
 
 	ENGINEAPI static void OpenLevel(std::string_view _Name);
+
+
 	ENGINEAPI static FVector GetScreenScale();
+
 	ENGINEAPI static UEngineGraphicDevice& GetDevice();
+
 	ENGINEAPI static UEngineWindow& GetMainWindow();
 
 protected:
 
 private:
-	static UEngineWindow MainWindow;
+	ENGINEAPI static UEngineWindow MainWindow;
 
+	ENGINEAPI static UEngineGraphicDevice Device;
+	// 데이터영역에 있죠? => 언제 삭제될까요?
+	// 릭체크는 
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
-
 	static UEngineInitData Data;
-	static UEngineGraphicDevice Device;
+
 	static UEngineTimer Timer;
 
-	ENGINEAPI static std::shared_ptr<ULevel> NewLevelCreate(std::string_view _Name);
 	static void WindowInit(HINSTANCE _Instance);
 	static void LoadContents(std::string_view _DllName);
 
 	static void EngineFrame();
 	static void EngineEnd();
+
+	ENGINEAPI static std::shared_ptr<ULevel> NewLevelCreate(std::string_view _Name);
+
 	static std::map<std::string, std::shared_ptr<class ULevel>> LevelMap;
 	static std::shared_ptr<class ULevel> CurLevel;
 	static std::shared_ptr<class ULevel> NextLevel;

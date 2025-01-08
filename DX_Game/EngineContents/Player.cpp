@@ -85,8 +85,9 @@ void APlayer::Tick(float _DeltaTime)
 		}
 	}
 	if (UEngineInput::IsUp('Z')) {
+		UltimateDrive->ChangeState(Skill_Frame::End);
 		//UltimateDrive->Destroy();
-		//UltimateDrive = nullptr;
+		UltimateDrive = nullptr;
 	}
 
 
