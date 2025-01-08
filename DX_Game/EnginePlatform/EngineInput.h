@@ -52,14 +52,14 @@ public:
 	ENGINEAPI static void KeyCheck(float _DeltaTime);
 
 
-	bool IsDoubleClick(int _KeyIndex, float _Time)
+	ENGINEAPI static bool IsDoubleClick(int _KeyIndex, float _Time)
 	{
-		if (false == Keys.contains(_KeyIndex))
+		if (false == GetInst().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-		return Keys[_KeyIndex].IsDown && Keys[_KeyIndex].FreeTime < _Time;
+		return GetInst().Keys[_KeyIndex].IsDown && GetInst().Keys[_KeyIndex].FreeTime < _Time;
 	}
 
 	ENGINEAPI static bool IsDown(int _KeyIndex)
@@ -92,7 +92,7 @@ public:
 		return GetInst().Keys[_KeyIndex].IsPress;
 	}
 
-	float IsPressTime(int _KeyIndex)
+	ENGINEAPI static float IsPressTime(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{
@@ -103,7 +103,7 @@ public:
 	}
 
 
-	bool IsFree(int _KeyIndex)
+	ENGINEAPI static bool IsFree(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{

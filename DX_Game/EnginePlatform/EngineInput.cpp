@@ -6,18 +6,14 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 {
 	if (0 != GetAsyncKeyState(Key))
 	{
-		if (true == IsPress)
-		{
-			PressTime += _DeltaTime;
-		}
-		if (true == IsFree)
+		if (IsFree)
 		{
 			IsDown = true;
-			IsPress = true;
+			IsPress = false;
 			IsFree = false;
 			IsUp = false;
 		}
-		else if (true == IsDown)
+		else if (IsDown)
 		{
 			FreeTime = 0.0f;
 			IsDown = false;
@@ -25,23 +21,25 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 			IsFree = false;
 			IsUp = false;
 		}
-
+		else if (IsPress)
+		{
+			PressTime += _DeltaTime;
+		}
 	}
 	else
 	{
-		if (true == IsFree)
+		if (IsFree)
 		{
 			FreeTime += _DeltaTime;
 		}
-
-		if (true == IsPress)
+		else if (IsPress)
 		{
 			IsDown = false;
 			IsPress = false;
-			IsFree = true;
+			IsFree = false;
 			IsUp = true;
 		}
-		else if (true == IsUp)
+		else if (IsUp)
 		{
 			PressTime = 0.0f;
 			IsDown = false;
@@ -49,7 +47,6 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 			IsFree = true;
 			IsUp = false;
 		}
-
 	}
 }
 

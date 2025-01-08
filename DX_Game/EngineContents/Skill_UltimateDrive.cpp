@@ -8,12 +8,10 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	{
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Front", "UltimateDrive_Start_Effect_Front", 0, 4);
-		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Front", "UltimateDrive_KeyDown_Effect_Front", 0, 5);
-		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Front", "UltimateDrive_End_Effect_Front", 0, 4);
+		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Front", "UltimateDrive_Start_Effect_Front", 0, 4, 0.05f, false);
+		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Front", "UltimateDrive_KeyDown_Effect_Front", 0, 5,0.05f);
+		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Front", "UltimateDrive_End_Effect_Front", 0, 4,0.05f,false);
 
-		SpriteRenderer->SetLoopValue("UltimateDrive_Start_Effect_Front", false);
-		SpriteRenderer->SetLoopValue("UltimateDrive_End_Effect_Front", false);
 
 
 
@@ -27,9 +25,9 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
 		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Back", "UltimateDrive_Start_Effect_Back", 0, 4);
-		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Back", "UltimateDrive_KeyDown_Effect_Back", 0, 5);
-		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Back", "UltimateDrive_End_Effect_Back", 0, 4);
+		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Back", "UltimateDrive_Start_Effect_Back", 0, 4,0.05f);
+		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Back", "UltimateDrive_KeyDown_Effect_Back", 0, 5, 0.05f);
+		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Back", "UltimateDrive_End_Effect_Back", 0, 4, 0.05f);
 		
 		SpriteRenderer->SetLoopValue("UltimateDrive_Start_Effect_Back", false);
 		SpriteRenderer->SetLoopValue("UltimateDrive_End_Effect_Back", false);
@@ -92,22 +90,11 @@ void ASkill_UltimateDrive::BeginPlay()
 
 void ASkill_UltimateDrive::Tick(float _DeltaTime)
 {
-	ASkill::Tick(_DeltaTime);
-	
+	ASkill::Tick(_DeltaTime);	
 	if (Skill_Frame::End == static_cast<Skill_Frame>(FrameState.GetCurStateValue())) {
 		if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
+			SetActive(false);
 			Destroy();
 		}
-	}
-
-	
-	if (UEngineInput::IsDown('1')) {
-		ChangeState(Skill_Frame::Start);
-	}
-	if (UEngineInput::IsDown('2')) {
-		ChangeState(Skill_Frame::KeyDown);
-	}
-	if (UEngineInput::IsDown('3')) {
-		ChangeState(Skill_Frame::End);
 	}
 }

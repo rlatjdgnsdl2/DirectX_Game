@@ -31,14 +31,8 @@ protected:
 private:
 	float DeltaTime = 0.0f;
 
-	bool IsGround = false;
-	bool IsJumping = false;
-	bool IsFalling = false;
-	bool IsAttacking = false;
-
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
-	std::shared_ptr<class USpriteRenderer> TestRenderer;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 
 	std::shared_ptr<class ASkill_UltimateDrive> UltimateDrive;

@@ -28,7 +28,6 @@ APlayer::APlayer()
 	Collision->SetScale3D(FVector(40.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector::UP * 30.0f);
 	SpriteRenderer->AddZ(static_cast<int>(Z_ORDER::Player));
-	//SpriteRenderer-> SetOrder(1);
 
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2);
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
@@ -78,17 +77,26 @@ void APlayer::Tick(float _DeltaTime)
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C')).Down();
 
 	}
+
+
+
+
+
 	if (UEngineInput::IsPress('Z')) {
 		if (UltimateDrive == nullptr) {
 			UltimateDrive = GetWorld()->SpawnActor<ASkill_UltimateDrive>();
 			UltimateDrive->SetOwner(this);
 		}
+		return;
 	}
 	if (UEngineInput::IsUp('Z')) {
 		UltimateDrive->ChangeState(Skill_Frame::End);
-		//UltimateDrive->Destroy();
 		UltimateDrive = nullptr;
+		return;
 	}
+	
+
+
 
 
 	if (UEngineInput::IsDown('Q')) {
