@@ -28,7 +28,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsCore.cpp" />
-    <ClCompile Include="ContentsCore_PlayerResRoad.cpp" />
+    <ClCompile Include="ContentsCore_ResRoad.cpp" />
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
@@ -46,6 +46,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Skill_UltimateDrive.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="UIShortKey.cpp">
       <SubType>
@@ -80,6 +88,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="Skill.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Skill_UltimateDrive.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="UIShortKey.h">
       <SubType>
       </SubType>

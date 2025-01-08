@@ -18,5 +18,8 @@
 #include "EngineFile.h"
 #include "EngineSerializer.h"
 #include "EnginePath.h"
+
+#include "FSMStateManager.h"
+
 #include "EngineDebug.h"
 #include "EngineDefine.h"

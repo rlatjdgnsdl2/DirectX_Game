@@ -1,6 +1,7 @@
 #pragma once
 
 #include "imgui.h"
+// impl단어를 보면 기존 기능에서 확장된 기능들을 의미하는 경우가 많다.
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
 
@@ -36,7 +37,7 @@ public:
 		return Window;
 	}
 
-	static void GUIRender();
+	static void GUIRender(ULevel* _Level);
 
 protected:
 

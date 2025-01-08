@@ -283,7 +283,7 @@ bool FTransform::OBB2DToPoint(const FTransform& _Left, const FTransform& _Right)
 	FCollisionData RightCol = _Right.GetCollisionData();
 	LeftCol.OBB.Center.z = 0.0f;
 	RightCol.OBB.Center.z = 0.0f;
-	RightCol.OBB.Extents = {0.0f, 0.0f, 0.0f};
+	RightCol.OBB.Extents = { 0.0f, 0.0f, 0.0f };
 	return LeftCol.OBB.Intersects(RightCol.AABB);
 }
 
@@ -363,27 +363,33 @@ void FTransform::TransformUpdate(bool _IsAbsolut /*= false*/)
 
 	// 절대로
 	// 100 100 100
-	
-	
+
+
 	// world인지 local
 	ScaleMat.Scale(Scale);
 	RotationMat.RotationDeg(Rotation);
 	LocationMat.Position(Location);
 
+	// 로컬 월드 가 될지 안될지 
 	FMatrix CheckWorld = ScaleMat * RotationMat * LocationMat;
 
 	// 절대로 지켜져야하는 최종 값이 되어야 한다.
 	if (true == _IsAbsolut)
 	{
+		// 3000, 0
+		// 100, 0
+		// -2900
+
+		// CheckWorld 월드가 되어야 한다고 결정.
 		World = CheckWorld;
 		LocalWorld = CheckWorld * ParentMat.InverseReturn();
 		// LocalWorld 나의 로컬값이라는 것.
 	}
-	else 
+	else
 	{
 		//      크         자             이            공           부
-		LocalWorld = ScaleMat * RotationMat * LocationMat;
-		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
+		LocalWorld = CheckWorld;
+		World = CheckWorld * RevolveMat * ParentMat;
 		// 나의 로컬은 알지만 부모가 아직 안곱해져서 부모를 굽해서 나의 월드 값을 찾아낸다.
 
 		// World.ArrVector[3]; => 

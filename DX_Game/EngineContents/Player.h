@@ -14,11 +14,6 @@ public:
 
 	void Tick(float _DeltaTime) override;
 
-	template<typename SkillName>
-	void SpawnSkill() {
-		GetWorld()->SpawnActor<SkillName>();
-	}
-
 
 	class USpriteRenderer* GetSprtieRenderer()
 	{
@@ -34,7 +29,6 @@ protected:
 private:
 	float DeltaTime = 0.0f;
 
-	FVector Gravity = FVector(0.0f, -9.8f, 0.0f);
 	bool IsGround = false;
 	bool IsJumping = false;
 	bool IsFalling = false;
@@ -44,6 +38,8 @@ private:
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
 	std::shared_ptr<class USpriteRenderer> TestRenderer;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
+
+	std::shared_ptr<class ASkill_UltimateDrive> UltimateDrive;
 	
 
 

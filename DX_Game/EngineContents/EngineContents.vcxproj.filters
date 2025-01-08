@@ -22,7 +22,7 @@
     <ClCompile Include="PlayerFuncManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsCore_PlayerResRoad.cpp">
+    <ClCompile Include="ContentsCore_ResRoad.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="UIShortKey.cpp">
@@ -30,6 +30,12 @@
     </ClCompile>
     <ClCompile Include="UI_Icon.cpp">
       <Filter>UI\Icon</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill_UltimateDrive.cpp">
+      <Filter>Player\Skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +68,12 @@
     </ClInclude>
     <ClInclude Include="UI_Icon.h">
       <Filter>UI\Icon</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill_UltimateDrive.h">
+      <Filter>Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

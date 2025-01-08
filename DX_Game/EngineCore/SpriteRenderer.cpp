@@ -97,6 +97,9 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 	// 애니메이션 진행시키는 코드를 ComponentTick으로 옮겼다. 
 	if (nullptr != CurAnimation)
 	{
+		FrameAnimation* EventAnimation = nullptr;
+		int EventFrame = -1;
+
 		CurAnimation->IsEnd = false;
 		std::vector<int>& Indexs = CurAnimation->FrameIndex;
 		std::vector<float>& Times = CurAnimation->FrameTime;
@@ -117,7 +120,9 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 			if (CurAnimation->Events.contains(CurIndex))
 			{
-				CurAnimation->Events[CurIndex]();
+				EventAnimation = CurAnimation;
+				EventFrame = CurIndex;
+				// CurAnimation->Events[CurIndex]();
 			}
 
 			// 애니메이션 앤드
@@ -138,7 +143,9 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 					if (CurAnimation->Events.contains(CurIndex))
 					{
-						CurAnimation->Events[CurIndex]();
+						EventAnimation = CurAnimation;
+						EventFrame = CurIndex;
+						// CurAnimation->Events[CurIndex]();
 					}
 				}
 				else
@@ -152,6 +159,14 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
+
+		if (nullptr != EventAnimation)
+		{
+			if (EventAnimation->Events.contains(CurIndex))
+			{
+				EventAnimation->Events[CurIndex]();
+			}
+		}
 	}
 
 
@@ -295,16 +310,16 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 			Check = true;
 			break;
 		}
-
-		if (false == Check)
-		{
-			MSGASSERT("존재하지 않는 프레임에 이벤트를 생성하려고 했습니다" + std::string(_AnimationName));
-			return;
-		}
-
-		ChangeAnimation->Events[_Frame] += _Function;
-
 	}
+
+	if (false == Check)
+	{
+		MSGASSERT("존재하지 않는 프레임에 이벤트를 생성하려고 했습니다" + std::string(_AnimationName));
+		return;
+	}
+
+	ChangeAnimation->Events[_Frame] += _Function;
+
 }
 
 

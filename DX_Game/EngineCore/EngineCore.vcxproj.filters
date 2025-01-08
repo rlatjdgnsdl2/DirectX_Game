@@ -85,9 +85,6 @@
     <ClInclude Include="EngineEnums.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="EngineRasterizerState.h" />
-    <ClInclude Include="EngineShaderResources.h" />
-    <ClInclude Include="EngineMaterial.h" />
     <ClInclude Include="EngineConstantBuffer.h">
       <Filter>Resource\Buffer</Filter>
     </ClInclude>
@@ -124,19 +121,32 @@
     <ClInclude Include="EngineVertex.h">
       <Filter>Resource\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="EngineSampler.h" />
     <ClInclude Include="EngineCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="CameraActor.h">
       <Filter>Camera</Filter>
     </ClInclude>
-    <ClInclude Include="EngineDepthStencilState.h" />
     <ClInclude Include="TimeEventComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDepthStencilState.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMaterial.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineRasterizerState.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSampler.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineShaderResources.h">
+      <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,9 +222,6 @@
     <ClCompile Include="EngineBlend.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="EngineRasterizerState.cpp" />
-    <ClCompile Include="EngineShaderResources.cpp" />
-    <ClCompile Include="EngineMaterial.cpp" />
     <ClCompile Include="EngineConstantBuffer.cpp">
       <Filter>Resource\Buffer</Filter>
     </ClCompile>
@@ -251,19 +258,32 @@
     <ClCompile Include="EngineVertex.cpp">
       <Filter>Resource\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="EngineSampler.cpp" />
     <ClCompile Include="CameraActor.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="EngineCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="EngineDepthStencilState.cpp" />
     <ClCompile Include="TimeEventComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDepthStencilState.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineMaterial.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineRasterizerState.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSampler.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineShaderResources.cpp">
+      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

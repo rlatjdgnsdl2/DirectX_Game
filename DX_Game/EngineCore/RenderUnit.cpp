@@ -131,7 +131,6 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 
 	MaterialResourcesCheck();
 
-	// UEngineConstantBufferRes Res;
 
 	if (nullptr != Mesh)
 	{
@@ -144,44 +143,24 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 
 void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 {
-	// ¿’«≤æÓº¿∫Ì∑Ø 
-
-	// Ω¶¿Ã¥ı ∏Æº“Ω∫
-
-	//	ShaderResSetting();
-
-	//for (std::pair<EShaderType, UEngineShaderResources>& ShaderRes : Resources)
-	//{
-	//	UEngineShaderResources& Res = ShaderRes.second;
-	//	Res.Setting();
-	//}
-
-
 	for (std::pair<const EShaderType, UEngineShaderResources>& Pair : Resources)
 	{
 		Pair.second.Setting();
 	}
 
-	//	InputAssembler1Setting();
 	Mesh->GetVertexBuffer()->Setting();
 
-	//	VertexShaderSetting();
 	Material->GetVertexShader()->Setting();
 
-	//	InputAssembler2Setting();
 	Mesh->GetIndexBuffer()->Setting();
 	Material->PrimitiveTopologySetting();
 
 	UEngineCore::GetDevice().GetContext()->IASetInputLayout(InputLayOut.Get());
 
-	//	RasterizerSetting();
 	Material->GetRasterizerState()->Setting();
 
-	//	PixelShaderSetting();
 	Material->GetPixelShader()->Setting();
 
-	//	OutPutMergeSetting();
-	// ∑£¥ı≈∏∞Ÿ¿Ã∂Û¥¬ ∞Õ¿ª πŸ≤∞Ã¥œ¥Ÿ.
 	Material->GetBlend()->Setting();
 
 	Material->GetDepthStencilState()->Setting();
@@ -201,6 +180,4 @@ void URenderUnit::InputLayOutCreate()
 		Blob->GetBufferPointer(),
 		Blob->GetBufferSize(),
 		&InputLayOut);
-
-	int a = 0;
 }

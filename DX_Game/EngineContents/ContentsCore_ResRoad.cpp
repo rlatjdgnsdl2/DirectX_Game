@@ -26,7 +26,7 @@ void UContentsCore::LoadResources()
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
-		Dir.Append("Image\\Player\\UltimateDrive_KeyDown_Effect_Front");
+		Dir.Append("Image\\Player\\Player_Skill\\UltimateDrive_KeyDown_Effect_Front");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
