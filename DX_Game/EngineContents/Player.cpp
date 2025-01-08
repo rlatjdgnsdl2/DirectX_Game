@@ -8,6 +8,7 @@
 #include "PlayerFuncManager.h"
 
 #include "Skill_UltimateDrive.h"
+#include "Carcion_Ishfira_Map.h"
 
 #include "UIShortKey.h"
 
@@ -26,11 +27,8 @@ APlayer::APlayer()
 	Collision->SetCollisionProfileName("Player");
 	Collision->SetScale3D(FVector(40.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector::UP * 30.0f);
-
-
-
-	SpriteRenderer->AddRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Player)));
-
+	SpriteRenderer->AddZ(static_cast<int>(Z_ORDER::Player));
+	//SpriteRenderer-> SetOrder(1);
 
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2);
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
@@ -80,10 +78,23 @@ void APlayer::Tick(float _DeltaTime)
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C')).Down();
 
 	}
-	if (UEngineInput::IsDown('Z')) {
-		if (UltimateDrive == nullptr)
+	if (UEngineInput::IsPress('Z')) {
+		if (UltimateDrive == nullptr) {
 			UltimateDrive = GetWorld()->SpawnActor<ASkill_UltimateDrive>();
+			UltimateDrive->SetOwner(this);
+		}
 	}
+	if (UEngineInput::IsUp('Z')) {
+		//UltimateDrive->Destroy();
+		//UltimateDrive = nullptr;
+	}
+
+
+	if (UEngineInput::IsDown('Q')) {
+		GetWorld()->GetMainCamera()->AddActorRotation(FVector(0.0f, 10.0f, 0.0f));
+
+	}
+
 
 
 

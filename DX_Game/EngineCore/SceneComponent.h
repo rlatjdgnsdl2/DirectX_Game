@@ -109,6 +109,12 @@ public:
 
 	ENGINEAPI void TransformUpdate();
 
+	ENGINEAPI void AddZ(float _Z) 
+	{
+		AddRelativeLocation(FVector(0.0f, 0.0f, _Z));	
+	};
+
+
 protected:
 	bool IsAbsolute = false;
 

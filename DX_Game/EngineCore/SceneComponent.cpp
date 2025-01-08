@@ -7,6 +7,7 @@ USceneComponent::USceneComponent()
 
 USceneComponent::~USceneComponent()
 {
+
 }
 
 

@@ -31,7 +31,9 @@ ACarcion_Ishfira::ACarcion_Ishfira()
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
 
-	Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
+	GetWorld()->GetMainCamera()->GetCameraComponent()->SetZSort(0,true);
+
+	//Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
 
 }
 

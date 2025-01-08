@@ -62,7 +62,7 @@ public:
 		return Keys[_KeyIndex].IsDown && Keys[_KeyIndex].FreeTime < _Time;
 	}
 
-	static bool IsDown(int _KeyIndex)
+	ENGINEAPI static bool IsDown(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{
@@ -72,7 +72,7 @@ public:
 		return GetInst().Keys[_KeyIndex].IsDown;
 	}
 
-	bool IsUp(int _KeyIndex)
+	ENGINEAPI static bool IsUp(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{
@@ -82,7 +82,7 @@ public:
 		return GetInst().Keys[_KeyIndex].IsUp;
 	}
 
-	static bool IsPress(int _KeyIndex)
+	ENGINEAPI static bool IsPress(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{

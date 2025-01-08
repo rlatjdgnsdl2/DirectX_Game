@@ -2,53 +2,100 @@
 #include "Skill_UltimateDrive.h"
 
 
-ASkill_UltimateDrive::ASkill_UltimateDrive() 
+ASkill_UltimateDrive::ASkill_UltimateDrive()
 {
+	{
+		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+
+		SpriteRenderer->SetupAttachment(RootComponent);
+		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Back", "UltimateDrive_Start_Effect_Back", 0, 4);
+		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Back", "UltimateDrive_KeyDown_Effect_Back", 0, 4);
+		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Back", "UltimateDrive_End_Effect_Back", 0, 4);
+		
+
+
+		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Skill_Back));
+		SpriteRenderer->AddRelativeLocation(FVector(250.0f, 100.0f, 0.0f));
+		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer));
+	}
+
+	{
+		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetupAttachment(RootComponent);
+		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Front", "UltimateDrive_Start_Effect_Front", 0, 4);
+		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Front", "UltimateDrive_KeyDown_Effect_Front", 0, 4);
+		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Front", "UltimateDrive_End_Effect_Front", 0, 4);
+
+		SpriteRenderer->SetLoopValue("UltimateDrive_Start_Effect_Front", false);
+		SpriteRenderer->SetLoopValue("UltimateDrive_End_Effect_Front", false);
+
+		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Skill_Front));
+		SpriteRenderer->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
+
+		SpriteRenderers.insert(std::make_pair("Front", SpriteRenderer));
+	}
+	
+
+	std::shared_ptr<UTimeEventComponent> TimeEvent = CreateDefaultSubObject<UTimeEventComponent>();
+	TimeEvent->AddEndEvent(0.3f, [this]() 
+		{
+			ChangeState(Skill_Frame::KeyDown);
+		});
 
 }
 
-ASkill_UltimateDrive::~ASkill_UltimateDrive() 
+ASkill_UltimateDrive::~ASkill_UltimateDrive()
 {
 
 }
 
 void ASkill_UltimateDrive::BeginPlay()
 {
-	AActor::BeginPlay();
-	{
-		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		if (RootComponent == nullptr)
+	ASkill::BeginPlay();
+	FrameState.CreateState(Skill_Frame::Start, [this](float _DeltaTime)
 		{
-			RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-		}
-		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Front", "UltimateDrive_Start_Effect_Front", 0, 4);
-		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Front", "UltimateDrive_KeyDown_Effect_Front", 0, 4);
-		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Front", "UltimateDrive_End_Effect_Front", 0, 4);
-		
-		SpriteRenderers.insert(std::make_pair(static_cast<int>(Z_ORDER::Skill_PlayerFront), SpriteRenderer));
-		
-	}
-	{
-		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		if (RootComponent == nullptr)
+		},
+		[this]()
 		{
-			RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-		}
-		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->CreateAnimation("UltimateDrive_Start_Effect_Back", "UltimateDrive_Start_Effect_Back", 0, 4);
-		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Back", "UltimateDrive_KeyDown_Effect_Back", 0, 4);
-		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Back", "UltimateDrive_End_Effect_Back", 0, 4);
-		SpriteRenderers.insert(std::make_pair(static_cast<int>(Z_ORDER::Skill_PlayerBack), SpriteRenderer));
-	}
+			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front");
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f,-30.0f,static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back");
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(80.0f, -20.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+		});
+	FrameState.CreateState(Skill_Frame::KeyDown, [this](float _DeltaTime)
+		{
+		},
+		[this]()
+		{
+			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Back");
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, -55.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+		});
 
-	SpriteRenderers[static_cast<int>(Z_ORDER::Skill_PlayerFront)]->ChangeAnimation("UltimateDrive_Start_Effect_Front");
-	SpriteRenderers[static_cast<int>(Z_ORDER::Skill_PlayerBack)]->ChangeAnimation("UltimateDrive_Start_Effect_Back");
+	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime) {},
+		[this]()
+		{
+			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front");
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back");
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, -55.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+		});
 
-
+	FrameState.ChangeState(Skill_Frame::Start);
 }
 
 void ASkill_UltimateDrive::Tick(float _DeltaTime)
 {
-	AActor::Tick(_DeltaTime);
+	ASkill::Tick(_DeltaTime);
+	
+	if (UEngineInput::IsDown('1')) {
+		ChangeState(Skill_Frame::Start);
+	}
+	if (UEngineInput::IsDown('2')) {
+		ChangeState(Skill_Frame::KeyDown);
+	}
+	if (UEngineInput::IsDown('3')) {
+		ChangeState(Skill_Frame::End);
+	}
 }

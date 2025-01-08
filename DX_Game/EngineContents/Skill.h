@@ -14,10 +14,17 @@ public:
 	ASkill& operator=(const ASkill& _Other) = delete;
 	ASkill& operator=(ASkill&& _Other) noexcept = delete;
 
+	virtual void BeginPlay() override;
+	virtual void Tick(float _DeltaTime) override;
+
+	void SetOwner(AActor* _Owner) { Owner = _Owner; }
+
 
 protected:
 	AActor* Owner = nullptr;
-	std::map<int, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
+	
+
+	std::map<std::string_view, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
 	std::map<int, std::shared_ptr<class UCollision>> Collisions;
 	
 private:

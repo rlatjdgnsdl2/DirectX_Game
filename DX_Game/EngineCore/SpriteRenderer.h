@@ -117,6 +117,15 @@ public:
 		SpriteData.Pivot = _Pivot;
 	}
 
+	ENGINEAPI void SetLoopValue(std::string_view _Name,bool _Value)
+	{
+		std::string UpperName = UEngineString::ToUpper(_Name);
+		if (FrameAnimations.contains(UpperName))
+		{
+			FrameAnimations[UpperName].Loop = _Value;
+		}
+	}
+
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;

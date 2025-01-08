@@ -32,6 +32,7 @@
 #include "Renderer.h"
 #include "SpriteRenderer.h"
 #include "Collision.h"
+#include "TimeEventComponent.h"
 
 #include "EngineCamera.h"
 #include "CameraActor.h"

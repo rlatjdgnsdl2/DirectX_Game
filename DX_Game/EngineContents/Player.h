@@ -24,6 +24,8 @@ public:
 		return DeltaTime;
 	}
 
+
+
 protected:
 
 private:
@@ -40,6 +42,9 @@ private:
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 
 	std::shared_ptr<class ASkill_UltimateDrive> UltimateDrive;
+
+	
+
 	
 
 
