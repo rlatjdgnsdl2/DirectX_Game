@@ -46,7 +46,14 @@ UPlayerFuncManager::UPlayerFuncManager()
 			{
 				if (!(Player->IsSkill()) && Player->IsGround()) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
+					Player->SetMoveAble(false);
+					Player->SetProne(true);
 				}
+			});
+		NewFunc.AddUpEvent([this]()
+			{
+				Player->SetMoveAble(true);
+				Player->SetProne(false);
 			});
 		SetFunc("VK_DOWN", NewFunc);
 		SetFuncName(VK_DOWN, "VK_DOWN");

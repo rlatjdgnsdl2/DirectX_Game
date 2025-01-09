@@ -19,6 +19,9 @@ void APlayer::CheckKey(float _DeltaTime)
 	if (UEngineInput::IsPress(VK_DOWN) || UEngineInput::IsDown(VK_DOWN)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN))();
 	}
+	if (UEngineInput::IsUp(VK_DOWN)) {
+		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN)).Up();
+	}
 	if (UEngineInput::IsPress('C')|| UEngineInput::IsDown('C')) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C'))();
 	}
