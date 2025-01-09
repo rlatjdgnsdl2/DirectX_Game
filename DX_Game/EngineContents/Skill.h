@@ -18,6 +18,20 @@ public:
 	virtual void Tick(float _DeltaTime) override;
 
 	void SetOwner(AActor* _Owner) { Owner = _Owner; }
+	void SetKey(int _Key) { Key = _Key; }
+
+
+	virtual void SetActiveTrue()
+	{
+		SetActive(true);
+		ChangeState(Skill_Frame::Start);
+	}
+	virtual void SetActiveFalse()
+	{
+		SetActive(false);
+	}
+
+
 
 	void ChangeState(Skill_Frame _Frame)
 	{
@@ -28,8 +42,9 @@ public:
 protected:
 	AActor* Owner = nullptr;
 	UFSMStateManager FrameState;
+	int Key = -1;
 	std::map<std::string_view, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
-	std::shared_ptr<class UCollision> Collisions;
+	std::shared_ptr<class UCollision> Collision;
 	
 private:
 

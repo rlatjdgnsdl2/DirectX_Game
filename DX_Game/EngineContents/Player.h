@@ -42,6 +42,11 @@ public:
 		return PlayerAnimation;
 	}
 
+	std::shared_ptr<class UPlayerFuncManager> GetPlayerFuncManager()
+	{
+		return PlayerFuncManager;
+	}
+
 
 
 	std::shared_ptr<class ASkill> GetSkill(std::string_view _SkillName)
@@ -54,21 +59,12 @@ public:
 		return nullptr;
 	}
 
-	void SetSkillStart(std::string_view _SkillName, std::shared_ptr<class ASkill> _Skill)
+	void AddSkill(std::string_view _SkillName, std::shared_ptr<class ASkill> _Skill)
 	{
 		std::string UpperName = UEngineString::ToUpper(_SkillName);
-		if (SkillMap.contains(UpperName))
+		if (!SkillMap.contains(UpperName))
 		{
-			SkillMap[UpperName] = _Skill;
-		}
-	}
-
-	void SetSkillEnd(std::string_view _SkillName)
-	{
-		std::string UpperName = UEngineString::ToUpper(_SkillName);
-		if (SkillMap.contains(UpperName))
-		{
-			SkillMap[UpperName]=nullptr;
+			SkillMap.insert(std::make_pair(UpperName,_Skill));
 		}
 	}
 
@@ -151,7 +147,7 @@ private:
 	FVector PrevLocation;
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
-	std::unordered_map<std::string_view, std::shared_ptr<class ASkill>> SkillMap;
+	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
 
 	bool IsMoveAbleValue = true;
 	bool IsJumpAbleValue = true;
@@ -164,6 +160,7 @@ private:
 	bool IsSkillValue = false;	
 	
 	void CheckKey(float _DeltaTime);
+	void InitSkill();
 	
 
 

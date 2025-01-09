@@ -74,18 +74,18 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
-				if (nullptr == Player->GetSkill("Ultimate_Drive")) {
-					std::shared_ptr<ASkill_UltimateDrive> Skill = Player->GetWorld()->SpawnActor<ASkill_UltimateDrive>();
-					Skill->SetOwner(Player);
-					Player->SetSkillStart("Ultimate_Drive", Skill);
-					Player->SetSkill(true);
-					Player->SetMoveAble(true);
-					Player->SetJumpAble(false);
+				if (nullptr != Player->GetSkill("UltimateDrive")) {
+					if (!Player->GetSkill("UltimateDrive")->IsActive()) {
+						Player->GetSkill("UltimateDrive")->SetActiveTrue();
+					}
 				}
+				Player->SetSkill(true);
+				Player->SetMoveAble(true);
+				Player->SetJumpAble(false);
 				Player->ChangeAnimation(PAnimation_State::Ultimate_Drive);
 			});
-		SetFunc("Ultimate_Drive", NewFunc);
-		SetFuncName('Z', "Ultimate_Drive");
+		SetFunc("UltimateDrive", NewFunc);
+		SetFuncName('Z', "UltimateDrive");
 	}
 
 }

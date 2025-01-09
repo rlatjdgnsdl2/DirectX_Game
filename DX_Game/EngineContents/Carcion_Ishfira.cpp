@@ -30,6 +30,7 @@ ACarcion_Ishfira::ACarcion_Ishfira()
 	GetWorld()->CreateCollisionProfile("FootHold");
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
+	GetWorld()->CreateCollisionProfile("PlayerSkill");
 
 	GetWorld()->GetMainCamera()->GetCameraComponent()->SetZSort(0,true);
 

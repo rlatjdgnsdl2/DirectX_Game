@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <EngineCore/ActorComponent.h>
 #include "PlayerFunc.h"
 
@@ -59,6 +60,22 @@ public:
 			FuncMap.insert(std::make_pair(UpperName, _Func));
 		}
 	}
+	int GetKey(std::string _FuncName)
+	{
+		std::string UpperName = UEngineString::ToUpper(_FuncName);
+		std::map<int, std::string>::iterator FindIter = FuncNameMap.begin();
+		std::map<int, std::string>::iterator EndIter = FuncNameMap.end();
+		for (; FindIter != EndIter; ++FindIter)
+		{
+			std::string FindName = FindIter->second;
+			if (FindName == UpperName)
+			{
+				return FindIter->first;
+			}
+		}
+		return -1;
+	}
+
 	UPlayerFunc GetFunc(std::string _FuncName)
 	{
 		std::string UpperName = UEngineString::ToUpper(_FuncName);

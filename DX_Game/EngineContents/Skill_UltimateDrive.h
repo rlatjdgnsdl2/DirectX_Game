@@ -17,12 +17,6 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-	virtual void SetActive(bool _Value) override
-	{
-		UObject::SetActive(_Value);
-		ChangeState(Skill_Frame::Start);
-	}
-
 	
 
 protected:

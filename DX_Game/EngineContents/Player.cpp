@@ -20,6 +20,7 @@ APlayer::APlayer()
 		PlayerAnimation.SetSpriteRenderer(SpriteRenderer);
 	}
 	PlayerAnimation.Init();
+	InitSkill();
 
 
 	Collision = CreateDefaultSubObject<UCollision>();
@@ -31,7 +32,7 @@ APlayer::APlayer()
 
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>();
 
-	
+
 }
 
 APlayer::~APlayer()
@@ -42,7 +43,15 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	AActor::BeginPlay();
+	{
+		
+	}
+
+
+
+
 	ChangeAnimation(PAnimation_State::Stand);
+
 }
 
 void APlayer::Tick(float _DeltaTime)

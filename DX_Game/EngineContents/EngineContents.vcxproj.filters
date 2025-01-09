@@ -49,6 +49,9 @@
     <ClCompile Include="Player_CheckKey.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Player_Skill.cpp">
+      <Filter>Character\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
