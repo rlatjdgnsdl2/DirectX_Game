@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/Pawn.h>
 #include "PlayerAnimation.h"
+#include "PlayerFSM.h"
 
 //	Ό³Έν:
 class APlayer : public APawn
@@ -20,17 +21,27 @@ public:
 	{
 		return DeltaTime;
 	}
-	void ChanegeAnimation(std::string_view _AnimationName)
+	void ChangeAnimation(PAnimation_State _State)
 	{
-		PlayerAnimation.ChangeAnimation(_AnimationName);
+		PlayerAnimation.ChangeState(_State);
 	}
+
+	void ChangeState(Player_State _State)
+	{
+		PlayerFSM.ChangeState(_State);
+	}
+
+
+
 
 
 protected:
 
 private:
 	float DeltaTime = 0.0f;
+	UPlayerFSM PlayerFSM;
 	UPlayerAnimation PlayerAnimation;
+
 
 
 
@@ -39,13 +50,16 @@ private:
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 
-
-
 	bool IsGround = true;
 	bool IsJump = false;
 
 
-	void KeyCheck();
+	void Stand(float _DeltaTime);
+	void Walk(float _DeltaTime);
+	void Jump(float _DeltaTime);
+	void Prone(float _DeltaTime);
+	void Ultimate_Drive(float _DeltaTime);
+	
 	
 
 

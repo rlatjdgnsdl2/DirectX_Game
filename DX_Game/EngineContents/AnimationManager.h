@@ -1,4 +1,6 @@
 #pragma once
+#include <EngineBase/FSMStateManager.h>
+
 
 //	Ό³Έν:
 class UAnimationManager
@@ -17,8 +19,27 @@ public:
 	std::shared_ptr<class USpriteRenderer> GetSpriteRenderer() {
 		return SpriteRenderer;
 	}
-	void ChangeAnimation(std::string_view _AnimationName);
+	UFSMStateManager& GetFSM()
+	{
+		return AnimationFSM;
+	}
 
+	template<typename EnumType>
+	void CreateState(EnumType _Key, std::function<void()> _Start = nullptr,
+		std::function<void()> _End = nullptr)
+	{
+		AnimationFSM.CreateState(static_cast<int>(_Key), _Start, _End);
+	}
+
+	template<typename EnumType>
+	void ChangeState(EnumType _Key)
+	{
+		AnimationFSM.ChangeState(static_cast<int>(_Key));
+	}
+
+
+
+	void ChangeAnimation(std::string_view _AnimationName);
 	virtual void Init() {}
 
 protected:

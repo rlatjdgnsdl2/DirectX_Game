@@ -16,7 +16,6 @@ public:
 
 	virtual void Init() override;
 	
-
 protected:
 
 private:

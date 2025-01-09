@@ -34,7 +34,8 @@ enum class PAnimation_State {
 	Walk,
 	Jump,
 	Prone,
-	Ultimate_Drive,
+	Ultimate_Drive_StartEnd,
+	Ultimate_Drive_KeyDown,
 	Max
 };
 

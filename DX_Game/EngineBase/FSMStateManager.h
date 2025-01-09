@@ -63,13 +63,13 @@ public:
 
 	ENGINEAPI void ChangeState(int _Key)
 	{
-		PrevState = CurState;
-		PrevStateValue = CurStateValue;
 		if (false == States.contains(_Key))
 		{
 			MSGASSERT("만든적이 없는 스테이트로 체인지 하려고 했습니다.");
 			return;
 		}
+		PrevState = CurState;
+		PrevStateValue = CurStateValue;
 		CurStateValue = _Key;
 		CurState = &States[_Key];
 		if (nullptr != CurState->StartFunction)
