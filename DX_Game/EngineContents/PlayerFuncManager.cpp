@@ -11,37 +11,46 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddDownEvent([this]()
 			{
-				Player->GetSprtieRenderer()->ChangeAnimation("Walk");
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+				
 			});
 		NewFunc.AddPressEvent([this]()
 			{
 				APlayer* Player = dynamic_cast<APlayer*>(GetActor());
 				Player->AddRelativeLocation(FVector(-100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 			});
-		SetFunc("Walk_Left", NewFunc);
+		SetFunc("VK_LEFT", NewFunc);
 	}
 
 	{
 		UPlayerFunc NewFunc;
 		NewFunc.AddDownEvent([this]()
 			{
-				Player->GetSprtieRenderer()->ChangeAnimation("Walk");
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+				
 			});
 		NewFunc.AddPressEvent([this]()
 			{
 				APlayer* Player = dynamic_cast<APlayer*>(GetActor());
 				Player->AddRelativeLocation(FVector(100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 			});
-		SetFunc("Walk_Right", NewFunc);
+		SetFunc("VK_RIGHT", NewFunc);
 	}
 
 
-
-
-
-
+	{
+		UPlayerFunc NewFunc;
+		NewFunc.AddDownEvent([this]()
+			{
+		
+				
+			});
+		NewFunc.AddPressEvent([this]()
+			{
+				
+			});
+		SetFunc("Jump", NewFunc);
+	}
 
 
 }

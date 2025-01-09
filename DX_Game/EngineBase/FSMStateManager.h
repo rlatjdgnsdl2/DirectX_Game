@@ -8,8 +8,8 @@ class UFSMStateManager
 {
 public:
 	// constrcuter destructer
-	UFSMStateManager()	{	}
-	~UFSMStateManager()	{	}
+	ENGINEAPI UFSMStateManager() {}
+	ENGINEAPI ~UFSMStateManager() {}
 
 	// delete Function
 	UFSMStateManager(const UFSMStateManager& _Other) = delete;
@@ -26,12 +26,12 @@ public:
 	};
 
 	template<typename EnumType>
-	void CreateState(EnumType _Key, std::function<void(float)> _UpdateFunction, std::function<void()> _Start = nullptr)
+	ENGINEAPI void CreateState(EnumType _Key, std::function<void(float)> _UpdateFunction, std::function<void()> _Start = nullptr)
 	{
 		CreateState(static_cast<int>(_Key), _UpdateFunction, _Start);
 	}
 
-	void CreateState(int _Key, std::function<void(float)> _UpdateFunction, std::function<void()> _Start = nullptr)
+	ENGINEAPI void CreateState(int _Key, std::function<void(float)> _UpdateFunction, std::function<void()> _Start = nullptr)
 	{
 		if (true == States.contains(_Key))
 		{
@@ -43,26 +43,28 @@ public:
 		States[_Key].StartFunction = _Start;
 	}
 
-	void Update(float _DeltaTime)
+	ENGINEAPI void Update(float _DeltaTime)
 	{
 		if (nullptr == CurState)
 		{
 			MSGASSERT("상태가 지정되지 않은 스테이트머신 입니다.");
 			return;
 		}
-
-		CurState->UpdateFunction(_DeltaTime);
+		if (CurState->UpdateFunction != nullptr) {
+			CurState->UpdateFunction(_DeltaTime);
+		}
 	}
 
 	template<typename EnumType>
-	void ChangeState(EnumType _Key)
+	ENGINEAPI void ChangeState(EnumType _Key)
 	{
 		ChangeState(static_cast<int>(_Key));
 	}
 
-	void ChangeState(int _Key)
+	ENGINEAPI void ChangeState(int _Key)
 	{
-
+		PrevState = CurState;
+		PrevStateValue = CurStateValue;
 		if (false == States.contains(_Key))
 		{
 			MSGASSERT("만든적이 없는 스테이트로 체인지 하려고 했습니다.");
@@ -76,20 +78,29 @@ public:
 		}
 	}
 
-	int GetCurStateValue() const
+
+	template<typename EnumType>
+	ENGINEAPI EnumType GetCurStateValue()
 	{
-		return CurStateValue;
+		return static_cast<EnumType>(CurStateValue);
+	}
+	template<typename EnumType>
+	ENGINEAPI EnumType GetPrevStateValue()
+	{
+		return static_cast<EnumType>(PrevStateValue);
 	}
 
 
 
 
 protected:
-	
+
 
 private:
 	FSMState* CurState = nullptr;
+	FSMState* PrevState = nullptr;
 	std::map<int, FSMState> States;
 	int CurStateValue = 0;
+	int PrevStateValue = 0;
 };
 

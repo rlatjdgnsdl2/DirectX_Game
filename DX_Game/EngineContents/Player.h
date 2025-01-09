@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Pawn.h>
+#include "PlayerAnimation.h"
 
 //	Ό³Έν:
 class APlayer : public APawn
@@ -15,30 +16,38 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-
-	class USpriteRenderer* GetSprtieRenderer()
-	{
-		return SpriteRenderer.get();
-	}
 	float GetDeltaTime() const
 	{
 		return DeltaTime;
 	}
-
+	void ChanegeAnimation(std::string_view _AnimationName)
+	{
+		PlayerAnimation.ChangeAnimation(_AnimationName);
+	}
 
 
 protected:
 
 private:
 	float DeltaTime = 0.0f;
-	UFSMStateManager PlayerState;
-	UFSMStateManager SkillState;
+	UPlayerAnimation PlayerAnimation;
+
+
+
+	
 
 	std::shared_ptr<class UCollision> Collision;
-	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 
-	std::shared_ptr<class ASkill_UltimateDrive> UltimateDrive;
+
+
+	bool IsGround = true;
+	bool IsJump = false;
+
+
+	void KeyCheck();
+	
+
 
 	
 

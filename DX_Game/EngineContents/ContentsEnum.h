@@ -18,12 +18,32 @@ enum class Skill_Frame
 	End
 };
 
-enum class PlayerState {
+enum class Player_State {
+	None,
 	Stand,
 	Walk,
 	Jump,
 	Prone,
-	UltimateDrive_StartEnd,
-	UltimateDrive_KeyDown
+	Skill,
+	Max
 };
+
+enum class PAnimation_State {
+	None,
+	Stand,
+	Walk,
+	Jump,
+	Prone,
+	Ultimate_Drive,
+	Max
+};
+
+
+
+
+
+enum class Skill_Name {
+	Ultimate_Drive,
+};
+
 

@@ -14,13 +14,13 @@
       <Filter>Carcion\Ishfira</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
+      <Filter>Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFunc.cpp">
-      <Filter>Player</Filter>
+      <Filter>Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFuncManager.cpp">
-      <Filter>Player</Filter>
+      <Filter>Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="ContentsCore_ResRoad.cpp">
       <Filter>Core</Filter>
@@ -32,10 +32,19 @@
       <Filter>UI\Icon</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
-      <Filter>Player\Skill</Filter>
+      <Filter>Character\Player\Skill</Filter>
     </ClCompile>
     <ClCompile Include="Skill_UltimateDrive.cpp">
-      <Filter>Player\Skill</Filter>
+      <Filter>Character\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_State.cpp">
+      <Filter>Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAnimation.cpp">
+      <Filter>Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,13 +61,13 @@
       <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
+      <Filter>Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFunc.h">
-      <Filter>Player</Filter>
+      <Filter>Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFuncManager.h">
-      <Filter>Player</Filter>
+      <Filter>Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnum.h">
       <Filter>Header</Filter>
@@ -70,10 +79,16 @@
       <Filter>UI\Icon</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
-      <Filter>Player\Skill</Filter>
+      <Filter>Character\Player\Skill</Filter>
     </ClInclude>
     <ClInclude Include="Skill_UltimateDrive.h">
-      <Filter>Player\Skill</Filter>
+      <Filter>Character\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimation.h">
+      <Filter>Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,14 +101,8 @@
     <Filter Include="Carcion\Ishfira">
       <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{e09d7acd-c040-4b85-8a10-bf004406165d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{f2decb38-dac4-4bb8-88b6-80e3bfd8bc7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Skill">
-      <UniqueIdentifier>{9ba949de-09f2-4144-9c2a-50e050317e72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header">
       <UniqueIdentifier>{5af08b32-4a9e-4d36-a9a7-da1bcafae03d}</UniqueIdentifier>
@@ -103,6 +112,18 @@
     </Filter>
     <Filter Include="UI\Icon">
       <UniqueIdentifier>{e710c1ba-3be0-4fb6-afd9-59e8082bada7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{19518975-6166-49c5-8bda-6b9d62e9ff25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player">
+      <UniqueIdentifier>{e09d7acd-c040-4b85-8a10-bf004406165d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player\Skill">
+      <UniqueIdentifier>{9ba949de-09f2-4144-9c2a-50e050317e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{bbea2012-8213-409f-be40-5dc42b59cf23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
