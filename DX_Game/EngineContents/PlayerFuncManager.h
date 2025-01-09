@@ -13,10 +13,6 @@ public:
 	UPlayerFuncManager& operator=(const UPlayerFuncManager& _Other) = delete;
 	UPlayerFuncManager& operator=(UPlayerFuncManager&& _Other) noexcept = delete;
 
-	
-
-
-
 	void SetFuncName(int _Key, std::string _FuncName)
 	{
 		std::string UpperName = UEngineString::ToUpper(_FuncName);

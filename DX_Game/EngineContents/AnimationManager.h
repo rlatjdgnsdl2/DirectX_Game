@@ -49,10 +49,11 @@ public:
 	}
 
 
+	void ChangeAnimation(std::string_view _AnimationName) 
+	{
+		SpriteRenderer->ChangeAnimation(_AnimationName);
+	};
 
-
-
-	void ChangeAnimation(std::string_view _AnimationName);
 	virtual void Init() {}
 
 protected:

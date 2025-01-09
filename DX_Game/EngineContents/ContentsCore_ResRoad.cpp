@@ -65,7 +65,6 @@ void UContentsCore::LoadResources()
 	UEngineSprite::CreateSpriteToMeta("Player_Jump.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Player_Prone.png", ".sdata");
 	UEngineSprite::CreateSpriteToMeta("Player_UltimateDrive_KeyDown.png", ".sdata");
-	UEngineSprite::CreateSpriteToMeta("Player_UltimateDrive_StartEnd.png", ".sdata");
 
 
 	{

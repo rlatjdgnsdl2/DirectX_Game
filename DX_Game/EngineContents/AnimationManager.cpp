@@ -12,7 +12,3 @@ UAnimationManager::~UAnimationManager()
 
 }
 
-void UAnimationManager::ChangeAnimation(std::string_view _AnimationName)
-{
-	SpriteRenderer->ChangeAnimation(_AnimationName);
-}

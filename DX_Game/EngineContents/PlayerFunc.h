@@ -7,10 +7,10 @@ class UPlayerFunc
 public:
 	UPlayerFunc();
 	virtual ~UPlayerFunc();
-	/*UPlayerFunc(const UPlayerFunc& _Other) = delete;
-	UPlayerFunc(UPlayerFunc&& _Other) noexcept = delete;
-	UPlayerFunc& operator=(const UPlayerFunc& _Other) = delete;
-	UPlayerFunc& operator=(UPlayerFunc&& _Other) noexcept = delete;*/
+	void AddEvent(std::function<void()> _Event)
+	{
+		Event += _Event;
+	}
 
 	void AddDownEvent(std::function<void()> _Event)
 	{
@@ -27,6 +27,11 @@ public:
 	void AddFreeEvent(std::function<void()> _Event)
 	{
 		FreeEvent += _Event;
+	}
+
+	void operator()()
+	{
+		Event();
 	}
 
 	void Down()
@@ -52,6 +57,7 @@ public:
 protected:
 
 private:
+	UEngineDelegate Event;
 	UEngineDelegate DownEvent;
 	UEngineDelegate PressEvent;
 	UEngineDelegate UpEvent;

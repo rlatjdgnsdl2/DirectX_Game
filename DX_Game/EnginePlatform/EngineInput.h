@@ -50,6 +50,17 @@ private:
 
 public:
 	ENGINEAPI static void KeyCheck(float _DeltaTime);
+	ENGINEAPI static bool IsAllFree() 
+	{
+		for (auto& Key : GetInst().Keys)
+		{
+			if (Key.second.IsDown || Key.second.IsPress || Key.second.IsUp)
+			{
+				return false;
+			}
+		}
+		return true;
+	};
 
 
 	ENGINEAPI static bool IsDoubleClick(int _KeyIndex, float _Time)

@@ -42,14 +42,6 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	AActor::BeginPlay();
-	
-	CreateState(Player_State::Stand, std::bind(&APlayer::Stand, this, std::placeholders::_1));
-	CreateState(Player_State::Walk, std::bind(&APlayer::Walk, this, std::placeholders::_1));
-	CreateState(Player_State::Jump, std::bind(&APlayer::Jump, this, std::placeholders::_1));
-	CreateState(Player_State::Prone, std::bind(&APlayer::Prone, this, std::placeholders::_1));
-	CreateState(Player_State::Ultimate_Drive, std::bind(&APlayer::Prone, this, std::placeholders::_1));
-
-	ChangeState(Player_State::Stand);
 	ChangeAnimation(PAnimation_State::Stand);
 }
 
@@ -57,7 +49,23 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	DeltaTime = _DeltaTime;
-	Update(_DeltaTime);
+	PrevLocation = GetActorLocation();
+	CheckKey(_DeltaTime);
+	AnimationUpdate(_DeltaTime);
+	FVector NowLocation = GetActorLocation();
+
+	if (PrevLocation.Y < NowLocation.Y)
+	{
+		IsGroundValue = false;
+		IsJumpingValue = true;
+		IsFallingValue = false;
+	}
+	else if (PrevLocation.Y > NowLocation.Y)
+	{
+		IsGroundValue = false;
+		IsJumpingValue = false;
+		IsFallingValue = true;
+	}
 }
 
 
