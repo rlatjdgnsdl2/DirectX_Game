@@ -51,6 +51,12 @@ APlayer::~APlayer()
 
 }
 
+void APlayer::BeginPlay()
+{
+	AActor::BeginPlay();
+	PlayerState.CreateState();
+}
+
 void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);

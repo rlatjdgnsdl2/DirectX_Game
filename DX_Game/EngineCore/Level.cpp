@@ -111,26 +111,26 @@ void ULevel::Render(float _DeltaTime)
 
 
 	{
-		if (IsDebug()) {
 
-			std::shared_ptr<class ACameraActor> Camera = GetMainCamera();
 
-			// 面倒眉 副府令
-			for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
+		std::shared_ptr<class ACameraActor> Camera = GetMainCamera();
+
+		// 面倒眉 副府令
+		for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
+		{
+			std::list<std::shared_ptr<UCollision>>& List = Group.second;
+
+			for (std::shared_ptr<UCollision>& _Collision : List)
 			{
-				std::list<std::shared_ptr<UCollision>>& List = Group.second;
-
-				for (std::shared_ptr<UCollision>& _Collision : List)
+				if (false == _Collision->IsActive())
 				{
-					if (false == _Collision->IsActive())
-					{
-						continue;
-					}
-
-					_Collision->DebugRender(Camera->GetCameraComponent().get(), _DeltaTime);
+					continue;
 				}
+
+				_Collision->DebugRender(Camera->GetCameraComponent().get(), _DeltaTime);
 			}
 		}
+
 	}
 
 	if (true == UEngineWindow::IsApplicationOn())

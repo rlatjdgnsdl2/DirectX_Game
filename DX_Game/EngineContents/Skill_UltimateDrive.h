@@ -17,15 +17,12 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-	void ChangeState(Skill_Frame _Frame) 
-	{
-		FrameState.ChangeState(_Frame);
-	};
+	
 
 protected:
 
 private:
-	UFSMStateManager FrameState;
-	std::shared_ptr<class UTimeEventComponent> TimeEvent;
+	
+
 };
 

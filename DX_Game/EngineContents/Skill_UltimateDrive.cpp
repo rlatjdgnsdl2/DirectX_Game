@@ -37,14 +37,6 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		SpriteRenderer->AddRelativeLocation(FVector(250.0f, 100.0f, 0.0f));
 		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer));
 	}
-	
-
-	std::shared_ptr<UTimeEventComponent> TimeEvent = CreateDefaultSubObject<UTimeEventComponent>();
-	TimeEvent->AddEndEvent(0.3f, [this]() 
-		{
-			ChangeState(Skill_Frame::KeyDown);
-		});
-
 }
 
 ASkill_UltimateDrive::~ASkill_UltimateDrive()
@@ -57,7 +49,14 @@ void ASkill_UltimateDrive::BeginPlay()
 	ASkill::BeginPlay();
 	FrameState.CreateState(Skill_Frame::Start, [this](float _DeltaTime)
 		{
-		},
+			if (UEngineInput::IsFree('Z')) {
+				FrameState.ChangeState(Skill_Frame::End);
+			}
+			if(UEngineInput::IsPressTime('Z')>=0.2f)
+			{
+				FrameState.ChangeState(Skill_Frame::KeyDown);
+			}
+		},	
 		[this]()
 		{
 			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front");
@@ -67,6 +66,9 @@ void ASkill_UltimateDrive::BeginPlay()
 		});
 	FrameState.CreateState(Skill_Frame::KeyDown, [this](float _DeltaTime)
 		{
+			if (UEngineInput::IsFree('Z')) {
+				FrameState.ChangeState(Skill_Frame::End);
+			}
 		},
 		[this]()
 		{
@@ -76,7 +78,13 @@ void ASkill_UltimateDrive::BeginPlay()
 			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, -55.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 		});
 
-	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime) {},
+	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime) 
+		{
+			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
+				SetActive(false);
+				Destroy();
+			}
+		},
 		[this]()
 		{
 			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front");
@@ -90,11 +98,6 @@ void ASkill_UltimateDrive::BeginPlay()
 
 void ASkill_UltimateDrive::Tick(float _DeltaTime)
 {
-	ASkill::Tick(_DeltaTime);	
-	if (Skill_Frame::End == static_cast<Skill_Frame>(FrameState.GetCurStateValue())) {
-		if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
-			SetActive(false);
-			Destroy();
-		}
-	}
+	ASkill::Tick(_DeltaTime);
+	FrameState.Update(_DeltaTime);
 }

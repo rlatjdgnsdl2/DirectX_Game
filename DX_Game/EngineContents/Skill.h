@@ -19,13 +19,17 @@ public:
 
 	void SetOwner(AActor* _Owner) { Owner = _Owner; }
 
+	void ChangeState(Skill_Frame _Frame)
+	{
+		FrameState.ChangeState(_Frame);
+	};
+
 
 protected:
 	AActor* Owner = nullptr;
-	
-
+	UFSMStateManager FrameState;
 	std::map<std::string_view, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
-	std::map<int, std::shared_ptr<class UCollision>> Collisions;
+	std::shared_ptr<class UCollision> Collisions;
 	
 private:
 

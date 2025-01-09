@@ -12,7 +12,8 @@ public:
 	APlayer& operator=(const APlayer& _Other) = delete;
 	APlayer& operator=(APlayer&& _Other) noexcept = delete;
 
-	void Tick(float _DeltaTime) override;
+	virtual void BeginPlay() override;
+	virtual void Tick(float _DeltaTime) override;
 
 
 	class USpriteRenderer* GetSprtieRenderer()
@@ -30,6 +31,8 @@ protected:
 
 private:
 	float DeltaTime = 0.0f;
+	UFSMStateManager PlayerState;
+	UFSMStateManager SkillState;
 
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
