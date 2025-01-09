@@ -15,10 +15,12 @@ public:
 	UPlayerAnimation& operator=(UPlayerAnimation&& _Other) noexcept = delete;
 
 	virtual void Init() override;
+	bool CheckAnimNode(PAnimation_State _CurAnimState, PAnimation_State _NextAnimState);
 	
 protected:
 
 private:
-
+	std::unordered_map<PAnimation_State, std::list<PAnimation_State>> AnimationNode;
+	
 };
 

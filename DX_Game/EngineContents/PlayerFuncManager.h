@@ -13,6 +13,10 @@ public:
 	UPlayerFuncManager& operator=(const UPlayerFuncManager& _Other) = delete;
 	UPlayerFuncManager& operator=(UPlayerFuncManager&& _Other) noexcept = delete;
 
+	
+
+
+
 	void SetFuncName(int _Key, std::string _FuncName)
 	{
 		std::string UpperName = UEngineString::ToUpper(_FuncName);
@@ -80,6 +84,10 @@ private:
 	class APlayer* Player = nullptr;
 	std::map<int, std::string> FuncNameMap;
 	std::unordered_map<std::string, UPlayerFunc> FuncMap;
+	
+
+
+	
 
 
 };

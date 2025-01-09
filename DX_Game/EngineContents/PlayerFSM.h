@@ -27,8 +27,6 @@ public:
 		FSM.ChangeState(static_cast<int>(_Key));
 	}
 
-
-
 protected:
 
 private:

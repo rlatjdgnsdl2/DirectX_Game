@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Skill_UltimateDrive.h"
+#include "Player.h"
 
 
 ASkill_UltimateDrive::ASkill_UltimateDrive()
@@ -81,7 +82,8 @@ void ASkill_UltimateDrive::BeginPlay()
 	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime) 
 		{
 			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
-				SetActive(false);
+				APlayer* Player = dynamic_cast<APlayer*>(Owner);
+				Player->SetSkillEnd("UltimateDrive");
 				Destroy();
 			}
 		},

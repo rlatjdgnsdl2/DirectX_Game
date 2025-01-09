@@ -13,22 +13,23 @@ public:
 	UAnimationManager& operator=(const UAnimationManager& _Other) = delete;
 	UAnimationManager& operator=(UAnimationManager&& _Other) noexcept = delete;
 
-	void SetSpriteRenderer(std::shared_ptr<class USpriteRenderer> _SpriteRenderer) {
-		SpriteRenderer = _SpriteRenderer;
-	}
 	std::shared_ptr<class USpriteRenderer> GetSpriteRenderer() {
 		return SpriteRenderer;
 	}
+
+	void SetSpriteRenderer(std::shared_ptr<class USpriteRenderer> _SpriteRenderer) {
+		SpriteRenderer = _SpriteRenderer;
+	}
+
 	UFSMStateManager& GetFSM()
 	{
 		return AnimationFSM;
 	}
 
 	template<typename EnumType>
-	void CreateState(EnumType _Key, std::function<void()> _Start = nullptr,
-		std::function<void()> _End = nullptr)
+	void CreateState(EnumType _Key, std::function<void()> _Start, std::function<void(float)> _UpdateFunction = nullptr)
 	{
-		AnimationFSM.CreateState(static_cast<int>(_Key), _Start, _End);
+		AnimationFSM.CreateState(static_cast<int>(_Key), _UpdateFunction, _Start);
 	}
 
 	template<typename EnumType>
@@ -36,6 +37,18 @@ public:
 	{
 		AnimationFSM.ChangeState(static_cast<int>(_Key));
 	}
+
+	template<typename EnumType>
+	EnumType GetCurStateValue() {
+		return static_cast<EnumType>(AnimationFSM.GetCurStateValue<EnumType>());
+	}
+
+	template<typename EnumType>
+	EnumType GetPrevStateValue() {
+		return static_cast<EnumType>(AnimationFSM.GetPrevStateValue<EnumType>());
+	}
+
+
 
 
 

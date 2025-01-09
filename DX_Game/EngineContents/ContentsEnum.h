@@ -24,7 +24,7 @@ enum class Player_State {
 	Walk,
 	Jump,
 	Prone,
-	Skill,
+	Ultimate_Drive,
 	Max
 };
 
@@ -34,8 +34,7 @@ enum class PAnimation_State {
 	Walk,
 	Jump,
 	Prone,
-	Ultimate_Drive_StartEnd,
-	Ultimate_Drive_KeyDown,
+	Ultimate_Drive,
 	Max
 };
 
