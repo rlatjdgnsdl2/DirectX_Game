@@ -23,6 +23,7 @@
 #include "Pawn.h"
 #include "GameMode.h"
 
+
 #include "ActorComponent.h"
 #include "SceneComponent.h"
 #include "DefaultSceneComponent.h"
@@ -41,7 +42,18 @@
 #include "EngineVertex.h"
 #include "EngineTexture.h"
 #include "EngineSprite.h"
+#include "EngineConstantBuffer.h"
 #include "EngineVertexBuffer.h"
+#include "EngineDeviceBuffer.h"
+#include "EngineDepthStencilState.h"
 #include "EngineIndexBuffer.h"
+#include "EngineInputLayOutInfo.h"
 #include "Mesh.h"
+#include "EngineMaterial.h"
+#include "EngineRasterizerState.h"
+#include "EngineSampler.h"
+#include "EngineShader.h"
+#include "EngineShaderResources.h"
+
+#include "EngineBlend.h"
 

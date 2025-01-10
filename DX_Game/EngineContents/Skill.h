@@ -43,7 +43,7 @@ protected:
 	AActor* Owner = nullptr;
 	UFSMStateManager FrameState;
 	int Key = -1;
-	std::map<std::string_view, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
+	std::map<std::string, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
 	std::shared_ptr<class UCollision> Collision;
 	
 private:

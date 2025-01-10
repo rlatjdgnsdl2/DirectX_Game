@@ -126,9 +126,20 @@ public:
 		}
 	}
 
+	void BillboardOn()
+	{
+		IsBillboard = true;
+	}
+
+	void BillboardOff()
+	{
+		IsBillboard = false;
+	}
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
+	ENGINEAPI void RenderTransUpdate(UEngineCamera* _Camera) override;
+
 	void BeginPlay() override;
 	void ComponentTick(float _DeltaTime) override;
 	ResultColor ColorData;
@@ -138,6 +149,7 @@ protected:
 
 private:
 	URenderUnit* MainUnit;
+	bool IsBillboard = false;
 
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;

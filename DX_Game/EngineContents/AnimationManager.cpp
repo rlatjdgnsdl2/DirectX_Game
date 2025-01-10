@@ -9,6 +9,6 @@ UAnimationManager::UAnimationManager()
 
 UAnimationManager::~UAnimationManager()
 {
-
+	SpriteRenderer = nullptr;
 }
 

@@ -3,6 +3,23 @@
 #include "PlayerAnimation.h"
 #include "PlayerFSM.h"
 
+
+class PlayerBool 
+{
+public:
+	bool IsMoveAbleValue = true;
+	bool IsJumpAbleValue = true;
+
+	bool IsGroundValue = false;
+	bool IsJumpingValue = true;
+	bool IsFallingValue = true;
+	bool IsProneValue = false;
+
+	bool IsSkillValue = false;
+};
+
+
+
 //	Ό³Έν:
 class APlayer : public APawn
 {
@@ -22,15 +39,6 @@ public:
 		return DeltaTime;
 	}
 
-	
-	void AnimationUpdate(float _DeltaTime) {
-		PlayerAnimation.GetFSM().Update(_DeltaTime);
-	}
-
-	bool CheckAnimNode(PAnimation_State _CurAnimState, PAnimation_State _NextAnimState)
-	{
-		return PlayerAnimation.CheckAnimNode(_CurAnimState, _NextAnimState);
-	}
 
 	void ChangeAnimation(PAnimation_State _State)
 	{
@@ -46,7 +54,6 @@ public:
 	{
 		return PlayerFuncManager;
 	}
-
 
 
 	std::shared_ptr<class ASkill> GetSkill(std::string_view _SkillName)
@@ -70,74 +77,76 @@ public:
 
 	bool IsMoveAble() const
 	{
-		return IsMoveAbleValue;
+		return BoolValue.IsMoveAbleValue;
 	}
 
 	bool IsJumpAble() const
 	{
-		return IsJumpAbleValue;
+		return BoolValue.IsJumpAbleValue;
 	}
 
 	bool IsGround() const
 	{
-		return IsGroundValue;
+		return BoolValue.IsGroundValue;
 	}
 
 	bool IsJump() const
 	{
-		return IsJumpingValue;
+		return BoolValue.IsJumpingValue;
 	}
 
 	bool IsFalling() const
 	{
-		return IsFallingValue;
+		return BoolValue.IsFallingValue;
 	}
 
 	bool IsProne() const
 	{
-		return IsProneValue;
+		return BoolValue.IsProneValue;
 	}
 
 	bool IsSkill() const
 	{
-		return IsSkillValue;
+		return BoolValue.IsSkillValue;
 	}
 
 	void SetMoveAble(bool _Value)
 	{
-		IsMoveAbleValue = _Value;
+		BoolValue.IsMoveAbleValue = _Value;
 	}
 
 	void SetJumpAble(bool _Value)
 	{
-		IsJumpAbleValue = _Value;
+		BoolValue.IsJumpAbleValue = _Value;
 	}
 
 	void SetGround(bool _Value)
 	{
-		IsGroundValue = _Value;
+		BoolValue.IsGroundValue = _Value;
 	}
 
 	void SetJump(bool _Value)
 	{
-		IsJumpingValue = _Value;
+		BoolValue.IsJumpingValue = _Value;
 	}
 
 	void SetFalling(bool _Value)
 	{
-		IsFallingValue = _Value;
+		BoolValue.IsFallingValue = _Value;
 	}
 
 	void SetProne(bool _Value)
 	{
-		IsProneValue = _Value;
+		BoolValue.IsProneValue = _Value;
 	}
 
 	void SetSkill(bool _Value)
 	{
-		IsSkillValue = _Value;
+		BoolValue.IsSkillValue = _Value;
 	}
 
+
+	void Gravity(float _DeltaTime);
 
 protected:
 
@@ -149,15 +158,14 @@ private:
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
 
-	bool IsMoveAbleValue = true;
-	bool IsJumpAbleValue = true;
 
-	bool IsGroundValue = true;
-	bool IsJumpingValue = false;
-	bool IsFallingValue = false;
-	bool IsProneValue = false;
 
-	bool IsSkillValue = false;	
+	PlayerBool BoolValue;
+
+	FVector JumpVector = FVector(0.0f, 123.0f, 0.0f);
+	FVector GravityForce = FVector::ZERO;
+
+	
 	
 	void CheckKey(float _DeltaTime);
 	void InitSkill();

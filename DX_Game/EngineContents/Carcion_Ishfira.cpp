@@ -34,7 +34,7 @@ ACarcion_Ishfira::ACarcion_Ishfira()
 
 	GetWorld()->GetMainCamera()->GetCameraComponent()->SetZSort(0,true);
 
-	//Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
+	Carcion_Ishfira_Map = GetWorld()->SpawnActor<ACarcion_Ishfira_Map>();
 
 }
 

@@ -2,12 +2,13 @@
 
 enum class Z_ORDER
 {
-	Skill_Front=1000,
-	Player=2000,
-	Skill_Back=3000,
-	NPC,
-	Foot,
-	Back
+	Skill_Front=100,
+	Player=200,
+	Skill_Back=300,
+	NPC=400,
+	FootHold=500,
+	SkillCover=600,
+	BackGround =700,
 };
 
 

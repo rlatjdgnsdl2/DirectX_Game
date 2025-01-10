@@ -9,7 +9,7 @@ ACarcion_Ishfira_Map::ACarcion_Ishfira_Map()
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 	BackRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	BackRenderer->SetupAttachment(RootComponent);
-	BackRenderer->AddRelativeLocation(FVector(0.0f, 0.0f, 100.0f));
+	BackRenderer->AddZ(static_cast<float>(Z_ORDER::BackGround));
 	BackRenderer->CreateAnimation("Ishfira", "Ishfira", 0, 9);
 	BackRenderer->ChangeAnimation("Ishfira");
 
@@ -42,8 +42,9 @@ ACarcion_Ishfira_Map::ACarcion_Ishfira_Map()
 	{
 		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
 		Collision->SetupAttachment(RootComponent);
-		Collision->SetCollisionProfileName("EndArea");
+		Collision->SetCollisionProfileName("FootHold");
 		Collision->SetScale3D(FVector(MapSize.X, 100.0f, 1.0f));
+		Collision->SetRelativeLocation(FVector(0.0f, -100.0f));
 		EndArea.insert({ "Down", Collision });
 	}
 

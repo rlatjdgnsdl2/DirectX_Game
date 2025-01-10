@@ -55,14 +55,21 @@ void URenderer::SetMaterial(std::string_view _Name, UINT _Index /*= 0*/)
 	Unit.SetMaterial(_Name);
 }
 
-void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
+void URenderer::RenderTransUpdate(UEngineCamera* _Camera)
 {
+	// 쉽게 말하면 트랜스폼 
+	// 트랜스폼은 랜더러가 가지고 있습니다.
 	FTransform& CameraTrans = _Camera->GetTransformRef();
 	FTransform& RendererTrans = GetTransformRef();
+	//	// 랜더러는 월드 뷰 프로젝트를 다 세팅받았고
 	RendererTrans.View = CameraTrans.View;
 	RendererTrans.Projection = CameraTrans.Projection;
 	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
+}
 
+void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
+{
+	this->RenderTransUpdate(_Camera);
 
 	for (size_t i = 0; i < Units.size(); i++)
 	{
@@ -72,7 +79,16 @@ void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 URenderUnit& URenderer::CreateRenderUnit()
 {
+	//URenderUnit NewRenderUnit;
+	//URenderUnit Arr[10];
+	//Arr[9] = NewRenderUnit;
+	//Units.push_back(NewRenderUnit);
 
+	// emplace_back에 대해서 알아봅시다.
+	// 내부에서 Placement new를 통해서 복사를 안해도 되게 최적화를 해주는 문법입니다.
+	// 14부터 지원되는 것으로 알고 있습니다.
+	// Arr[9];
+	// new(&Arr[9]) URenderUnit();
 
 	URenderUnit& NewUnit = Units.emplace_back();
 	NewUnit.ParentRenderer = this;

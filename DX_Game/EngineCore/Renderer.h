@@ -23,6 +23,7 @@ public:
 	ENGINEAPI void SetOrder(int _Order);
 	ENGINEAPI void BeginPlay() override;
 	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
+	ENGINEAPI virtual void RenderTransUpdate(UEngineCamera* _Camera);
 
 	URenderUnit& GetRenderUnit(UINT  _Index = 0);
 
