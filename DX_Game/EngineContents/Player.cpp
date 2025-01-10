@@ -28,16 +28,18 @@ APlayer::APlayer()
 	Collision->SetScale3D(FVector(40.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector::UP * 30.0f);
 
-	GetWorld()->LinkCollisionProfile("Player","FootHold");
+	GetWorld()->LinkCollisionProfile("Player", "FootHold");
 
-	Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right) 
+	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			if (IsFalling()) {
-				SetGround(true);
-				SetJump(false);
-				SetFalling(false);
+			if (BoolValue.IsFallingValue) {
+				BoolValue.SetGroundTrue();
+				GravityAccel = 0.0f;
+				this->AddActorLocation(FVector(0.0f, 10.0f, 0.0f));
+
 			}
 		});
+
 
 
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>();
@@ -60,37 +62,27 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	DeltaTime = _DeltaTime;
-	PrevLocation = GetActorLocation();
-	Gravity(_DeltaTime);
 	CheckKey(_DeltaTime);
-	FVector NowLocation = GetActorLocation();
-
-	if (PrevLocation.Y < NowLocation.Y)
-	{
-		BoolValue.IsGroundValue = false;
-		BoolValue.IsJumpingValue = true;
-		BoolValue.IsFallingValue = false;
-	}
-	else if (PrevLocation.Y > NowLocation.Y)
-	{
-		BoolValue.IsGroundValue = false;
-		BoolValue.IsJumpingValue = false;
-		BoolValue.IsFallingValue = true;
-	}
+	Gravity(_DeltaTime);
 }
 
 
 void APlayer::Gravity(float _DeltaTime)
 {
-	if (!IsGround())
-	{
-		AddActorLocation(GravityForce * _DeltaTime);
-		GravityForce += FVector::DOWN * _DeltaTime * 500.0f;
+	if (!BoolValue.IsGroundValue) {
+		GravityAccel += GravityValue * _DeltaTime;
+		AddActorLocation(FVector(0.0f, (JumpPoewr - GravityAccel) * _DeltaTime, 0.0f));
+		if (GravityAccel > JumpPoewr)
+		{
+			BoolValue.IsFallingValue = true;
+			BoolValue.IsJumpingValue = false;
+		}
+		else if (GravityAccel < JumpPoewr)
+		{
+			BoolValue.IsFallingValue = false;
+			BoolValue.IsJumpingValue = true;
+		}
 	}
-	else {
-		GravityForce = FVector::ZERO;
-	}
-
 }
 
 

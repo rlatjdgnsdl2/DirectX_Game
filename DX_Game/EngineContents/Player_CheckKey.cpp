@@ -6,12 +6,18 @@
 
 void APlayer::CheckKey(float _DeltaTime)
 {
-	if (UEngineInput::IsAllFree()){
-		ChangeAnimation(PAnimation_State::Stand);
+	if (UEngineInput::IsAllFree()) {
+		if (BoolValue.IsGroundValue) {
+			ChangeAnimation(PAnimation_State::Stand);
+		}
+		else if (BoolValue.IsJumpingValue || BoolValue.IsFallingValue) {
+			ChangeAnimation(PAnimation_State::Jump);
+		}
 	}
 
 	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_LEFT))();
+		
 	}
 	if (UEngineInput::IsPress(VK_RIGHT) || UEngineInput::IsDown(VK_RIGHT)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_RIGHT))();
@@ -22,7 +28,7 @@ void APlayer::CheckKey(float _DeltaTime)
 	if (UEngineInput::IsUp(VK_DOWN)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN)).Up();
 	}
-	if (UEngineInput::IsPress('C')|| UEngineInput::IsDown('C')) {
+	if (UEngineInput::IsPress('C') || UEngineInput::IsDown('C')) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C'))();
 	}
 	if (UEngineInput::IsPress('Z') || UEngineInput::IsDown('Z')) {

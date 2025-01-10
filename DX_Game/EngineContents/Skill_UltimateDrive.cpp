@@ -93,8 +93,8 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		{
 			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
 				APlayer* Player = dynamic_cast<APlayer*>(Owner);
-				Player->SetSkill(false);
-				Player->SetJumpAble(true);
+				Player->GetBoolValue().SetSkill(false);
+				Player->GetBoolValue().SetJumpAble(true);
 				SetActiveFalse();
 			}
 		},

@@ -4,6 +4,10 @@
 #include "PlayerFSM.h"
 
 
+
+
+ 
+
 class PlayerBool 
 {
 public:
@@ -16,6 +20,49 @@ public:
 	bool IsProneValue = false;
 
 	bool IsSkillValue = false;
+
+
+	void SetMoveAble(bool _Value)
+	{
+		IsMoveAbleValue = _Value;
+	}
+
+	void SetJumpAble(bool _Value)
+	{
+		IsJumpAbleValue = _Value;
+	}
+
+	void SetGround(bool _Value)
+	{
+		IsGroundValue = _Value;
+	}
+
+	void SetJump(bool _Value)
+	{
+		IsJumpingValue = _Value;
+	}
+
+	void SetFalling(bool _Value)
+	{
+		IsFallingValue = _Value;
+	}
+
+	void SetProne(bool _Value)
+	{
+		IsProneValue = _Value;
+	}
+
+	void SetSkill(bool _Value)
+	{
+		IsSkillValue = _Value;
+	}
+
+	void SetGroundTrue()
+	{
+		IsGroundValue = true;
+		IsFallingValue = false;
+		IsJumpingValue = false;
+	}
 };
 
 
@@ -74,79 +121,17 @@ public:
 			SkillMap.insert(std::make_pair(UpperName,_Skill));
 		}
 	}
-
-	bool IsMoveAble() const
+	PlayerBool& GetBoolValue()
 	{
-		return BoolValue.IsMoveAbleValue;
+		return BoolValue;
 	}
 
-	bool IsJumpAble() const
-	{
-		return BoolValue.IsJumpAbleValue;
-	}
-
-	bool IsGround() const
-	{
-		return BoolValue.IsGroundValue;
-	}
-
-	bool IsJump() const
-	{
-		return BoolValue.IsJumpingValue;
-	}
-
-	bool IsFalling() const
-	{
-		return BoolValue.IsFallingValue;
-	}
-
-	bool IsProne() const
-	{
-		return BoolValue.IsProneValue;
-	}
-
-	bool IsSkill() const
-	{
-		return BoolValue.IsSkillValue;
-	}
-
-	void SetMoveAble(bool _Value)
-	{
-		BoolValue.IsMoveAbleValue = _Value;
-	}
-
-	void SetJumpAble(bool _Value)
-	{
-		BoolValue.IsJumpAbleValue = _Value;
-	}
-
-	void SetGround(bool _Value)
-	{
-		BoolValue.IsGroundValue = _Value;
-	}
-
-	void SetJump(bool _Value)
-	{
-		BoolValue.IsJumpingValue = _Value;
-	}
-
-	void SetFalling(bool _Value)
-	{
-		BoolValue.IsFallingValue = _Value;
-	}
-
-	void SetProne(bool _Value)
-	{
-		BoolValue.IsProneValue = _Value;
-	}
-
-	void SetSkill(bool _Value)
-	{
-		BoolValue.IsSkillValue = _Value;
-	}
+	
 
 
 	void Gravity(float _DeltaTime);
+
+	
 
 protected:
 
@@ -158,12 +143,14 @@ private:
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
 
-
+	float GravityValue = 980.0f;
+	float GravityAccel = 0.0f;
+	float JumpPoewr = 246.0f;
 
 	PlayerBool BoolValue;
-
-	FVector JumpVector = FVector(0.0f, 123.0f, 0.0f);
-	FVector GravityForce = FVector::ZERO;
+	
+	
+	
 
 	
 	

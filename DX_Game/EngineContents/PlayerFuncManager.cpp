@@ -13,10 +13,10 @@ UPlayerFuncManager::UPlayerFuncManager()
 		NewFunc.AddEvent([this]()
 			{
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-				if (Player->IsMoveAble()) {
+				if (Player->GetBoolValue().IsMoveAbleValue){
 					Player->AddActorLocation(FVector(-100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
-				if (!(Player->IsSkill()) && Player->IsGround()) {
+				if (!(Player->GetBoolValue().IsSkillValue) && Player->GetBoolValue().IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
 				}
 			});
@@ -29,10 +29,10 @@ UPlayerFuncManager::UPlayerFuncManager()
 		NewFunc.AddEvent([this]()
 			{
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-				if (Player->IsMoveAble()) {
+				if (Player->GetBoolValue().IsMoveAbleValue) {
 					Player->AddActorLocation(FVector(100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
-				if (!(Player->IsSkill()) && Player->IsGround()) {
+				if (!(Player->GetBoolValue().IsSkillValue) && Player->GetBoolValue().IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
 				}
 			});
@@ -44,16 +44,16 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
-				if (!(Player->IsSkill()) && Player->IsGround()) {
+				if (!(Player->GetBoolValue().IsSkillValue) && Player->GetBoolValue().IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
-					Player->SetMoveAble(false);
-					Player->SetProne(true);
+					Player->GetBoolValue().SetMoveAble(false);
+					Player->GetBoolValue().SetProne(true);
 				}
 			});
 		NewFunc.AddUpEvent([this]()
 			{
-				Player->SetMoveAble(true);
-				Player->SetProne(false);
+				Player->GetBoolValue().SetMoveAble(true);
+				Player->GetBoolValue().SetProne(false);
 			});
 		SetFunc("VK_DOWN", NewFunc);
 		SetFuncName(VK_DOWN, "VK_DOWN");
@@ -63,11 +63,13 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
-				if (Player->IsJumpAble()) {
-					Player->AddActorLocation(FVector::UP * 100.0f * Player->GetDeltaTime());
+				if (Player->GetBoolValue().IsJumpAbleValue) {
+					Player->GetBoolValue().SetJump(true);
+					Player->GetBoolValue().SetJumpAble(true);
+					Player->GetBoolValue().SetGround(false);
 				}
-				if (!Player->IsSkill()) {
-					if (Player->IsJump() || Player->IsFalling())
+				if (!Player->GetBoolValue().IsSkillValue) {
+					if (Player->GetBoolValue().IsJumpingValue || Player->GetBoolValue().IsFallingValue)
 					{
 						Player->ChangeAnimation(PAnimation_State::Jump);
 					}
@@ -86,9 +88,9 @@ UPlayerFuncManager::UPlayerFuncManager()
 						Player->GetSkill("UltimateDrive")->SetActiveTrue();
 					}
 				}
-				Player->SetSkill(true);
-				Player->SetMoveAble(true);
-				Player->SetJumpAble(false);
+				Player->GetBoolValue().SetSkill(true);
+				Player->GetBoolValue().SetMoveAble(true);
+				Player->GetBoolValue().SetJumpAble(false);
 				Player->ChangeAnimation(PAnimation_State::Ultimate_Drive);
 			});
 		SetFunc("UltimateDrive", NewFunc);
