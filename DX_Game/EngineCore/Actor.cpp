@@ -30,6 +30,10 @@ void AActor::Tick(float _DeltaTime)
 	// 자기 자식들의 tick도 돌려준다.
 	for (std::shared_ptr<AActor>& Actor : ChildList)
 	{
+		if (false == Actor->IsActive())
+		{
+			continue;
+		}
 		Actor->Tick(_DeltaTime);
 	}
 

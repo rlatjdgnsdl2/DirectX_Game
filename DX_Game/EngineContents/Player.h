@@ -4,13 +4,10 @@
 #include "PlayerFSM.h"
 
 
-
-
- 
-
-class PlayerBool 
+class PlayerLogicValue 
 {
 public:
+	FVector PlayerDir = FVector::LEFT;
 	bool IsMoveAbleValue = true;
 	bool IsJumpAbleValue = true;
 
@@ -19,7 +16,45 @@ public:
 	bool IsFallingValue = true;
 	bool IsProneValue = false;
 
-	bool IsSkillValue = false;
+	bool IsUsingSkillValue = false;
+
+	int JumpCount = 0;
+	int JumpCountMax = 3;
+
+	FVector GetPlayerDir()
+	{
+		return PlayerDir;
+	}
+	void SetPlayerDir(FVector _Value)
+	{
+		PlayerDir = _Value;
+	}
+
+	void PlusJumpCount()
+	{
+		JumpCount++;
+	}
+	void StartFalling() {
+		IsFallingValue = true;
+		IsJumpingValue = false;
+	}
+	void StartJump() 
+	{
+		JumpCount = 1;
+		IsGroundValue = false;
+		IsJumpingValue = true;
+		IsFallingValue = false;
+	}
+
+	int GetJumpCount()
+	{
+		return JumpCount;
+	}
+
+	bool IsJumpCountMax()
+	{
+		return JumpCount >= JumpCountMax;
+	}
 
 
 	void SetMoveAble(bool _Value)
@@ -37,7 +72,7 @@ public:
 		IsGroundValue = _Value;
 	}
 
-	void SetJump(bool _Value)
+	void SetJumping(bool _Value)
 	{
 		IsJumpingValue = _Value;
 	}
@@ -54,7 +89,7 @@ public:
 
 	void SetSkill(bool _Value)
 	{
-		IsSkillValue = _Value;
+		IsUsingSkillValue = _Value;
 	}
 
 	void SetGroundTrue()
@@ -62,6 +97,7 @@ public:
 		IsGroundValue = true;
 		IsFallingValue = false;
 		IsJumpingValue = false;
+		JumpCount = 0;
 	}
 };
 
@@ -121,9 +157,14 @@ public:
 			SkillMap.insert(std::make_pair(UpperName,_Skill));
 		}
 	}
-	PlayerBool& GetBoolValue()
+	PlayerLogicValue& GetBoolValue()
 	{
-		return BoolValue;
+		return LogicValue;
+	}
+
+	void AddJumpPower(FVector _Value)
+	{
+		JumpPower += _Value;
 	}
 
 	
@@ -143,11 +184,14 @@ private:
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
 
-	float GravityValue = 980.0f;
-	float GravityAccel = 0.0f;
-	float JumpPoewr = 246.0f;
 
-	PlayerBool BoolValue;
+	FVector JumpPower = FVector(0.0f,300.0f,0.0f);
+	FVector GravityValue = FVector(0.0f,980.0f,0.0f);
+	FVector GravityAccel = FVector::ZERO;
+	
+
+
+	PlayerLogicValue LogicValue;
 	
 	
 	

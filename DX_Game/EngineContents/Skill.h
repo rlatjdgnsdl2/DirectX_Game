@@ -24,11 +24,14 @@ public:
 	virtual void SetActiveTrue()
 	{
 		SetActive(true);
-		ChangeState(Skill_Frame::Start);
 	}
 	virtual void SetActiveFalse()
 	{
 		SetActive(false);
+	}
+	void Update(float _DeltaTime)
+	{
+		FrameState.Update(_DeltaTime);
 	}
 
 

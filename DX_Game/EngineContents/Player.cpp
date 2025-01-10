@@ -6,6 +6,8 @@
 #include "PlayerFuncManager.h"
 #include "AnimationManager.h"
 
+#include "Skill.h"
+
 
 
 
@@ -29,14 +31,13 @@ APlayer::APlayer()
 	Collision->SetRelativeLocation(FVector::UP * 30.0f);
 
 	GetWorld()->LinkCollisionProfile("Player", "FootHold");
-
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			if (BoolValue.IsFallingValue) {
-				BoolValue.SetGroundTrue();
-				GravityAccel = 0.0f;
-				this->AddActorLocation(FVector(0.0f, 10.0f, 0.0f));
-
+			if (LogicValue.IsFallingValue) {
+				LogicValue.SetGroundTrue();
+				GravityAccel = FVector::ZERO;
+				JumpPower = FVector(0.0f, 300.0f, 0.0f);
+				this->AddActorLocation(FVector(0.0f, 20.0f, 0.0f));
 			}
 		});
 
@@ -64,23 +65,27 @@ void APlayer::Tick(float _DeltaTime)
 	DeltaTime = _DeltaTime;
 	CheckKey(_DeltaTime);
 	Gravity(_DeltaTime);
+	
+
+	
+
 }
 
 
 void APlayer::Gravity(float _DeltaTime)
 {
-	if (!BoolValue.IsGroundValue) {
+	if (!LogicValue.IsGroundValue) {
 		GravityAccel += GravityValue * _DeltaTime;
-		AddActorLocation(FVector(0.0f, (JumpPoewr - GravityAccel) * _DeltaTime, 0.0f));
-		if (GravityAccel > JumpPoewr)
+		AddActorLocation((JumpPower-GravityAccel)*_DeltaTime);
+		if (GravityAccel.Y > JumpPower.Y)
 		{
-			BoolValue.IsFallingValue = true;
-			BoolValue.IsJumpingValue = false;
+			LogicValue.IsFallingValue = true;
+			LogicValue.IsJumpingValue = false;
 		}
-		else if (GravityAccel < JumpPoewr)
+		else if (GravityAccel.Y < JumpPower.Y)
 		{
-			BoolValue.IsFallingValue = false;
-			BoolValue.IsJumpingValue = true;
+			LogicValue.IsFallingValue = false;
+			LogicValue.IsJumpingValue = true;
 		}
 	}
 }

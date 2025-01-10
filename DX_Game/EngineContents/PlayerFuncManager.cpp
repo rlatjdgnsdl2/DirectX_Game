@@ -8,15 +8,19 @@
 UPlayerFuncManager::UPlayerFuncManager()
 {
 	Player = dynamic_cast<APlayer*>(GetActor());
+
+
 	{
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-				if (Player->GetBoolValue().IsMoveAbleValue){
+				LogicValue.SetPlayerDir(FVector::LEFT);
+				if (LogicValue.IsMoveAbleValue) {
 					Player->AddActorLocation(FVector(-100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
-				if (!(Player->GetBoolValue().IsSkillValue) && Player->GetBoolValue().IsGroundValue) {
+				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
 				}
 			});
@@ -28,11 +32,13 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-				if (Player->GetBoolValue().IsMoveAbleValue) {
+				LogicValue.SetPlayerDir(FVector::RIGHT);
+				if (LogicValue.IsMoveAbleValue) {
 					Player->AddActorLocation(FVector(100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
-				if (!(Player->GetBoolValue().IsSkillValue) && Player->GetBoolValue().IsGroundValue) {
+				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
 				}
 			});
@@ -44,16 +50,18 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
-				if (!(Player->GetBoolValue().IsSkillValue) && Player->GetBoolValue().IsGroundValue) {
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
-					Player->GetBoolValue().SetMoveAble(false);
-					Player->GetBoolValue().SetProne(true);
+					LogicValue.SetMoveAble(false);
+					LogicValue.SetProne(true);
 				}
 			});
 		NewFunc.AddUpEvent([this]()
 			{
-				Player->GetBoolValue().SetMoveAble(true);
-				Player->GetBoolValue().SetProne(false);
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				LogicValue.SetMoveAble(true);
+				LogicValue.SetProne(false);
 			});
 		SetFunc("VK_DOWN", NewFunc);
 		SetFuncName(VK_DOWN, "VK_DOWN");
@@ -63,34 +71,40 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
-				if (Player->GetBoolValue().IsJumpAbleValue) {
-					Player->GetBoolValue().SetJump(true);
-					Player->GetBoolValue().SetJumpAble(true);
-					Player->GetBoolValue().SetGround(false);
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+
+				if (LogicValue.IsJumpAbleValue) {
+					if (nullptr != Player->GetSkill("SwiftPhantom")) {
+						if (!Player->GetSkill("SwiftPhantom")->IsActive()) {
+							Player->GetSkill("SwiftPhantom")->SetActiveTrue();
+						}
+					}
 				}
-				if (!Player->GetBoolValue().IsSkillValue) {
-					if (Player->GetBoolValue().IsJumpingValue || Player->GetBoolValue().IsFallingValue)
+				if (!LogicValue.IsUsingSkillValue) {
+					if (LogicValue.IsJumpingValue || LogicValue.IsFallingValue)
 					{
 						Player->ChangeAnimation(PAnimation_State::Jump);
+
 					}
 				}
 			});
-		SetFunc("Jump", NewFunc);
-		SetFuncName('C', "Jump");
+		SetFunc("SwiftPhantom", NewFunc);
+		SetFuncName('C', "SwiftPhantom");
 	}
 
 	{
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
 			{
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				if (nullptr != Player->GetSkill("UltimateDrive")) {
 					if (!Player->GetSkill("UltimateDrive")->IsActive()) {
 						Player->GetSkill("UltimateDrive")->SetActiveTrue();
 					}
 				}
-				Player->GetBoolValue().SetSkill(true);
-				Player->GetBoolValue().SetMoveAble(true);
-				Player->GetBoolValue().SetJumpAble(false);
+				LogicValue.SetSkill(true);
+				LogicValue.SetMoveAble(true);
+				LogicValue.SetJumpAble(false);
 				Player->ChangeAnimation(PAnimation_State::Ultimate_Drive);
 			});
 		SetFunc("UltimateDrive", NewFunc);

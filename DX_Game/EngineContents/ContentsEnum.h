@@ -15,7 +15,7 @@ enum class Z_ORDER
 enum class Skill_Frame
 {
 	Start,
-	KeyDown,
+	Update,
 	End
 };
 

@@ -7,10 +7,10 @@
 void APlayer::CheckKey(float _DeltaTime)
 {
 	if (UEngineInput::IsAllFree()) {
-		if (BoolValue.IsGroundValue) {
+		if (LogicValue.IsGroundValue) {
 			ChangeAnimation(PAnimation_State::Stand);
 		}
-		else if (BoolValue.IsJumpingValue || BoolValue.IsFallingValue) {
+		else if (LogicValue.IsJumpingValue || LogicValue.IsFallingValue) {
 			ChangeAnimation(PAnimation_State::Jump);
 		}
 	}
@@ -28,10 +28,11 @@ void APlayer::CheckKey(float _DeltaTime)
 	if (UEngineInput::IsUp(VK_DOWN)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN)).Up();
 	}
-	if (UEngineInput::IsPress('C') || UEngineInput::IsDown('C')) {
+
+	if (UEngineInput::IsDown('C')){
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C'))();
 	}
-	if (UEngineInput::IsPress('Z') || UEngineInput::IsDown('Z')) {
+	if (UEngineInput::IsDown('Z')) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('Z'))();
 	}
 

@@ -52,6 +52,9 @@
     <ClCompile Include="Player_Skill.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Skill_SwiftPhantom.cpp">
+      <Filter>Character\Player\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="PlayerFSM.h">
       <Filter>Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill_SwiftPhantom.h">
+      <Filter>Character\Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

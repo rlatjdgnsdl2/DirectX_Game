@@ -65,6 +65,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Skill_SwiftPhantom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Skill_UltimateDrive.cpp">
       <SubType>
       </SubType>
@@ -115,6 +119,10 @@
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="Skill.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Skill_SwiftPhantom.h">
       <SubType>
       </SubType>
     </ClInclude>
