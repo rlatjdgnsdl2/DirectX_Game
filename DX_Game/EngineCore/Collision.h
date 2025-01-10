@@ -50,21 +50,19 @@ public:
 		return Enter != nullptr || Stay != nullptr || End != nullptr;
 	}
 
+
+
 private:
 	ECollisionType CollisionType = ECollisionType::OBB2D;
-	// 내가 충돌한 상대를 기억하는 용도의 set
+	
 	std::set<UCollision*> CollisionCheckSet;
 
-	// 나는 Monster 그룹이다.
 	std::string ProfileName = "NONE";
 
-	// 최초 충돌
 	std::function<void(UCollision*, UCollision*)> Enter;
 
-	// 지속 충돌 <= 언리얼은 이게 없습니다.
 	std::function<void(UCollision*, UCollision*)> Stay;
 
-	// 충돌 끝.
 	std::function<void(UCollision*, UCollision*)> End;
 };
 

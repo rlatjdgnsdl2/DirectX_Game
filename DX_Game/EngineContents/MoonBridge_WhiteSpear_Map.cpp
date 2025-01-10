@@ -55,5 +55,5 @@ AMoonBridge_WhiteSpear_Map::~AMoonBridge_WhiteSpear_Map()
 void AMoonBridge_WhiteSpear_Map::BeginPlay()
 {
 	AActor::BeginPlay();
-	AddActorLocation(FVector(0.0f, -450.0f));
+	AddActorLocation(FVector(0.0f, -250.0f));
 }

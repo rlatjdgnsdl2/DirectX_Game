@@ -1,3 +1,4 @@
+
 #include "PreCompile.h"
 #include "Player.h"
 
@@ -31,15 +32,16 @@ APlayer::APlayer()
 	Collision->SetRelativeLocation(FVector::UP * 30.0f);
 
 	GetWorld()->LinkCollisionProfile("Player", "FootHold");
-	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+	Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 		{
 			if (LogicValue.IsFallingValue) {
 				LogicValue.SetGroundTrue();
 				GravityAccel = FVector::ZERO;
 				JumpPower = FVector(0.0f, 0.0f, 0.0f);
-				this->AddActorLocation(FVector(0.0f, 20.0f, 0.0f));
+				//this->AddActorLocation(FVector(0.0f, 20.0f, 0.0f));
 			}
 		});
+	
 
 
 
@@ -63,12 +65,8 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	DeltaTime = _DeltaTime;
-	CheckKey(_DeltaTime);
 	Gravity(_DeltaTime);
-	
-
-	
-
+	CheckKey(_DeltaTime);
 }
 
 

@@ -218,8 +218,6 @@ void ULevel::ChangeCollisionProfileName(std::string_view _ProfileName, std::stri
 
 void ULevel::Collision(float _DeltaTime)
 {
-	// Monster Player 충돌체크 해야 한다.
-
 	for (std::pair<const std::string, std::list<std::string>>& Links : CollisionLinks)
 	{
 		const std::string& LeftProfile = Links.first;

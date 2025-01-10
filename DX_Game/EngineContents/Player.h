@@ -186,7 +186,7 @@ private:
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
 
 
-	FVector JumpPower = FVector(0.0f,300.0f,0.0f);
+	FVector JumpPower = FVector(0.0f,0.0f,0.0f);
 	FVector GravityValue = FVector(0.0f,980.0f,0.0f);
 	FVector GravityAccel = FVector::ZERO;
 	
