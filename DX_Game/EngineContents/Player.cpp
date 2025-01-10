@@ -38,10 +38,14 @@ APlayer::APlayer()
 				LogicValue.SetGroundTrue();
 				GravityAccel = FVector::ZERO;
 				JumpPower = FVector(0.0f, 0.0f, 0.0f);
-				//this->AddActorLocation(FVector(0.0f, 20.0f, 0.0f));
+
 			}
 		});
-	
+	Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
+		{
+			LogicValue.SetGround(false);
+		});
+
 
 
 
@@ -74,7 +78,7 @@ void APlayer::Gravity(float _DeltaTime)
 {
 	if (!LogicValue.IsGroundValue) {
 		GravityAccel += GravityValue * _DeltaTime;
-		AddActorLocation((JumpPower-GravityAccel)*_DeltaTime);
+		AddActorLocation((JumpPower - GravityAccel) * _DeltaTime);
 		if (GravityAccel.Y > JumpPower.Y)
 		{
 			LogicValue.IsFallingValue = true;

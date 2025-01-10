@@ -36,9 +36,18 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("FootHold");
-		Collision->SetScale3D(FVector(MapSize.X, 100.0f, 1.0f));
+		Collision->SetScale3D(FVector(MapSize.hX()/2, 100.0f, 1.0f));
 		Collision->SetRelativeLocation(FVector(0.0f, 215.0f));
 		EndArea.insert({ "Down", Collision });
+	}
+
+	{
+		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		Collision->SetupAttachment(RootComponent);
+		Collision->SetCollisionProfileName("FootHold");
+		Collision->SetScale3D(FVector(MapSize.hX() / 2, 100.0f, 1.0f));
+		Collision->SetRelativeLocation(FVector(200.0f, 115.0f));
+		EndArea.insert({ "Down2", Collision });
 	}
 
 

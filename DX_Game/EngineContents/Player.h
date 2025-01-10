@@ -162,9 +162,9 @@ public:
 		return LogicValue;
 	}
 
-	void SetJumpPower(float _X, float _Y)
+	void AddJumpPower(float _X, float _Y)
 	{
-		JumpPower.X = _X;
+		JumpPower.X += _X;
 		JumpPower.Y += _Y;
 	}
 
@@ -187,7 +187,7 @@ private:
 
 
 	FVector JumpPower = FVector(0.0f,0.0f,0.0f);
-	FVector GravityValue = FVector(0.0f,980.0f,0.0f);
+	FVector GravityValue = FVector(0.0f,1960.0f,0.0f);
 	FVector GravityAccel = FVector::ZERO;
 	
 

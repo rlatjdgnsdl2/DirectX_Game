@@ -40,7 +40,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		{
 			PlayerLogicValue& LogicValue = Player->GetBoolValue();
 			LogicValue.StartJump();
-			Player->SetJumpPower(0.0f, 350.0f);
+			Player->AddJumpPower(0.0f, 660.0f);
 			SpriteRenderers["Front"]->SetActive(false);
 			SpriteRenderers["Back"]->SetActive(false);
 		});
@@ -64,7 +64,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		[this]()
 		{
 			FVector PlayerDir = Player->GetBoolValue().GetPlayerDir();
-			Player->SetJumpPower(PlayerDir.X * 300.0f, 150.0f);
+			Player->AddJumpPower(PlayerDir.X * 600.0f, 300.0f);
 			SpriteRenderers["Front"]->SetActive(true);
 			SpriteRenderers["Back"]->SetActive(true);
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front",true);
@@ -86,7 +86,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		[this]()
 		{
 			FVector PlayerDir = Player->GetBoolValue().GetPlayerDir();
-			Player->SetJumpPower(PlayerDir.X * 300.0f, 150.0f);
+			Player->AddJumpPower(PlayerDir.X * 300.0f, 150.0f);
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front",true);
 			SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 			SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
