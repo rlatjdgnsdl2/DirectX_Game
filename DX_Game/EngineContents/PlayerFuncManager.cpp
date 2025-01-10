@@ -18,7 +18,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 				LogicValue.SetPlayerDir(FVector::LEFT);
 				if (LogicValue.IsMoveAbleValue) {
-					Player->AddActorLocation(FVector(-100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
+					Player->AddActorLocation(FVector(-160.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
@@ -36,7 +36,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 				LogicValue.SetPlayerDir(FVector::RIGHT);
 				if (LogicValue.IsMoveAbleValue) {
-					Player->AddActorLocation(FVector(100.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
+					Player->AddActorLocation(FVector(160.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);

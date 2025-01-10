@@ -37,7 +37,7 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("FootHold");
 		Collision->SetScale3D(FVector(MapSize.X, 100.0f, 1.0f));
-		Collision->SetRelativeLocation(FVector(0.0f, 200.0f));
+		Collision->SetRelativeLocation(FVector(0.0f, 215.0f));
 		EndArea.insert({ "Down", Collision });
 	}
 
@@ -55,5 +55,5 @@ AMoonBridge_WhiteSpear_Map::~AMoonBridge_WhiteSpear_Map()
 void AMoonBridge_WhiteSpear_Map::BeginPlay()
 {
 	AActor::BeginPlay();
-	AddActorLocation(FVector(0.0f, -250.0f));
+	AddActorLocation(FVector(0.0f, -360.0f));
 }
