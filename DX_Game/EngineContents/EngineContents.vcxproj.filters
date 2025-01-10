@@ -7,10 +7,10 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>Header</Filter>
     </ClCompile>
-    <ClCompile Include="Carcion_Ishfira.cpp">
+    <ClCompile Include="MoonBridge_WhiteSpear.cpp">
       <Filter>Carcion\Ishfira</Filter>
     </ClCompile>
-    <ClCompile Include="Carcion_Ishfira_map.cpp">
+    <ClCompile Include="MoonBridge_WhiteSpear_Map.cpp">
       <Filter>Carcion\Ishfira</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -43,9 +43,6 @@
     <ClCompile Include="AnimationManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFSM.cpp">
-      <Filter>Character\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Player_CheckKey.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
@@ -63,10 +60,10 @@
     <ClInclude Include="PreCompile.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="Carcion_Ishfira.h">
+    <ClInclude Include="MoonBridge_WhiteSpear.h">
       <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
-    <ClInclude Include="Carcion_Ishfira_map.h">
+    <ClInclude Include="MoonBridge_WhiteSpear_Map.h">
       <Filter>Carcion\Ishfira</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
@@ -98,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="AnimationManager.h">
       <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerFSM.h">
-      <Filter>Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="Skill_SwiftPhantom.h">
       <Filter>Character\Player\Skill</Filter>

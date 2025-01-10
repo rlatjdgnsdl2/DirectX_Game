@@ -1,7 +1,7 @@
 #pragma once
 #include <EngineCore/Pawn.h>
 #include "PlayerAnimation.h"
-#include "PlayerFSM.h"
+
 
 
 class PlayerLogicValue 
@@ -162,9 +162,10 @@ public:
 		return LogicValue;
 	}
 
-	void AddJumpPower(FVector _Value)
+	void SetJumpPower(float _X, float _Y)
 	{
-		JumpPower += _Value;
+		JumpPower.X = _X;
+		JumpPower.Y += _Y;
 	}
 
 	

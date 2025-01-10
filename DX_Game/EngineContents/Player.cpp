@@ -36,7 +36,7 @@ APlayer::APlayer()
 			if (LogicValue.IsFallingValue) {
 				LogicValue.SetGroundTrue();
 				GravityAccel = FVector::ZERO;
-				JumpPower = FVector(0.0f, 300.0f, 0.0f);
+				JumpPower = FVector(0.0f, 0.0f, 0.0f);
 				this->AddActorLocation(FVector(0.0f, 20.0f, 0.0f));
 			}
 		});

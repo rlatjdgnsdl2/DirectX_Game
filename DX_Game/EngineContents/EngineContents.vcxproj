@@ -27,21 +27,17 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Carcion_Ishfira.cpp">
+    <ClCompile Include="MoonBridge_WhiteSpear.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Carcion_Ishfira_map.cpp">
+    <ClCompile Include="MoonBridge_WhiteSpear_Map.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="ContentsCore_ResRoad.cpp" />
     <ClCompile Include="Player.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerFSM.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -91,21 +87,17 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Carcion_Ishfira.h">
+    <ClInclude Include="MoonBridge_WhiteSpear.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Carcion_Ishfira_map.h">
+    <ClInclude Include="MoonBridge_WhiteSpear_Map.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="ContentsEnum.h" />
     <ClInclude Include="Player.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerFSM.h">
       <SubType>
       </SubType>
     </ClInclude>
