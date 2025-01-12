@@ -21,15 +21,6 @@ public:
 	int JumpCount = 0;
 	int JumpCountMax = 3;
 
-	FVector GetPlayerDir()
-	{
-		return PlayerDir;
-	}
-	void SetPlayerDir(FVector _Value)
-	{
-		PlayerDir = _Value;
-	}
-
 	void PlusJumpCount()
 	{
 		JumpCount++;
@@ -46,50 +37,9 @@ public:
 		IsFallingValue = false;
 	}
 
-	int GetJumpCount()
-	{
-		return JumpCount;
-	}
-
 	bool IsJumpCountMax()
 	{
 		return JumpCount >= JumpCountMax;
-	}
-
-
-	void SetMoveAble(bool _Value)
-	{
-		IsMoveAbleValue = _Value;
-	}
-
-	void SetJumpAble(bool _Value)
-	{
-		IsJumpAbleValue = _Value;
-	}
-
-	void SetGround(bool _Value)
-	{
-		IsGroundValue = _Value;
-	}
-
-	void SetJumping(bool _Value)
-	{
-		IsJumpingValue = _Value;
-	}
-
-	void SetFalling(bool _Value)
-	{
-		IsFallingValue = _Value;
-	}
-
-	void SetProne(bool _Value)
-	{
-		IsProneValue = _Value;
-	}
-
-	void SetSkill(bool _Value)
-	{
-		IsUsingSkillValue = _Value;
 	}
 
 	void SetGroundTrue()
@@ -164,7 +114,7 @@ public:
 
 	void AddJumpPower(float _X, float _Y)
 	{
-		JumpPower.X += _X;
+		JumpPower.X = _X;
 		JumpPower.Y += _Y;
 	}
 
@@ -173,12 +123,17 @@ public:
 
 	void Gravity(float _DeltaTime);
 
+	void AddVelocityX(float _DeltaTime);
+
+	void MoveUpdate(float _DeltaTime);
+
 	
 
 protected:
 
 private:
 	float DeltaTime = 0.0f;
+	float CurTime = 0.0f;
 	UPlayerAnimation PlayerAnimation;
 	FVector PrevLocation;
 	std::shared_ptr<class UCollision> Collision;
@@ -189,6 +144,10 @@ private:
 	FVector JumpPower = FVector(0.0f,0.0f,0.0f);
 	FVector GravityValue = FVector(0.0f,1960.0f,0.0f);
 	FVector GravityAccel = FVector::ZERO;
+
+	float VelocityX; 
+	float VelocityY;
+	float Gravity2;
 	
 
 

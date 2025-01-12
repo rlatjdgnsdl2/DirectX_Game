@@ -43,7 +43,9 @@ APlayer::APlayer()
 		});
 	Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
 		{
-			LogicValue.SetGround(false);
+			if (LogicValue.IsGroundValue) {
+				LogicValue.IsGroundValue = false;
+			}
 		});
 
 
@@ -69,6 +71,7 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	DeltaTime = _DeltaTime;
+	CurTime += _DeltaTime;
 	Gravity(_DeltaTime);
 	CheckKey(_DeltaTime);
 }
@@ -90,6 +93,15 @@ void APlayer::Gravity(float _DeltaTime)
 			LogicValue.IsJumpingValue = true;
 		}
 	}
+}
+
+void APlayer::AddVelocityX(float _DeltaTime)
+{
+	float Accel = UEngineMath::Lerp(0.0f, 160.0f, UEngineMath::Clamp(CurTime, 0.0f, 1.0f));
+}
+
+void APlayer::MoveUpdate(float _DeltaTime)
+{
 }
 
 

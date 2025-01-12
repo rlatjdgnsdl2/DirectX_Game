@@ -73,8 +73,8 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime)
 		{
 			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
-				Player->GetBoolValue().SetSkill(false);
-				Player->GetBoolValue().SetJumpAble(true);
+				Player->GetBoolValue().IsUsingSkillValue = false;
+				Player->GetBoolValue().IsJumpAbleValue = true;
 				SetActiveFalse();
 			}
 		},
@@ -101,7 +101,7 @@ void ASkill_UltimateDrive::BeginPlay()
 void ASkill_UltimateDrive::Tick(float _DeltaTime)
 {
 	ASkill::Tick(_DeltaTime);
-	Update(_DeltaTime);
+	
 }
 
 void ASkill_UltimateDrive::SetActiveTrue()

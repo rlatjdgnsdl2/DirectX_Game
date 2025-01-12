@@ -33,6 +33,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 			if (UEngineInput::IsDown(Key))
 			{
 				LogicValue.PlusJumpCount();
+				LogicValue.IsMoveAbleValue = false;
 				ChangeState(Skill_Frame::Update);
 			}
 		},
@@ -52,6 +53,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 			if (LogicValue.IsGroundValue)
 			{
 				LogicValue.SetGroundTrue();
+				LogicValue.IsMoveAbleValue = true;
 				SetActiveFalse();
 			}
 			if (UEngineInput::IsDown(Key))
@@ -63,7 +65,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		},
 		[this]()
 		{
-			FVector PlayerDir = Player->GetBoolValue().GetPlayerDir();
+			FVector PlayerDir = Player->GetBoolValue().PlayerDir;
 			Player->AddJumpPower(PlayerDir.X * 600.0f, 300.0f);
 			SpriteRenderers["Front"]->SetActive(true);
 			SpriteRenderers["Back"]->SetActive(true);
@@ -80,13 +82,15 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 			if (LogicValue.IsGroundValue)
 			{
 				LogicValue.SetGroundTrue();
+				LogicValue.IsMoveAbleValue = true;
 				SetActiveFalse();
+
 			}
 		},
 		[this]()
 		{
-			FVector PlayerDir = Player->GetBoolValue().GetPlayerDir();
-			Player->AddJumpPower(PlayerDir.X * 300.0f, 150.0f);
+			FVector PlayerDir = Player->GetBoolValue().PlayerDir;
+			Player->AddJumpPower(PlayerDir.X * 800.0f, 150.0f);
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front",true);
 			SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 			SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
@@ -107,7 +111,7 @@ void ASkill_SwiftPhantom::BeginPlay()
 void ASkill_SwiftPhantom::Tick(float _DeltaTime)
 {
 	ASkill::Tick(_DeltaTime);
-	Update(_DeltaTime);
+	
 }
 
 void ASkill_SwiftPhantom::SetActiveTrue()

@@ -24,4 +24,5 @@ void ASkill::BeginPlay()
 void ASkill::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	Update(_DeltaTime);
 }

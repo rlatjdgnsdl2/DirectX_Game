@@ -16,7 +16,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 			{
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-				LogicValue.SetPlayerDir(FVector::LEFT);
+				LogicValue.PlayerDir = FVector::LEFT;
 				if (LogicValue.IsMoveAbleValue) {
 					Player->AddActorLocation(FVector(-260.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
@@ -34,7 +34,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 			{
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-				LogicValue.SetPlayerDir(FVector::RIGHT);
+				LogicValue.PlayerDir = FVector::RIGHT;
 				if (LogicValue.IsMoveAbleValue) {
 					Player->AddActorLocation(FVector(260.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
 				}
@@ -53,15 +53,15 @@ UPlayerFuncManager::UPlayerFuncManager()
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
-					LogicValue.SetMoveAble(false);
-					LogicValue.SetProne(true);
+					LogicValue.IsMoveAbleValue = false;
+					LogicValue.IsProneValue =true;
 				}
 			});
 		NewFunc.AddUpEvent([this]()
 			{
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
-				LogicValue.SetMoveAble(true);
-				LogicValue.SetProne(false);
+				LogicValue.IsMoveAbleValue = true;
+				LogicValue.IsProneValue = false;
 			});
 		SetFunc("VK_DOWN", NewFunc);
 		SetFuncName(VK_DOWN, "VK_DOWN");
@@ -102,9 +102,9 @@ UPlayerFuncManager::UPlayerFuncManager()
 						Player->GetSkill("UltimateDrive")->SetActiveTrue();
 					}
 				}
-				LogicValue.SetSkill(true);
-				LogicValue.SetMoveAble(true);
-				LogicValue.SetJumpAble(false);
+				LogicValue.IsUsingSkillValue = true;
+				LogicValue.IsMoveAbleValue =true;
+				LogicValue.IsJumpAbleValue = false;
 				Player->ChangeAnimation(PAnimation_State::Ultimate_Drive);
 			});
 		SetFunc("UltimateDrive", NewFunc);

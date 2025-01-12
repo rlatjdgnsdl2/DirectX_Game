@@ -14,8 +14,8 @@ UPlayerAnimation::~UPlayerAnimation()
 void UPlayerAnimation::Init()
 {
 	UAnimationManager::Init();
-	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2);
-	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
+	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2,1.0f/3);
+	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 1.0f / 4);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
 	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
 

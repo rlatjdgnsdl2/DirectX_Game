@@ -69,6 +69,7 @@ public:
 	{
 		return A * (1 - Alpha) + B * Alpha;
 	}
+
 };
 
 template<typename ValueType>
