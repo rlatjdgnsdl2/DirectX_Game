@@ -95,14 +95,9 @@ void APlayer::Gravity(float _DeltaTime)
 	}
 }
 
-void APlayer::AddVelocityX(float _DeltaTime)
-{
-	float Accel = UEngineMath::Lerp(0.0f, 160.0f, UEngineMath::Clamp(CurTime, 0.0f, 1.0f));
-}
 
-void APlayer::MoveUpdate(float _DeltaTime)
-{
-}
+
+
 
 
 

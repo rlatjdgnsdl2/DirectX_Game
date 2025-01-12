@@ -118,24 +118,12 @@ public:
 		JumpPower.Y += _Y;
 	}
 
-	
-	
-
 	void Gravity(float _DeltaTime);
-
-	void AddVelocityX(float _DeltaTime);
-
-	void MoveUpdate(float _DeltaTime);
-
-	
-
 protected:
 
 private:
 	float DeltaTime = 0.0f;
-	float CurTime = 0.0f;
 	UPlayerAnimation PlayerAnimation;
-	FVector PrevLocation;
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
@@ -144,31 +132,11 @@ private:
 	FVector JumpPower = FVector(0.0f,0.0f,0.0f);
 	FVector GravityValue = FVector(0.0f,1960.0f,0.0f);
 	FVector GravityAccel = FVector::ZERO;
-
-	float VelocityX; 
-	float VelocityY;
-	float Gravity2;
 	
-
-
 	PlayerLogicValue LogicValue;
-	
-	
-	
-
-	
-	
+		
 	void CheckKey(float _DeltaTime);
 	void InitSkill();
-	
-
-
-	
-
-	
-
-
-
 
 };
 

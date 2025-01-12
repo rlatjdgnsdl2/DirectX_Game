@@ -50,20 +50,6 @@ void UPlayerAnimation::Init()
 		{
 			SpriteRenderer->ChangeAnimation("UltimateDrive_KeyDown");
 		});
-
 }
 
-bool UPlayerAnimation::CheckAnimNode(PAnimation_State _CurAnimState, PAnimation_State _NextAnimState)
-{
-	if (AnimationNode.contains(_CurAnimState))
-	{
-		for (auto& AnimState : AnimationNode[_CurAnimState])
-		{
-			if (AnimState == _NextAnimState)
-			{
-				return true;
-			}
-		}
-	}
-	return false;
-}
+

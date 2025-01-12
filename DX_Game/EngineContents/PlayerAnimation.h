@@ -15,7 +15,7 @@ public:
 	UPlayerAnimation& operator=(UPlayerAnimation&& _Other) noexcept = delete;
 
 	virtual void Init() override;
-	bool CheckAnimNode(PAnimation_State _CurAnimState, PAnimation_State _NextAnimState);
+	
 	
 protected:
 
