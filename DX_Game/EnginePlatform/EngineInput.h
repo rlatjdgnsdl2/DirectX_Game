@@ -114,7 +114,7 @@ public:
 		return GetInst().Keys[_KeyIndex].IsPress;
 	}
 
-	ENGINEAPI static float IsPressTime(int _KeyIndex)
+	ENGINEAPI static float GetPressTime(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{

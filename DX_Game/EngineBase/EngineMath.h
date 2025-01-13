@@ -40,7 +40,7 @@ public:
 	}
 
 	template <typename DataType>
-	static DataType Clamp(DataType value, DataType minValue, DataType maxValue)
+	ENGINEAPI static DataType Clamp(DataType value, DataType minValue, DataType maxValue)
 	{
 		if (value < minValue)
 			return minValue;
@@ -51,7 +51,7 @@ public:
 	}
 
 	template <typename DataType>
-	static DataType Lerp(DataType A, DataType B, DataType Alpha)
+	ENGINEAPI static DataType Lerp(DataType A, DataType B, DataType Alpha)
 	{
 		return A * (1 - Alpha) + B * Alpha;
 	}

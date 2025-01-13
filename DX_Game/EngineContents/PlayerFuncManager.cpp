@@ -9,7 +9,6 @@ UPlayerFuncManager::UPlayerFuncManager()
 {
 	Player = dynamic_cast<APlayer*>(GetActor());
 
-
 	{
 		UPlayerFunc NewFunc;
 		NewFunc.AddEvent([this]()
@@ -18,10 +17,17 @@ UPlayerFuncManager::UPlayerFuncManager()
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 				LogicValue.PlayerDir = FVector::LEFT;
 				if (LogicValue.IsMoveAbleValue) {
-					Player->AddActorLocation(FVector(-260.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
+					float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_LEFT) * 3.0f, 0.0f, 1.0f));
+					Player->SetVelocityX(-VelocityX);
 				}
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
+				}
+			});
+		NewFunc.AddUpEvent([this]()
+			{
+				if (Player->GetBoolValue().IsMoveAbleValue) {
+					Player->SetVelocityX(0.0f);
 				}
 			});
 		SetFunc("VK_LEFT", NewFunc);
@@ -36,10 +42,17 @@ UPlayerFuncManager::UPlayerFuncManager()
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 				LogicValue.PlayerDir = FVector::RIGHT;
 				if (LogicValue.IsMoveAbleValue) {
-					Player->AddActorLocation(FVector(260.0f * Player->GetDeltaTime(), 0.0f, 0.0f));
+					float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_RIGHT) * 3.0f, 0.0f, 1.0f));
+					Player->SetVelocityX(VelocityX);
 				}
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
+				}
+			});
+		NewFunc.AddUpEvent([this]()
+			{
+				if (Player->GetBoolValue().IsMoveAbleValue) {
+					Player->SetVelocityX(0.0f);
 				}
 			});
 		SetFunc("VK_RIGHT", NewFunc);
@@ -54,7 +67,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
 					LogicValue.IsMoveAbleValue = false;
-					LogicValue.IsProneValue =true;
+					LogicValue.IsProneValue = true;
 				}
 			});
 		NewFunc.AddUpEvent([this]()
@@ -84,7 +97,6 @@ UPlayerFuncManager::UPlayerFuncManager()
 					if (LogicValue.IsJumpingValue || LogicValue.IsFallingValue)
 					{
 						Player->ChangeAnimation(PAnimation_State::Jump);
-
 					}
 				}
 			});
@@ -103,7 +115,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 					}
 				}
 				LogicValue.IsUsingSkillValue = true;
-				LogicValue.IsMoveAbleValue =true;
+				LogicValue.IsMoveAbleValue = true;
 				LogicValue.IsJumpAbleValue = false;
 				Player->ChangeAnimation(PAnimation_State::Ultimate_Drive);
 			});

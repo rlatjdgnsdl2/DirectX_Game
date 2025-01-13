@@ -17,10 +17,16 @@ void APlayer::CheckKey(float _DeltaTime)
 
 	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_LEFT))();
-		
 	}
+	if (UEngineInput::IsUp(VK_LEFT)) {
+		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_LEFT)).Up();
+	}
+
 	if (UEngineInput::IsPress(VK_RIGHT) || UEngineInput::IsDown(VK_RIGHT)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_RIGHT))();
+	}
+	if (UEngineInput::IsUp(VK_RIGHT)) {
+		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_RIGHT)).Up();
 	}
 	if (UEngineInput::IsPress(VK_DOWN) || UEngineInput::IsDown(VK_DOWN)) {
 		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN))();

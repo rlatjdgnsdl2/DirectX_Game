@@ -1,7 +1,16 @@
 fileFormatVersion: 2
-guid: 68e188efb1555eb4cb21f138276cfef8
+guid: 43f383d2dae761e4bba5e7726bbd0fc0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -688399747926251461
+    second: Player_Stand_0
+  - first:
+      213: -8218435944527227812
+    second: Player_Stand_2
+  - first:
+      213: -4952375994494293533
+    second: Player_Stand_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -20,7 +29,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,7 +46,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -69,7 +78,19 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
-    compressionQuality: 100
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -79,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Test11_0
+      name: Player_Stand_0
       rect:
         serializedVersion: 2
         x: 62
@@ -87,20 +108,20 @@ TextureImporter:
         width: 132
         height: 127
       alignment: 9
-      pivot: {x: 0.4795127, y: 0.27185196}
+      pivot: {x: 0.52790785, y: 0.2603137}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b65695b7e75f1ff0800000000000000
-      internalID: -63235217064307022
+      spriteID: b38236993105276f0800000000000000
+      internalID: -688399747926251461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test11_2
+      name: Player_Stand_2
       rect:
         serializedVersion: 2
         x: 317
@@ -108,20 +129,20 @@ TextureImporter:
         width: 164
         height: 120
       alignment: 9
-      pivot: {x: 0.3845721, y: 0.19093545}
+      pivot: {x: 0.4337947, y: 0.18493462}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d9f25801cc88cc20800000000000000
-      internalID: 3226983893707192792
+      spriteID: c5417253d0042fd80800000000000000
+      internalID: -8218435944527227812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Test11_3
+      name: Player_Stand_3
       rect:
         serializedVersion: 2
         x: 574
@@ -129,14 +150,14 @@ TextureImporter:
         width: 163
         height: 124
       alignment: 9
-      pivot: {x: 0.3814937, y: 0.25387}
+      pivot: {x: 0.42625117, y: 0.24669684}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f11bd2dd3466f130800000000000000
-      internalID: 3600175168822645238
+      spriteID: 3e9eef59540a54bb0800000000000000
+      internalID: -4952375994494293533
       vertices: []
       indices: 
       edges: []
@@ -144,7 +165,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 17bfa701aad7a3c4387fcc5fd3331c9a
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

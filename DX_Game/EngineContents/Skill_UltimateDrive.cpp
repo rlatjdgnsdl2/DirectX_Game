@@ -42,7 +42,7 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 				Collision->SetActive(false);
 				FrameState.ChangeState(Skill_Frame::End);
 			}
-			if (UEngineInput::IsPressTime(Key) >= 0.2f)
+			if (UEngineInput::GetPressTime(Key) >= 0.2f)
 			{
 				FrameState.ChangeState(Skill_Frame::Update);
 				Collision->SetActive(true);

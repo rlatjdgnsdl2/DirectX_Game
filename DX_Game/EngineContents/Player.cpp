@@ -37,8 +37,8 @@ APlayer::APlayer()
 			if (LogicValue.IsFallingValue) {
 				LogicValue.SetGroundTrue();
 				GravityAccel = FVector::ZERO;
-				JumpPower = FVector(0.0f, 0.0f, 0.0f);
-
+				Velocity.X = 0.0f;
+				Velocity.Y = 0.0f;
 			}
 		});
 	Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
@@ -71,22 +71,22 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	DeltaTime = _DeltaTime;
-	Gravity(_DeltaTime);
+	MoveUpdate(_DeltaTime);
 	CheckKey(_DeltaTime);
 }
 
 
-void APlayer::Gravity(float _DeltaTime)
+void APlayer::Gravity(float _DeltaTime) 
 {
 	if (!LogicValue.IsGroundValue) {
 		GravityAccel += GravityValue * _DeltaTime;
-		AddActorLocation((JumpPower - GravityAccel) * _DeltaTime);
-		if (GravityAccel.Y > JumpPower.Y)
+		AddActorLocation(- GravityAccel * _DeltaTime);
+		if (GravityAccel.Y > Velocity.Y)
 		{
 			LogicValue.IsFallingValue = true;
 			LogicValue.IsJumpingValue = false;
 		}
-		else if (GravityAccel.Y < JumpPower.Y)
+		else if (GravityAccel.Y < Velocity.Y)
 		{
 			LogicValue.IsFallingValue = false;
 			LogicValue.IsJumpingValue = true;
@@ -96,7 +96,9 @@ void APlayer::Gravity(float _DeltaTime)
 
 void APlayer::MoveUpdate(float _DeltaTime)
 {
-
+	Gravity(_DeltaTime);
+	AddActorLocation(Velocity * _DeltaTime);
+	
 }
 
 

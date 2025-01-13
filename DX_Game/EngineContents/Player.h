@@ -47,6 +47,7 @@ public:
 		IsGroundValue = true;
 		IsFallingValue = false;
 		IsJumpingValue = false;
+		IsMoveAbleValue = true;
 		JumpCount = 0;
 	}
 };
@@ -114,13 +115,34 @@ public:
 
 	void AddJumpPower(float _X, float _Y)
 	{
-		JumpPower.X = _X;
-		JumpPower.Y += _Y;
+		Velocity.X = _X;
+		Velocity.Y += _Y;
 	}
 
 	void Gravity(float _DeltaTime);
 
 	void MoveUpdate(float _DeltaTime);
+
+
+
+	void SetVelocityX(float _X)
+	{
+		Velocity.X = _X;
+	}
+	void SetVelocityY(float _Y)
+	{
+		Velocity.Y = _Y;
+	}
+
+	void AddVelocityX(float _X)
+	{
+		Velocity.X += _X;
+	}
+	void AddVelocityY(float _Y)
+	{
+		Velocity.Y += _Y;
+	}
+
 
 
 protected:
@@ -133,10 +155,12 @@ private:
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;
 
 
-	FVector JumpPower = FVector(0.0f,0.0f,0.0f);
 	FVector Velocity = FVector::ZERO;
 	FVector GravityValue = FVector(0.0f,1960.0f,0.0f);
 	FVector GravityAccel = FVector::ZERO;
+
+
+	
 	
 	PlayerLogicValue LogicValue;
 		
