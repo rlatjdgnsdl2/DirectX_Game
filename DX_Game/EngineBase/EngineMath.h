@@ -901,11 +901,8 @@ struct FTransform
 
 	}
 
-
 public:
 	ENGINEAPI void TransformUpdate(bool _IsAbsolut = false);
-
-	// 역분해 크기 회전 위치를 뜯어내는 함수
 
 	ENGINEAPI void Decompose();
 
@@ -927,8 +924,7 @@ public:
 
 	FVector GetLocalFoward()
 	{
-		// 부모행렬이 곱해지지 않은 월드
-		return LocalWorld.GetFoward();;
+		return LocalWorld.GetFoward();
 	}
 
 	FVector GetLocalRight()

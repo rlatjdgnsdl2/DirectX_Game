@@ -44,3 +44,4 @@ void UTransformObject::TransformUpdate()
 	IsAbsolute = false;
 }
 
+

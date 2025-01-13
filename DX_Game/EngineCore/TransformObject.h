@@ -103,6 +103,10 @@ public:
 		AddRelativeLocation(FVector(0.0f, 0.0f, _Z));
 	};
 
+	
+
+
+
 protected:
 	bool IsAbsolute = false;
 

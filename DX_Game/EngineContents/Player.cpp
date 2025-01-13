@@ -31,7 +31,7 @@ APlayer::APlayer()
 	Collision->SetScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
 
-	GetWorld()->LinkCollisionProfile("Player", "FootHold");
+	GetWorld()->LinkCollisionProfile("Player", "EndArea");
 	Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 		{
 			if (LogicValue.IsFallingValue) {
@@ -75,6 +75,18 @@ void APlayer::BeginPlay()
 void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	if (UEngineInput::IsPress(VK_NUMPAD4)) {
+		MainCamera->AddActorLocation(FVector(-100.0f, 0.0f));
+	}
+	if (UEngineInput::IsPress(VK_NUMPAD6)) {
+		MainCamera->AddActorLocation(FVector(100.0f, 0.0f));
+	}
+	if (UEngineInput::IsPress(VK_NUMPAD8)) {
+		MainCamera->AddActorLocation(FVector(0.0f, 100.0f));
+	}
+	if (UEngineInput::IsPress(VK_NUMPAD2)) {
+		MainCamera->AddActorLocation(FVector(0.0f, -100.0f));
+	}
 	
 
 	CheckKey(_DeltaTime);

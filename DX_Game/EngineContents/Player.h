@@ -153,6 +153,11 @@ public:
 		Collision->AddWorldRotation(_Rotation);
 	}
 
+	std::shared_ptr<class UCollision> GetCollision()
+	{
+		return Collision;
+	}
+
 
 
 
