@@ -14,6 +14,7 @@ UEngineShader::~UEngineShader()
 
 void UEngineShader::ReflectionCompile(UEngineFile& _File)
 {
+	// 픽셀과 버텍스를 다 만들어야 한다.
 
 	_File.FileOpen("rt");
 	std::string ShaderCode = _File.GetAllFileText();
@@ -25,6 +26,7 @@ void UEngineShader::ReflectionCompile(UEngineFile& _File)
 		if (EntryIndex != std::string::npos)
 		{
 			{
+				// 역순으로 찾아나가는 함수
 				size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 
 				std::string EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex - 1);
@@ -42,6 +44,7 @@ void UEngineShader::ReflectionCompile(UEngineFile& _File)
 		if (EntryIndex != std::string::npos)
 		{
 			{
+				// 역순으로 찾아나가는 함수
 				size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 
 				std::string EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex - 1);
@@ -55,8 +58,19 @@ void UEngineShader::ReflectionCompile(UEngineFile& _File)
 
 void UEngineShader::ShaderResCheck()
 {
+	// 리플렉션이라는 용어는 c#등의 최신언어들에서 많이 등장하는데.
+	// RTTI라고 보시면 됩니다.
+	// RTTI 런타임 타입 인포메이션
+	// C#으로 설명을 드리면 c#은 어떤 클래스 
+	// classInfo Info = typeid(Player);
+	// Info.FunctionCount();
+	// Info.PrivateFunctionCount();
 
+	// shader라면 어떨까?
+	// Info.ConstantBufferCount();
 
+	// 상수버퍼 및 모든 쉐이더에서 사용한 리소스 검색기능입니다.
+	// 당연히 다이렉트 x에서 지원해주는 기능을 기반으로 
 	if (nullptr == ShaderCodeBlob)
 	{
 		MSGASSERT("쉐이더가 컴파일되지 않아서 쉐이더의 리소스를 조사할수가 없습니다.");
@@ -66,6 +80,7 @@ void UEngineShader::ShaderResCheck()
 	Microsoft::WRL::ComPtr<ID3D11ShaderReflection> CompileInfo = nullptr;
 
 
+	// #include <d3dcompiler.h>
 	if (S_OK != D3DReflect(ShaderCodeBlob->GetBufferPointer(), ShaderCodeBlob->GetBufferSize(), IID_ID3D11ShaderReflection, &CompileInfo))
 	{
 		MSGASSERT("리플렉션에 실패했습니다.");
@@ -77,6 +92,7 @@ void UEngineShader::ShaderResCheck()
 
 	D3D11_SHADER_INPUT_BIND_DESC ResDesc;
 
+	// 상수버퍼 텍스처 가리지 않고 그냥 리소스 개수 Info.BoundResources
 	for (UINT i = 0; i < Info.BoundResources; i++)
 	{
 		CompileInfo->GetResourceBindingDesc(i, &ResDesc);
@@ -90,12 +106,16 @@ void UEngineShader::ShaderResCheck()
 		{
 		case D3D_SIT_CBUFFER:
 		{
+			// 구체화된 정보를 얻어옵니다.
 			ID3D11ShaderReflectionConstantBuffer* Info = CompileInfo->GetConstantBufferByName(ResDesc.Name);
 			D3D11_SHADER_BUFFER_DESC BufferInfo = { 0 };
 			Info->GetDesc(&BufferInfo);
 
+			// 상수버퍼 리소스 관리하는 구조랑
+			// 이 쉐이더를 사용해서 랜더링을 할때마다 이 상수버퍼를 세팅해줘야 쉐이더. 
 			std::shared_ptr<UEngineConstantBuffer> Buffer = UEngineConstantBuffer::CreateOrFind(BufferInfo.Size, UpperName);
 
+			// 상수버퍼에 세팅을 위해서 각자가 가져야할 값들을 저장하기 위한 클래스를
 			UEngineConstantBufferRes NewRes;
 			NewRes.ShaderType = ShaderType;
 			NewRes.Name = UpperName;
@@ -114,7 +134,7 @@ void UEngineShader::ShaderResCheck()
 			NewRes.ShaderType = ShaderType;
 			NewRes.Name = UpperName;
 			NewRes.BindIndex = ResDesc.BindPoint;
-			NewRes.Res = Res;
+			NewRes.Res = Res.get();
 
 			ShaderResources.CreateTextureRes(UpperName, NewRes);
 
@@ -136,12 +156,13 @@ void UEngineShader::ShaderResCheck()
 		}
 		case D3D_SIT_STRUCTURED:
 		{
-
+			int a = 0;
 
 			break;
 		}
-		case D3D_SIT_UAV_RWSTRUCTURED: {
-
+		case D3D_SIT_UAV_RWSTRUCTURED: // 컴퓨트
+		{
+			int a = 0;
 
 			break;
 		}
@@ -149,10 +170,12 @@ void UEngineShader::ShaderResCheck()
 			break;
 		}
 
-
+		int a = 0;
 	}
 
-
+	// 
+	EntryName;
+	ShaderResources;
 
 }
 

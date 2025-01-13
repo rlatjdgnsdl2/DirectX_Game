@@ -148,6 +148,7 @@
     <ClInclude Include="EngineShaderResources.h">
       <Filter>Resource</Filter>
     </ClInclude>
+    <ClInclude Include="TileMapRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -285,6 +286,7 @@
     <ClCompile Include="EngineShaderResources.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="TileMapRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

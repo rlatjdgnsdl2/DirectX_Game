@@ -71,7 +71,6 @@ void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	DeltaTime = _DeltaTime;
-	CurTime += _DeltaTime;
 	Gravity(_DeltaTime);
 	CheckKey(_DeltaTime);
 }
@@ -93,6 +92,11 @@ void APlayer::Gravity(float _DeltaTime)
 			LogicValue.IsJumpingValue = true;
 		}
 	}
+}
+
+void APlayer::MoveUpdate(float _DeltaTime)
+{
+
 }
 
 

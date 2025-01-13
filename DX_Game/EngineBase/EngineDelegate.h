@@ -13,25 +13,25 @@ public:
 
 	ENGINEAPI  ~UEngineDelegate();
 
-	bool IsEmpty()
+	ENGINEAPI bool IsEmpty()
 	{
 		bool EmptyValue = Functions.empty();
 		return EmptyValue;
 	}
 
-	void operator+=(std::function<void()> _Function)
+	ENGINEAPI void operator+=(std::function<void()> _Function)
 	{
 		Functions.push_back(_Function);
 	}
 
-	void operator()()
+	ENGINEAPI void operator()()
 	{
 		for (std::function<void()>& Function : Functions) {
 			Function();
 		}
 	}
 
-	void Clear()
+	ENGINEAPI void Clear()
 	{
 		Functions.clear();
 	}

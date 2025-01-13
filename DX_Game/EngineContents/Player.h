@@ -119,6 +119,10 @@ public:
 	}
 
 	void Gravity(float _DeltaTime);
+
+	void MoveUpdate(float _DeltaTime);
+
+
 protected:
 
 private:
@@ -130,6 +134,7 @@ private:
 
 
 	FVector JumpPower = FVector(0.0f,0.0f,0.0f);
+	FVector Velocity = FVector::ZERO;
 	FVector GravityValue = FVector(0.0f,1960.0f,0.0f);
 	FVector GravityAccel = FVector::ZERO;
 	
