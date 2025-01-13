@@ -68,10 +68,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-	float GetDeltaTime() const
-	{
-		return DeltaTime;
-	}
+	
 
 
 	void ChangeAnimation(PAnimation_State _State)
@@ -117,6 +114,7 @@ public:
 	void Gravity(float _DeltaTime);
 
 	void MoveUpdate(float _DeltaTime);
+	void MoveCamera(float _DeltaTime);
 
 
 
@@ -161,7 +159,8 @@ public:
 protected:
 
 private:
-	float DeltaTime = 0.0f;
+	float CurTime = 0.0f;
+	ACameraActor* MainCamera = nullptr;
 	UPlayerAnimation PlayerAnimation;
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;

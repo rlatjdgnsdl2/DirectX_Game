@@ -44,7 +44,13 @@ APlayer::APlayer()
 				Velocity.Y = 0.0f;
 			}
 		});
-	
+	Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
+		{
+			if (LogicValue.IsGroundValue) {
+				LogicValue.IsGroundValue = false;
+			}
+		});
+
 
 
 
@@ -63,22 +69,26 @@ void APlayer::BeginPlay()
 {
 	AActor::BeginPlay();
 	ChangeAnimation(PAnimation_State::Stand);
+	MainCamera = GetWorld()->GetMainCamera().get();
 }
 
 void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	DeltaTime = _DeltaTime;
-	MoveUpdate(_DeltaTime);
+	
+
 	CheckKey(_DeltaTime);
+	MoveUpdate(_DeltaTime);
+	MoveCamera(_DeltaTime);
 }
 
 
-void APlayer::Gravity(float _DeltaTime) 
+void APlayer::Gravity(float _DeltaTime)
 {
 	if (!LogicValue.IsGroundValue) {
 		GravityAccel += GravityValue * _DeltaTime;
-		AddActorLocation(FVector(0.0f,- GravityAccel * _DeltaTime));
+		
+		AddActorLocation(FVector(0.0f, -GravityAccel * _DeltaTime));
 		if (GravityAccel > Velocity.Y)
 		{
 			LogicValue.IsFallingValue = true;
@@ -96,6 +106,25 @@ void APlayer::MoveUpdate(float _DeltaTime)
 {
 	Gravity(_DeltaTime);
 	AddActorLocation(Velocity * _DeltaTime);
+}
+
+void APlayer::MoveCamera(float _DeltaTime)
+{
+	if (Velocity.X != 0.0f)
+	{
+		MainCamera->SetActorLocation(GetActorLocation()-Velocity * _DeltaTime);
+	}
+	else {
+		CurTime += _DeltaTime;
+		if (MainCamera->GetActorLocation().X == GetActorLocation().X && MainCamera->GetActorLocation().Y == GetActorLocation().Y)
+		{
+			CurTime = 0.0f;
+		}
+	}
+
+	MainCamera->SetActorLocation(FVector(
+		UEngineMath::Lerp(MainCamera->GetActorLocation().X, this->GetActorLocation().X, UEngineMath::Clamp(CurTime/1.0f, 0.0f, 1.0f)),
+		UEngineMath::Lerp(MainCamera->GetActorLocation().Y, this->GetActorLocation().Y, UEngineMath::Clamp(CurTime /1.0f, 0.0f, 1.0f))));
 }
 
 
