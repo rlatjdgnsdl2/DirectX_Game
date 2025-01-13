@@ -51,9 +51,9 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		[this]()
 		{
 			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front");
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f, -30.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back");
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(80.0f, -20.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 		});
 	FrameState.CreateState(Skill_Frame::Update, [this](float _DeltaTime)
 		{
@@ -65,9 +65,9 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		[this]()
 		{
 			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-140.0f, 70.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Back");
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, -55.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, 100.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 		});
 
 	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime)
@@ -81,9 +81,9 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		[this]()
 		{
 			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front");
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-130.0f, -150.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back");
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, -55.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 		});
 
 }
