@@ -22,6 +22,8 @@
 #include "Actor.h"
 #include "Pawn.h"
 #include "GameMode.h"
+#include "HUD.h"
+#include "Widget.h"
 
 
 #include "ActorComponent.h"

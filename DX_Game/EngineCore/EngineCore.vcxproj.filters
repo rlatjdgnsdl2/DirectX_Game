@@ -149,6 +149,10 @@
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="TileMapRenderer.h" />
+    <ClInclude Include="EngineRenderTarget.h" />
+    <ClInclude Include="Widget.h" />
+    <ClInclude Include="HUD.h" />
+    <ClInclude Include="TransformObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -287,6 +291,10 @@
       <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="TileMapRenderer.cpp" />
+    <ClCompile Include="EngineRenderTarget.cpp" />
+    <ClCompile Include="Widget.cpp" />
+    <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="TransformObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

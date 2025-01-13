@@ -21,19 +21,20 @@ public:
 	ULevel& operator=(ULevel&& _Other) noexcept = delete;
 
 	// 내가 이제 실행되는 레벨이 되었을때
-	void LevelChangeStart();
+	ENGINEAPI void LevelChangeStart();
 	// 내가 교체 당했을때
-	void LevelChangeEnd();
+	ENGINEAPI void LevelChangeEnd();
 
-	class AGameMode* GetGameMode()
+	ENGINEAPI class AGameMode* GetGameMode()
 	{
 		return GameMode;
 	}
 
-	class APawn* GetMainPawn()
+	ENGINEAPI class APawn* GetMainPawn()
 	{
 		return MainPawn;
 	}
+
 
 
 	void Tick(float _DeltaTime);
@@ -41,12 +42,12 @@ public:
 	void Collision(float _DeltaTime);
 	void Release(float _DeltaTime);
 
-	std::shared_ptr<class ACameraActor> GetMainCamera()
+	ENGINEAPI std::shared_ptr<class ACameraActor> GetMainCamera()
 	{
 		return GetCamera(0);
 	}
 
-	std::shared_ptr<class ACameraActor> GetCamera(int _Order)
+	ENGINEAPI std::shared_ptr<class ACameraActor> GetCamera(int _Order)
 	{
 		if (false == Cameras.contains(_Order))
 		{
@@ -57,7 +58,7 @@ public:
 	}
 
 	template<typename EnumType>
-	std::shared_ptr<class ACameraActor> SpawnCamera(EnumType _Order)
+	ENGINEAPI std::shared_ptr<class ACameraActor> SpawnCamera(EnumType _Order)
 	{
 		return SpawnCamera(static_cast<int>(_Order));
 	}
@@ -65,7 +66,7 @@ public:
 	std::shared_ptr<class ACameraActor> SpawnCamera(int _Order);
 
 	template<typename ActorType>
-	std::shared_ptr<ActorType> SpawnActor(std::string_view _Name = "")
+	ENGINEAPI std::shared_ptr<ActorType> SpawnActor(std::string_view _Name = "")
 	{
 		// AMonster : public AActor
 		// SpawnActor<AMonster>();
@@ -90,6 +91,7 @@ public:
 		// 레벨먼저 세팅하고
 		// 플레이스먼트 new 
 		std::shared_ptr<ActorType> NewActor(NewPtr = new(ActorMemory) ActorType());
+
 		ActorPtr->SetName(_Name);
 
 		//컴파일러는 그걸 모른다.
@@ -110,9 +112,9 @@ public:
 	ENGINEAPI void LinkCollisionProfile(std::string_view _LeftProfileName, std::string_view _RightProfileName);
 
 	// #ifdef _DEBUG
-	// 에디터에서는 빠른지 느린지를 따지지 않는다.
-	// 에디터기능을 만들때는 최적화를 신경안쓰는 경우가 많다.
-	// 실제 플레이와는 전혀 관련이 없으니까.
+		// 에디터에서는 빠른지 느린지를 따지지 않는다.
+		// 에디터기능을 만들때는 최적화를 신경안쓰는 경우가 많다.
+		// 실제 플레이와는 전혀 관련이 없으니까.
 	template<typename ConvertType>
 	ENGINEAPI std::list<std::shared_ptr<ConvertType>> GetAllActorListByClass()
 	{
@@ -150,11 +152,11 @@ public:
 	}
 	// #endif
 
-
-
 protected:
 
 private:
+	class AHUD* HUD = nullptr;
+
 	class AGameMode* GameMode = nullptr;
 
 	class APawn* MainPawn = nullptr;
@@ -165,6 +167,8 @@ private:
 
 	// 0번에 mainamera라고 불리는 애를 만든다.
 	std::map<int, std::shared_ptr<class ACameraActor>> Cameras;
+	// 모든 카메라가 바라본 이미지를 섞은 타겟
+	std::shared_ptr<class UEngineRenderTarget> LastRenderTarget;
 
 	// 빌드하기전에 string Hash화 라는 작업을 통해서 다 숫자로 
 	// 면접때 하기 좋은 이야기
@@ -175,6 +179,8 @@ private:
 
 	std::map<std::string, std::list<std::string>> CollisionLinks;
 
-	ENGINEAPI void InitLevel(AGameMode* _GameMode, APawn* _Pawn);
+	std::map<int, std::list<std::shared_ptr<class UWidget>>> Widgets;
+
+	ENGINEAPI void InitLevel(class AGameMode* _GameMode, class APawn* _Pawn, class AHUD* _HUD);
 };
 

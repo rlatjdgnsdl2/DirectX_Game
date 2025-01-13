@@ -9,6 +9,7 @@
 
 
 
+
 CreateContentsCoreDefine(UContentsCore);
 
 UContentsCore::UContentsCore()
@@ -27,7 +28,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	
 	LoadResources();
 
-	UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer>("MoonBridge_WhiteSpear");
+	UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
 	UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
 }
 
