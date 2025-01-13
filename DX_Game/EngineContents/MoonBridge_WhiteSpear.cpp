@@ -4,6 +4,7 @@
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/EngineSprite.h>
 
+#include "Player.h"
 
 AMoonBridge_WhiteSpear::AMoonBridge_WhiteSpear()
 {
@@ -35,8 +36,6 @@ AMoonBridge_WhiteSpear::AMoonBridge_WhiteSpear()
 	GetWorld()->GetMainCamera()->GetCameraComponent()->SetZSort(0,true);
 
 	MoonBridge_WhiteSpear_Map = GetWorld()->SpawnActor<AMoonBridge_WhiteSpear_Map>();
-	
-
 }
 
 AMoonBridge_WhiteSpear::~AMoonBridge_WhiteSpear()

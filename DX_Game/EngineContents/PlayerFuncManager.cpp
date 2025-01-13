@@ -66,6 +66,8 @@ UPlayerFuncManager::UPlayerFuncManager()
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
+					Player->SetCollisionRotation(FVector(0.0f, 0.0f, 90.0f));
+					Player->SetCollisionLocation(FVector(0.0f, 20.0f, 0.0f));
 					LogicValue.IsMoveAbleValue = false;
 					LogicValue.IsProneValue = true;
 				}
@@ -73,6 +75,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 		NewFunc.AddUpEvent([this]()
 			{
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				Player->SetCollisionRotation(FVector(0.0f, 0.0f, 0.0f));
 				LogicValue.IsMoveAbleValue = true;
 				LogicValue.IsProneValue = false;
 			});

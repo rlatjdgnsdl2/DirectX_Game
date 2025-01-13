@@ -28,25 +28,23 @@ APlayer::APlayer()
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Player");
-	Collision->SetScale3D(FVector(40.0f, 60.0f, 1.0f));
-	Collision->SetRelativeLocation(FVector::UP * 30.0f);
+	Collision->SetScale3D(FVector(30.0f, 60.0f, 1.0f));
+	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
 
 	GetWorld()->LinkCollisionProfile("Player", "FootHold");
 	Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 		{
 			if (LogicValue.IsFallingValue) {
 				LogicValue.SetGroundTrue();
-				GravityAccel = FVector::ZERO;
+				float FootHoldTop = _Right->GetTransformRef().ZAxisWorldCenterTop();
+				float PlayerBottom = _Left->GetTransformRef().ZAxisWorldCenterBottom();
+				AddActorLocation(FVector(0.0f, FootHoldTop - PlayerBottom, 0.0f));
+				GravityAccel = 0.0f;
 				Velocity.X = 0.0f;
 				Velocity.Y = 0.0f;
 			}
 		});
-	Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
-		{
-			if (LogicValue.IsGroundValue) {
-				LogicValue.IsGroundValue = false;
-			}
-		});
+	
 
 
 
@@ -80,13 +78,13 @@ void APlayer::Gravity(float _DeltaTime)
 {
 	if (!LogicValue.IsGroundValue) {
 		GravityAccel += GravityValue * _DeltaTime;
-		AddActorLocation(- GravityAccel * _DeltaTime);
-		if (GravityAccel.Y > Velocity.Y)
+		AddActorLocation(FVector(0.0f,- GravityAccel * _DeltaTime));
+		if (GravityAccel > Velocity.Y)
 		{
 			LogicValue.IsFallingValue = true;
 			LogicValue.IsJumpingValue = false;
 		}
-		else if (GravityAccel.Y < Velocity.Y)
+		else if (GravityAccel < Velocity.Y)
 		{
 			LogicValue.IsFallingValue = false;
 			LogicValue.IsJumpingValue = true;
@@ -98,7 +96,6 @@ void APlayer::MoveUpdate(float _DeltaTime)
 {
 	Gravity(_DeltaTime);
 	AddActorLocation(Velocity * _DeltaTime);
-	
 }
 
 

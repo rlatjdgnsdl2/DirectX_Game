@@ -215,11 +215,9 @@ void UEngineCore::EngineFrame()
 	}
 
 	CurLevel->Tick(DeltaTime);
-	CurLevel->Render(DeltaTime);
-	// GUI랜더링은 기존 랜더링이 다 끝나고 해주는게 좋다.
-	// 포스트프로세싱
-	// 콜리전
 	CurLevel->Collision(DeltaTime);
+	CurLevel->Render(DeltaTime);
+
 
 
 	CurLevel->Release(DeltaTime);

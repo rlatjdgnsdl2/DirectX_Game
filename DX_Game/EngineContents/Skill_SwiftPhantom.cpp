@@ -74,21 +74,21 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 			SpriteRenderers["Back"]->SetActive(true);
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front",true);
 			SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, -20.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 			if (UEngineInput::IsPress(VK_UP)) {
 				SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
 				SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
-				SpriteRenderers["Front"]->SetRelativeLocation(FVector(-25.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-				SpriteRenderers["Back"]->SetRelativeLocation(FVector(-25.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+				SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+				SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 
 				Player->AddVelocityY(500.0f);
 			}
 			else {
 				SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
 				SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
-				SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-				SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, -20.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+				SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+				SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 
 				Player->AddVelocityX(PlayerDir.X * 600.0f);
 				Player->AddVelocityY(200.0f);
@@ -107,13 +107,15 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		[this]()
 		{
 			FVector PlayerDir = Player->GetBoolValue().PlayerDir;
-			Player->AddJumpPower(PlayerDir.X * 800.0f, 150.0f);
+			Player->SetVelocityX(PlayerDir.X * 800.0f);
+			Player->SetVelocityY(150.0f);
+			
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front",true);
 			SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
 			SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
 			SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(70.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, -20.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+			SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+			SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 		});
 }
 

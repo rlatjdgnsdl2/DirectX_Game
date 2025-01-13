@@ -113,11 +113,6 @@ public:
 		return LogicValue;
 	}
 
-	void AddJumpPower(float _X, float _Y)
-	{
-		Velocity.X = _X;
-		Velocity.Y += _Y;
-	}
 
 	void Gravity(float _DeltaTime);
 
@@ -143,6 +138,24 @@ public:
 		Velocity.Y += _Y;
 	}
 
+	void SetCollisionRotation(FVector _Rotation)
+	{
+		Collision->SetRotation(_Rotation);
+	}
+	void SetCollisionLocation(FVector _Location)
+	{
+		Collision->SetRelativeLocation(_Location);
+	}
+	void AddCollisionLocation(FVector _Location)
+	{
+		Collision->AddRelativeLocation(_Location);
+	}
+	void AddCollisionRotation(FVector _Rotation)
+	{
+		Collision->AddWorldRotation(_Rotation);
+	}
+
+
 
 
 protected:
@@ -156,8 +169,12 @@ private:
 
 
 	FVector Velocity = FVector::ZERO;
-	FVector GravityValue = FVector(0.0f,1960.0f,0.0f);
-	FVector GravityAccel = FVector::ZERO;
+
+	
+
+	
+	float GravityValue = 1960.0f;
+	float GravityAccel = 0.0f;
 
 
 	

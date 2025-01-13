@@ -4,16 +4,12 @@
 #include "RenderUnit.h"
 #include <set>
 
-// 설명 : 어떤 랜더링이든 할수 잇는 구조로 만들겠다.
-// 랜더링이란 랜더러만 하는게 아닙니다. 3D
 class UCollision : public USceneComponent
 {
 public:
-	// constrcuter destructer
 	ENGINEAPI UCollision();
 	ENGINEAPI ~UCollision();
 
-	// delete Function
 	UCollision(const UCollision& _Other) = delete;
 	UCollision(UCollision&& _Other) noexcept = delete;
 	UCollision& operator=(const UCollision& _Other) = delete;
@@ -30,8 +26,6 @@ public:
 
 	void SetRadius(float _Value);
 
-	// vector인게 왜 vector로 하냐
-	// unreal에서 vector
 	ENGINEAPI bool CollisionCheck(std::string_view _OtherName, std::vector<UCollision*>& _Vector);
 
 	void SetCollisionType(ECollisionType _Type)
@@ -54,7 +48,7 @@ public:
 
 private:
 	ECollisionType CollisionType = ECollisionType::OBB2D;
-	
+
 	std::set<UCollision*> CollisionCheckSet;
 
 	std::string ProfileName = "NONE";
