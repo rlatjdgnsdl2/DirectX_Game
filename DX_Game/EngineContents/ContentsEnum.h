@@ -5,6 +5,8 @@ enum class Z_ORDER
 	Skill_Front=100,
 	Player=200,
 	Skill_Back=300,
+	Monster=330,
+	Boss=360,
 	NPC=400,
 	FootHold=500,
 	SkillCover=600,
@@ -32,6 +34,12 @@ enum class PAnimation_State {
 	Prone,
 	Ultimate_Drive,
 	Max
+};
+
+enum class DunkelAnim_State {
+	None,
+	Spawn,
+	Stand
 };
 
 

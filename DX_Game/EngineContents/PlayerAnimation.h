@@ -20,7 +20,7 @@ public:
 protected:
 
 private:
-	std::unordered_map<PAnimation_State, std::list<PAnimation_State>> AnimationNode;
+	
 	
 };
 

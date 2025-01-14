@@ -23,6 +23,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="DunkelAnimation.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Dunkel_GameMode.cpp">
       <SubType>
       </SubType>
@@ -97,6 +101,10 @@
   <ItemGroup>
     <ClInclude Include="ContentsConst.h" />
     <ClInclude Include="Dunkel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DunkelAnimation.h">
       <SubType>
       </SubType>
     </ClInclude>

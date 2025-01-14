@@ -64,6 +64,9 @@
     <ClCompile Include="Dunkel.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
+    <ClCompile Include="DunkelAnimation.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -124,6 +127,9 @@
       <Filter>Dunkel</Filter>
     </ClInclude>
     <ClInclude Include="Dunkel.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="DunkelAnimation.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
   </ItemGroup>

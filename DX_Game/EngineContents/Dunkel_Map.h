@@ -24,5 +24,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> BackRenderer;
 	std::list<std::shared_ptr<class USpriteRenderer>> ObjectRenderers;
 
+	
+
 };
 

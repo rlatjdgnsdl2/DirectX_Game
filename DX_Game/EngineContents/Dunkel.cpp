@@ -2,12 +2,19 @@
 #include "Dunkel.h"
 
 
-Dunkel::Dunkel() 
+ADunkel::ADunkel() 
 {
-
+	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
+	{
+		std::shared_ptr<class USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetupAttachment(RootComponent);
+		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Player));
+		DunkelAnimation.SetSpriteRenderer(SpriteRenderer);
+	}
+	DunkelAnimation.Init();
 }
 
-Dunkel::~Dunkel() 
+ADunkel::~ADunkel() 
 {
 
 }

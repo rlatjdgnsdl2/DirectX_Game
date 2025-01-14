@@ -16,6 +16,8 @@ public:
 protected:
 
 private:
+	std::shared_ptr<class ADunkel_Map> Map;
+	std::shared_ptr<class ADunkel> Dunkel;
 
 
 };

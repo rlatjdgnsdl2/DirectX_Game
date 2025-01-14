@@ -115,6 +115,8 @@ ADunkel_Map::ADunkel_Map()
 
 
 	GetWorld()->LinkCollisionProfile("EndArea", "Player");
+	
+
 
 }
 
