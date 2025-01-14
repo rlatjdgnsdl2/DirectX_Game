@@ -34,6 +34,10 @@ public:
 	{
 		return MainPawn;
 	}
+	ENGINEAPI class AHUD* GetHUD()
+	{
+		return HUD;
+	}
 
 
 
@@ -96,6 +100,11 @@ public:
 		BeginPlayList.push_back(NewActor);
 
 		return NewActor;
+	}
+	template<typename EnumType>
+	std::shared_ptr<class ACameraActor> GetCamera(EnumType _Order)
+	{
+		return GetCamera(static_cast<int>(_Order));
 	}
 
 	//                           0              100±×·ì

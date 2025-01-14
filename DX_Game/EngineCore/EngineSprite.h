@@ -3,13 +3,8 @@
 #include <EngineBase/EngineMath.h>
 #include <EngineBase/EngineDirectory.h>
 #include "EngineResources.h"
+#include "EngineDataStruct.h"
 
-struct FSpriteData
-{
-	float4 CuttingPos = { 0.0f, 0.0f };
-	float4 CuttingSize = { 1.0f, 1.0f };
-	float4 Pivot = { 0.5f, 0.5f };
-};
 
 // Ό³Έν :
 class UEngineSprite : public UEngineResources

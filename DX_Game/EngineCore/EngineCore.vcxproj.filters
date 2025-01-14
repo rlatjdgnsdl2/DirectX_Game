@@ -153,6 +153,8 @@
     <ClInclude Include="Widget.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="TransformObject.h" />
+    <ClInclude Include="EngineDataStruct.h" />
+    <ClInclude Include="EngineConst.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
