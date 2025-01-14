@@ -60,7 +60,7 @@ void APlayer::Tick(float _DeltaTime)
 	
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
-	//MoveCamera(_DeltaTime);
+	MoveCamera(_DeltaTime);
 }
 
 
@@ -91,21 +91,8 @@ void APlayer::MoveUpdate(float _DeltaTime)
 
 void APlayer::MoveCamera(float _DeltaTime)
 {
-	if (Velocity.X != 0.0f)
-	{
-		MainCamera->SetActorLocation(GetActorLocation()-Velocity * _DeltaTime);
-	}
-	else {
-		CurTime += _DeltaTime;
-		if (MainCamera->GetActorLocation().X == GetActorLocation().X && MainCamera->GetActorLocation().Y == GetActorLocation().Y)
-		{
-			CurTime = 0.0f;
-		}
-	}
-
-	MainCamera->SetActorLocation(FVector(
-		UEngineMath::Lerp(MainCamera->GetActorLocation().X, this->GetActorLocation().X, UEngineMath::Clamp(CurTime/1.0f, 0.0f, 1.0f)),
-		UEngineMath::Lerp(MainCamera->GetActorLocation().Y, this->GetActorLocation().Y, UEngineMath::Clamp(CurTime /1.0f, 0.0f, 1.0f))));
+	
+	MainCamera->SetActorLocation(GetActorLocation());
 }
 
 

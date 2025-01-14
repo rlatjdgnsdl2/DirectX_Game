@@ -8,10 +8,10 @@
       <Filter>Header</Filter>
     </ClCompile>
     <ClCompile Include="MoonBridge_WhiteSpear.cpp">
-      <Filter>Carcion\MoonBridge</Filter>
+      <Filter>Map\MoonBridge</Filter>
     </ClCompile>
     <ClCompile Include="MoonBridge_WhiteSpear_Map.cpp">
-      <Filter>Carcion\MoonBridge</Filter>
+      <Filter>Map\MoonBridge</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Character\Player</Filter>
@@ -52,6 +52,9 @@
     <ClCompile Include="Skill_SwiftPhantom.cpp">
       <Filter>Character\Player\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -61,10 +64,10 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="MoonBridge_WhiteSpear.h">
-      <Filter>Carcion\MoonBridge</Filter>
+      <Filter>Map\MoonBridge</Filter>
     </ClInclude>
     <ClInclude Include="MoonBridge_WhiteSpear_Map.h">
-      <Filter>Carcion\MoonBridge</Filter>
+      <Filter>Map\MoonBridge</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Character\Player</Filter>
@@ -102,13 +105,13 @@
     <ClInclude Include="ContentsConst.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
       <UniqueIdentifier>{b5171895-3fe8-4f72-9e9d-e64bfaf3c458}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Carcion">
-      <UniqueIdentifier>{0e83acb3-09af-4d80-8ee7-121f29208148}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{f2decb38-dac4-4bb8-88b6-80e3bfd8bc7b}</UniqueIdentifier>
@@ -134,8 +137,14 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{bbea2012-8213-409f-be40-5dc42b59cf23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Carcion\MoonBridge">
+    <Filter Include="Map">
+      <UniqueIdentifier>{0e83acb3-09af-4d80-8ee7-121f29208148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\MoonBridge">
       <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monster">
+      <UniqueIdentifier>{566465ee-4389-4f10-add8-3150d26b18ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

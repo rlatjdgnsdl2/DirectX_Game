@@ -41,20 +41,22 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		},
 		[this]()
 		{
+			SpriteRenderers["Front"]->SetActive(false);
+			SpriteRenderers["Back"]->SetActive(false);
 			PlayerLogicValue& LogicValue = Player->GetBoolValue();
 			if (UEngineInput::IsPress(VK_DOWN)) {
 				if (Player->GetDownableFloor()) {
 					LogicValue.StartJump();
 					LogicValue.StartFalling();
-					Player->SetVelocityY(-300.0f);
+					Player->SetVelocityY(-200.0f);
+					Player->ChangeAnimation(PAnimation_State::Jump);
 				}
 
 			}
 			else {
 				LogicValue.StartJump();
 				Player->SetVelocityY(660.0f);
-				SpriteRenderers["Front"]->SetActive(false);
-				SpriteRenderers["Back"]->SetActive(false);
+				
 			}
 
 		});
