@@ -136,28 +136,26 @@ public:
 		Velocity.Y += _Y;
 	}
 
-	void SetCollisionRotation(FVector _Rotation)
-	{
-		Collision->SetRotation(_Rotation);
-	}
-	void SetCollisionLocation(FVector _Location)
-	{
-		Collision->SetRelativeLocation(_Location);
-	}
-	void AddCollisionLocation(FVector _Location)
-	{
-		Collision->AddRelativeLocation(_Location);
-	}
-	void AddCollisionRotation(FVector _Rotation)
-	{
-		Collision->AddWorldRotation(_Rotation);
-	}
 
 	std::shared_ptr<class UCollision> GetCollision()
 	{
 		return Collision;
 	}
 
+	void SetGravityAccel(float _Accel)
+	{
+		GravityAccel = _Accel;
+	}
+
+	void SetDownableFloor(bool _Value)
+	{
+		IsDownableFloor = _Value;
+	}
+
+	bool GetDownableFloor()
+	{
+		return IsDownableFloor;
+	}
 
 
 
@@ -173,11 +171,8 @@ private:
 
 
 	FVector Velocity = FVector::ZERO;
+	bool IsDownableFloor = false;
 
-	
-
-	
-	float GravityValue = 1960.0f;
 	float GravityAccel = 0.0f;
 
 

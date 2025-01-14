@@ -99,6 +99,9 @@
     <ClInclude Include="Skill_SwiftPhantom.h">
       <Filter>Character\Player\Skill</Filter>
     </ClInclude>
+    <ClInclude Include="ContentsConst.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

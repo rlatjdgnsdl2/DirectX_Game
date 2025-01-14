@@ -1018,6 +1018,15 @@ public:
 		return WorldLocation.Y - std::abs(WorldScale.hY());
 	}
 
+	float ZAxisWorldCenterLeft() const
+	{
+		return WorldLocation.X - std::abs(WorldScale.hX());
+	}
+	float ZAxisWorldCenterRight() const
+	{
+		return WorldLocation.X + std::abs(WorldScale.hX());
+	}
+
 	FVector ZAxisCenterRightTop() const
 	{
 		FVector Result;

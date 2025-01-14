@@ -9,3 +9,4 @@
 #pragma comment(lib, "EngineCore.lib")
 
 #include "ContentsEnum.h"
+#include "ContentsConst.h"

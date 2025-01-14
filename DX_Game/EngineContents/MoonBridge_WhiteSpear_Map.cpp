@@ -3,6 +3,8 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+#include "Player.h"
+
 
 AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 {
@@ -21,6 +23,14 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 		Collision->SetCollisionProfileName("EndArea");
 		Collision->SetScale3D(FVector(100.0f, MapSize.Y, 1.0f));
 		Collision->AddRelativeLocation(FVector(-MapSize.hX() - Collision->GetWorldScale3D().hX(), 0.0f));
+		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				float LeftEndArea = _Left->GetTransformRef().ZAxisWorldCenterRight();
+				float PlayerLeft = _Right->GetTransformRef().ZAxisWorldCenterLeft();
+				Player->AddActorLocation(FVector(LeftEndArea - PlayerLeft, 0.0f, 0.0f));
+			});
+
 		EndArea.insert({ "Left", Collision });
 	}
 	{
@@ -29,6 +39,13 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 		Collision->SetCollisionProfileName("EndArea");
 		Collision->SetScale3D(FVector(100.0f, MapSize.Y, 1.0f));
 		Collision->AddRelativeLocation(FVector(MapSize.hX() + Collision->GetWorldScale3D().hX(), 0.0f));
+		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				float RightEndArea = _Left->GetTransformRef().ZAxisWorldCenterLeft();
+				float PlayerLeft = _Right->GetTransformRef().ZAxisWorldCenterRight();
+				Player->AddActorLocation(FVector(RightEndArea - PlayerLeft, 0.0f, 0.0f));
+			});
 		EndArea.insert({ "Right", Collision });
 	}
 
@@ -37,36 +54,82 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
 		Collision->SetScale3D(FVector(MapSize.X, 100.0f, 1.0f));
-		Collision->AddRelativeLocation(FVector(0.0f,-MapSize.hY() + 200.0f));
+		Collision->AddRelativeLocation(FVector(0.0f, -MapSize.hY() + 215.0f));
+
+		Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				if (LogicValue.IsFallingValue) {
+					LogicValue.SetGroundTrue();
+					float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
+					float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
+					Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
+					Player->SetGravityAccel(0.0f);
+					Player->SetVelocityX(0.0f);
+					Player->SetVelocityY(0.0f);
+					Player->SetDownableFloor(false);
+				}
+			});
+		Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				if (LogicValue.IsGroundValue) {
+					LogicValue.IsGroundValue = false;
+				}
+			});
 		EndArea.insert({ "Down", Collision });
 	}
-
 
 	{
 		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("FootHold");
-		Collision->SetScale3D(FVector(100.0f, 1.0f, 1.0f));
-		Collision->AddRelativeLocation(FVector(1000.0f, 0.0f));
+		Collision->SetScale3D(FVector(1000.0f, 1.0f, 1.0f));
+		Collision->AddRelativeLocation(FVector(1380.0f, -40.0f));
+
+		Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				if (LogicValue.IsFallingValue) {
+					LogicValue.SetGroundTrue();
+					float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
+					float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
+					Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
+					Player->SetGravityAccel(0.0f);
+					Player->SetVelocityX(0.0f);
+					Player->SetVelocityY(0.0f);
+					Player->SetDownableFloor(true);
+				}
+			});
+		Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				PlayerLogicValue& LogicValue = Player->GetBoolValue();
+				if (LogicValue.IsGroundValue) {
+					LogicValue.IsGroundValue = false;
+				}
+			});
 		FootHoldCollisions.push_back(Collision);
 	}
 
-
-
-
-
-
-
+	GetWorld()->LinkCollisionProfile("EndArea", "Player");
+	GetWorld()->LinkCollisionProfile("FootHold", "Player");
 }
 
 AMoonBridge_WhiteSpear_Map::~AMoonBridge_WhiteSpear_Map()
 {
-
+	EndArea.clear();
+	FootHoldCollisions.clear();
+	FootHoldRenderers.clear();
+	BackRenderer = nullptr;
 }
 
 void AMoonBridge_WhiteSpear_Map::BeginPlay()
 {
 	AActor::BeginPlay();
 	AddActorLocation(FVector(0.0f, 200.0f));
-	
+
 }

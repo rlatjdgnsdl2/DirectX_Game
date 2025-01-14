@@ -79,6 +79,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ContentsConst.h" />
     <ClInclude Include="PlayerAnimation.h">
       <SubType>
       </SubType>

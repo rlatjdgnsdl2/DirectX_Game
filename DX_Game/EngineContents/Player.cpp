@@ -7,12 +7,6 @@
 #include "PlayerFuncManager.h"
 #include "AnimationManager.h"
 
-#include "Skill.h"
-
-
-
-
-
 APlayer::APlayer()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -28,32 +22,8 @@ APlayer::APlayer()
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Player");
-	Collision->SetScale3D(FVector(30.0f, 60.0f, 1.0f));
+	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
-
-	GetWorld()->LinkCollisionProfile("Player", "EndArea");
-	Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
-		{
-			if (LogicValue.IsFallingValue) {
-				LogicValue.SetGroundTrue();
-				float FootHoldTop = _Right->GetTransformRef().ZAxisWorldCenterTop();
-				float PlayerBottom = _Left->GetTransformRef().ZAxisWorldCenterBottom();
-				AddActorLocation(FVector(0.0f, FootHoldTop - PlayerBottom, 0.0f));
-				GravityAccel = 0.0f;
-				Velocity.X = 0.0f;
-				Velocity.Y = 0.0f;
-			}
-		});
-	Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
-		{
-			if (LogicValue.IsGroundValue) {
-				LogicValue.IsGroundValue = false;
-			}
-		});
-
-
-
-
 
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>();
 }
@@ -88,17 +58,16 @@ void APlayer::Tick(float _DeltaTime)
 		MainCamera->AddActorLocation(FVector(0.0f, -100.0f));
 	}
 	
-
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
-	MoveCamera(_DeltaTime);
+	//MoveCamera(_DeltaTime);
 }
 
 
 void APlayer::Gravity(float _DeltaTime)
 {
 	if (!LogicValue.IsGroundValue) {
-		GravityAccel += GravityValue * _DeltaTime;
+		GravityAccel += UContentsConst::Gravity * _DeltaTime;
 		
 		AddActorLocation(FVector(0.0f, -GravityAccel * _DeltaTime));
 		if (GravityAccel > Velocity.Y)
