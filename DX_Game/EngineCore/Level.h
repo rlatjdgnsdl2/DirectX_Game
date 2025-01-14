@@ -20,9 +20,9 @@ public:
 	ULevel& operator=(const ULevel& _Other) = delete;
 	ULevel& operator=(ULevel&& _Other) noexcept = delete;
 
-	// 내가 이제 실행되는 레벨이 되었을때
+	
 	ENGINEAPI void LevelChangeStart();
-	// 내가 교체 당했을때
+	
 	ENGINEAPI void LevelChangeEnd();
 
 	ENGINEAPI class AGameMode* GetGameMode()
@@ -72,7 +72,7 @@ public:
 	template<typename ActorType>
 	ENGINEAPI std::shared_ptr<ActorType> SpawnActor(std::string_view _Name = "")
 	{
-		
+
 
 		static_assert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스를 SpawnActor하려고 했습니다.");
 

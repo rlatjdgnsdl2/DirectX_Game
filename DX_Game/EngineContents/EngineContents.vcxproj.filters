@@ -8,10 +8,10 @@
       <Filter>Header</Filter>
     </ClCompile>
     <ClCompile Include="MoonBridge_WhiteSpear.cpp">
-      <Filter>Map\MoonBridge</Filter>
+      <Filter>MoonBridge</Filter>
     </ClCompile>
     <ClCompile Include="MoonBridge_WhiteSpear_Map.cpp">
-      <Filter>Map\MoonBridge</Filter>
+      <Filter>MoonBridge</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Character\Player</Filter>
@@ -55,6 +55,15 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Dunkel_GameMode.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_Map.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -64,10 +73,10 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="MoonBridge_WhiteSpear.h">
-      <Filter>Map\MoonBridge</Filter>
+      <Filter>MoonBridge</Filter>
     </ClInclude>
     <ClInclude Include="MoonBridge_WhiteSpear_Map.h">
-      <Filter>Map\MoonBridge</Filter>
+      <Filter>MoonBridge</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Character\Player</Filter>
@@ -108,6 +117,15 @@
     <ClInclude Include="Monster.h">
       <Filter>Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Dunkel_GameMode.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_Map.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -137,14 +155,14 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{bbea2012-8213-409f-be40-5dc42b59cf23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Map">
-      <UniqueIdentifier>{0e83acb3-09af-4d80-8ee7-121f29208148}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map\MoonBridge">
-      <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Monster">
       <UniqueIdentifier>{566465ee-4389-4f10-add8-3150d26b18ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dunkel">
+      <UniqueIdentifier>{3213d464-a43d-4839-9502-817b521a1223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MoonBridge">
+      <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

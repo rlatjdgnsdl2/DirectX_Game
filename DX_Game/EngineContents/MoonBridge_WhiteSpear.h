@@ -17,6 +17,6 @@ public:
 protected:
 
 private:
-	std::shared_ptr<class AMoonBridge_WhiteSpear_Map> MoonBridge_WhiteSpear_Map = nullptr;
+	
 };
 

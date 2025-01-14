@@ -8,6 +8,9 @@ enum class Z_ORDER
 	NPC=400,
 	FootHold=500,
 	SkillCover=600,
+	MapObject_Near = 630,
+	MapObject_Middle = 660,
+	MapObject_Far = 690,
 	BackGround =700,
 };
 

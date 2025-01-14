@@ -4,8 +4,9 @@
 
 #include "MoonBridge_WhiteSpear.h"
 #include "Player.h"
-#include "EngineCore/EngineTexture.h"
-#include "EngineCore/EngineSprite.h"
+
+#include "Dunkel_GameMode.h"
+
 
 
 
@@ -29,7 +30,8 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	LoadResources();
 
 	UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
-	UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
+	UEngineCore::CreateLevel<ADunkel_GameMode, APlayer, AHUD>("Dunkel");
+	UEngineCore::OpenLevel("Dunkel");
 }
 
 void UContentsCore::EngineTick(float _DeltaTime)
