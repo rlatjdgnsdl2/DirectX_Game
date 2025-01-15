@@ -31,8 +31,8 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	Collision = CreateDefaultSubObject<UCollision>();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("PlayerSkill");
-	Collision->SetScale3D(FVector(400.0f, 300.0f, 1.0f));
-	Collision->SetRelativeLocation(FVector(-200.0f, 50.0f));
+	Collision->SetScale3D(FVector(340.0f, 300.0f, 1.0f));
+	Collision->SetRelativeLocation(FVector(-180.0f, 50.0f));
 	Collision->SetActive(false);
 
 	FrameState.CreateState(Skill_Frame::Start, [this](float _DeltaTime)

@@ -17,7 +17,7 @@ protected:
 
 private:
 	std::shared_ptr<class ADunkel_Map> Map;
-	std::shared_ptr<class ADunkel> Dunkel;
+	std::shared_ptr<class ADunkel_Boss> Dunkel;
 
 
 };

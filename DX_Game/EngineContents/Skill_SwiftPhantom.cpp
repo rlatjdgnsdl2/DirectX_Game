@@ -78,6 +78,13 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 				return;
 
 			}
+
+			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) 
+			{
+				SpriteRenderers["Front"]->SetActive(false);
+				SpriteRenderers["Back"]->SetActive(false);
+			}
+
 		},
 		[this]()
 		{
@@ -94,7 +101,6 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 				SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
 				SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 				SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Back)));
-
 				Player->AddVelocityY(800.0f);
 			}
 			else {
@@ -116,6 +122,11 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 				LogicValue.SetGroundTrue();
 				SetActiveFalse();
 			}
+			if (SpriteRenderers["Front"]->IsCurAnimationEnd())
+			{
+				SpriteRenderers["Front"]->SetActive(false);
+				SpriteRenderers["Back"]->SetActive(false);
+			}
 		},
 		[this]()
 		{
@@ -123,6 +134,8 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 			Player->SetVelocityX(PlayerDir.X * 800.0f);
 			Player->AddVelocityY(150.0f);
 
+			SpriteRenderers["Front"]->SetActive(true);
+			SpriteRenderers["Back"]->SetActive(true);
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front", true);
 			SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
 			SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));

@@ -88,6 +88,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 			{
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 
+				LogicValue.IsJumpAbleValue;
 				if (LogicValue.IsJumpAbleValue) {
 					if (nullptr != Player->GetSkill("SwiftPhantom")) {
 						if (!Player->GetSkill("SwiftPhantom")->IsActive()) {

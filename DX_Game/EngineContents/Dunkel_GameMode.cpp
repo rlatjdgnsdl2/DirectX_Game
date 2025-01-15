@@ -1,9 +1,10 @@
 #include "PreCompile.h"
 #include "Dunkel_GameMode.h"
 #include "Dunkel_Map.h"
+#include "Dunkel_Boss.h"
 
 
-ADunkel_GameMode::ADunkel_GameMode() 
+ADunkel_GameMode::ADunkel_GameMode()
 {
 
 	{
@@ -48,30 +49,37 @@ ADunkel_GameMode::ADunkel_GameMode()
 		}
 		Dir.Append("Dunkel_Spawn");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-		Dir.BackDir();
 
+
+		Dir.BackDir();
 		Dir.Append("Dunkel_Stand");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+
+		Dir.BackDir();
+		Dir.Append("Dunkel_Knockback");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+
+
 
 	}
 
 
 	GetWorld()->CreateCollisionProfile("Player");
 	GetWorld()->CreateCollisionProfile("Monster");
-	GetWorld()->CreateCollisionProfile("FootHold");
+	GetWorld()->CreateCollisionProfile("Boss");
+	GetWorld()->CreateCollisionProfile("BossAttack");
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
 	GetWorld()->CreateCollisionProfile("PlayerSkill");
 
 	Map = GetWorld()->SpawnActor<ADunkel_Map>();
-	Dunkel = GetWorld()->SpawnActor<ADunkel>();
+	Dunkel = GetWorld()->SpawnActor<ADunkel_Boss>();
 
 
 }
 
-ADunkel_GameMode::~ADunkel_GameMode() 
+ADunkel_GameMode::~ADunkel_GameMode()
 {
 	Map = nullptr;
 	Dunkel = nullptr;
-
 }

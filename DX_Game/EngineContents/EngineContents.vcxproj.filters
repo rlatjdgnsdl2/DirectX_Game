@@ -37,12 +37,6 @@
     <ClCompile Include="Skill_UltimateDrive.cpp">
       <Filter>Character\Player\Skill</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAnimation.cpp">
-      <Filter>Character\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationManager.cpp">
-      <Filter>Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Player_CheckKey.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
@@ -61,10 +55,7 @@
     <ClCompile Include="Dunkel_Map.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
-    <ClCompile Include="Dunkel.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="DunkelAnimation.cpp">
+    <ClCompile Include="Dunkel_Boss.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
   </ItemGroup>
@@ -105,12 +96,6 @@
     <ClInclude Include="Skill_UltimateDrive.h">
       <Filter>Character\Player\Skill</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAnimation.h">
-      <Filter>Character\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationManager.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Skill_SwiftPhantom.h">
       <Filter>Character\Player\Skill</Filter>
     </ClInclude>
@@ -126,10 +111,7 @@
     <ClInclude Include="Dunkel_Map.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
-    <ClInclude Include="Dunkel.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="DunkelAnimation.h">
+    <ClInclude Include="Dunkel_Boss.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
   </ItemGroup>

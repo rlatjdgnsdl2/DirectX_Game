@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/Pawn.h>
-#include "PlayerAnimation.h"
+
 
 
 
@@ -73,13 +73,9 @@ public:
 
 	void ChangeAnimation(PAnimation_State _State)
 	{
-		PlayerAnimation.ChangeState(_State);
+		AnimaionFSM.ChangeState(_State);
 	}
 
-	UPlayerAnimation& GetPlayerAnimation()
-	{
-		return PlayerAnimation;
-	}
 
 	std::shared_ptr<class UPlayerFuncManager> GetPlayerFuncManager()
 	{
@@ -164,7 +160,9 @@ protected:
 private:
 	float CurTime = 0.0f;
 	ACameraActor* MainCamera = nullptr;
-	UPlayerAnimation PlayerAnimation;
+	
+	UFSMStateManager AnimaionFSM;
+	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
 	std::shared_ptr<class UCollision> Collision;
 	std::shared_ptr<class UPlayerFuncManager> PlayerFuncManager;
 	std::map<std::string, std::shared_ptr<class ASkill>> SkillMap;

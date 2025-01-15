@@ -19,11 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dunkel.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="DunkelAnimation.cpp">
+    <ClCompile Include="Dunkel_Boss.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -36,14 +32,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayerAnimation.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="AnimationManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -100,11 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsConst.h" />
-    <ClInclude Include="Dunkel.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="DunkelAnimation.h">
+    <ClInclude Include="Dunkel_Boss.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -117,14 +101,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayerAnimation.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="AnimationManager.h">
       <SubType>
       </SubType>
     </ClInclude>

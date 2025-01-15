@@ -12,6 +12,87 @@ UEngineSprite::~UEngineSprite()
 }
 
 
+
+
+ENGINEAPI std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_view _Name, std::string_view _Path, std::vector<FVector>& _PivotVec)
+{
+	UEngineDirectory Dir = _Path;
+
+	std::vector<UEngineFile> Files = Dir.GetAllFile(false, { ".png" });
+
+	if (0 == Files.size())
+	{
+		MSGASSERT("파일이 존재하지 않는 폴더를 스프라이트로 만들수는 없습니다.");
+	}
+
+	std::shared_ptr<UEngineSprite> NewRes = std::make_shared<UEngineSprite>();
+	PushRes<UEngineSprite>(NewRes, _Name, "");
+
+	for (size_t i = 0; i < Files.size(); i++)
+	{
+		if (_PivotVec.size() != Files.size())
+		{
+			MSGASSERT("피벗 벡터의 갯수가 파일의 갯수와 같지 않습니다.");
+			return nullptr;
+		}
+		std::string UpperName = UEngineString::ToUpper(Files[i].GetFileName());
+
+		std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Find<UEngineTexture>(UpperName);
+
+		if (nullptr == Texture)
+		{
+			MSGASSERT("텍스처를 먼저 로드하고 폴더 스프라이트를 만들어 주세요." + UpperName);
+			return nullptr;
+		}
+
+		NewRes->SpriteTexture.push_back(Texture.get());
+
+		FSpriteData SpriteData;
+		SpriteData.CuttingPos = { 0.0f, 0.0f };
+		SpriteData.CuttingSize = { 1.0f, 1.0f };
+		SpriteData.Pivot = _PivotVec[i];
+		NewRes->SpriteDatas.push_back(SpriteData);
+	}
+	return NewRes;
+}
+std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_view _Name, std::string_view _Path, FVector _Pivot) 
+{
+	UEngineDirectory Dir = _Path;
+
+	std::vector<UEngineFile> Files = Dir.GetAllFile(false, { ".png" });
+
+	if (0 == Files.size())
+	{
+		MSGASSERT("파일이 존재하지 않는 폴더를 스프라이트로 만들수는 없습니다.");
+	}
+
+	std::shared_ptr<UEngineSprite> NewRes = std::make_shared<UEngineSprite>();
+	PushRes<UEngineSprite>(NewRes, _Name, "");
+
+	for (size_t i = 0; i < Files.size(); i++)
+	{
+		std::string UpperName = UEngineString::ToUpper(Files[i].GetFileName());
+
+		std::shared_ptr<UEngineTexture> Texture = UEngineTexture::Find<UEngineTexture>(UpperName);
+
+		if (nullptr == Texture)
+		{
+			MSGASSERT("텍스처를 먼저 로드하고 폴더 스프라이트를 만들어 주세요." + UpperName);
+			return nullptr;
+		}
+
+		NewRes->SpriteTexture.push_back(Texture.get());
+
+		FSpriteData SpriteData;
+		SpriteData.CuttingPos = { 0.0f, 0.0f };
+		SpriteData.CuttingSize = { 1.0f, 1.0f };
+		SpriteData.Pivot = _Pivot;
+		NewRes->SpriteDatas.push_back(SpriteData);
+	}
+
+	return NewRes;
+};
+
 std::shared_ptr<UEngineSprite> UEngineSprite::CreateSpriteToFolder(std::string_view _Name, std::string_view _Path)
 {
 	UEngineDirectory Dir = _Path;

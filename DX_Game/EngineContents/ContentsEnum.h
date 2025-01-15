@@ -39,7 +39,9 @@ enum class PAnimation_State {
 enum class DunkelAnim_State {
 	None,
 	Spawn,
-	Stand
+	Stand,
+	Knockback,
+
 };
 
 

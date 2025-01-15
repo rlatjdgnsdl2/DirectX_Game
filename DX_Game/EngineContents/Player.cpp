@@ -5,18 +5,50 @@
 #include <EnginePlatform/EngineInput.h>
 
 #include "PlayerFuncManager.h"
-#include "AnimationManager.h"
 
 APlayer::APlayer()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-	{
-		std::shared_ptr<class USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Player));
-		PlayerAnimation.SetSpriteRenderer(SpriteRenderer);
-	}
-	PlayerAnimation.Init();
+
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetupAttachment(RootComponent);
+	SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Player));
+	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2, 1.0f / 3);
+	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 1.0f / 4);
+	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
+	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
+
+	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
+
+	AnimaionFSM.CreateState(PAnimation_State::Stand, nullptr,
+		[this]()
+		{
+			SpriteRenderer->ChangeAnimation("Stand");
+		});
+
+	AnimaionFSM.CreateState(PAnimation_State::Walk, nullptr,
+		[this]()
+		{
+			SpriteRenderer->ChangeAnimation("Walk");
+		});
+
+	AnimaionFSM.CreateState(PAnimation_State::Jump, nullptr,
+		[this]()
+		{
+			SpriteRenderer->ChangeAnimation("Jump");
+		});
+
+	AnimaionFSM.CreateState(PAnimation_State::Prone, nullptr,
+		[this]()
+		{
+			SpriteRenderer->ChangeAnimation("Prone");
+		});
+
+	AnimaionFSM.CreateState(PAnimation_State::Ultimate_Drive, nullptr,
+		[this]()
+		{
+			SpriteRenderer->ChangeAnimation("UltimateDrive_KeyDown");
+		});
 	InitSkill();
 
 	Collision = CreateDefaultSubObject<UCollision>();
@@ -57,7 +89,7 @@ void APlayer::Tick(float _DeltaTime)
 	if (UEngineInput::IsPress(VK_NUMPAD2)) {
 		MainCamera->AddActorLocation(FVector(0.0f, -100.0f));
 	}
-	
+
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
 	MoveCamera(_DeltaTime);
@@ -68,7 +100,7 @@ void APlayer::Gravity(float _DeltaTime)
 {
 	if (!LogicValue.IsGroundValue) {
 		GravityAccel += UContentsConst::Gravity * _DeltaTime;
-		
+
 		AddActorLocation(FVector(0.0f, -GravityAccel * _DeltaTime));
 		if (GravityAccel > Velocity.Y)
 		{
@@ -91,7 +123,7 @@ void APlayer::MoveUpdate(float _DeltaTime)
 
 void APlayer::MoveCamera(float _DeltaTime)
 {
-	
+
 	MainCamera->SetActorLocation(GetActorLocation());
 }
 
