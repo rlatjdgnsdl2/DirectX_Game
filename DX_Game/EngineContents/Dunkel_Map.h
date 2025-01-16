@@ -20,7 +20,6 @@ private:
 	std::map<std::string, std::shared_ptr<class UCollision>> EndArea;
 	std::shared_ptr<class USpriteRenderer> FootHoldRenderer;
 
-
 	std::shared_ptr<class USpriteRenderer> BackRenderer;
 	std::list<std::shared_ptr<class USpriteRenderer>> ObjectRenderers;
 

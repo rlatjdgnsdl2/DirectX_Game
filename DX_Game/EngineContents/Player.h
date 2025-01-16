@@ -48,6 +48,7 @@ public:
 		IsFallingValue = false;
 		IsJumpingValue = false;
 		IsMoveAbleValue = true;
+		IsJumpAbleValue = true;
 		JumpCount = 0;
 	}
 };
@@ -132,6 +133,11 @@ public:
 		Velocity.Y += _Y;
 	}
 
+	void ResetVelocity()
+	{
+		Velocity = FVector::ZERO;
+	}
+
 
 	std::shared_ptr<class UCollision> GetCollision()
 	{
@@ -170,12 +176,8 @@ private:
 
 	FVector Velocity = FVector::ZERO;
 	bool IsDownableFloor = false;
-
 	float GravityAccel = 0.0f;
 
-
-	
-	
 	PlayerLogicValue LogicValue;
 		
 	void CheckKey(float _DeltaTime);

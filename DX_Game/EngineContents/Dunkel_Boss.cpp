@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Dunkel_Boss.h"
+#include "Player.h"
 
 
 ADunkel_Boss::ADunkel_Boss() 
@@ -8,11 +9,13 @@ ADunkel_Boss::ADunkel_Boss()
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetupAttachment(RootComponent);
-	SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Boss));
+	SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::Boss));
 	
 	SpriteRenderer->CreateAnimation("Spawn", "Dunkel_Spawn", 0, 31, 0.1f, false);
 	SpriteRenderer->CreateAnimation("Stand", "Dunkel_Stand", 0, 12);
 	SpriteRenderer->CreateAnimation("Knockback", "Dunkel_Knockback", 0, 29);
+
+	
 
 	{
 		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
@@ -21,8 +24,19 @@ ADunkel_Boss::ADunkel_Boss()
 		Collision->SetRelativeScale3D(FVector(400.0f,300.0f,100.0f));
 		Collision->SetRelativeLocation(FVector(-200.0f, 0.0f, 0.0f));
 		Collision->SetCollisionProfileName("BossAttack");	
+		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				float Dir = GetActorTransform().Scale.X;
+				Player->SetVelocityX(-Dir*1000.0f);
+				Player->SetVelocityY(1000.0f);
+				Player->SetGravityAccel(0.0f);
+				Player->GetBoolValue().IsJumpAbleValue = false;
+				Player->SetDownableFloor(false);
+			});
 		AttackCollisionMap.insert(std::make_pair("Knockback", Collision));
 	}
+	GetWorld()->LinkCollisionProfile("BossAttack", "Player");
 
 	
 	AnimaionFSM.CreateState(DunkelAnim_State::Spawn, [this](float _DeltaTime) 
@@ -54,6 +68,11 @@ ADunkel_Boss::ADunkel_Boss()
 			CurTime += _DeltaTime;
 			if (CurTime>1.7f) {
 				AttackCollisionMap["Knockback"]->SetActive(true);
+				
+			}
+			if (CurTime > 1.8f) {
+				AttackCollisionMap["Knockback"]->SetActive(false);
+
 			}
 			if (SpriteRenderer->IsCurAnimationEnd())
 			{

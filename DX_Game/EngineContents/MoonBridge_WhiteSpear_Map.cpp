@@ -11,7 +11,7 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 	BackRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	BackRenderer->SetupAttachment(RootComponent);
-	BackRenderer->AddZ(static_cast<float>(Z_ORDER::BackGround));
+	BackRenderer->SetZ(static_cast<float>(Z_ORDER::BackGround));
 	BackRenderer->CreateAnimation("WhiteSpear", "WhiteSpear", 0, 8);
 	BackRenderer->ChangeAnimation("WhiteSpear");
 

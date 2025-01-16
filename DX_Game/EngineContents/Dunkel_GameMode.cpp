@@ -58,24 +58,23 @@ ADunkel_GameMode::ADunkel_GameMode()
 		Dir.BackDir();
 		Dir.Append("Dunkel_Knockback");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
-
-
-
 	}
 
 
 	GetWorld()->CreateCollisionProfile("Player");
+	GetWorld()->CreateCollisionProfile("PlayerSkill");
 	GetWorld()->CreateCollisionProfile("Monster");
 	GetWorld()->CreateCollisionProfile("Boss");
 	GetWorld()->CreateCollisionProfile("BossAttack");
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
-	GetWorld()->CreateCollisionProfile("PlayerSkill");
+
+	
 
 	Map = GetWorld()->SpawnActor<ADunkel_Map>();
 	Dunkel = GetWorld()->SpawnActor<ADunkel_Boss>();
 
-
+	GetWorld()->GetMainCamera()->GetCameraComponent()->SetZSort(0, true);
 }
 
 ADunkel_GameMode::~ADunkel_GameMode()

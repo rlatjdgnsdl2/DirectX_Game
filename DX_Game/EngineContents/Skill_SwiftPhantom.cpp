@@ -110,7 +110,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 				SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 
 				Player->SetVelocityX(PlayerDir.X * 600.0f);
-				Player->AddVelocityY(200.0f);
+				Player->AddVelocityY(250.0f);
 			}
 		});
 	//	트리플점프
@@ -132,7 +132,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		{
 			FVector PlayerDir = Player->GetBoolValue().PlayerDir;
 			Player->SetVelocityX(PlayerDir.X * 800.0f);
-			Player->AddVelocityY(150.0f);
+			Player->AddVelocityY(250.0f);
 
 			SpriteRenderers["Front"]->SetActive(true);
 			SpriteRenderers["Back"]->SetActive(true);

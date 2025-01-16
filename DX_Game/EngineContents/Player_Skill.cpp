@@ -19,5 +19,4 @@ void APlayer::InitSkill() {
 		AddSkill("SwiftPhantom", Skill);
 	}
 
-
 }

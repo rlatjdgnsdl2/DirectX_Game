@@ -8,7 +8,7 @@ ADunkel_Map::ADunkel_Map()
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 	BackRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	BackRenderer->SetupAttachment(RootComponent);
-	BackRenderer->AddZ(static_cast<float>(Z_ORDER::BackGround));
+	BackRenderer->SetZ(static_cast<float>(Z_ORDER::BackGround));
 	BackRenderer->CreateAnimation("DunkelMapBackGround", "DunkelMapBackGround", 0, 9);
 	BackRenderer->ChangeAnimation("DunkelMapBackGround");
 
@@ -84,7 +84,7 @@ ADunkel_Map::ADunkel_Map()
 
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::FootHold));
+		SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::FootHold));
 		SpriteRenderer->AddRelativeLocation(FVector(0.0f, -400.0f));
 		SpriteRenderer->SetTexture("DunkelMapFootHold.png",true);
 		
@@ -95,7 +95,7 @@ ADunkel_Map::ADunkel_Map()
 
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::MapObject_Far));
+		SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::MapObject_Far));
 		SpriteRenderer->AddRelativeLocation(FVector(0.0f, 100.0f));
 		SpriteRenderer->CreateAnimation("DunkelMapObject_Sphere","DunkelMapObject_Sphere",0,15);
 		SpriteRenderer->ChangeAnimation("DunkelMapObject_Sphere");
@@ -106,7 +106,7 @@ ADunkel_Map::ADunkel_Map()
 
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetupAttachment(RootComponent);
-		SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::MapObject_Middle));
+		SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::MapObject_Middle));
 		SpriteRenderer->AddRelativeLocation(FVector(0.0f, -110.0f));
 		SpriteRenderer->CreateAnimation("DunkelMapObject_Stone", "DunkelMapObject_Stone", 0, 13);
 		SpriteRenderer->ChangeAnimation("DunkelMapObject_Stone");

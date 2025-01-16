@@ -84,6 +84,15 @@ public:
 	{
 		return Transform.WorldScale;
 	}
+	FVector GetRelativeLocation()
+	{
+		return Transform.RelativeLocation;
+	}
+
+	FVector GetWorldLocation()
+	{
+		return Transform.WorldLocation;
+	}
 
 
 	FTransform& GetTransformRef()
@@ -99,15 +108,16 @@ public:
 
 	ENGINEAPI void TransformUpdate();
 
-	ENGINEAPI void AddZ(float _Z)
+	ENGINEAPI void SetZ(float _Z)
 	{
-		AddRelativeLocation(FVector(0.0f, 0.0f, _Z));
+		Transform.Location.Z = _Z;
 	};
 
 	
 
 
 
+	
 protected:
 	bool IsAbsolute = false;
 

@@ -12,11 +12,11 @@ APlayer::APlayer()
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetupAttachment(RootComponent);
-	SpriteRenderer->AddZ(static_cast<float>(Z_ORDER::Player));
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2, 1.0f / 3);
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 1.0f / 4);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
 	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
+	SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::Player));
 
 	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
 
@@ -101,7 +101,7 @@ void APlayer::Gravity(float _DeltaTime)
 	if (!LogicValue.IsGroundValue) {
 		GravityAccel += UContentsConst::Gravity * _DeltaTime;
 
-		AddActorLocation(FVector(0.0f, -GravityAccel * _DeltaTime));
+		AddActorLocation(FVector(0.0f, -GravityAccel * _DeltaTime,0.0f));
 		if (GravityAccel > Velocity.Y)
 		{
 			LogicValue.IsFallingValue = true;
@@ -123,7 +123,6 @@ void APlayer::MoveUpdate(float _DeltaTime)
 
 void APlayer::MoveCamera(float _DeltaTime)
 {
-
 	MainCamera->SetActorLocation(GetActorLocation());
 }
 

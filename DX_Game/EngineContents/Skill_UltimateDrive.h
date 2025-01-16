@@ -16,7 +16,6 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
-
 	virtual void SetActiveTrue() override;
 	
 	

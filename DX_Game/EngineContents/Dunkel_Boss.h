@@ -23,7 +23,6 @@ private:
 	UFSMStateManager AnimaionFSM;
 	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
 	std::shared_ptr<class UCollision> Collision;
-	std::shared_ptr<class UTimeEventComponent> TimeEvent;
 
 
 	std::map<std::string, std::shared_ptr<class UCollision>> AttackCollisionMap;

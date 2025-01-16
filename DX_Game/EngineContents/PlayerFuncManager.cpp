@@ -17,8 +17,12 @@ UPlayerFuncManager::UPlayerFuncManager()
 				Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
 				LogicValue.PlayerDir = FVector::LEFT;
 				if (LogicValue.IsMoveAbleValue) {
-					float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_LEFT) * 3.0f, 0.0f, 1.0f));
-					Player->SetVelocityX(-VelocityX);
+					if (LogicValue.IsGroundValue) {
+
+						float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_LEFT) * 4.0f, 0.0f, 1.0f));
+						Player->SetVelocityX(-VelocityX);
+					}
+
 				}
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
@@ -26,7 +30,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 			});
 		NewFunc.AddUpEvent([this]()
 			{
-				if (Player->GetBoolValue().IsMoveAbleValue) {
+				if (Player->GetBoolValue().IsGroundValue) {
 					Player->SetVelocityX(0.0f);
 				}
 			});
@@ -42,8 +46,10 @@ UPlayerFuncManager::UPlayerFuncManager()
 				Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 				LogicValue.PlayerDir = FVector::RIGHT;
 				if (LogicValue.IsMoveAbleValue) {
-					float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_RIGHT) * 3.0f, 0.0f, 1.0f));
-					Player->SetVelocityX(VelocityX);
+					if (LogicValue.IsGroundValue) {
+						float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_RIGHT) * 4.0f, 0.0f, 1.0f));
+						Player->SetVelocityX(VelocityX);
+					}
 				}
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Walk);
@@ -51,7 +57,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 			});
 		NewFunc.AddUpEvent([this]()
 			{
-				if (Player->GetBoolValue().IsMoveAbleValue) {
+				if (Player->GetBoolValue().IsGroundValue) {
 					Player->SetVelocityX(0.0f);
 				}
 			});
@@ -66,7 +72,7 @@ UPlayerFuncManager::UPlayerFuncManager()
 				PlayerLogicValue& LogicValue = Player->GetBoolValue();
 				if (!(LogicValue.IsUsingSkillValue) && LogicValue.IsGroundValue) {
 					Player->ChangeAnimation(PAnimation_State::Prone);
-					
+
 					LogicValue.IsMoveAbleValue = false;
 					LogicValue.IsProneValue = true;
 				}
