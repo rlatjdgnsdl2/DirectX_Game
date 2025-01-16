@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "Monster.h"
 
 //	Ό³Έν:
-class ADunkel_Boss :public AActor
+class ADunkel_Boss :public AMonster
 {
 public:
 	ADunkel_Boss();
@@ -19,13 +19,6 @@ protected:
 
 private:
 	float CurTime = 0.0f;
-
-	UFSMStateManager AnimaionFSM;
-	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
-	std::shared_ptr<class UCollision> Collision;
-
-
-	std::map<std::string, std::shared_ptr<class UCollision>> AttackCollisionMap;
 
 
 };

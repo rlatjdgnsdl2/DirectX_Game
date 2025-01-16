@@ -9,3 +9,8 @@ AGameMode::~AGameMode()
 {
 }
 
+void AGameMode::Tick(float _DeltaTime)
+{
+	AActor::Tick(_DeltaTime);
+}
+

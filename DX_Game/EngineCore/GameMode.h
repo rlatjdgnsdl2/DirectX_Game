@@ -15,6 +15,8 @@ public:
 	AGameMode& operator=(const AGameMode& _Other) = delete;
 	AGameMode& operator=(AGameMode&& _Other) noexcept = delete;
 
+	ENGINEAPI virtual void Tick(float _DeltaTime) override;
+
 protected:
 
 private:

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ContentsEditorGUI.cpp" />
     <ClCompile Include="Dunkel_Boss.cpp">
       <SubType>
       </SubType>
@@ -28,6 +29,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Dunkel_Map.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FallenWarrior.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -88,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsConst.h" />
+    <ClInclude Include="ContentsEditorGUI.h" />
     <ClInclude Include="Dunkel_Boss.h">
       <SubType>
       </SubType>
@@ -97,6 +103,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Dunkel_Map.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FallenWarrior.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -42,6 +42,7 @@ public:
 		}
 
 		size_t Size = sizeof(ComponentType);
+
 		char* ComMemory = new char[sizeof(ComponentType)];
 
 		UActorComponent* ComPtr = reinterpret_cast<ComponentType*>(ComMemory);
@@ -51,6 +52,8 @@ public:
 		// 레벨먼저 세팅하고
 		// 플레이스먼트 new 
 		std::shared_ptr<ComponentType> NewCom(new(ComMemory) ComponentType());
+
+		AllComponentList.push_back(NewCom);
 
 		// 내가 그냥 ActorComponent
 		// 내가 그냥 SceneComponent
@@ -199,5 +202,6 @@ private:
 	ULevel* World;
 
 	std::list<std::shared_ptr<class UActorComponent>> ActorComponentList;
+	std::list<std::shared_ptr<class UActorComponent>> AllComponentList;
 };
 

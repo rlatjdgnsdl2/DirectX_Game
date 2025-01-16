@@ -6,7 +6,9 @@
 #include "Player.h"
 
 #include "Dunkel_GameMode.h"
-
+#include <EngineCore/EngineGUI.h>
+#include <EngineCore/EngineGUIWindow.h>
+#include "ContentsEditorGUI.h"
 
 
 
@@ -33,6 +35,11 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ADunkel_GameMode, APlayer, AHUD>("Dunkel");
 	//UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
 	UEngineCore::OpenLevel("Dunkel");
+
+	UEngineGUI::AllWindowOff();
+	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	Window->SetActive(true);
 }
 
 void UContentsCore::EngineTick(float _DeltaTime)

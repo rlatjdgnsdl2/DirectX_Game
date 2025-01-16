@@ -58,6 +58,12 @@
     <ClCompile Include="Dunkel_Boss.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
+    <ClCompile Include="FallenWarrior.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsEditorGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -114,6 +120,12 @@
     <ClInclude Include="Dunkel_Boss.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
+    <ClInclude Include="FallenWarrior.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEditorGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -151,6 +163,9 @@
     </Filter>
     <Filter Include="MoonBridge">
       <UniqueIdentifier>{731a6a7c-9133-4947-a27f-804adb3eb8ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{ec5d66ec-e947-4487-8467-a28b0e662e73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
