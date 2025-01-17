@@ -92,7 +92,6 @@ void APlayer::Tick(float _DeltaTime)
 
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
-	MoveCamera(_DeltaTime);
 }
 
 
@@ -121,10 +120,7 @@ void APlayer::MoveUpdate(float _DeltaTime)
 	AddActorLocation(Velocity * _DeltaTime);
 }
 
-void APlayer::MoveCamera(float _DeltaTime)
-{
-	MainCamera->SetActorLocation(GetActorLocation());
-}
+
 
 
 

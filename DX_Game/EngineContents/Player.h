@@ -111,7 +111,7 @@ public:
 	void Gravity(float _DeltaTime);
 
 	void MoveUpdate(float _DeltaTime);
-	void MoveCamera(float _DeltaTime);
+
 
 
 
