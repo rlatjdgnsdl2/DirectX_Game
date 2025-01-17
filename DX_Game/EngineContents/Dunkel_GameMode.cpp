@@ -32,6 +32,8 @@ ADunkel_GameMode::ADunkel_GameMode()
 			return;
 		}
 		Dir.Append("Image\\Boss\\Boss_Dunkel");
+
+		// Map
 		Dir.Append("DunkelMapBackGround");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
@@ -44,7 +46,49 @@ ADunkel_GameMode::ADunkel_GameMode()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
-		Dir.Append("Dunkel\\Dunkel_KnockBack");
+		Dir.Append("PillarLight");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+
+		// Dunkel
+		Dir.Append("Dunkel\\Dunkel_Die");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Down");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Force");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_KnockBack");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Meteo");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Meteo_Effect_End");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Meteo_Effect_Start");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Meteo_Effect_Update");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Slash_End");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Slash_Start");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
@@ -56,8 +100,21 @@ ADunkel_GameMode::ADunkel_GameMode()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
-	}
+		Dir.Append("Dunkel_SwordPower");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
 
+		Dir.Append("Dunkel_SwordPower_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Dunkel_Up");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+	}
+	
+	//	FallenWarrior
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("Resources"))
@@ -96,8 +153,6 @@ ADunkel_GameMode::ADunkel_GameMode()
 	GetWorld()->CreateCollisionProfile("BossAttack");
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
-
-
 
 	Map = GetWorld()->SpawnActor<ADunkel_Map>();
 	Dunkel = GetWorld()->SpawnActor<ADunkel_Boss>();

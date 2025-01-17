@@ -2,7 +2,7 @@
 
 enum class Z_ORDER
 {
-	Skill_Front=100,
+	Skill_Front = 100,
 	Player,
 	Skill_Back,
 	Monster,
@@ -11,9 +11,9 @@ enum class Z_ORDER
 	FootHold,
 	SkillCover,
 	MapObject_Near,
-	MapObject_Middle ,
-	MapObject_Far ,
-	BackGround ,
+	MapObject_Middle,
+	MapObject_Far,
+	BackGround,
 };
 
 
@@ -38,14 +38,18 @@ enum class PAnimation_State {
 
 enum class DunkelAnim_State {
 	None,
+	Die,
+	Down,
+	Force,
+	Knockback,
+	Meteo,
+	Slash_End,
+	Slash_Start,
 	Spawn,
 	Stand,
-	Knockback,
-
+	Sword,
+	Up
 };
-
-
-
 
 
 enum class Skill_Name {
