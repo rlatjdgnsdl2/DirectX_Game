@@ -166,6 +166,21 @@ ADunkel_Boss::ADunkel_Boss()
 			Collision->SetActive(true);
 			Collision->SetRelativeLocation(FVector(50.0f, 300.0f));
 		});
+
+	AnimaionFSM.CreateState(DunkelAnim_State::Sword, [this](float _DeltaTime)
+		{
+			if (SpriteRenderer->IsCurAnimationEnd())
+			{
+				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+				return;
+			}
+		},
+		[this]()
+		{
+			SpriteRenderer->ChangeAnimation("Sword", true);
+			SpriteRenderer->SetRelativeLocation(FVector(120.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
+			Collision->SetActive(false);
+		});
 	AnimaionFSM.CreateState(DunkelAnim_State::Up, [this](float _DeltaTime)
 		{
 			if (SpriteRenderer->IsCurAnimationEnd())
