@@ -1,5 +1,6 @@
 #pragma once
 #include <filesystem>
+#include "EngineDefine.h"
 
 // Ό³Έν :
 class UEnginePath

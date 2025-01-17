@@ -9,6 +9,9 @@
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="EngineWinImage.cpp" />
+    <ClCompile Include="EngineWindowsTimer.cpp" />
+    <ClCompile Include="EngineWorkThreadPool.cpp" />
+    <ClCompile Include="EngineThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineWindow.h" />
@@ -19,6 +22,9 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="EngineWinImage.h" />
+    <ClInclude Include="EngineWindowsTimer.h" />
+    <ClInclude Include="EngineWorkThreadPool.h" />
+    <ClInclude Include="EngineThread.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pch">

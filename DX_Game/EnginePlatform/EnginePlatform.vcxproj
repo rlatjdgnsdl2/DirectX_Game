@@ -20,8 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineInput.cpp" />
+    <ClCompile Include="EngineThread.cpp" />
     <ClCompile Include="EngineWindow.cpp" />
+    <ClCompile Include="EngineWindowsTimer.cpp" />
     <ClCompile Include="EngineWinImage.cpp" />
+    <ClCompile Include="EngineWorkThreadPool.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -31,8 +34,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineInput.h" />
+    <ClInclude Include="EngineThread.h" />
     <ClInclude Include="EngineWindow.h" />
+    <ClInclude Include="EngineWindowsTimer.h" />
     <ClInclude Include="EngineWinImage.h" />
+    <ClInclude Include="EngineWorkThreadPool.h" />
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

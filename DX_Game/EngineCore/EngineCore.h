@@ -1,8 +1,9 @@
 #pragma once
 #include <EngineBase/EngineDefine.h>
-#include <EngineBase/EngineTimer.h>
+#include <EnginePlatform/EngineWindowsTimer.h>
 #include <EngineBase/EngineString.h>
 #include <EnginePlatform/EngineWindow.h>
+#include <EnginePlatform/EngineWorkThreadPool.h>
 #include "EngineGraphicDevice.h"
 #include "IContentsCore.h"
 #include "Level.h"
@@ -40,9 +41,20 @@ public:
 
 	ENGINEAPI static std::map<std::string, std::shared_ptr<class ULevel>> GetAllLevelMap();
 
+	ENGINEAPI static class UGameInstance* GetGameInstance();
+	ENGINEAPI static class UEngineWorkThreadPool& GetThreadPool();
+
+	template<typename Type>
+	static void CreateGameInstance()
+	{
+		SetGameInstance(std::make_shared<Type>());
+	}
+
 protected:
 
 private:
+	UEngineWorkThreadPool ThreadPool;
+	std::shared_ptr<class UGameInstance> GameInstance;
 
 	UEngineWindow MainWindow;
 
@@ -52,7 +64,7 @@ private:
 	std::shared_ptr<IContentsCore> Core;
 	UEngineInitData Data;
 
-	UEngineTimer Timer;
+	UEngineWindowsTimer Timer;
 
 	static void WindowInit(HINSTANCE _Instance);
 	static void LoadContents(std::string_view _DllName);
@@ -65,7 +77,7 @@ private:
 	std::map<std::string, std::shared_ptr<class ULevel>> LevelMap;
 	std::shared_ptr<class ULevel> CurLevel;
 	std::shared_ptr<class ULevel> NextLevel;
-
+	ENGINEAPI static void SetGameInstance(std::shared_ptr<UGameInstance> _Inst);
 	ENGINEAPI UEngineCore();
 	ENGINEAPI virtual ~UEngineCore();
 };

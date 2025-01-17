@@ -1,5 +1,8 @@
 #pragma once
+
+#include <EngineCore/EngineCore.h>
 #include "SceneComponent.h"
+
 
 // 기하구조를 이야기해 봅시다.
 // 설명 :
@@ -70,6 +73,14 @@ public:
 
 		return NewCom;
 	}
+
+	template<typename Type>
+	Type* GetGameInstance()
+	{
+		return dynamic_cast<Type*>(GetGameInstance());
+	}
+
+	ENGINEAPI class UGameInstance* GetGameInstance();
 
 	ULevel* GetWorld()
 	{

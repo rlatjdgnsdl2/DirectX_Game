@@ -22,9 +22,6 @@
     <ClCompile Include="EngineString.cpp">
       <Filter>IO</Filter>
     </ClCompile>
-    <ClCompile Include="EngineTimer.cpp">
-      <Filter>Time</Filter>
-    </ClCompile>
     <ClCompile Include="EngineDelegate.cpp">
       <Filter>Delegate</Filter>
     </ClCompile>
@@ -36,6 +33,9 @@
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="FSMStateManager.cpp" />
+    <ClCompile Include="EngineChronoTimer.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineDirectory.h">
@@ -62,9 +62,6 @@
     <ClInclude Include="EngineString.h">
       <Filter>IO</Filter>
     </ClInclude>
-    <ClInclude Include="EngineTimer.h">
-      <Filter>Time</Filter>
-    </ClInclude>
     <ClInclude Include="EngineDelegate.h">
       <Filter>Delegate</Filter>
     </ClInclude>
@@ -76,6 +73,9 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="FSMStateManager.h" />
+    <ClInclude Include="EngineChronoTimer.h">
+      <Filter>Time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="IO">

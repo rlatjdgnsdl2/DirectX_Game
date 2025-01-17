@@ -8,6 +8,7 @@
 #include "EngineConstantBuffer.h"
 #include "EngineGUI.h"
 #include "Level.h"
+#include "GameInstance.h"
 
 
 UEngineGraphicDevice& UEngineCore::GetDevice()
@@ -30,6 +31,11 @@ UEngineCore* GEngine = nullptr;
 FVector UEngineCore::GetScreenScale()
 {
 	return GEngine->Data.WindowSize;
+}
+
+UGameInstance* UEngineCore::GetGameInstance()
+{
+	return GEngine->GameInstance.get();
 }
 
 UEngineCore::UEngineCore()
@@ -96,6 +102,8 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 	UEngineCore EngineCore;
 
 	GEngine = &EngineCore;
+
+	GEngine->ThreadPool.Initialize();
 
 	WindowInit(_Instance);
 
@@ -231,4 +239,14 @@ void UEngineCore::EngineEnd()
 	GEngine->LevelMap.clear();
 
 
+}
+UEngineWorkThreadPool& UEngineCore::GetThreadPool()
+{
+	return GEngine->ThreadPool;
+}
+
+
+void UEngineCore::SetGameInstance(std::shared_ptr<UGameInstance> _Inst)
+{
+	GEngine->GameInstance = _Inst;
 }

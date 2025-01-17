@@ -109,6 +109,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FontWidget.h" />
+    <ClInclude Include="GameInstance.h" />
     <ClInclude Include="GameMode.h">
       <SubType>
       </SubType>
@@ -252,6 +253,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FontWidget.cpp" />
+    <ClCompile Include="GameInstance.cpp" />
     <ClCompile Include="GameMode.cpp">
       <SubType>
       </SubType>

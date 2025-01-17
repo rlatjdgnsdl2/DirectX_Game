@@ -161,6 +161,7 @@
     <ClInclude Include="EngineFont.h" />
     <ClInclude Include="FontWidget.h" />
     <ClInclude Include="ImageWidget.h" />
+    <ClInclude Include="GameInstance.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -306,6 +307,7 @@
     <ClCompile Include="EngineFont.cpp" />
     <ClCompile Include="FontWidget.cpp" />
     <ClCompile Include="ImageWidget.cpp" />
+    <ClCompile Include="GameInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
