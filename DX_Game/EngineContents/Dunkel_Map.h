@@ -12,6 +12,11 @@ public:
 	ADunkel_Map& operator=(const ADunkel_Map& _Other) = delete;
 	ADunkel_Map& operator=(ADunkel_Map&& _Other) noexcept = delete;
 
+	class USpriteRenderer* GetBackRenderer()
+	{
+		return BackRenderer.get();
+	}
+
 
 
 protected:

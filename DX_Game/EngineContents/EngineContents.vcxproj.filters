@@ -64,6 +64,9 @@
     <ClCompile Include="ContentsEditorGUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerStat.cpp">
+      <Filter>Character\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -125,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStat.h">
+      <Filter>Character\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
