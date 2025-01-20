@@ -12,7 +12,6 @@ public:
 	ASkill_SwiftPhantom& operator=(const ASkill_SwiftPhantom& _Other) = delete;
 	ASkill_SwiftPhantom& operator=(ASkill_SwiftPhantom&& _Other) noexcept = delete;
 
-	virtual void BeginPlay() override;
 	virtual void SetActiveTrue() override;
 	
 
@@ -27,9 +26,5 @@ private:
 	void UpdateDoubleJump(float _DeltaTime);
 	void StartTripleJump();
 	void UpdateTripleJump(float _DeltaTime);
-
-	
-	
-
 };
 

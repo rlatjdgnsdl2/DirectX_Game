@@ -19,19 +19,14 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		SpriteRenderer->CreateAnimation("SwiftPhantom_Effect_Back", "SwiftPhantom_Effect_Back", 0, 3, 0.1f, false);
 		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer.get()));
 	}
+	FrameState.CreateState(Skill_Frame::Start, std::bind(&ASkill_SwiftPhantom::UpdateJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartJump, this));
+	FrameState.CreateState(Skill_Frame::Update, std::bind(&ASkill_SwiftPhantom::UpdateDoubleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartDoubleJump, this));
+	FrameState.CreateState(Skill_Frame::End, std::bind(&ASkill_SwiftPhantom::UpdateTripleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartTripleJump, this));
 }
 
 ASkill_SwiftPhantom::~ASkill_SwiftPhantom()
 {
 
-}
-
-void ASkill_SwiftPhantom::BeginPlay()
-{
-	ASkill::BeginPlay();
-	FrameState.CreateState(Skill_Frame::Start, std::bind(&ASkill_SwiftPhantom::UpdateJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartJump, this));
-	FrameState.CreateState(Skill_Frame::Update, std::bind(&ASkill_SwiftPhantom::UpdateDoubleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartDoubleJump, this));
-	FrameState.CreateState(Skill_Frame::End, std::bind(&ASkill_SwiftPhantom::UpdateTripleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartTripleJump, this));
 }
 
 
@@ -46,36 +41,33 @@ void ASkill_SwiftPhantom::StartJump()
 {
 	SpriteRenderers["Front"]->SetActive(false);
 	SpriteRenderers["Back"]->SetActive(false);
-	FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-	if (UEngineInput::IsPress(VK_DOWN)) {
-		if (true == LogicValue.bIsDownableFloor) {
-			LogicValue.StartJump();
-			LogicValue.StartFalling();
+	Player->ChangeAnimation("Jump");
+	if (UEngineInput::IsPress(VK_DOWN)||UEngineInput::IsDown(VK_DOWN)) {
+		if (true == PlayerLogic->bIsDownableFloor) {
+			PlayerLogic->StartJump();
+			PlayerLogic->StartFalling();
 			Player->GetPlayerLogic().SetVelocityY(-200.0f);
-			Player->ChangeAnimation("Jump");
 		}
 	}
 	else {
-		LogicValue.StartJump();
+		PlayerLogic->StartJump();
 		Player->GetPlayerLogic().SetVelocityY(660.0f);
-
 	}
 }
 
 void ASkill_SwiftPhantom::UpdateJump(float _DeltaTime)
 {
-	FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-	if (LogicValue.bIsGround)
+	if (PlayerLogic->bIsGround)
 	{
-		LogicValue.SetGroundTrue();
+		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
 		return;
 	}
 
 	if (UEngineInput::IsDown(Key))
 	{
-		LogicValue.PlusJumpCount();
-		LogicValue.bIsMoveAble = false;
+		PlayerLogic->PlusJumpCount();
+		PlayerLogic->bIsMoveAble = false;
 		ChangeState(Skill_Frame::Update);
 		return;
 	}
@@ -109,16 +101,15 @@ void ASkill_SwiftPhantom::StartDoubleJump()
 
 void ASkill_SwiftPhantom::UpdateDoubleJump(float _DeltaTime)
 {
-	FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-	if (LogicValue.bIsGround)
+	if (PlayerLogic->bIsGround)
 	{
-		LogicValue.SetGroundTrue();
+		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
 		return;
 	}
 	if (UEngineInput::IsDown(Key))
 	{
-		LogicValue.PlusJumpCount();
+		PlayerLogic->PlusJumpCount();
 		ChangeState(Skill_Frame::End);
 		return;
 
@@ -148,10 +139,9 @@ void ASkill_SwiftPhantom::StartTripleJump()
 
 void ASkill_SwiftPhantom::UpdateTripleJump(float _DeltaTime)
 {
-	FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-	if (LogicValue.bIsGround)
+	if (PlayerLogic->bIsGround)
 	{
-		LogicValue.SetGroundTrue();
+		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
 	}
 	if (SpriteRenderers["Front"]->IsCurAnimationEnd())

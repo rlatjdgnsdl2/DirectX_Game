@@ -16,6 +16,7 @@ public:
 
 protected:
 	class APlayer* Player;
+	FPlayerLogic* PlayerLogic;
 private:
 };
 
