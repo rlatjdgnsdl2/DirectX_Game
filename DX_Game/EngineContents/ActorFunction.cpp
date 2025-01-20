@@ -4,7 +4,7 @@
 
 AActorFunction::AActorFunction() 
 {
-
+	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 }
 
 AActorFunction::~AActorFunction() 

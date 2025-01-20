@@ -9,17 +9,27 @@
 
 UPlayerFuncManager::UPlayerFuncManager()
 {
-	std::shared_ptr<AActor> SharedPlayer(GetWorld()->GetMainPawn());
-	Player = std::static_pointer_cast<APlayer>(SharedPlayer);
+	
+}
+
+
+UPlayerFuncManager::~UPlayerFuncManager()
+{
+
+}
+
+void UPlayerFuncManager::BeginPlay()
+{
+	UActorComponent::BeginPlay();
+	Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
 
 	{
 		UEngineDelegate NewFunc;
 		NewFunc += ([this]()
 			{
-				APlayer* Player = this->Player.lock().get();
 				ASkill* Skill = Player->GetPlayerJob()->GetSkill("SwiftPhantom");
 				if (nullptr != Skill) {
-					if (Skill->IsActive()) {
+					if (false == Skill->IsActive()) {
 						Skill->SetActiveTrue();
 					}
 				}
@@ -32,10 +42,9 @@ UPlayerFuncManager::UPlayerFuncManager()
 		UEngineDelegate NewFunc;
 		NewFunc += ([this]()
 			{
-				APlayer* Player = this->Player.lock().get();
 				ASkill* Skill = Player->GetPlayerJob()->GetSkill("UltimateDrive");
 				if (nullptr != Skill) {
-					if (Skill->IsActive()) {
+					if (false==Skill->IsActive()) {
 						Skill->SetActiveTrue();
 					}
 				}
@@ -43,10 +52,4 @@ UPlayerFuncManager::UPlayerFuncManager()
 		SetFunc("UltimateDrive", NewFunc);
 		SetFuncName('Z', "UltimateDrive");
 	}
-}
-
-
-UPlayerFuncManager::~UPlayerFuncManager()
-{
-
 }

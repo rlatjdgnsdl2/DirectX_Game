@@ -70,7 +70,7 @@
     <ClCompile Include="Dunkel_ResRoad.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
-    <ClCompile Include="Phantom.cpp">
+    <ClCompile Include="Job_Phantom.cpp">
       <Filter>Job\Phantom</Filter>
     </ClCompile>
     <ClCompile Include="Job.cpp">
@@ -79,20 +79,20 @@
     <ClCompile Include="ActorFunction.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
-    <ClCompile Include="LeftKey.cpp">
-      <Filter>Character\Player\ActorFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="RightKey.cpp">
-      <Filter>Character\Player\ActorFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="UpKey.cpp">
+    <ClCompile Include="PlayerFunction.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
     <ClCompile Include="DownKey.cpp">
-      <Filter>Character\Player\ActorFunction</Filter>
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFunction.cpp">
-      <Filter>Character\Player\ActorFunction</Filter>
+    <ClCompile Include="LeftKey.cpp">
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="RightKey.cpp">
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="UpKey.cpp">
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +159,7 @@
     <ClInclude Include="Dunkel_GUI.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
-    <ClInclude Include="Phantom.h">
+    <ClInclude Include="Job_Phantom.h">
       <Filter>Job\Phantom</Filter>
     </ClInclude>
     <ClInclude Include="Job.h">
@@ -171,20 +171,20 @@
     <ClInclude Include="ActorFunction.h">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
-    <ClInclude Include="LeftKey.h">
-      <Filter>Character\Player\ActorFunction</Filter>
-    </ClInclude>
-    <ClInclude Include="RightKey.h">
-      <Filter>Character\Player\ActorFunction</Filter>
-    </ClInclude>
-    <ClInclude Include="UpKey.h">
+    <ClInclude Include="PlayerFunction.h">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
     <ClInclude Include="DownKey.h">
-      <Filter>Character\Player\ActorFunction</Filter>
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerFunction.h">
-      <Filter>Character\Player\ActorFunction</Filter>
+    <ClInclude Include="LeftKey.h">
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="RightKey.h">
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="UpKey.h">
+      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +235,9 @@
     </Filter>
     <Filter Include="Character\Player\ActorFunction\Skill">
       <UniqueIdentifier>{9ba949de-09f2-4144-9c2a-50e050317e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player\ActorFunction\DirFunction">
+      <UniqueIdentifier>{45e81a9d-bd5d-4571-ba5b-85217de460db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

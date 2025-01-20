@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "Player.h"
-#include <EnginePlatform/EngineInput.h>
+
+
 #include "PlayerFuncManager.h"
+#include "Job_Phantom.h"
 #include "LeftKey.h"
 #include "RightKey.h"
 #include "DownKey.h"
@@ -13,6 +15,7 @@ APlayer::APlayer()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 
+	//Sprite
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
 	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2, 1.0f / 3);
@@ -22,16 +25,26 @@ APlayer::APlayer()
 	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
 	SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::Player));
 
-
+	//Collision
 	Collision = CreateDefaultSubObject<UCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Player");
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
 
+	Job = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();
-	
-	
+}
+
+APlayer::~APlayer()
+{
+
+}
+
+void APlayer::BeginPlay()
+{
+	AActor::BeginPlay();	
+	//Dir
 	{
 		std::shared_ptr<APlayerFunction> PlayerFunc = GetWorld()->SpawnActor<ALeftKey>();
 		PlayerFunc->SetOwner(this);
@@ -52,19 +65,7 @@ APlayer::APlayer()
 		PlayerFunc->SetOwner(this);
 		DirFunctionMap.insert(std::make_pair("VK_UP", PlayerFunc.get()));
 	}
-
-
-
-}
-
-APlayer::~APlayer()
-{
-
-}
-
-void APlayer::BeginPlay()
-{
-	AActor::BeginPlay();	
+	
 }
 
 void APlayer::Tick(float _DeltaTime)

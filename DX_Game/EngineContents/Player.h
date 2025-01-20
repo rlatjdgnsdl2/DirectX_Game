@@ -1,6 +1,5 @@
 #pragma once
 #include <EngineCore/Pawn.h>
-#include "Job.h"
 
 //	설명:
 class APlayer : public APawn
@@ -36,7 +35,7 @@ public:
 		return SpriteRenderer;
 	}
 
-	class UJobComponent* GetPlayerJob()
+	class UJob* GetPlayerJob()
 	{
 		return Job;
 	}
@@ -53,7 +52,8 @@ private:
 	FPlayerLogic PlayerLogic;
 	class USpriteRenderer* SpriteRenderer;
 	class UCollision* Collision;
-	class UJobComponent* Job;
+	class UJob* Job;
+
 	//	방향키
 	std::map<std::string, class APlayerFunction*> DirFunctionMap;
 	//  방향키 제외키

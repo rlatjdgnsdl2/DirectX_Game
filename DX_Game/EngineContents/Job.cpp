@@ -3,12 +3,12 @@
 
 
 
-UJobComponent::UJobComponent() 
+UJob::UJob() 
 {
 	
 }
 
-UJobComponent::~UJobComponent() 
+UJob::~UJob() 
 {
 	SkillMap.clear();
 }

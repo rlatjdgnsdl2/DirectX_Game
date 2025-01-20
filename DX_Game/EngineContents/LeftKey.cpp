@@ -18,7 +18,7 @@ void ALeftKey::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 
-	if (UEngineInput::IsUp) {
+	if (UEngineInput::IsFree(VK_LEFT)) {
 		SetActiveFalse();
 	}
 }
@@ -26,7 +26,6 @@ void ALeftKey::Tick(float _DeltaTime)
 void ALeftKey::SetActiveTrue()
 {
 	AActorFunction::SetActiveTrue();
-	
 	Player->GetPlayerLogic().SetVelocityX(-100.0f);
 }
 

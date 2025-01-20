@@ -16,7 +16,7 @@ APlayerFunction::~APlayerFunction()
 void APlayerFunction::SetOwner(AActor* _Owner)
 {
 	AActorFunction::SetOwner(_Owner);
-	Player = static_cast<APlayer*>(Owner);
+	Player = dynamic_cast<APlayer*>(Owner);
 }
 
 

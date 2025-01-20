@@ -14,6 +14,8 @@ public:
 	UPlayerFuncManager& operator=(const UPlayerFuncManager& _Other) = delete;
 	UPlayerFuncManager& operator=(UPlayerFuncManager&& _Other) noexcept = delete;
 
+	virtual void BeginPlay() override;
+
 	void SetFuncName(int _Key, std::string _FuncName)
 	{
 		std::string UpperName = UEngineString::ToUpper(_FuncName);
@@ -94,7 +96,7 @@ public:
 protected:
 
 private:
-	std::weak_ptr<class APlayer> Player;
+	class APlayer* Player;
 	std::map<int, std::string> FuncNameMap;
 	std::map<std::string, UEngineDelegate> FuncMap;
 

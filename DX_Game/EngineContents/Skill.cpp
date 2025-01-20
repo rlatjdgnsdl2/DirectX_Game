@@ -4,7 +4,7 @@
 
 ASkill::ASkill() 
 {
-	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
+	
 }
 
 ASkill::~ASkill() 
@@ -14,12 +14,12 @@ ASkill::~ASkill()
 
 void ASkill::BeginPlay()
 {
-	AActor::BeginPlay();
+	APlayerFunction::BeginPlay();
 	
 }
 
 void ASkill::Tick(float _DeltaTime)
 {
-	AActor::Tick(_DeltaTime);
+	APlayerFunction::Tick(_DeltaTime);
 	Update(_DeltaTime);
 }

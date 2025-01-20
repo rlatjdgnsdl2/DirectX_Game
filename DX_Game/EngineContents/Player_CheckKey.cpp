@@ -6,29 +6,39 @@
 
 void APlayer::CheckKey(float _DeltaTime)
 {
-	if (UEngineInput::IsAllFree()) 
+	if (UEngineInput::IsAllFree())
 	{
-		if (true == PlayerLogic.bIsGround) 
+		if (true == PlayerLogic.bIsGround)
 		{
 			ChangeAnimation("Stand");
 		}
-		else if (true == PlayerLogic.bIsJumping || true == PlayerLogic.bIsFalling) 
+		else if (true == PlayerLogic.bIsJumping || true == PlayerLogic.bIsFalling)
 		{
 			ChangeAnimation("Jump");
 		}
 	}
 
 	if (UEngineInput::IsDown(VK_LEFT)) {
-		DirFunctionMap["VK_LEFT"]->SetActiveTrue();
+		if (false ==DirFunctionMap["VK_LEFT"]->IsActive() ) {
+			DirFunctionMap["VK_LEFT"]->SetActiveTrue();
+		}
+
 	}
 	if (UEngineInput::IsDown(VK_RIGHT)) {
-		DirFunctionMap["VK_RIGHT"]->SetActiveTrue();
+		if (false == DirFunctionMap["VK_RIGHT"]->IsActive()) {
+			DirFunctionMap["VK_RIGHT"]->SetActiveTrue();
+		}
+		
 	}
 	if (UEngineInput::IsDown(VK_DOWN)) {
-		DirFunctionMap["VK_DOWN"]->SetActiveTrue();
+		if (false == DirFunctionMap["VK_DOWN"]->IsActive()) {
+			DirFunctionMap["VK_DOWN"]->SetActiveTrue();
+		}
 	}
 	if (UEngineInput::IsDown(VK_UP)) {
-		DirFunctionMap["VK_UP"]->SetActiveTrue();
+		if (false == DirFunctionMap["VK_UP"]->IsActive()) {
+			DirFunctionMap["VK_UP"]->SetActiveTrue();
+		}
 	}
 
 

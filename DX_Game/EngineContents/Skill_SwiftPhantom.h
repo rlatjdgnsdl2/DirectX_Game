@@ -13,12 +13,20 @@ public:
 	ASkill_SwiftPhantom& operator=(ASkill_SwiftPhantom&& _Other) noexcept = delete;
 
 	virtual void BeginPlay() override;
-	virtual void Tick(float _DeltaTime) override;
 	virtual void SetActiveTrue() override;
 	
+
+
+
 protected:
 
 private:
+	void StartJump();
+	void UpdateJump(float _DeltaTime);
+	void StartDoubleJump();
+	void UpdateDoubleJump(float _DeltaTime);
+	void StartTripleJump();
+	void UpdateTripleJump(float _DeltaTime);
 
 	
 	

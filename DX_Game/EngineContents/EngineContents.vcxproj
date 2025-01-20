@@ -71,7 +71,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Phantom.cpp">
+    <ClCompile Include="Job_Phantom.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -182,7 +182,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Phantom.h">
+    <ClInclude Include="Job_Phantom.h">
       <SubType>
       </SubType>
     </ClInclude>

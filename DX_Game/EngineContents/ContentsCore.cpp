@@ -31,7 +31,7 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	
 	LoadResources();
 
-	UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
+	//UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
 	UEngineCore::CreateLevel<ADunkel_GameMode, APlayer, AHUD>("Dunkel");
 	//UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
 	UEngineCore::OpenLevel("Dunkel");
