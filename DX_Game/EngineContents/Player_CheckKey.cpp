@@ -10,31 +10,33 @@ void APlayer::CheckKey(float _DeltaTime)
 	{
 		if (true == PlayerLogic.bIsGround) 
 		{
-			ChangeAnimation(PAnimation_State::Stand);
+			ChangeAnimation("Stand");
 		}
 		else if (true == PlayerLogic.bIsJumping || true == PlayerLogic.bIsFalling) 
 		{
-			ChangeAnimation(PAnimation_State::Jump);
+			ChangeAnimation("Jump");
 		}
 	}
 
 	if (UEngineInput::IsDown(VK_LEFT)) {
-		DirFunctionMap["VK_LEFT"].lock()->SetActiveTrue();
+		DirFunctionMap["VK_LEFT"]->SetActiveTrue();
 	}
 	if (UEngineInput::IsDown(VK_RIGHT)) {
-		DirFunctionMap["VK_RIGHT"].lock()->SetActiveTrue();
+		DirFunctionMap["VK_RIGHT"]->SetActiveTrue();
 	}
 	if (UEngineInput::IsDown(VK_DOWN)) {
-		DirFunctionMap["VK_DOWN"].lock()->SetActiveTrue();
+		DirFunctionMap["VK_DOWN"]->SetActiveTrue();
 	}
 	if (UEngineInput::IsDown(VK_UP)) {
-		DirFunctionMap["VK_UP"].lock()->SetActiveTrue();
+		DirFunctionMap["VK_UP"]->SetActiveTrue();
 	}
+
+
 	if (UEngineInput::IsDown('C')) {
-		PlayerFuncManager.lock()->GetFunc(PlayerFuncManager.lock()->GetFuncName('C'))();
+		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C'))();
 	}
 	if (UEngineInput::IsDown('Z')) {
-		PlayerFuncManager.lock()->GetFunc(PlayerFuncManager.lock()->GetFuncName('Z'))();
+		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('Z'))();
 	}
 
 }

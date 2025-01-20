@@ -2,7 +2,7 @@
 #include "Job.h"
 
 //	Ό³Έν:
-class APhantom : public AJob
+class APhantom : public UJobComponent
 {
 public:
 	APhantom();

@@ -3,37 +3,37 @@
 
 
 //	Ό³Έν:
-class AJob : public UActorComponent
+class UJobComponent : public UActorComponent
 {
 public:
-	AJob();
-	virtual ~AJob();
-	AJob(const AJob& _Other) = delete;
-	AJob(AJob&& _Other) noexcept = delete;
-	AJob& operator=(const AJob& _Other) = delete;
-	AJob& operator=(AJob&& _Other) noexcept = delete;
+	UJobComponent();
+	virtual ~UJobComponent();
+	UJobComponent(const UJobComponent& _Other) = delete;
+	UJobComponent(UJobComponent&& _Other) noexcept = delete;
+	UJobComponent& operator=(const UJobComponent& _Other) = delete;
+	UJobComponent& operator=(UJobComponent&& _Other) noexcept = delete;
 
 	void InsertSkill(std::string_view _SkillName, std::shared_ptr<class ASkill> _Skill)
 	{
 		std::string UpperName = UEngineString::ToUpper(_SkillName);
 		if (!SkillMap.contains(UpperName))
 		{
-			SkillMap.insert(std::make_pair(UpperName, _Skill));
+			SkillMap.insert(std::make_pair(UpperName, _Skill.get()));
 		}
 	}
 
-	std::shared_ptr<class ASkill> GetSkill(std::string_view _SkillName)
+	class ASkill* GetSkill(std::string_view _SkillName)
 	{
 		std::string UpperName = UEngineString::ToUpper(_SkillName);
 		if (SkillMap.contains(UpperName))
 		{
-			return SkillMap[UpperName].lock();
+			return SkillMap[UpperName];
 		}
 		return nullptr;
 	}
 
 protected:
-	std::map<std::string, std::weak_ptr<class ASkill>> SkillMap;
+	std::map<std::string, class ASkill*> SkillMap;
 private:
 
 };

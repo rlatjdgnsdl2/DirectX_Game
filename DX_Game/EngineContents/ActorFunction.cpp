@@ -15,9 +15,8 @@ AActorFunction::~AActorFunction()
 void AActorFunction::BeginPlay()
 {
 	AActor::BeginPlay();
-	AActor* ActorPoint = Owner.lock().get();
-	if (ActorPoint == nullptr) {
+	if (Owner == nullptr) {
 		MSGASSERT("SetOwner해주세요");
 	}
-	AttachToActor(ActorPoint);
+	AttachToActor(Owner);
 }

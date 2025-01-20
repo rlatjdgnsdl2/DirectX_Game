@@ -16,100 +16,52 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-	void ChangeAnimation(PAnimation_State _State)
-	{
-		AnimaionFSM.ChangeState(_State);
-	}
-
-	std::weak_ptr<class UPlayerFuncManager> GetPlayerFuncManager()
-	{
-		return PlayerFuncManager;
-	}
-
-	FPlayerLogic& GetBoolValue()
+	FPlayerLogic& GetPlayerLogic()
 	{
 		return PlayerLogic;
 	}
 
-	void Gravity(float _DeltaTime);
-
-	void MoveUpdate(float _DeltaTime);
-
-
-	
-
-	void SetVelocityX(float _X)
+	class UPlayerFuncManager* GetPlayerFuncManager()
 	{
-		Velocity.X = _X;
-	}
-	void SetVelocityY(float _Y)
-	{
-		Velocity.Y = _Y;
+		return PlayerFuncManager;
 	}
 
-	void AddVelocityX(float _X)
-	{
-		Velocity.X += _X;
-	}
-	void AddVelocityY(float _Y)
-	{
-		Velocity.Y += _Y;
-	}
-
-	void ResetVelocity()
-	{
-		Velocity = FVector::ZERO;
-	}
-
-
-	std::weak_ptr<class UCollision> GetCollision()
+	class UCollision* GetCollision()
 	{
 		return Collision;
 	}
 
-	void SetGravityAccel(float _Accel)
+	class USpriteRenderer* GetSpriteRenderer()
 	{
-		GravityAccel = _Accel;
+		return SpriteRenderer;
 	}
 
-	void SetDownableFloor(bool _Value)
-	{
-		IsDownableFloor = _Value;
-	}
-
-	bool GetDownableFloor()
-	{
-		return IsDownableFloor;
-	}
-
-	std::weak_ptr <class AJob> GetPlayerJob()
+	class UJobComponent* GetPlayerJob()
 	{
 		return Job;
 	}
 
+	void ChangeAnimation(std::string_view _Name)
+	{
+		SpriteRenderer->ChangeAnimation(_Name);
+	}
 
 
 protected:
 
 private:
-	std::weak_ptr<class USpriteRenderer> SpriteRenderer;
-	std::weak_ptr<class UCollision> Collision;
-	std::weak_ptr<class AJob> Job;
-
-	//	방향키
-	std::map<std::string, std::weak_ptr<class APlayerFunction>> DirFunctionMap;
-	//  방향키 제외키
-	std::weak_ptr<class UPlayerFuncManager> PlayerFuncManager;
-
 	FPlayerLogic PlayerLogic;
+	class USpriteRenderer* SpriteRenderer;
+	class UCollision* Collision;
+	class UJobComponent* Job;
+	//	방향키
+	std::map<std::string, class APlayerFunction*> DirFunctionMap;
+	//  방향키 제외키
+	class UPlayerFuncManager* PlayerFuncManager;
 
-
-	FVector Velocity = FVector::ZERO;
-	bool IsDownableFloor = false;
-	float GravityAccel = 0.0f;
-
-		
 	void CheckKey(float _DeltaTime);
+	void Gravity(float _DeltaTime);
+	void MoveUpdate(float _DeltaTime);
 
 };
 

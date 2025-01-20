@@ -23,7 +23,7 @@ public:
 protected:
 
 private:
-	class APlayer* Player = nullptr;
+
 	
 
 };

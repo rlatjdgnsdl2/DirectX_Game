@@ -224,11 +224,12 @@ ADunkel_Boss::ADunkel_Boss()
 			{
 				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
 				float Dir = GetActorTransform().Scale.X;
-				Player->SetVelocityX(-Dir * 1000.0f);
-				Player->SetVelocityY(1000.0f);
-				Player->SetGravityAccel(0.0f);
-				Player->GetBoolValue().bIsJumpAble = false;
-				Player->SetDownableFloor(false);
+				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+				LogicValue.SetVelocityX(-Dir * 1000.0f);
+				LogicValue.SetVelocityY(1000.0f);
+				LogicValue.SetGravityAccel(0.0f);
+				LogicValue.bIsJumpAble = false;
+				LogicValue.SetDownableFloor(false);
 			});
 		AttackCollisionMap.insert(std::make_pair("Knockback", Collision));
 	}

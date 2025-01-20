@@ -13,10 +13,10 @@ APlayerFunction::~APlayerFunction()
 
 }
 
-void APlayerFunction::SetOwner(std::shared_ptr<class AActor> _Owner)
+void APlayerFunction::SetOwner(AActor* _Owner)
 {
 	AActorFunction::SetOwner(_Owner);
-	Player = std::static_pointer_cast<APlayer>(_Owner);
+	Player = static_cast<APlayer*>(Owner);
 }
 
 

@@ -1,3 +1,4 @@
+
 #pragma once
 #include <EngineBase/Object.h>
 
@@ -33,7 +34,7 @@ public:
 	ENGINEAPI virtual void BeginPlay() {}
 	ENGINEAPI virtual void ComponentTick(float _DeltaTime) {};
 
-	ULevel* GetWorld();
+	ENGINEAPI ULevel* GetWorld();
 
 	ENGINEAPI bool IsActive() override;
 

@@ -82,9 +82,6 @@
     <ClCompile Include="LeftKey.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFunction.cpp">
-      <Filter>Character\Player</Filter>
-    </ClCompile>
     <ClCompile Include="RightKey.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
@@ -92,6 +89,9 @@
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
     <ClCompile Include="DownKey.cpp">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFunction.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
   </ItemGroup>
@@ -174,9 +174,6 @@
     <ClInclude Include="LeftKey.h">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerFunction.h">
-      <Filter>Character\Player</Filter>
-    </ClInclude>
     <ClInclude Include="RightKey.h">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
@@ -184,6 +181,9 @@
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
     <ClInclude Include="DownKey.h">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFunction.h">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
   </ItemGroup>

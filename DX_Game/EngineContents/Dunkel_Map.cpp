@@ -57,24 +57,24 @@ ADunkel_Map::ADunkel_Map()
 		Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 			{
 				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				PlayerLogicValue& LogicValue = Player->GetBoolValue();
-				if (LogicValue.IsFallingValue) {
+				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+				if (LogicValue.bIsFalling) {
 					LogicValue.SetGroundTrue();
 					float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
 					float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
 					Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
-					Player->SetGravityAccel(0.0f);
-					Player->SetVelocityX(0.0f);
-					Player->SetVelocityY(0.0f);
-					Player->SetDownableFloor(false);
+					Player->GetPlayerLogic().SetGravityAccel(0.0f);
+					Player->GetPlayerLogic().SetVelocityX(0.0f);
+					Player->GetPlayerLogic().SetVelocityY(0.0f);
+					Player->GetPlayerLogic().SetDownableFloor(false);
 				}
 			});
 		Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
 			{
 				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				PlayerLogicValue& LogicValue = Player->GetBoolValue();
-				if (LogicValue.IsGroundValue) {
-					LogicValue.IsGroundValue = false;
+				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+				if (LogicValue.bIsGround) {
+					LogicValue.bIsGround = false;
 				}
 			});
 		EndArea.insert({ "Down", Collision });

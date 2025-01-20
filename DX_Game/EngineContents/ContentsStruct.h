@@ -1,10 +1,13 @@
 #pragma once
 struct FPlayerLogic
 {
-	bool bIsMoveAble = true;
-	bool bIsJumpAble = true;
-	bool bIsProneAble = true;
-	bool bIsSkillAble = true;
+	FVector Velocity = FVector::ZERO;
+	float GravityAccel = 0.0f;
+	bool bIsMoveAble;
+	bool bIsJumpAble;
+	bool bIsProneAble;
+	bool bIsSkillAble;
+	bool bIsDownableFloor;
 
 	bool bIsGround = false;
 	bool bIsJumping = true;
@@ -15,6 +18,45 @@ struct FPlayerLogic
 
 	int JumpCount = 0;
 	int JumpCountMax = 3;
+
+	void SetGravityAccel(float _Accel)
+	{
+		GravityAccel = _Accel;
+	}
+
+	void SetVelocityX(float _X)
+	{
+		Velocity.X = _X;
+	}
+
+	void SetVelocityY(float _Y)
+	{
+		Velocity.Y = _Y;
+	}
+
+	void AddVelocityX(float _X)
+	{
+		Velocity.X += _X;
+	}
+	void AddVelocityY(float _Y)
+	{
+		Velocity.Y += _Y;
+	}
+
+	void ResetVelocity()
+	{
+		Velocity = FVector::ZERO;
+	}
+
+	void SetDownableFloor(bool _Value)
+	{
+		bIsDownableFloor = _Value;
+	}
+
+	bool GetDownableFloor()
+	{
+		return bIsDownableFloor;
+	}
 
 	void Init()
 	{

@@ -31,8 +31,8 @@ public:
 
 protected:
 	UFSMStateManager FrameState;
-	std::map<std::string, std::shared_ptr<class USpriteRenderer>> SpriteRenderers;
-	std::shared_ptr<class UCollision> Collision;
+	std::map<std::string, class USpriteRenderer*> SpriteRenderers;
+	class UCollision* Collision;
 
 private:
 

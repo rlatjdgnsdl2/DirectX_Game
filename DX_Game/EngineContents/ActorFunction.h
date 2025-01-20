@@ -14,7 +14,7 @@ public:
 
 	virtual void BeginPlay() override;
 
-	virtual void SetOwner(std::shared_ptr<class AActor> _Owner)
+	virtual void SetOwner(AActor* _Owner)
 	{
 		Owner = _Owner;
 	}
@@ -34,7 +34,7 @@ public:
 
 
 protected:
-	std::weak_ptr<AActor> Owner;
+	AActor* Owner;
 	int Key = -1;
 private:
 

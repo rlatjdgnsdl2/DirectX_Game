@@ -1,8 +1,9 @@
 #pragma once
 #include <EngineBase/EngineSerializer.h>
+#include <EngineCore/GameInstance.h>
 
 // Ό³Έν :
-class PlayerStat : public ISerializObject
+class PlayerStat : public ISerializObject, public UGameInstance
 {
 public:
 	std::string Name = "";

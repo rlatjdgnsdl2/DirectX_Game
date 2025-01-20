@@ -26,11 +26,12 @@ void ALeftKey::Tick(float _DeltaTime)
 void ALeftKey::SetActiveTrue()
 {
 	AActorFunction::SetActiveTrue();
-	Player.lock()->SetVelocityX(-100.0f);
+	
+	Player->GetPlayerLogic().SetVelocityX(-100.0f);
 }
 
 void ALeftKey::SetActiveFalse()
 {
 	AActorFunction::SetActiveFalse();
-	Player.lock()->SetVelocityX(0.0f);
+	Player->GetPlayerLogic().SetVelocityX(0.0f);
 }

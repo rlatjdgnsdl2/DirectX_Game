@@ -11,20 +11,20 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetupAttachment(RootComponent);
 		SpriteRenderer->CreateAnimation("SwiftPhantom_Effect_Front", "SwiftPhantom_Effect_Front", 0, 3, 0.1f, false);
-		SpriteRenderers.insert(std::make_pair("Front", SpriteRenderer));
+		SpriteRenderers.insert(std::make_pair("Front", SpriteRenderer.get()));
 	}
 	{
 		std::shared_ptr<USpriteRenderer> SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetupAttachment(RootComponent);
 		SpriteRenderer->CreateAnimation("SwiftPhantom_Effect_Back", "SwiftPhantom_Effect_Back", 0, 3, 0.1f, false);
-		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer));
+		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer.get()));
 	}
 
 	//	일반점프
 	FrameState.CreateState(Skill_Frame::Start, [this](float _DeltaTime)
 		{
-			PlayerLogicValue& LogicValue = Player->GetBoolValue();
-			if (LogicValue.IsGroundValue)
+			FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+			if (LogicValue.bIsGround)
 			{
 				LogicValue.SetGroundTrue();
 				SetActiveFalse();
@@ -34,28 +34,29 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 			if (UEngineInput::IsDown(Key))
 			{
 				LogicValue.PlusJumpCount();
-				LogicValue.IsMoveAbleValue = false;
+				LogicValue.bIsMoveAble = false;
 				ChangeState(Skill_Frame::Update);
 				return;
 			}
 		},
 		[this]()
 		{
+			
 			SpriteRenderers["Front"]->SetActive(false);
 			SpriteRenderers["Back"]->SetActive(false);
-			PlayerLogicValue& LogicValue = Player->GetBoolValue();
+			FPlayerLogic& LogicValue = Player->GetPlayerLogic();
 			if (UEngineInput::IsPress(VK_DOWN)) {
-				if (Player->GetDownableFloor()) {
+				if (LogicValue.bIsDownableFloor) {
 					LogicValue.StartJump();
 					LogicValue.StartFalling();
-					Player->SetVelocityY(-200.0f);
-					Player->ChangeAnimation(PAnimation_State::Jump);
+					Player->GetPlayerLogic().SetVelocityY(-200.0f);
+					Player->ChangeAnimation("Jump");
 				}
 
 			}
 			else {
 				LogicValue.StartJump();
-				Player->SetVelocityY(660.0f);
+				Player->GetPlayerLogic().SetVelocityY(660.0f);
 				
 			}
 
@@ -64,8 +65,8 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 	//	더블점프
 	FrameState.CreateState(Skill_Frame::Update, [this](float _DeltaTime)
 		{
-			PlayerLogicValue& LogicValue = Player->GetBoolValue();
-			if (LogicValue.IsGroundValue)
+			FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+			if (LogicValue.bIsGround)
 			{
 				LogicValue.SetGroundTrue();
 				SetActiveFalse();
@@ -79,7 +80,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 
 			}
 
-			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) 
+			if (SpriteRenderers["Front"]->IsCurAnimationEnd())
 			{
 				SpriteRenderers["Front"]->SetActive(false);
 				SpriteRenderers["Back"]->SetActive(false);
@@ -88,8 +89,6 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		},
 		[this]()
 		{
-			FVector PlayerDir = Player->GetBoolValue().PlayerDir;
-
 			SpriteRenderers["Front"]->SetActive(true);
 			SpriteRenderers["Back"]->SetActive(true);
 			SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front", true);
@@ -101,7 +100,7 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 				SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
 				SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 				SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Back)));
-				Player->AddVelocityY(800.0f);
+				Player->GetPlayerLogic().AddVelocityY(800.0f);
 			}
 			else {
 				SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
@@ -109,15 +108,15 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 				SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 				SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Back)));
 
-				Player->SetVelocityX(PlayerDir.X * 600.0f);
-				Player->AddVelocityY(250.0f);
+				Player->GetPlayerLogic().SetVelocityX(-Player->GetActorTransform().Scale.X * 600.0f);
+				Player->GetPlayerLogic().AddVelocityY(250.0f);
 			}
 		});
 	//	트리플점프
 	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime)
 		{
-			PlayerLogicValue& LogicValue = Player->GetBoolValue();
-			if (LogicValue.IsGroundValue)
+			FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+			if (LogicValue.bIsGround)
 			{
 				LogicValue.SetGroundTrue();
 				SetActiveFalse();
@@ -130,9 +129,8 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		},
 		[this]()
 		{
-			FVector PlayerDir = Player->GetBoolValue().PlayerDir;
-			Player->SetVelocityX(PlayerDir.X * 800.0f);
-			Player->AddVelocityY(250.0f);
+			Player->GetPlayerLogic().SetVelocityX(-Player->GetActorTransform().Scale.X * 800.0f);
+			Player->GetPlayerLogic().AddVelocityY(250.0f);
 
 			SpriteRenderers["Front"]->SetActive(true);
 			SpriteRenderers["Back"]->SetActive(true);

@@ -14,9 +14,7 @@ ARightKey::~ARightKey()
 }
 
 
-void ARightKey::BeginPlay()
-{
-}
+
 
 void ARightKey::Tick(float _DeltaTime)
 {
@@ -30,11 +28,11 @@ void ARightKey::Tick(float _DeltaTime)
 void ARightKey::SetActiveTrue()
 {
 	AActorFunction::SetActiveTrue();
-	Player.lock()->SetVelocityX(-100.0f);
+	
 }
 
 void ARightKey::SetActiveFalse()
 {
 	AActorFunction::SetActiveFalse();
-	Player.lock()->SetVelocityX(0.0f);
+	
 }

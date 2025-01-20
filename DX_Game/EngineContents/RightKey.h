@@ -12,7 +12,6 @@ public:
 	ARightKey& operator=(const ARightKey& _Other) = delete;
 	ARightKey& operator=(ARightKey&& _Other) noexcept = delete;
 
-	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
 	virtual void SetActiveTrue() override;

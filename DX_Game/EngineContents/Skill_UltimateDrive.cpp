@@ -14,7 +14,7 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Front", "UltimateDrive_KeyDown_Effect_Front", 0, 5, 0.05f);
 		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Front", "UltimateDrive_End_Effect_Front", 0, 4, 0.05f, false);
 
-		SpriteRenderers.insert(std::make_pair("Front", SpriteRenderer));
+		SpriteRenderers.insert(std::make_pair("Front", SpriteRenderer.get()));
 	}
 
 	{
@@ -25,10 +25,10 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown_Effect_Back", "UltimateDrive_KeyDown_Effect_Back", 0, 5, 0.05f);
 		SpriteRenderer->CreateAnimation("UltimateDrive_End_Effect_Back", "UltimateDrive_End_Effect_Back", 0, 4, 0.05f, false);
 
-		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer));
+		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer.get()));
 	}
 
-	Collision = CreateDefaultSubObject<UCollision>();
+	Collision = CreateDefaultSubObject<UCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("PlayerSkill");
 	Collision->SetScale3D(FVector(340.0f, 300.0f, 1.0f));
@@ -73,8 +73,8 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime)
 		{
 			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
-				Player->GetBoolValue().bIsUsingSkill = false;
-				Player->GetBoolValue().bIsJumpAble = true;
+				Player->GetPlayerLogic().bIsUsingSkill = false;
+				Player->GetPlayerLogic().bIsJumpAble = true;
 				SetActiveFalse();
 			}
 		},
@@ -101,13 +101,12 @@ void ASkill_UltimateDrive::BeginPlay()
 void ASkill_UltimateDrive::Tick(float _DeltaTime)
 {
 	ASkill::Tick(_DeltaTime);
-	
+
 }
 
 void ASkill_UltimateDrive::SetActiveTrue()
 {
 	ASkill::SetActiveTrue();
-	Player = dynamic_cast<APlayer*>(Owner);
 	Key = Player->GetPlayerFuncManager()->GetKey("UltimateDrive");
 	ChangeState(Skill_Frame::Start);
 }
