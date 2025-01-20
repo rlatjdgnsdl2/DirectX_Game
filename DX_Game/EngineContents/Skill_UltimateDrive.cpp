@@ -33,59 +33,10 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	Collision->SetCollisionProfileName("PlayerSkill");
 	Collision->SetScale3D(FVector(340.0f, 300.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-180.0f, 50.0f));
-	Collision->SetActive(false);
 
-	FrameState.CreateState(Skill_Frame::Start, [this](float _DeltaTime)
-		{
-			Key = Player->GetPlayerFuncManager()->GetKey("UltimateDrive");
-			if (UEngineInput::IsFree(Key)) {
-				Collision->SetActive(false);
-				FrameState.ChangeState(Skill_Frame::End);
-			}
-			if (UEngineInput::GetPressTime(Key) >= 0.2f)
-			{
-				FrameState.ChangeState(Skill_Frame::Update);
-				Collision->SetActive(true);
-			}
-		},
-		[this]()
-		{
-			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front");
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back");
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
-		});
-	FrameState.CreateState(Skill_Frame::Update, [this](float _DeltaTime)
-		{
-			if (UEngineInput::IsFree(Key)) {
-				Collision->SetActive(false);
-				FrameState.ChangeState(Skill_Frame::End);
-			}
-		},
-		[this]()
-		{
-			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-140.0f, 70.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Back");
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, 100.0f, static_cast<float>(Z_ORDER::Skill_Back)));
-		});
-
-	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime)
-		{
-			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
-				Player->GetPlayerLogic().bIsUsingSkill = false;
-				Player->GetPlayerLogic().bIsJumpAble = true;
-				SetActiveFalse();
-			}
-		},
-		[this]()
-		{
-			SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front");
-			SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-			SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back");
-			SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
-		});
-
+	FrameState.CreateState(Skill_Frame::First, std::bind(&ASkill_UltimateDrive::UpdateUltimateDrivePrev, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDrivePrev, this));
+	FrameState.CreateState(Skill_Frame::Second, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveKeyDown, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveKeyDown, this));
+	FrameState.CreateState(Skill_Frame::Third, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveEnd, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveEnd, this));
 }
 
 ASkill_UltimateDrive::~ASkill_UltimateDrive()
@@ -93,20 +44,82 @@ ASkill_UltimateDrive::~ASkill_UltimateDrive()
 
 }
 
-void ASkill_UltimateDrive::BeginPlay()
-{
-	ASkill::BeginPlay();
-}
-
-void ASkill_UltimateDrive::Tick(float _DeltaTime)
-{
-	ASkill::Tick(_DeltaTime);
-
-}
-
 void ASkill_UltimateDrive::SetActiveTrue()
 {
 	ASkill::SetActiveTrue();
 	Key = Player->GetPlayerFuncManager()->GetKey("UltimateDrive");
-	ChangeState(Skill_Frame::Start);
+	ChangeState(Skill_Frame::First);
+}
+
+void ASkill_UltimateDrive::StartUltimateDrivePrev()
+{
+	if (!PlayerLogic->bIsSkillable||!PlayerLogic->bIsGround)
+	{
+		SetActiveFalse();
+		return;
+	}
+	Collision->SetActive(false);
+	PlayerLogic->bIsUsingSkill =true;
+	PlayerLogic->bIsSkillable = false;
+	PlayerLogic->bIsJumpable = false;
+	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front",true);
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back", true);
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+}
+
+void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
+{
+	if (UEngineInput::IsUp(Key)||UEngineInput::IsFree(Key)) {
+		FrameState.ChangeState(Skill_Frame::Third);
+		return;
+	}
+	if (SpriteRenderers["Front"]->IsCurAnimationEnd())
+	{
+		FrameState.ChangeState(Skill_Frame::Second);
+		return;
+	}
+}
+
+void ASkill_UltimateDrive::StartUltimateDriveKeyDown()
+{
+	Collision->SetActive(true);
+	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-140.0f, 70.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Back");
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, 100.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+
+}
+
+void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
+{
+	if (UEngineInput::IsUp(Key)||UEngineInput::IsFree(Key)) {
+		FrameState.ChangeState(Skill_Frame::Third);
+		return;
+	}
+}
+
+void ASkill_UltimateDrive::StartUltimateDriveEnd()
+{
+	Collision->SetActive(false);
+	PlayerLogic->bIsSkillable = true;
+	PlayerLogic->bIsUsingSkill = false;
+	PlayerLogic->bIsJumpable = true;
+	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front",true);
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back", true);
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+}
+
+void ASkill_UltimateDrive::UpdateUltimateDriveEnd(float _DeltaTime)
+{
+	if (UEngineInput::IsDown(Key) || UEngineInput::IsPress(Key))
+	{
+		FrameState.ChangeState(Skill_Frame::First);
+		return;
+	}
+	if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
+		SetActiveFalse();
+		return;
+	}
 }

@@ -3,17 +3,16 @@ struct FPlayerLogic
 {
 	FVector Velocity = FVector::ZERO;
 	float GravityAccel = 0.0f;
-	bool bIsMoveAble;
-	bool bIsJumpAble;
-	bool bIsProneAble;
-	bool bIsSkillAble;
+	bool bIsMoveable;
+	bool bIsJumpable;
+	bool bIsProneable;
+	bool bIsSkillable;
 	bool bIsDownableFloor;
 
 	bool bIsGround = false;
 	bool bIsJumping = true;
 	bool bIsFalling = true;
 	bool bIsProne = false;
-
 	bool bIsUsingSkill = false;
 
 	int JumpCount = 0;
@@ -60,10 +59,10 @@ struct FPlayerLogic
 
 	void Init()
 	{
-		bIsMoveAble = true;
-		bIsJumpAble = true;
-		bIsProneAble = true;
-		bIsSkillAble = true;
+		bIsMoveable = true;
+		bIsJumpable = true;
+		bIsProneable = true;
+		bIsSkillable = true;
 		bIsGround = false;
 		bIsJumping = true;
 		bIsFalling = true;
@@ -99,8 +98,8 @@ struct FPlayerLogic
 		bIsGround = true;
 		bIsFalling = false;
 		bIsJumping = false;
-		bIsMoveAble = true;
-		bIsJumpAble = true;
+		bIsMoveable = true;
+		bIsJumpable = true;
 		JumpCount = 0;
 	}
 };

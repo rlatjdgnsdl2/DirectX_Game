@@ -228,7 +228,7 @@ ADunkel_Boss::ADunkel_Boss()
 				LogicValue.SetVelocityX(-Dir * 1000.0f);
 				LogicValue.SetVelocityY(1000.0f);
 				LogicValue.SetGravityAccel(0.0f);
-				LogicValue.bIsJumpAble = false;
+				LogicValue.bIsJumpable = false;
 				LogicValue.SetDownableFloor(false);
 			});
 		AttackCollisionMap.insert(std::make_pair("Knockback", Collision));

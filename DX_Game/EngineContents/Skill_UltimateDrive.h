@@ -14,8 +14,6 @@ public:
 	ASkill_UltimateDrive& operator=(const ASkill_UltimateDrive& _Other) = delete;
 	ASkill_UltimateDrive& operator=(ASkill_UltimateDrive&& _Other) noexcept = delete;
 
-	virtual void BeginPlay() override;
-	virtual void Tick(float _DeltaTime) override;
 	virtual void SetActiveTrue() override;
 	
 	
@@ -23,6 +21,13 @@ public:
 protected:
 
 private:
+	void StartUltimateDrivePrev();
+	void UpdateUltimateDrivePrev(float _DeltaTime);
+	void StartUltimateDriveKeyDown();
+	void UpdateUltimateDriveKeyDown(float _DeltaTime);
+	void StartUltimateDriveEnd();
+	void UpdateUltimateDriveEnd(float _DeltaTime);
+	
 
 	
 

@@ -25,7 +25,7 @@ void ALeftKey::Tick(float _DeltaTime)
 		}
 	}
 	if (UEngineInput::IsPress(VK_LEFT)) {
-		if (LogicValue.bIsMoveAble) {
+		if (LogicValue.bIsMoveable) {
 			if (LogicValue.bIsGround) {
 				float VelocityX = UEngineMath::Lerp(0.0f, 260.0f, UEngineMath::Clamp(UEngineInput::GetPressTime(VK_LEFT) * 4.0f, 0.0f, 1.0f));
 				LogicValue.SetVelocityX(-VelocityX);

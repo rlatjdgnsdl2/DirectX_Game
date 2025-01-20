@@ -13,9 +13,14 @@ public:
 	APlayerFunction& operator=(APlayerFunction&& _Other) noexcept = delete;
 
 	virtual void SetOwner(class AActor* _Owner) override;
+	virtual void SetKey(int _Key)
+	{
+		Key = _Key;
+	}
 
 protected:
 	class APlayer* Player;
+	int Key = -1;
 	FPlayerLogic* PlayerLogic;
 private:
 };

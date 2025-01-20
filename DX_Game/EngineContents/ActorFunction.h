@@ -18,11 +18,6 @@ public:
 	{
 		Owner = _Owner;
 	}
-	void SetKey(int _Key)
-	{
-		Key = _Key;
-	}
-
 	virtual void SetActiveTrue()
 	{
 		SetActive(true);
@@ -35,7 +30,7 @@ public:
 
 protected:
 	AActor* Owner;
-	int Key = -1;
+	
 private:
 
 };
