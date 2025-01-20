@@ -178,16 +178,10 @@ void ADunkel_GameMode::BeginPlay()
 void ADunkel_GameMode::Tick(float _DeltaTime)
 {
 	AGameMode::Tick(_DeltaTime);
-	FallenWarriorSpawnTime -= _DeltaTime;
-	if (FallenWarriorSpawnTime <= 0.0f)
-	{
-		/*for (int i = 0; i < 5; i++) {
-			AFallenWarrior* FallenWarrior =  GetWorld()->SpawnActor<AFallenWarrior>().get();
-			
-		}*/
-		FallenWarriorSpawnTime = 30.0f;
-	}
+	UpdateMapPattern(_DeltaTime);
 	MoveCamera(_DeltaTime);
+
+	
 }
 
 void ADunkel_GameMode::MoveCamera(float _DeltaTime)
@@ -196,5 +190,20 @@ void ADunkel_GameMode::MoveCamera(float _DeltaTime)
 	FVector PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();
 	if (true) {
 		MainCamera->SetWorldLocation(FVector(PlayerPos.X, PlayerPos.Y, CameraPos.Z));
+	}
+}
+
+void ADunkel_GameMode::UpdateMapPattern(float _DeltaTime)
+{
+	FallenWarriorSpawnTime -= _DeltaTime;
+	if (FallenWarriorSpawnTime <= 0.0f)
+	{
+		for (int i = 0; i < 5; i++) {
+			AFallenWarrior* FallenWarrior = GetWorld()->SpawnActor<AFallenWarrior>().get();
+			FallenWarrior->SetActorLocation(FVector(Random.Randomfloat(-MapSize.hX(), MapSize.hX()), 0.0f));
+			FallenWarriors.push_back(FallenWarrior);
+
+		}
+		FallenWarriorSpawnTime = 30.0f;
 	}
 }

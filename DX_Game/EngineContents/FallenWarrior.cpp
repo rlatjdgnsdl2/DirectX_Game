@@ -25,8 +25,8 @@ AFallenWarrior::AFallenWarrior()
 		[this]()
 		{
 			SpriteRenderer->ChangeAnimation("Spawn", true);
-			//SpriteRenderer->SetRelativeLocation(FVector(20.0f, 30.0f, static_cast<float>(Z_ORDER::Boss)));
-			//Collision->SetActive(false);
+			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 400.0f, static_cast<float>(Z_ORDER::Monster)));
+			
 
 		});
 	AnimaionFSM.CreateState(DunkelAnim_State::Stand, nullptr,
@@ -34,8 +34,7 @@ AFallenWarrior::AFallenWarrior()
 		{
 			SpriteRenderer->ChangeAnimation("Stand");
 			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Boss)));
-			//Collision->SetActive(true);
-			//Collision->SetRelativeLocation(FVector(50.0f, 10.0f));
+		
 		});
 	
 

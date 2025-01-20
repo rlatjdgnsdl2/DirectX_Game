@@ -18,15 +18,18 @@ public:
 
 	void MoveCamera(float _DeltaTime);
 
+	void UpdateMapPattern(float _DeltaTime);
+
 
 protected:
 
 private:
-	float FallenWarriorSpawnTime = 20.0f;
+	float FallenWarriorSpawnTime = 0.0f;
 	FVector MapSize;
 	
 	std::shared_ptr<class ADunkel_Map> Map;
 	std::shared_ptr<class ADunkel_Boss> Dunkel;
+	std::list<class AFallenWarrior*> FallenWarriors;
 
 	UEngineRandom Random;
 	UEngineCamera* MainCamera = nullptr;
