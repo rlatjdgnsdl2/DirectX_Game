@@ -16,9 +16,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFunc.cpp">
-      <Filter>Character\Player</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerFuncManager.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
@@ -32,10 +29,10 @@
       <Filter>UI\Icon</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
-      <Filter>Character\Player\Skill</Filter>
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClCompile>
     <ClCompile Include="Skill_UltimateDrive.cpp">
-      <Filter>Character\Player\Skill</Filter>
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClCompile>
     <ClCompile Include="Player_CheckKey.cpp">
       <Filter>Character\Player</Filter>
@@ -44,7 +41,7 @@
       <Filter>Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="Skill_SwiftPhantom.cpp">
-      <Filter>Character\Player\Skill</Filter>
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>Monster</Filter>
@@ -67,6 +64,36 @@
     <ClCompile Include="PlayerStat.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Dunkel_GUI.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_ResRoad.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Phantom.cpp">
+      <Filter>Job\Phantom</Filter>
+    </ClCompile>
+    <ClCompile Include="Job.cpp">
+      <Filter>Job</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorFunction.cpp">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftKey.cpp">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFunction.cpp">
+      <Filter>Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="RightKey.cpp">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="UpKey.cpp">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="DownKey.cpp">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -84,9 +111,6 @@
     <ClInclude Include="Player.h">
       <Filter>Character\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerFunc.h">
-      <Filter>Character\Player</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerFuncManager.h">
       <Filter>Character\Player</Filter>
     </ClInclude>
@@ -100,13 +124,13 @@
       <Filter>UI\Icon</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
-      <Filter>Character\Player\Skill</Filter>
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClInclude>
     <ClInclude Include="Skill_UltimateDrive.h">
-      <Filter>Character\Player\Skill</Filter>
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClInclude>
     <ClInclude Include="Skill_SwiftPhantom.h">
-      <Filter>Character\Player\Skill</Filter>
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClInclude>
     <ClInclude Include="ContentsConst.h">
       <Filter>Header</Filter>
@@ -132,6 +156,36 @@
     <ClInclude Include="PlayerStat.h">
       <Filter>Character\Player</Filter>
     </ClInclude>
+    <ClInclude Include="Dunkel_GUI.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Phantom.h">
+      <Filter>Job\Phantom</Filter>
+    </ClInclude>
+    <ClInclude Include="Job.h">
+      <Filter>Job</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsStruct.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorFunction.h">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftKey.h">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFunction.h">
+      <Filter>Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="RightKey.h">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="UpKey.h">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="DownKey.h">
+      <Filter>Character\Player\ActorFunction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -155,9 +209,6 @@
     <Filter Include="Character\Player">
       <UniqueIdentifier>{e09d7acd-c040-4b85-8a10-bf004406165d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character\Player\Skill">
-      <UniqueIdentifier>{9ba949de-09f2-4144-9c2a-50e050317e72}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager">
       <UniqueIdentifier>{bbea2012-8213-409f-be40-5dc42b59cf23}</UniqueIdentifier>
     </Filter>
@@ -172,6 +223,18 @@
     </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{ec5d66ec-e947-4487-8467-a28b0e662e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Job">
+      <UniqueIdentifier>{f7c09ae1-18d5-4963-9a48-8777bcbfce8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Job\Phantom">
+      <UniqueIdentifier>{465a9fbd-1444-480f-a210-fb3b75c20b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player\ActorFunction">
+      <UniqueIdentifier>{66601369-043d-4ec8-9cad-6503779f39af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player\ActorFunction\Skill">
+      <UniqueIdentifier>{9ba949de-09f2-4144-9c2a-50e050317e72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

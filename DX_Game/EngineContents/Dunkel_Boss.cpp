@@ -227,7 +227,7 @@ ADunkel_Boss::ADunkel_Boss()
 				Player->SetVelocityX(-Dir * 1000.0f);
 				Player->SetVelocityY(1000.0f);
 				Player->SetGravityAccel(0.0f);
-				Player->GetBoolValue().IsJumpAbleValue = false;
+				Player->GetBoolValue().bIsJumpAble = false;
 				Player->SetDownableFloor(false);
 			});
 		AttackCollisionMap.insert(std::make_pair("Knockback", Collision));

@@ -73,8 +73,8 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	FrameState.CreateState(Skill_Frame::End, [this](float _DeltaTime)
 		{
 			if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {
-				Player->GetBoolValue().IsUsingSkillValue = false;
-				Player->GetBoolValue().IsJumpAbleValue = true;
+				Player->GetBoolValue().bIsUsingSkill = false;
+				Player->GetBoolValue().bIsJumpAble = true;
 				SetActiveFalse();
 			}
 		},

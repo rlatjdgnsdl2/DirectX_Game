@@ -19,7 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActorFunction.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsEditorGUI.cpp" />
+    <ClCompile Include="DownKey.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Dunkel_Boss.cpp">
       <SubType>
       </SubType>
@@ -28,11 +36,20 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Dunkel_GUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Dunkel_Map.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Dunkel_ResRoad.cpp" />
     <ClCompile Include="FallenWarrior.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Job.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -50,15 +67,27 @@
     </ClCompile>
     <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="ContentsCore_ResRoad.cpp" />
+    <ClCompile Include="LeftKey.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Phantom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerFunc.cpp">
+    <ClCompile Include="PlayerFuncManager.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerFuncManager.cpp">
+    <ClCompile Include="PlayerFunction.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RightKey.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -94,10 +123,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UpKey.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActorFunction.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsConst.h" />
     <ClInclude Include="ContentsEditorGUI.h" />
+    <ClInclude Include="ContentsStruct.h" />
+    <ClInclude Include="DownKey.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Dunkel_Boss.h">
       <SubType>
       </SubType>
@@ -106,11 +148,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Dunkel_GUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Dunkel_Map.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="FallenWarrior.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Job.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -128,15 +178,27 @@
     </ClInclude>
     <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="ContentsEnum.h" />
+    <ClInclude Include="LeftKey.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Phantom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerFunc.h">
+    <ClInclude Include="PlayerFuncManager.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerFuncManager.h">
+    <ClInclude Include="PlayerFunction.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RightKey.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -162,6 +224,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="UI_Icon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UpKey.h">
       <SubType>
       </SubType>
     </ClInclude>

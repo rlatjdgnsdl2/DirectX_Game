@@ -1,7 +1,7 @@
 #pragma once
-#pragma once
 #include <EngineCore/ActorComponent.h>
-#include "PlayerFunc.h"
+#include <EngineBase/EngineDelegate.h>
+#include "PlayerFunction.h"
 
 //	Ό³Έν:
 class UPlayerFuncManager : public UActorComponent
@@ -48,7 +48,7 @@ public:
 		return "";
 	}
 
-	void SetFunc(std::string _FuncName, UPlayerFunc& _Func)
+	void SetFunc(std::string _FuncName, UEngineDelegate& _Func)
 	{
 		std::string UpperName = UEngineString::ToUpper(_FuncName);
 		if (FuncMap.contains(UpperName))
@@ -76,7 +76,7 @@ public:
 		return -1;
 	}
 
-	UPlayerFunc GetFunc(std::string _FuncName)
+	UEngineDelegate GetFunc(std::string _FuncName)
 	{
 		std::string UpperName = UEngineString::ToUpper(_FuncName);
 		if (FuncMap.contains(UpperName))
@@ -84,23 +84,26 @@ public:
 			return FuncMap[UpperName];
 		}
 		else {
-			return UPlayerFunc();
+			return UEngineDelegate([]() {});
 		}
 	}
 
-
+	
 
 
 protected:
 
 private:
-	class APlayer* Player = nullptr;
+	std::weak_ptr<class APlayer> Player;
 	std::map<int, std::string> FuncNameMap;
-	std::unordered_map<std::string, UPlayerFunc> FuncMap;
-	
+	std::map<std::string, UEngineDelegate> FuncMap;
 
 
 	
+
+
+
+
 
 
 };

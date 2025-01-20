@@ -6,40 +6,35 @@
 
 void APlayer::CheckKey(float _DeltaTime)
 {
-	if (UEngineInput::IsAllFree()) {
-		if (LogicValue.IsGroundValue) {
+	if (UEngineInput::IsAllFree()) 
+	{
+		if (true == PlayerLogic.bIsGround) 
+		{
 			ChangeAnimation(PAnimation_State::Stand);
 		}
-		else if (LogicValue.IsJumpingValue || LogicValue.IsFallingValue) {
+		else if (true == PlayerLogic.bIsJumping || true == PlayerLogic.bIsFalling) 
+		{
 			ChangeAnimation(PAnimation_State::Jump);
 		}
 	}
 
-	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_LEFT))();
+	if (UEngineInput::IsDown(VK_LEFT)) {
+		DirFunctionMap["VK_LEFT"].lock()->SetActiveTrue();
 	}
-	if (UEngineInput::IsUp(VK_LEFT)) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_LEFT)).Up();
+	if (UEngineInput::IsDown(VK_RIGHT)) {
+		DirFunctionMap["VK_RIGHT"].lock()->SetActiveTrue();
 	}
-
-	if (UEngineInput::IsPress(VK_RIGHT) || UEngineInput::IsDown(VK_RIGHT)) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_RIGHT))();
+	if (UEngineInput::IsDown(VK_DOWN)) {
+		DirFunctionMap["VK_DOWN"].lock()->SetActiveTrue();
 	}
-	if (UEngineInput::IsUp(VK_RIGHT)) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_RIGHT)).Up();
+	if (UEngineInput::IsDown(VK_UP)) {
+		DirFunctionMap["VK_UP"].lock()->SetActiveTrue();
 	}
-	if (UEngineInput::IsPress(VK_DOWN) || UEngineInput::IsDown(VK_DOWN)) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN))();
-	}
-	if (UEngineInput::IsUp(VK_DOWN)) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName(VK_DOWN)).Up();
-	}
-
-	if (UEngineInput::IsDown('C')){
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('C'))();
+	if (UEngineInput::IsDown('C')) {
+		PlayerFuncManager.lock()->GetFunc(PlayerFuncManager.lock()->GetFuncName('C'))();
 	}
 	if (UEngineInput::IsDown('Z')) {
-		PlayerFuncManager->GetFunc(PlayerFuncManager->GetFuncName('Z'))();
+		PlayerFuncManager.lock()->GetFunc(PlayerFuncManager.lock()->GetFuncName('Z'))();
 	}
 
 }

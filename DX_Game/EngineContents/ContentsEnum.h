@@ -16,6 +16,11 @@ enum class Z_ORDER
 	BackGround,
 };
 
+enum class Phantom_Skill {
+	Ultimate_Drive,
+	Swifh_Phantom,
+};
+
 
 enum class Skill_Frame
 {

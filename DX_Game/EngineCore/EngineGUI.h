@@ -21,9 +21,7 @@ public:
 
 	static void Init();
 	static void Release();
-
 	static void GUIRenderStart();
-
 	static void GUIRenderEnd();
 
 	ENGINEAPI static void PushGUIWindow(std::shared_ptr<class UEngineGUIWindow> _Window);

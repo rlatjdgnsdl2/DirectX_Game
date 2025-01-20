@@ -17,7 +17,6 @@ UEngineGUI::~UEngineGUI()
 
 void UEngineGUI::Init()
 {
-
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
