@@ -94,11 +94,14 @@
     <ClCompile Include="UpKey.cpp">
       <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsPysics.cpp">
+    <ClCompile Include="ContentsPhysics.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="PillarLight.cpp">
       <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageSkinActor.cpp">
+      <Filter>UI\DamageSkin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,11 +195,14 @@
     <ClInclude Include="UpKey.h">
       <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsPysics.h">
+    <ClInclude Include="ContentsPhysics.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="PillarLight.h">
       <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageSkinActor.h">
+      <Filter>UI\DamageSkin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +256,9 @@
     </Filter>
     <Filter Include="Character\Player\ActorFunction\DirFunction">
       <UniqueIdentifier>{45e81a9d-bd5d-4571-ba5b-85217de460db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\DamageSkin">
+      <UniqueIdentifier>{95a958ed-07a2-425b-8308-bd9385985ad7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

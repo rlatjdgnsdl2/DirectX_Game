@@ -19,10 +19,18 @@ public:
 protected:
 
 private:
+	UEngineRandom Random;
 	UFSMStateManager AnimaionFSM;
+
+	float WalkTime = 0.0f;
+	int Dir = 0;
+
 	class USpriteRenderer* SpriteRenderer;
 	class UCollision* Collision;
 	class UCollision* AttackCollision;
+	class UCollision* ScopeCollision;
+
+	
 	
 
 	void StartSpawn();

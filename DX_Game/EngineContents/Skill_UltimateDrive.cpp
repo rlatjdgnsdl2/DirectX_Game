@@ -62,6 +62,7 @@ void ASkill_UltimateDrive::StartUltimateDrivePrev()
 	PlayerLogic->bIsUsingSkill =true;
 	PlayerLogic->bIsSkillable = false;
 	PlayerLogic->bIsJumpable = false;
+	Player->ChangeAnimation("UltimateDrive_KeyDown");
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front",true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back", true);

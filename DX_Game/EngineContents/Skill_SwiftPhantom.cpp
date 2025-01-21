@@ -58,7 +58,7 @@ void ASkill_SwiftPhantom::StartJump()
 	}
 	else {
 		PlayerLogic->StartJump();
-		PlayerLogic->SetVelocityY(660.0f);
+		PlayerLogic->SetVelocityY(670.0f);
 	}
 }
 
@@ -69,6 +69,12 @@ void ASkill_SwiftPhantom::UpdateJump(float _DeltaTime)
 		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
 		return;
+	}
+	if (UEngineInput::IsPress(VK_LEFT)|| UEngineInput::IsDown(VK_LEFT)) {
+		Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+	else if (UEngineInput::IsPress(VK_RIGHT)|| UEngineInput::IsDown(VK_RIGHT)) {
+		Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 	}
 
 	if (UEngineInput::IsDown(Key))
@@ -114,6 +120,12 @@ void ASkill_SwiftPhantom::UpdateDoubleJump(float _DeltaTime)
 		SetActiveFalse();
 		return;
 	}
+	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
+		Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+	else if (UEngineInput::IsPress(VK_RIGHT) || UEngineInput::IsDown(VK_RIGHT)) {
+		Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
+	}
 	if (UEngineInput::IsDown(Key))
 	{
 		PlayerLogic->PlusJumpCount();
@@ -150,6 +162,12 @@ void ASkill_SwiftPhantom::UpdateTripleJump(float _DeltaTime)
 	{
 		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
+	}
+	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
+		Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
+	}
+	else if (UEngineInput::IsPress(VK_RIGHT) || UEngineInput::IsDown(VK_RIGHT)) {
+		Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 	}
 	if (SpriteRenderers["Front"]->IsCurAnimationEnd())
 	{

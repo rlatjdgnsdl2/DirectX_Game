@@ -76,7 +76,6 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	if (nullptr != CurAnimation)
 	{
 		Sprite = CurAnimation->Sprite;
-
 		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
 		SpriteData = Sprite->GetSpriteData(CurIndex);
 	}

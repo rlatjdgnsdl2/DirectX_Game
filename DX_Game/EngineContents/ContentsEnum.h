@@ -2,6 +2,7 @@
 
 enum class Z_ORDER
 {
+	DamageSkin = 50,
 	Skill_Front = 100,
 	Player = 200,
 	Skill_Back = 300,

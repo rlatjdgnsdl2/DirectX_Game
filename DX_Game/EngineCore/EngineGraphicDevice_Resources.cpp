@@ -158,6 +158,7 @@ void UEngineGraphicDevice::MeshInit()
 		UEngineIndexBuffer::Create("Rect", Indexs);
 	}
 
+
 	{
 		std::vector<FEngineVertex> Vertexs;
 		Vertexs.resize(4);

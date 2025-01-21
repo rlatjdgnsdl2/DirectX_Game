@@ -22,6 +22,7 @@ void ALeftKey::Tick(float _DeltaTime)
 		if (PlayerLogic->bIsGround) {
 			LogicValue.SetVelocityX(0.0f);
 			SetActiveFalse();
+			return;
 		}
 	}
 	if (UEngineInput::IsPress(VK_LEFT)) {
@@ -41,7 +42,6 @@ void ALeftKey::SetActiveTrue()
 {
 	AActorFunction::SetActiveTrue();
 	Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-
 }
 
 void ALeftKey::SetActiveFalse()

@@ -181,23 +181,24 @@ void ULevel::Render(float _DeltaTime)
 	std::shared_ptr<UEngineRenderTarget> BackBuffer = UEngineCore::GetDevice().GetBackBufferTarget();
 	LastRenderTarget->MergeTo(BackBuffer);
 
-
-	{
-		std::shared_ptr<class ACameraActor> Camera = GetMainCamera();
-
-		// 面倒眉 副府令
-		for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
+	if (IsDebug()) {
 		{
-			std::list<std::shared_ptr<UCollision>>& List = Group.second;
+			std::shared_ptr<class ACameraActor> Camera = GetMainCamera();
 
-			for (std::shared_ptr<UCollision>& _Collision : List)
+			// 面倒眉 副府令
+			for (std::pair<const std::string, std::list<std::shared_ptr<UCollision>>>& Group : Collisions)
 			{
-				if (false == _Collision->IsActive())
-				{
-					continue;
-				}
+				std::list<std::shared_ptr<UCollision>>& List = Group.second;
 
-				_Collision->DebugRender(Camera->GetCameraComponent().get(), _DeltaTime);
+				for (std::shared_ptr<UCollision>& _Collision : List)
+				{
+					if (false == _Collision->IsActive())
+					{
+						continue;
+					}
+
+					_Collision->DebugRender(Camera->GetCameraComponent().get(), _DeltaTime);
+				}
 			}
 		}
 	}

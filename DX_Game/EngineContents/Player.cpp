@@ -8,6 +8,7 @@
 #include "RightKey.h"
 #include "DownKey.h"
 #include "UpKey.h"
+#include "DamageSkinActor.h"
 
 
 
@@ -73,6 +74,12 @@ void APlayer::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
+	if (UEngineInput::IsDown('R'))
+	{
+		GetWorld()->SpawnActor<ADamageSkinActor>()->SetDamage(1234567890213123123);
+	}
+
+	UEngineDebug::OutPutString(std::to_string(1 / _DeltaTime));
 }
 
 

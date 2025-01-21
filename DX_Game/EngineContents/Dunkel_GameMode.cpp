@@ -22,6 +22,7 @@ ADunkel_GameMode::ADunkel_GameMode()
 	GetWorld()->CreateCollisionProfile("MonsterAttack");
 	GetWorld()->CreateCollisionProfile("Boss");
 	GetWorld()->CreateCollisionProfile("BossAttack");
+	GetWorld()->CreateCollisionProfile("Scope");
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
 
@@ -59,10 +60,6 @@ void ADunkel_GameMode::Tick(float _DeltaTime)
 	AGameMode::Tick(_DeltaTime);
 	UpdateMapPattern(_DeltaTime);
 	MoveCamera(_DeltaTime);
-
-
-
-
 }
 
 void ADunkel_GameMode::MoveCamera(float _DeltaTime)

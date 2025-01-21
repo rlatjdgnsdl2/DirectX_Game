@@ -24,7 +24,11 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsEditorGUI.cpp" />
-    <ClCompile Include="ContentsPysics.cpp">
+    <ClCompile Include="ContentsPhysics.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DamageSkinActor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -143,11 +147,15 @@
     </ClInclude>
     <ClInclude Include="ContentsConst.h" />
     <ClInclude Include="ContentsEditorGUI.h" />
-    <ClInclude Include="ContentsPysics.h">
+    <ClInclude Include="ContentsPhysics.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsStruct.h" />
+    <ClInclude Include="DamageSkinActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DownKey.h">
       <SubType>
       </SubType>

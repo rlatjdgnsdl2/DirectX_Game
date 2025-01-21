@@ -81,6 +81,64 @@ void UContentsCore::LoadResources()
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
 		}
+		Dir.Append("DamageSkin\\DamageSkin_0");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_1");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_2");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_3");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_4");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_5");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_6");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_7");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_8");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_9");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_10");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_11");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DamageSkin_Miss");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+
+
 	}
 
 

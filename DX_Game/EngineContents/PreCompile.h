@@ -7,7 +7,7 @@
 #pragma comment(lib, "EngineCore.lib")
 
 
-#include "ContentsPysics.h"
+#include "ContentsPhysics.h"
 #include "ContentsEnum.h"
 #include "ContentsConst.h"
 #include "ContentsStruct.h"

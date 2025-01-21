@@ -112,34 +112,34 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	AMonster::Tick(_DeltaTime);
 	AnimaionFSM.Update(_DeltaTime);
 
-	//if (UEngineInput::IsDown('1')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Die);
-	//}
-	//if (UEngineInput::IsDown('2')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Force);
-	//}
-	//if (UEngineInput::IsDown('3')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Knockback);
-	//}
-	//if (UEngineInput::IsDown('4')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Meteo);
-	//}
-	//if (UEngineInput::IsDown('5')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Slash_Start);
-	//}
-	//if (UEngineInput::IsDown('6')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Spawn);
-	//}
-	//if (UEngineInput::IsDown('7')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-	//}
+	/*if (UEngineInput::IsDown('1')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Die);
+	}
+	if (UEngineInput::IsDown('2')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Force);
+	}
+	if (UEngineInput::IsDown('3')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Knockback);
+	}
+	if (UEngineInput::IsDown('4')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Meteo);
+	}
+	if (UEngineInput::IsDown('5')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Slash_Start);
+	}
+	if (UEngineInput::IsDown('6')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Spawn);
+	}
+	if (UEngineInput::IsDown('7')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+	}
 
-	//if (UEngineInput::IsDown('8')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Sword);
-	//}
-	//if (UEngineInput::IsDown('9')) {
-	//	AnimaionFSM.ChangeState(DunkelAnim_State::Up);
-	//}
+	if (UEngineInput::IsDown('8')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Sword);
+	}
+	if (UEngineInput::IsDown('9')) {
+		AnimaionFSM.ChangeState(DunkelAnim_State::Up);
+	}*/
 
 
 
