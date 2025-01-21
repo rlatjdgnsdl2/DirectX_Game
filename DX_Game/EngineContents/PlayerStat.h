@@ -3,7 +3,7 @@
 #include <EngineCore/GameInstance.h>
 
 // Ό³Έν :
-class PlayerStat : public ISerializObject, public UGameInstance
+class PlayerStat : public UGameInstance, public ISerializObject
 {
 public:
 	std::string Name = "";
