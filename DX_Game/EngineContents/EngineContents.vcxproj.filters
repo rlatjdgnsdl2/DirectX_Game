@@ -61,7 +61,7 @@
     <ClCompile Include="ContentsEditorGUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerStat.cpp">
+    <ClCompile Include="PlayerStatus.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="Dunkel_GUI.cpp">
@@ -162,7 +162,7 @@
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerStat.h">
+    <ClInclude Include="PlayerStatus.h">
       <Filter>Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="Dunkel_GUI.h">

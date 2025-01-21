@@ -35,6 +35,7 @@ APlayer::APlayer()
 
 	Job = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();
+	Status->
 }
 
 APlayer::~APlayer()
