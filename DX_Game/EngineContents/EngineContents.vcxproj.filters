@@ -94,6 +94,12 @@
     <ClCompile Include="UpKey.cpp">
       <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsPysics.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PillarLight.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -185,6 +191,12 @@
     </ClInclude>
     <ClInclude Include="UpKey.h">
       <Filter>Character\Player\ActorFunction\DirFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsPysics.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PillarLight.h">
+      <Filter>Dunkel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

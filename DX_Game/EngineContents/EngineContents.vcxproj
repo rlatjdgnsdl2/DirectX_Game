@@ -24,6 +24,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsEditorGUI.cpp" />
+    <ClCompile Include="ContentsPysics.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DownKey.cpp">
       <SubType>
       </SubType>
@@ -72,6 +76,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Job_Phantom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PillarLight.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -135,6 +143,10 @@
     </ClInclude>
     <ClInclude Include="ContentsConst.h" />
     <ClInclude Include="ContentsEditorGUI.h" />
+    <ClInclude Include="ContentsPysics.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsStruct.h" />
     <ClInclude Include="DownKey.h">
       <SubType>
@@ -183,6 +195,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Job_Phantom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PillarLight.h">
       <SubType>
       </SubType>
     </ClInclude>

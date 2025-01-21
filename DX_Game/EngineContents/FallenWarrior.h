@@ -20,9 +20,23 @@ protected:
 
 private:
 	UFSMStateManager AnimaionFSM;
-	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
-	std::shared_ptr<class UCollision> Collision;
-	std::map<std::string, std::shared_ptr<class UCollision>> AttackCollisionMap;
+	class USpriteRenderer* SpriteRenderer;
+	class UCollision* Collision;
+	class UCollision* AttackCollision;
+	
+
+	void StartSpawn();
+	void UpdateSpawn(float _DeltaTime);
+	void StartStand();
+	void UpdateStand(float _DeltaTime);
+	void StartMove();
+	void UpdateMove(float _DeltaTime);
+	void StartAttack();
+	void UpdateAttack(float _DeltaTime);
+	void StartDie();
+	void UpdateDie(float _DeltaTime);
+	void StartHit();
+	void UpdateHit(float _DeltaTime);
 
 };
 

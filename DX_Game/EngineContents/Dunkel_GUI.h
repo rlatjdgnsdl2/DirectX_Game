@@ -4,6 +4,7 @@
 //	Ό³Έν:
 class UDunkel_GUI : public UEngineGUIWindow
 {
+	friend class ADunkel_GameMode;
 public:
 	UDunkel_GUI();
 	virtual ~UDunkel_GUI();
@@ -18,6 +19,6 @@ protected:
 	void OnGUI() override;
 private:
 	class APlayer* Player;
-
+	class ADunkel_Boss* Dunkel;
 };
 

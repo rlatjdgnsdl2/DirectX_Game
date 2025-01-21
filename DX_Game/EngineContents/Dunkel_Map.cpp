@@ -13,7 +13,7 @@ ADunkel_Map::ADunkel_Map()
 	BackRenderer->ChangeAnimation("DunkelMapBackGround");
 
 	FVector MapSize = BackRenderer->GetWorldScale3D();
-	SetActorLocation(FVector(0.0f, MapSize.hY()));
+	SetActorLocation(FVector(0.0f, MapSize.hY()-126.0f));
 
 	{
 		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();

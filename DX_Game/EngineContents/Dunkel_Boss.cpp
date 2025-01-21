@@ -23,189 +23,17 @@ ADunkel_Boss::ADunkel_Boss()
 	SpriteRenderer->CreateAnimation("Sword", "Dunkel_SwordPower", 0, 19, 0.1f, false);
 	SpriteRenderer->CreateAnimation("Up", "Dunkel_Up", 0, 15, 0.1f, false);
 
-	AnimaionFSM.CreateState(DunkelAnim_State::Die, [this](float _DeltaTime)
-		{
-
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Die", true);
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-			Collision->SetActive(false);
-
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Down, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Down", true);
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 500.0f, static_cast<float>(Z_ORDER::Boss)));
-			AttackCollisionMap["Down"]->SetActive(true);
-
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Force, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Force", true);
-			SpriteRenderer->SetRelativeLocation(FVector(-80.0f, 470.0f, static_cast<float>(Z_ORDER::Boss)));
-			Collision->SetActive(true);
-		
-
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Knockback, [this](float _DeltaTime)
-		{
-			CurTime += _DeltaTime;
-			if (CurTime > 1.7f) {
-				AttackCollisionMap["Knockback"]->SetActive(true);
-
-			}
-			if (CurTime > 1.8f) {
-				AttackCollisionMap["Knockback"]->SetActive(false);
-
-			}
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				CurTime = 0.0f;
-				AttackCollisionMap["Knockback"]->SetActive(false);
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Knockback");
-			SpriteRenderer->SetRelativeLocation(FVector(-150.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-			Collision->SetActive(true);
-		});
-
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Meteo, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Meteo", true);
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 430.0f, static_cast<float>(Z_ORDER::Boss)));
-
-
-		});
-
-
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Slash_End, [this](float _DeltaTime)
-		{
-			CurTime += _DeltaTime;
-			/*if (CurTime > 0.3f) {
-				AttackCollisionMap["Slash"]->SetActive(false);
-
-			}
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				CurTime = 0.0f;
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-				return;
-			}*/
-		},
-		[this]()
-		{
-			AttackCollisionMap["Slash"]->SetActive(true);
-			
-			SpriteRenderer->ChangeAnimation("Slash_End", true);
-			SpriteRenderer->SetRelativeLocation(FVector(240.0f, 330.0f, static_cast<float>(Z_ORDER::Boss)));
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Slash_Start, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Slash_End);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Slash_Start", true);
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-
-
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Spawn, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Spawn", true);
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-			Collision->SetActive(false);
-
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Stand, nullptr,
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Stand");
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-			Collision->SetActive(true);
-			Collision->SetRelativeLocation(FVector(50.0f, 300.0f));
-		});
-
-	AnimaionFSM.CreateState(DunkelAnim_State::Sword, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Sword", true);
-			SpriteRenderer->SetRelativeLocation(FVector(120.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-
-		});
-	AnimaionFSM.CreateState(DunkelAnim_State::Up, [this](float _DeltaTime)
-		{
-			if (SpriteRenderer->IsCurAnimationEnd())
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Down);
-				return;
-			}
-		},
-		[this]()
-		{
-			SpriteRenderer->ChangeAnimation("Up", true);
-			SpriteRenderer->SetRelativeLocation(FVector(0.0f, 300.0f, static_cast<float>(Z_ORDER::Boss)));
-			Collision->SetActive(false);
-		});
-
-
-
+	AnimaionFSM.CreateState(DunkelAnim_State::Die, std::bind(&ADunkel_Boss::UpdateDie, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartDie, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Down, std::bind(&ADunkel_Boss::UpdateDown, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartDown, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Force, std::bind(&ADunkel_Boss::UpdateForce, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartForce, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Knockback, std::bind(&ADunkel_Boss::UpdateKnockback, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartKnockback, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Meteo, std::bind(&ADunkel_Boss::UpdateMeteo, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartMeteo, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Slash_End, std::bind(&ADunkel_Boss::UpdateSlash_End, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSlash_End, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Slash_Start, std::bind(&ADunkel_Boss::UpdateSlash_Start, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSlash_Start, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Spawn, std::bind(&ADunkel_Boss::UpdateSpawn, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSpawn, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Stand, std::bind(&ADunkel_Boss::UpdateStand, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartStand, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Sword, std::bind(&ADunkel_Boss::UpdateSword, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSword, this));
+	AnimaionFSM.CreateState(DunkelAnim_State::Up, std::bind(&ADunkel_Boss::UpdateUp, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartUp, this));
 
 	//	보스 콜리전
 	Collision = CreateDefaultSubObject<UCollision>();
@@ -243,7 +71,7 @@ ADunkel_Boss::ADunkel_Boss()
 		Collision->SetCollisionProfileName("BossAttack");
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				
+
 			});
 		AttackCollisionMap.insert(std::make_pair("Slash", Collision));
 	}
@@ -284,35 +112,222 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	AMonster::Tick(_DeltaTime);
 	AnimaionFSM.Update(_DeltaTime);
 
-	if (UEngineInput::IsDown('1')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Die);
+	//if (UEngineInput::IsDown('1')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Die);
+	//}
+	//if (UEngineInput::IsDown('2')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Force);
+	//}
+	//if (UEngineInput::IsDown('3')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Knockback);
+	//}
+	//if (UEngineInput::IsDown('4')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Meteo);
+	//}
+	//if (UEngineInput::IsDown('5')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Slash_Start);
+	//}
+	//if (UEngineInput::IsDown('6')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Spawn);
+	//}
+	//if (UEngineInput::IsDown('7')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+	//}
+
+	//if (UEngineInput::IsDown('8')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Sword);
+	//}
+	//if (UEngineInput::IsDown('9')) {
+	//	AnimaionFSM.ChangeState(DunkelAnim_State::Up);
+	//}
+
+
+
+}
+
+void ADunkel_Boss::StartDie()
+{
+	SpriteRenderer->ChangeAnimation("Die", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-60.0f, 180.0f, static_cast<float>(Z_ORDER::Boss)));
+	Collision->SetActive(false);
+}
+
+void ADunkel_Boss::UpdateDie(float _DeltaTime)
+{
+}
+
+void ADunkel_Boss::StartForce()
+{
+	SpriteRenderer->ChangeAnimation("Force", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-120.0f, 360.0f, static_cast<float>(Z_ORDER::Boss)));
+	Collision->SetActive(true);
+}
+
+void ADunkel_Boss::UpdateForce(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+		return;
 	}
-	if (UEngineInput::IsDown('2')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Force);
+}
+
+void ADunkel_Boss::StartKnockback()
+{
+
+	SpriteRenderer->ChangeAnimation("Knockback");
+	SpriteRenderer->SetRelativeLocation(FVector(-210.0f, 200.0f, static_cast<float>(Z_ORDER::Boss)));
+	Collision->SetActive(true);
+
+}
+
+void ADunkel_Boss::UpdateKnockback(float _DeltaTime)
+{
+	CurTime += _DeltaTime;
+	if (CurTime > 1.7f) {
+		AttackCollisionMap["Knockback"]->SetActive(true);
+
 	}
-	if (UEngineInput::IsDown('3')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Knockback);
+	if (CurTime > 1.8f) {
+		AttackCollisionMap["Knockback"]->SetActive(false);
+
 	}
-	if (UEngineInput::IsDown('4')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Meteo);
-	}
-	if (UEngineInput::IsDown('5')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Slash_Start);
-	}
-	if (UEngineInput::IsDown('6')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Spawn);
-	}
-	if (UEngineInput::IsDown('7')) {
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		CurTime = 0.0f;
+		AttackCollisionMap["Knockback"]->SetActive(false);
 		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
 	}
+}
 
-	if (UEngineInput::IsDown('8')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Sword);
+void ADunkel_Boss::StartMeteo()
+{
+	SpriteRenderer->ChangeAnimation("Meteo", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 320.0f, static_cast<float>(Z_ORDER::Boss)));
+}
+
+void ADunkel_Boss::UpdateMeteo(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+		return;
 	}
-	if (UEngineInput::IsDown('9')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Up);
+}
+
+void ADunkel_Boss::StartSlash_Start()
+{
+	SpriteRenderer->ChangeAnimation("Slash_Start", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-60.0f, 170.0f, static_cast<float>(Z_ORDER::Boss)));
+}
+
+void ADunkel_Boss::UpdateSlash_Start(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Slash_End);
+		return;
 	}
+}
+
+void ADunkel_Boss::StartSlash_End()
+{
+	AttackCollisionMap["Slash"]->SetActive(true);
+
+	SpriteRenderer->ChangeAnimation("Slash_End", true);
+	SpriteRenderer->SetRelativeLocation(FVector(200.0f, 240.0f, static_cast<float>(Z_ORDER::Boss)));
+
+}
+
+void ADunkel_Boss::UpdateSlash_End(float _DeltaTime)
+{
+	CurTime += _DeltaTime;
+	if (CurTime > 0.3f) {
+		AttackCollisionMap["Slash"]->SetActive(false);
+
+	}
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		CurTime = 0.0f;
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+		return;
+	}
+}
+
+void ADunkel_Boss::StartSpawn()
+{
+	SpriteRenderer->ChangeAnimation("Spawn", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-20.0f, 200.0f, static_cast<float>(Z_ORDER::Boss)));
+	Collision->SetActive(false);
+
+}
+
+void ADunkel_Boss::UpdateSpawn(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+		return;
+	}
+}
+
+void ADunkel_Boss::StartStand()
+{
+	SpriteRenderer->ChangeAnimation("Stand");
+	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 180.0f, static_cast<float>(Z_ORDER::Boss)));
+	Collision->SetActive(true);
+	Collision->SetRelativeLocation(FVector(50.0f, 300.0f));
+}
+
+void ADunkel_Boss::UpdateStand(float _DeltaTime)
+{
+
+}
 
 
+void ADunkel_Boss::StartSword()
+{
+	SpriteRenderer->ChangeAnimation("Sword", true);
+	SpriteRenderer->SetRelativeLocation(FVector(60.0f, 200.0f, static_cast<float>(Z_ORDER::Boss)));
+}
 
+void ADunkel_Boss::UpdateSword(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+		return;
+	}
+}
+
+void ADunkel_Boss::StartUp()
+{
+	SpriteRenderer->ChangeAnimation("Up", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 180.0f, static_cast<float>(Z_ORDER::Boss)));
+	Collision->SetActive(false);
+}
+
+void ADunkel_Boss::UpdateUp(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Down);
+		return;
+	}
+}
+
+void ADunkel_Boss::StartDown()
+{
+	SpriteRenderer->ChangeAnimation("Down", true);
+	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 400.0f, static_cast<float>(Z_ORDER::Boss)));
+	AttackCollisionMap["Down"]->SetActive(true);
+}
+
+void ADunkel_Boss::UpdateDown(float _DeltaTime)
+{
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
+		return;
+	}
 }

@@ -79,7 +79,7 @@ void APlayer::Tick(float _DeltaTime)
 void APlayer::Gravity(float _DeltaTime)
 {
 	if (!PlayerLogic.bIsGround) {
-		PlayerLogic.GravityAccel += UContentsConst::Gravity * _DeltaTime;
+		PlayerLogic.GravityAccel += UContentsPhysicsConst::GravityAcc * _DeltaTime;
 
 		AddActorLocation(FVector(0.0f, -PlayerLogic.GravityAccel * _DeltaTime,0.0f));
 		if (PlayerLogic.GravityAccel > PlayerLogic.Velocity.Y)

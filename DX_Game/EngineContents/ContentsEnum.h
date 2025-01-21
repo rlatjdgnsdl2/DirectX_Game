@@ -39,6 +39,16 @@ enum class DunkelAnim_State {
 	Up
 };
 
+enum class Monster_State {
+	None,
+	Attack,
+	Die,
+	Hit,
+	Move,
+	Spawn,
+	Stand
+};
+
 
 
 

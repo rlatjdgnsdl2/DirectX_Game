@@ -1,7 +1,6 @@
 #pragma once
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/GameMode.h>
-#include "Dunkel_GUI.h"
 
 //	Ό³Έν:
 class ADunkel_GameMode : public AGameMode
@@ -27,13 +26,23 @@ public:
 protected:
 
 private:
+	std::vector<float> FallenWarriorSpawnPosX;
 	float FallenWarriorSpawnTime = 0.0f;
+	float FallenWarriorSpawnZ = 10.0f;
+
+	std::vector<float> PillarLightPosX;
+	float PillarLightSpawnTime = 0.0f;
+	float PillarLightSpawnZ = 10.0f;
+	int PillarLightSpawnCount = 0;
+	int PillarLightCount = 0;
+
+
+
 	FVector MapSize;
-	
-	std::shared_ptr<class ADunkel_Map> Map;
-	std::shared_ptr<class ADunkel_Boss> Dunkel;
-	std::list<class AFallenWarrior*> FallenWarriors;
-	std::shared_ptr<UDunkel_GUI> Dunkel_GUI;
+
+	class ADunkel_Map* Map;
+	class ADunkel_Boss* BossDunkel;
+	class UDunkel_GUI* Dunkel_GUI;
 
 	UEngineRandom Random;
 	UEngineCamera* MainCamera = nullptr;

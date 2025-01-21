@@ -143,5 +143,11 @@ void ADunkel_GameMode::ResLoad()
 		Dir.Append("FallenWarrior_Stand");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
+
+		Dir.Append("FallenWarrior_Hit");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
 	}
+
+
 }
