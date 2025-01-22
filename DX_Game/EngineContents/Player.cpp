@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Player.h"
 
+#include "MyCollision.h"
 
 #include "PlayerFuncManager.h"
 #include "Job_Phantom.h"
@@ -27,11 +28,12 @@ APlayer::APlayer()
 	SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::Player));
 
 	//Collision
-	Collision = CreateDefaultSubObject<UCollision>().get();
+	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Player");
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
+	Collision->Unit.SetTexture("ImageTexture", "PlayerDebugCollisionBase.png");
 
 	Job = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();

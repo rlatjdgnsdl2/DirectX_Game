@@ -23,6 +23,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ContentsCore_GraphicResRoad.cpp" />
     <ClCompile Include="ContentsEditorGUI.cpp" />
     <ClCompile Include="ContentsPhysics.cpp">
       <SubType>
@@ -80,6 +81,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Job_Phantom.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MyCollision.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -203,6 +208,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Job_Phantom.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MyCollision.h">
       <SubType>
       </SubType>
     </ClInclude>

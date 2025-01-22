@@ -17,7 +17,7 @@ public:
 
 	ENGINEAPI void SetCollisionProfileName(std::string_view _ProfileName);
 	ENGINEAPI void BeginPlay() override;
-	ENGINEAPI void DebugRender(class UEngineCamera* _Camera, float _DeltaTime);
+	ENGINEAPI virtual void DebugRender(class UEngineCamera* _Camera, float _DeltaTime);
 
 	std::string GetCollisionProfileName()
 	{
@@ -43,10 +43,15 @@ public:
 	{
 		return Enter != nullptr || Stay != nullptr || End != nullptr;
 	}
+	URenderUnit& GetRenderUnit()
+	{
+		return Unit;
+	}
 
 
-
+	URenderUnit Unit;
 private:
+
 	ECollisionType CollisionType = ECollisionType::OBB2D;
 
 	std::set<UCollision*> CollisionCheckSet;

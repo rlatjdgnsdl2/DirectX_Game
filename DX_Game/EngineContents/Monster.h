@@ -17,9 +17,9 @@ public:
 
 protected:
 	UFSMStateManager AnimaionFSM;
-	std::shared_ptr<class USpriteRenderer> SpriteRenderer;
-	std::shared_ptr<class UCollision> Collision;
-	std::map<std::string, std::shared_ptr<class UCollision>> AttackCollisionMap;
+	class USpriteRenderer* SpriteRenderer;
+	class UMyCollision* Collision;
+	std::map<std::string, class UCollision*> AttackCollisionMap;
 private:
 };
 

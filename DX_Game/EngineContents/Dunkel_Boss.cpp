@@ -3,12 +3,14 @@
 #include "Player.h"
 #include "FallenWarrior.h"
 
+#include "MyCollision.h"
+
 
 ADunkel_Boss::ADunkel_Boss()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
 
 	SpriteRenderer->CreateAnimation("Die", "Dunkel_Die", 0, 27, 0.1f, false);
@@ -36,13 +38,14 @@ ADunkel_Boss::ADunkel_Boss()
 	AnimaionFSM.CreateState(DunkelAnim_State::Up, std::bind(&ADunkel_Boss::UpdateUp, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartUp, this));
 
 	//	보스 콜리전
-	Collision = CreateDefaultSubObject<UCollision>();
+	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Boss");
-	Collision->SetRelativeScale3D(FVector(150.0f, 280.0f, 1.0f));
+	Collision->GetRenderUnit().SetTexture("ImageTexture", "DebugCollisionBase.png");
+	Collision->SetRelativeScale3D(FVector(150.0f, 320.0f, 1.0f));
 	// 보스공격 콜리젼
 	{
-		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetActive(false);
 		Collision->SetRelativeScale3D(FVector(400.0f, 300.0f, 100.0f));
@@ -63,7 +66,7 @@ ADunkel_Boss::ADunkel_Boss()
 	}
 
 	{
-		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetActive(false);
 		Collision->SetRelativeScale3D(FVector(700.0f, 300.0f, 100.0f));
@@ -77,7 +80,7 @@ ADunkel_Boss::ADunkel_Boss()
 	}
 
 	{
-		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetActive(false);
 		Collision->SetRelativeScale3D(FVector(300.0f, 50.0f, 100.0f));
@@ -112,7 +115,7 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	AMonster::Tick(_DeltaTime);
 	AnimaionFSM.Update(_DeltaTime);
 
-	/*if (UEngineInput::IsDown('1')) {
+	if (UEngineInput::IsDown('1')) {
 		AnimaionFSM.ChangeState(DunkelAnim_State::Die);
 	}
 	if (UEngineInput::IsDown('2')) {
@@ -139,7 +142,7 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	}
 	if (UEngineInput::IsDown('9')) {
 		AnimaionFSM.ChangeState(DunkelAnim_State::Up);
-	}*/
+	}
 
 
 
@@ -276,7 +279,7 @@ void ADunkel_Boss::StartStand()
 	SpriteRenderer->ChangeAnimation("Stand");
 	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 180.0f, static_cast<float>(Z_ORDER::Boss)));
 	Collision->SetActive(true);
-	Collision->SetRelativeLocation(FVector(50.0f, 300.0f));
+	Collision->SetRelativeLocation(FVector(10.0f, 170.0f));
 }
 
 void ADunkel_Boss::UpdateStand(float _DeltaTime)

@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "FallenWarrior.h"
 
+#include "MyCollision.h"
+
 
 
 AFallenWarrior::AFallenWarrior()
@@ -16,20 +18,20 @@ AFallenWarrior::AFallenWarrior()
 	SpriteRenderer->CreateAnimation("Die", "FallenWarrior_Die", 0, 13, 0.1f, false);
 	SpriteRenderer->CreateAnimation("Hit", "FallenWarrior_Hit", 0, 0, 0.1f, false);
 
-	Collision = CreateDefaultSubObject<UCollision>().get();
+	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Monster");
 	Collision->SetRelativeScale3D(FVector(50.0f, 90.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(10.0f, 45.0f));
 
-	AttackCollision = CreateDefaultSubObject<UCollision>().get();
+	AttackCollision = CreateDefaultSubObject<UMyCollision>().get();
 	AttackCollision->SetupAttachment(RootComponent);
 	AttackCollision->SetCollisionProfileName("MonsterAttack");
 	AttackCollision->SetRelativeScale3D(FVector(120.0f, 90.0f, 1.0f));
 	AttackCollision->SetRelativeLocation(FVector(-50.0f, 45.0f));
 	AttackCollision->SetActive(false);
 
-	ScopeCollision = CreateDefaultSubObject<UCollision>().get();
+	ScopeCollision = CreateDefaultSubObject<UMyCollision>().get();
 	ScopeCollision->SetupAttachment(RootComponent);
 	ScopeCollision->SetCollisionProfileName("Scope");
 	ScopeCollision->SetRelativeScale3D(FVector(300.0f, 300.0f, 1.0f));

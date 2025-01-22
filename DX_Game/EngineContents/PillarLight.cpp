@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "PillarLight.h"
+#include "MyCollision.h"
 
 
 APillarLight::APillarLight() 
@@ -10,7 +11,7 @@ APillarLight::APillarLight()
 	SpriteRenderer->CreateAnimation("PillarLight", "PillarLight", 0, 30);
 	SpriteRenderer->SetRelativeLocation(FVector(0.0f, 370.0f, 0.0f));
 
-	Collision = CreateDefaultSubObject<UCollision>().get();
+	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("MonsterAttack");
 	Collision->SetRelativeScale3D(FVector(250.0f, 500.0f, 1.0f));

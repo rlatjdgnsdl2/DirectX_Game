@@ -103,6 +103,10 @@
     <ClCompile Include="DamageSkinActor.cpp">
       <Filter>UI\DamageSkin</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsCore_GraphicResRoad.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -204,6 +208,7 @@
     <ClInclude Include="DamageSkinActor.h">
       <Filter>UI\DamageSkin</Filter>
     </ClInclude>
+    <ClInclude Include="MyCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -226,9 +231,6 @@
     </Filter>
     <Filter Include="Character\Player">
       <UniqueIdentifier>{e09d7acd-c040-4b85-8a10-bf004406165d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{bbea2012-8213-409f-be40-5dc42b59cf23}</UniqueIdentifier>
     </Filter>
     <Filter Include="Monster">
       <UniqueIdentifier>{566465ee-4389-4f10-add8-3150d26b18ef}</UniqueIdentifier>

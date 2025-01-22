@@ -3,6 +3,15 @@
 
 void UContentsCore::LoadResources() 
 {
+
+	ContentsDepthStencilInit();
+	ContentsTextureInit();
+	ContentsMeshInit();
+	ContentsBlendInit();
+	ContentsRasterizerStateInit();
+	ContentsShaderInit();
+	ContentsMaterialInit();
+
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("Resources"))

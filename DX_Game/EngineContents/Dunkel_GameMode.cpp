@@ -78,13 +78,13 @@ void ADunkel_GameMode::UpdateMapPattern(float _DeltaTime)
 	// FallenWarrior
 	if (FallenWarriorSpawnTime <= 0.0f)
 	{
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 2; i++) {
 			AFallenWarrior* FallenWarrior = GetWorld()->SpawnActor<AFallenWarrior>().get();
 			FallenWarrior->SetActorLocation(FVector(BossDunkel->GetActorLocation().X+FallenWarriorSpawnPosX[i], 0.0f, FallenWarriorSpawnZ));
 			FallenWarriorSpawnZ += 10.0f;
 		}
 		FallenWarriorSpawnZ = 10.0f;
-		FallenWarriorSpawnTime = 30.0f;
+		FallenWarriorSpawnTime = 30000.0f;
 	}
 
 	// PillarLight

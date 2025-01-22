@@ -32,7 +32,7 @@ public:
 protected:
 	UFSMStateManager FrameState;
 	std::map<std::string, class USpriteRenderer*> SpriteRenderers;
-	class UCollision* Collision;
+	class UMyCollision* Collision;
 
 private:
 

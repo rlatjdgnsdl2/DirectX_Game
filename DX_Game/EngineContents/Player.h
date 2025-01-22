@@ -25,7 +25,7 @@ public:
 		return PlayerFuncManager;
 	}
 
-	class UCollision* GetCollision()
+	class UMyCollision* GetCollision()
 	{
 		return Collision;
 	}
@@ -51,7 +51,7 @@ protected:
 private:
 	FPlayerLogic PlayerLogic;
 	class USpriteRenderer* SpriteRenderer;
-	class UCollision* Collision;
+	class UMyCollision* Collision;
 	class UJob* Job;
 
 	//	πÊ«‚≈∞

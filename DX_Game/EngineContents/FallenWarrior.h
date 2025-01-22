@@ -26,9 +26,8 @@ private:
 	int Dir = 0;
 
 	class USpriteRenderer* SpriteRenderer;
-	class UCollision* Collision;
-	class UCollision* AttackCollision;
-	class UCollision* ScopeCollision;
+	class UMyCollision* AttackCollision;
+	class UMyCollision* ScopeCollision;
 
 	
 	

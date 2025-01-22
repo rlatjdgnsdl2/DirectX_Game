@@ -26,5 +26,13 @@ protected:
 
 private:
 	void LoadResources();
+
+	void ContentsDepthStencilInit();
+	void ContentsTextureInit();
+	void ContentsMeshInit();
+	void ContentsBlendInit();
+	void ContentsRasterizerStateInit();
+	void ContentsShaderInit();
+	void ContentsMaterialInit();
 };
 

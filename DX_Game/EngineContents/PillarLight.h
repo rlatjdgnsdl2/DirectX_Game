@@ -19,7 +19,7 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer;
-	class UCollision* Collision;
+	class UMyCollision* Collision;
 
 };
 

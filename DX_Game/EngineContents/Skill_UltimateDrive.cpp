@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "PlayerFuncManager.h"
 
+#include "MyCollision.h"
+
 
 ASkill_UltimateDrive::ASkill_UltimateDrive()
 {
@@ -28,7 +30,7 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer.get()));
 	}
 
-	Collision = CreateDefaultSubObject<UCollision>().get();
+	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("PlayerSkill");
 	Collision->SetScale3D(FVector(340.0f, 300.0f, 1.0f));
