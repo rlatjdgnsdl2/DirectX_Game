@@ -19,26 +19,35 @@ public:
 	UWidget& operator=(const UWidget& _Other) = delete;
 	UWidget& operator=(UWidget&& _Other) noexcept = delete;
 
-	virtual void Tick(float _DeltaTime);
-	virtual void Render(class UEngineCamera* Camera, float _DeltaTime);
+	ENGINEAPI virtual void Tick(float _DeltaTime);
+	ENGINEAPI virtual void Render(class UEngineCamera* Camera, float _DeltaTime);
 
-	class ULevel* GetWorld();
+	ENGINEAPI class ULevel* GetWorld();
 
 
-	void SetHoverEvent(std::function<void()> _Value)
+	ENGINEAPI void SetHoverEvent(std::function<void()> _Value)
 	{
 		Hover = _Value;
 	}
 
-	void SetDownEvent(std::function<void()> _Value)
+	ENGINEAPI void SetDownEvent(std::function<void()> _Value)
 	{
 		Down = _Value;
 	}
 
-	void SetUpEvent(std::function<void()> _Value)
+	ENGINEAPI void SetUpEvent(std::function<void()> _Value)
 	{
 		Up = _Value;
 	}
+
+	template<typename Type>
+	Type* GetGameInstance()
+	{
+		return dynamic_cast<Type*>(GetGameInstance());
+	}
+
+	ENGINEAPI class UGameInstance* GetGameInstance();
+
 
 private:
 	std::function<void()> Hover;

@@ -16,8 +16,6 @@ public:
 
 	virtual void SetActiveTrue() override;
 	
-	
-
 protected:
 
 private:

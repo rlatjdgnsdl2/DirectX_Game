@@ -9,3 +9,9 @@ UEngineGUIWindow::~UEngineGUIWindow()
 {
 }
 
+
+UGameInstance* UEngineGUIWindow::GetGameInstance()
+{
+	return GEngine->GetGameInstance();
+}
+

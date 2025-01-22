@@ -20,6 +20,12 @@ protected:
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 	std::map<std::string, class UCollision*> AttackCollisionMap;
+	float HP;
+	float Def;
+	bool bIsDamagedable;
+
+
+
 private:
 };
 

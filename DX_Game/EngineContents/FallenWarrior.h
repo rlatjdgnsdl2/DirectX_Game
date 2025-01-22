@@ -22,6 +22,9 @@ private:
 	UEngineRandom Random;
 	UFSMStateManager AnimaionFSM;
 
+	float NoDamageTime = 5.0f;
+	
+
 	float WalkTime = 0.0f;
 	int Dir = 0;
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/Pawn.h>
-#include "PlayerStatus.h"
+
 
 //	설명:
 class APlayer : public APawn
@@ -46,6 +46,10 @@ public:
 		SpriteRenderer->ChangeAnimation(_Name);
 	}
 
+	void SetHpPercentDamage(float _Percent);
+
+	
+
 
 protected:
 
@@ -55,7 +59,7 @@ private:
 	class UMyCollision* Collision;
 	class UJob* Job;
 
-	PlayerStatus Status;
+	
 
 	//	방향키
 	std::map<std::string, class APlayerFunction*> DirFunctionMap;

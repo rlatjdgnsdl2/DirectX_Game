@@ -1,8 +1,21 @@
 #include "PreCompile.h"
 #include "Player.h"
 #include "PlayerFuncManager.h"
+#include "MyGameInstance.h"
 
 
+void APlayer::SetHpPercentDamage(float _Percent)
+{
+	GetGameInstance<MyGameInstance>()->PlayerStatus.PrevHp = GetGameInstance<MyGameInstance>()->PlayerStatus.Hp;
+	GetGameInstance<MyGameInstance>()->PlayerStatus.PrevHpPercent = GetGameInstance<MyGameInstance>()->PlayerStatus.Hp / GetGameInstance<MyGameInstance>()->PlayerStatus.MaxHp;
+	GetGameInstance<MyGameInstance>()->PlayerStatus.Hp -= GetGameInstance<MyGameInstance>()->PlayerStatus.MaxHp * _Percent;
+	GetGameInstance<MyGameInstance>()->PlayerStatus.CurHpPercent = GetGameInstance<MyGameInstance>()->PlayerStatus.Hp / GetGameInstance<MyGameInstance>()->PlayerStatus.MaxHp;
+	GetGameInstance<MyGameInstance>()->PlayerStatus.bIsHpChange = true;
+	if (GetGameInstance<MyGameInstance>()->PlayerStatus.Hp <= 0)
+	{
+		GetGameInstance<MyGameInstance>()->PlayerStatus.Hp = 0;
+	}
+}
 
 void APlayer::CheckKey(float _DeltaTime)
 {

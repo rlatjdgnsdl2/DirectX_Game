@@ -73,3 +73,14 @@ void UImageWidget::SetTexture(std::string_view _Name, bool AutoScale /*= false*/
 		SetRelativeScale3D(Texture->GetTextureSize() * _Ratio);
 	}
 }
+
+void UImageWidget::SetPivot(FVector _Pivot) 
+{
+	SpriteData.Pivot = _Pivot;
+}
+
+void UImageWidget::SetCuttingSize(int _Index,FVector _Size)
+{
+	FSpriteData& SpriteData = Sprite->GetSpriteData(_Index);
+	SpriteData.CuttingSize = _Size;
+}

@@ -1,6 +1,9 @@
 #include "PreCompile.h"
 #include "PillarLight.h"
 #include "MyCollision.h"
+#include "Player.h"
+
+#include "MyGameInstance.h"
 
 
 APillarLight::APillarLight() 
@@ -8,7 +11,7 @@ APillarLight::APillarLight()
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
-	SpriteRenderer->CreateAnimation("PillarLight", "PillarLight", 0, 30);
+	SpriteRenderer->CreateAnimation("PillarLight", "PillarLight", 0, 30,2.0f/17,false);
 	SpriteRenderer->SetRelativeLocation(FVector(0.0f, 370.0f, 0.0f));
 
 	Collision = CreateDefaultSubObject<UMyCollision>().get();
@@ -16,6 +19,14 @@ APillarLight::APillarLight()
 	Collision->SetCollisionProfileName("MonsterAttack");
 	Collision->SetRelativeScale3D(FVector(250.0f, 500.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(0.0f, 250.0f));
+	Collision->SetActive(false);
+	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+		{
+			APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+			Player->SetHpPercentDamage(0.4f);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.bIsHpChange = true;
+			Collision->SetActive(false);
+		});
 
 
 }
@@ -34,8 +45,26 @@ void APillarLight::BeginPlay()
 void APillarLight::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	CollisionSpawnTime -= _DeltaTime;
+	if (CollisionSpawnTime <= 0.0f)
+	{
+		Collision->SetActive(true);
+		bIsCollisionSpawn = true;
+		CollisionSpawnTime = 1000.0f;
+	}
+	if (bIsCollisionSpawn) {
+		CollisionCloseTime -= _DeltaTime;
+		if (CollisionCloseTime <= 0.0f)
+		{
+			Collision->SetActive(false);
+			bIsCollisionSpawn = false;
+			CollisionCloseTime = 1000.0f;
+		}
+	}
+
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		Destroy();
 	}
+	
 }

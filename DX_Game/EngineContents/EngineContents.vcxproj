@@ -25,10 +25,6 @@
     </ClCompile>
     <ClCompile Include="ContentsCore_GraphicResRoad.cpp" />
     <ClCompile Include="ContentsEditorGUI.cpp" />
-    <ClCompile Include="ContentsPhysics.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="DamageSkinActor.cpp">
       <SubType>
       </SubType>
@@ -46,6 +42,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Dunkel_GUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Dunkel_HUD.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -104,11 +104,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="RightKey.cpp">
+    <ClCompile Include="PlayerHpBar.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerStatus.cpp">
+    <ClCompile Include="PlayerHpMpBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RightKey.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -156,6 +160,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContentsStatic.h" />
     <ClInclude Include="ContentsStruct.h" />
     <ClInclude Include="DamageSkinActor.h">
       <SubType>
@@ -174,6 +179,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Dunkel_GUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Dunkel_HUD.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -231,11 +240,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerHpBar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerHpMpBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RightKey.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerStatus.h">
+    <ClInclude Include="MyGameInstance.h">
       <SubType>
       </SubType>
     </ClInclude>

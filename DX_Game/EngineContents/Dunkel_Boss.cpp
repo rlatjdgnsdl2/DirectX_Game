@@ -141,7 +141,8 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 		AnimaionFSM.ChangeState(DunkelAnim_State::Sword);
 	}
 	if (UEngineInput::IsDown('9')) {
-		AnimaionFSM.ChangeState(DunkelAnim_State::Up);
+		//GetWorld()->SpawnActor<APlayer>();
+
 	}
 
 

@@ -59,6 +59,9 @@ AFallenWarrior::AFallenWarrior()
 
 	GetWorld()->LinkCollisionProfile("Scope", "Player");
 
+
+	HP = 300'0000'0000.0f;
+	Def = 300.0f;
 }
 
 AFallenWarrior::~AFallenWarrior()
@@ -70,13 +73,23 @@ void AFallenWarrior::BeginPlay()
 {
 	AMonster::BeginPlay();
 	AnimaionFSM.ChangeState(Monster_State::Spawn);
-
+	bIsDamagedable = false;
 }
 
 void AFallenWarrior::Tick(float _DeltaTime)
 
 {
 	AMonster::Tick(_DeltaTime);
+	NoDamageTime -= _DeltaTime;
+	if (NoDamageTime <= 0.0f)
+	{
+		bIsDamagedable = true;
+	}
+	if (HP <= 0.0f)
+	{
+		AnimaionFSM.ChangeState(Monster_State::Die);
+		return;
+	}
 	AnimaionFSM.Update(_DeltaTime);
 
 }

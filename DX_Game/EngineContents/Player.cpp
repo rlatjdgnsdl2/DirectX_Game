@@ -2,6 +2,7 @@
 #include "Player.h"
 
 #include "MyCollision.h"
+#include <EngineCore/EngineCore.h>
 
 #include "PlayerFuncManager.h"
 #include "Job_Phantom.h"
@@ -10,6 +11,7 @@
 #include "DownKey.h"
 #include "UpKey.h"
 #include "DamageSkinActor.h"
+#include "MyGameInstance.h"
 
 
 
@@ -37,6 +39,8 @@ APlayer::APlayer()
 
 	Job = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();
+
+	
 }
 
 APlayer::~APlayer()
@@ -69,6 +73,7 @@ void APlayer::BeginPlay()
 		DirFunctionMap.insert(std::make_pair("VK_UP", PlayerFunc.get()));
 	}
 	
+	
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -76,12 +81,6 @@ void APlayer::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
-	if (UEngineInput::IsDown('R'))
-	{
-		GetWorld()->SpawnActor<ADamageSkinActor>()->SetDamage(1234567890213123123);
-	}
-
-	UEngineDebug::OutPutString(std::to_string(1 / _DeltaTime));
 }
 
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 struct FPlayerLogic
 {
 	FVector Velocity = FVector::ZERO;
@@ -102,4 +102,24 @@ struct FPlayerLogic
 		bIsJumpable = true;
 		JumpCount = 0;
 	}
+};
+
+struct FPlayerStatus
+{
+	std::string Name = "";
+
+	int Level =1;
+	float MaxHp = 60000;
+	float PrevHp;
+	float Hp = 60000;
+
+	float MaxMp =40000;
+	float PrevMp;
+	float Mp = 40000;
+	float Damage = 999999999;
+
+
+	bool bIsHpChange;
+	float CurHpPercent;
+	float PrevHpPercent;
 };

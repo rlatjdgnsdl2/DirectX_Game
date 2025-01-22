@@ -15,22 +15,24 @@ public:
 	UImageWidget& operator=(const UImageWidget& _Other) = delete;
 	UImageWidget& operator=(UImageWidget&& _Other) noexcept = delete;
 
-	void Render(UEngineCamera* Camera, float _DeltaTime) override;
+	ENGINEAPI void Render(UEngineCamera* Camera, float _DeltaTime) override;
 
-	URenderUnit& GetRenderUnit()
+	ENGINEAPI URenderUnit& GetRenderUnit()
 	{
 		return RenderUnit;
 	}
 
 	ENGINEAPI void SetSprite(std::string_view _Name, UINT _Index = 0);
 	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
+	ENGINEAPI void SetPivot(FVector _Pivot);
+	ENGINEAPI void SetCuttingSize(int _Index, FVector _Size);
 
-	void SetAutoScale(bool _Value)
+	ENGINEAPI void SetAutoScale(bool _Value)
 	{
 		IsAutoScale = _Value;
 	}
 
-	void SetAutoScaleRatio(float _Scale)
+	ENGINEAPI void SetAutoScaleRatio(float _Scale)
 	{
 		AutoScaleRatio = _Scale;
 	}

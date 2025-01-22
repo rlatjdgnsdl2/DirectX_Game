@@ -20,6 +20,16 @@ public:
 	virtual void BeginPlay() {}
 	virtual void OnGUI() = 0;
 
+
+	template<typename Type>
+	Type* GetGameInstance()
+	{
+		return dynamic_cast<Type*>(GetGameInstance());
+	}
+
+	ENGINEAPI class UGameInstance* GetGameInstance();
+
+
 	ULevel* GetWorld()
 	{
 		return World;

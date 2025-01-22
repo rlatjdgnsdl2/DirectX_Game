@@ -26,6 +26,7 @@ void UContentsCore::LoadResources()
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
 		}
+		
 	}
 
 	{
@@ -90,6 +91,7 @@ void UContentsCore::LoadResources()
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
 		}
+
 		Dir.Append("DamageSkin\\DamageSkin_0");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
@@ -143,6 +145,12 @@ void UContentsCore::LoadResources()
 		Dir.BackDir();
 
 		Dir.Append("DamageSkin_Miss");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.BackDir();
+		Dir.Append("StatusBar");
+		Dir.Append("Player_HpBar");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 

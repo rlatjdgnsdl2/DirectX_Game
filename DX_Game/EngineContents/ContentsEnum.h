@@ -43,6 +43,7 @@ enum class DunkelAnim_State {
 enum class Monster_State {
 	None,
 	Attack,
+	NoDamageMode,
 	Die,
 	Hit,
 	Move,

@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+
 //	Ό³Έν:
 class APillarLight :public AActor
 {
@@ -18,6 +19,9 @@ public:
 protected:
 
 private:
+	bool bIsCollisionSpawn = false;
+	float CollisionSpawnTime = 2.0f;
+	float CollisionCloseTime = 0.3f;
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 

@@ -6,11 +6,12 @@
 #include "Player.h"
 
 #include "Dunkel_GameMode.h"
+#include "Dunkel_HUD.h"
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/EngineGUIWindow.h>
 #include "ContentsEditorGUI.h"
 
-#include "PlayerStatus.h"
+#include "MyGameInstance.h"
 
 
 
@@ -30,11 +31,16 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1280, 720 };
 
+	GEngine->CreateGameInstance<MyGameInstance>();
 	
+
+
+
+
 	LoadResources();
 
 	UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
-	UEngineCore::CreateLevel<ADunkel_GameMode, APlayer, AHUD>("Dunkel");
+	UEngineCore::CreateLevel<ADunkel_GameMode, APlayer, ADunkel_HUD>("Dunkel");
 	UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
 	
 

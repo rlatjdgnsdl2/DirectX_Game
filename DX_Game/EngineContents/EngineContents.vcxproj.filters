@@ -61,9 +61,6 @@
     <ClCompile Include="ContentsEditorGUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerStatus.cpp">
-      <Filter>Character\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Dunkel_GUI.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
@@ -94,9 +91,6 @@
     <ClCompile Include="UpKey.cpp">
       <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsPhysics.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="PillarLight.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
@@ -107,6 +101,15 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="MyCollision.cpp" />
+    <ClCompile Include="PlayerHpMpBox.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_HUD.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBar.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -166,7 +169,7 @@
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerStatus.h">
+    <ClInclude Include="MyGameInstance.h">
       <Filter>Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="Dunkel_GUI.h">
@@ -199,9 +202,6 @@
     <ClInclude Include="UpKey.h">
       <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsPhysics.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="PillarLight.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
@@ -209,6 +209,21 @@
       <Filter>UI\DamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="MyCollision.h" />
+    <ClInclude Include="ContentsPhysics.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsStatic.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpMpBox.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_HUD.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBar.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

@@ -26,6 +26,9 @@ ADunkel_GameMode::ADunkel_GameMode()
 	GetWorld()->CreateCollisionProfile("UI");
 	GetWorld()->CreateCollisionProfile("EndArea");
 
+	GetWorld()->LinkCollisionProfile("MonsterAttack","Player" );
+	
+
 	Map = GetWorld()->SpawnActor<ADunkel_Map>().get();
 	BossDunkel = GetWorld()->SpawnActor<ADunkel_Boss>().get();
 

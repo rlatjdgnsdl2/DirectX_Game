@@ -54,7 +54,7 @@ public:
 
 	ENGINEAPI ID3D11ShaderResourceView* GetSRV(size_t _Index = 0);
 
-	ENGINEAPI FSpriteData GetSpriteData(size_t _Index)
+	ENGINEAPI FSpriteData& GetSpriteData(size_t _Index)
 	{
 		if (SpriteDatas.size() <= _Index)
 		{

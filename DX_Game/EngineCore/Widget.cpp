@@ -16,6 +16,11 @@ UWidget::~UWidget()
 {
 }
 
+UGameInstance* UWidget::GetGameInstance()
+{
+	return GEngine->GetGameInstance();
+}
+
 void UWidget::Tick(float _DeltaTime)
 {
 	std::shared_ptr<class ACameraActor> CameraActor = GetWorld()->GetCamera(EEngineCameraType::UICamera);

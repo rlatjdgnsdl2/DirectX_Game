@@ -18,7 +18,7 @@ public:
 	AHUD& operator=(AHUD&& _Other) noexcept = delete;
 
 	template<typename WidgetType>
-	std::shared_ptr<WidgetType> CreateWidget(std::string_view _Name = "NONE")
+	std::shared_ptr<WidgetType> CreateWidget(int _ZOrder, std::string_view _Name = "NONE")
 	{
 		// 컴파일시점에서 오류가 납니다.
 		static_assert(std::is_base_of_v<UWidget, WidgetType>, "액터를 상속받지 않은 클래스를 SpawnActor하려고 했습니다.");
@@ -42,9 +42,10 @@ public:
 		std::shared_ptr<WidgetType> NewWidgetPtr(NewPtr = new(Memory) WidgetType());
 
 		NewWidgetPtr->SetName(_Name);
+		NewWidgetPtr->SetOrder(_ZOrder);
 
 		//컴파일러는 그걸 모른다.
-		Widgets[0].push_back(NewWidgetPtr);
+		Widgets[NewWidgetPtr->GetOrder()].push_back(NewWidgetPtr);
 
 		return NewWidgetPtr;
 	}
