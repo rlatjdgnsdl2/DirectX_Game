@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Pawn.h>
+#include "PlayerStatus.h"
 
 //	설명:
 class APlayer : public APawn
@@ -53,6 +54,8 @@ private:
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 	class UJob* Job;
+
+	PlayerStatus Status;
 
 	//	방향키
 	std::map<std::string, class APlayerFunction*> DirFunctionMap;

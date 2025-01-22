@@ -108,7 +108,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerStat.cpp">
+    <ClCompile Include="PlayerStatus.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -235,7 +235,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerStat.h">
+    <ClInclude Include="PlayerStatus.h">
       <SubType>
       </SubType>
     </ClInclude>

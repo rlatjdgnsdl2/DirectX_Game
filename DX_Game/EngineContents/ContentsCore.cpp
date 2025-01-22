@@ -10,6 +10,8 @@
 #include <EngineCore/EngineGUIWindow.h>
 #include "ContentsEditorGUI.h"
 
+#include "PlayerStatus.h"
+
 
 
 
@@ -28,15 +30,13 @@ void UContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = { 100, 100 };
 	_Data.WindowSize = { 1280, 720 };
 
-
-
 	
 	LoadResources();
 
-	//UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
+	UEngineCore::CreateLevel<AMoonBridge_WhiteSpear, APlayer,AHUD>("MoonBridge_WhiteSpear");
 	UEngineCore::CreateLevel<ADunkel_GameMode, APlayer, AHUD>("Dunkel");
-	//UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
-	UEngineCore::OpenLevel("Dunkel");
+	UEngineCore::OpenLevel("MoonBridge_WhiteSpear");
+	
 
 	UEngineGUI::AllWindowOff();
 	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");

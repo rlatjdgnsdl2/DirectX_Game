@@ -154,24 +154,6 @@
       <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
     </ClInclude>
     <ClInclude Include="GameInstance.h" />
-    <ClInclude Include="EngineFont.h">
-      <Filter>Font</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget.h">
-      <Filter>Widget</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformObject.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="FontWidget.h">
-      <Filter>Widget</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageWidget.h">
-      <Filter>Widget</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -310,24 +292,6 @@
     <ClCompile Include="EngineRenderTarget.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="GameInstance.cpp" />
-    <ClCompile Include="EngineFont.cpp">
-      <Filter>Font</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget.cpp">
-      <Filter>Widget</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformObject.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="FontWidget.cpp">
-      <Filter>Widget</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageWidget.cpp">
-      <Filter>Widget</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
