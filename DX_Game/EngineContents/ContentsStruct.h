@@ -110,16 +110,18 @@ struct FPlayerStatus
 
 	int Level =1;
 	float MaxHp = 60000;
-	float PrevHp;
+	float PrevHp= 60000;
 	float Hp = 60000;
 
 	float MaxMp =40000;
-	float PrevMp;
+	float PrevMp = 40000;
 	float Mp = 40000;
 	float Damage = 999999999;
 
 
 	bool bIsHpChange;
-	float CurHpPercent;
-	float PrevHpPercent;
+	float CurHpPercent =1.0f;
+	float PrevHpPercent = 1.0f;
+	float CurMpPercent = 1.0f;
+	float PrevMpPercent = 1.0f;
 };

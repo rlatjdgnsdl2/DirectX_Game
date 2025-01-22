@@ -61,7 +61,7 @@ AFallenWarrior::AFallenWarrior()
 
 
 	HP = 300'0000'0000.0f;
-	Def = 300.0f;
+	
 }
 
 AFallenWarrior::~AFallenWarrior()

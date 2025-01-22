@@ -1,6 +1,14 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+struct DamageInfo {
+	float Damage;
+	float HitDelay;
+	float MaxHitCount;
+	float CurHitCount;
+};
+
+
 //	Ό³Έν:
 class AMonster : public AActor
 {
@@ -15,13 +23,17 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
+
+
 protected:
 	UFSMStateManager AnimaionFSM;
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 	std::map<std::string, class UCollision*> AttackCollisionMap;
-	float HP;
-	float Def;
+
+	
+
+	float HP = 0.0f;
 	bool bIsDamagedable;
 
 
