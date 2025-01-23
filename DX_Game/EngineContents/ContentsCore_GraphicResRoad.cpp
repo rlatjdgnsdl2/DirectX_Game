@@ -66,5 +66,6 @@ void UContentsCore::ContentsMaterialInit()
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("DamageSkinMaterial");
 		Mat->SetVertexShader("DamageSkinShader.fx");
 		Mat->SetPixelShader("DamageSkinShader.fx");
+		Mat->SetBlend("AlphaBlend");
 	}
 }

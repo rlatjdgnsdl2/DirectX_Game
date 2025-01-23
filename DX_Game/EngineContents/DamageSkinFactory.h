@@ -26,6 +26,7 @@ private:
 	float HitDelay = 0.0f;
 	int CurHitCount =0;
 	float OffsetY = 0.0f;
+	long long DamageOffset = 100000000;
 
 };
 
