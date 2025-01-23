@@ -101,7 +101,7 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="MyCollision.cpp" />
-    <ClCompile Include="PlayerHpMpBox.cpp">
+    <ClCompile Include="PlayerHpMpBoxFront.cpp">
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Dunkel_HUD.cpp">
@@ -117,6 +117,15 @@
       <Filter>UI\DamageSkin</Filter>
     </ClCompile>
     <ClCompile Include="DamageSkinRenderer.cpp" />
+    <ClCompile Include="Bar.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBar.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpMpBoxBack.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -222,7 +231,7 @@
     <ClInclude Include="ContentsStatic.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHpMpBox.h">
+    <ClInclude Include="PlayerHpMpBoxFront.h">
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Dunkel_HUD.h">
@@ -235,6 +244,15 @@
       <Filter>UI\DamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="DamageSkinRenderer.h" />
+    <ClInclude Include="Bar.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBar.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpMpBoxBack.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

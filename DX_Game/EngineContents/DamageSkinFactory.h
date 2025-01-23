@@ -2,31 +2,38 @@
 #include "EngineCore/Actor.h"
 
 //	Ό³Έν:
-class DamageSkinFactory : public AActor
+class ADamageSkinFactory : public AActor
 {
 public:
-	DamageSkinFactory();
-	virtual ~DamageSkinFactory();
-	DamageSkinFactory(const DamageSkinFactory& _Other) = delete;
-	DamageSkinFactory(DamageSkinFactory&& _Other) noexcept = delete;
-	DamageSkinFactory& operator=(const DamageSkinFactory& _Other) = delete;
-	DamageSkinFactory& operator=(DamageSkinFactory&& _Other) noexcept = delete;
+	ADamageSkinFactory();
+	virtual ~ADamageSkinFactory();
+	ADamageSkinFactory(const ADamageSkinFactory& _Other) = delete;
+	ADamageSkinFactory(ADamageSkinFactory&& _Other) noexcept = delete;
+	ADamageSkinFactory& operator=(const ADamageSkinFactory& _Other) = delete;
+	ADamageSkinFactory& operator=(ADamageSkinFactory&& _Other) noexcept = delete;
 
 	void SetDamageInfo(FDamageInfo& _DamageInfo)
 	{
 		DamageInfo = _DamageInfo;
 		HitDelay = DamageInfo.HitDelay;
 	}
+	void SetSpawnLocation(FVector _SpawnLocation)
+	{
+		SpawnLocation = _SpawnLocation;
+	}
 	void Tick(float _DeltaTime) override;
+	
 
 protected:
 
 private:
 	FDamageInfo DamageInfo;
+	FVector SpawnLocation;
 	float HitDelay = 0.0f;
 	int CurHitCount =0;
 	float OffsetY = 0.0f;
-	long long DamageOffset = 100000000;
+
+
 
 };
 

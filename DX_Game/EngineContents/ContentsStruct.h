@@ -126,9 +126,66 @@ struct FPlayerStatus
 	float Damage = 999999999;
 
 
-	bool bIsHpChange;
+	bool bIsHpChange = false;
+	bool bIsMpChange = false;
 	float CurHpPercent =1.0f;
 	float PrevHpPercent = 1.0f;
 	float CurMpPercent = 1.0f;
 	float PrevMpPercent = 1.0f;
+
+	void FillMaxMp()
+	{
+		PrevMp = Mp;
+		PrevMpPercent = Mp / MaxMp;
+		Mp = MaxMp;
+		CurMpPercent = Mp / MaxMp;
+		bIsMpChange = true;
+	}
+
+	void UseMp(float _Mp)
+	{
+		PrevMp = Mp;
+		PrevMpPercent = Mp / MaxMp;
+		Mp -= _Mp;
+		if (Mp < 0.0f)
+		{
+			Mp = 0.0f;
+		}
+		CurMpPercent = Mp / MaxMp;
+		bIsMpChange = true;
+	}
+
+	void FillMaxHp()
+	{
+		PrevHp = Hp;
+		PrevHpPercent = Hp /MaxHp;
+		Hp = MaxHp;
+		CurHpPercent =Hp /MaxHp;
+		bIsHpChange = true;
+	}
+	void SetHpPercentDamage(float _Percent) 
+	{
+		PrevHp = Hp;
+		PrevHpPercent = Hp / MaxHp;
+		Hp -= MaxHp * _Percent;
+		if (Hp < 0.0f)
+		{
+			Hp = 0.0f;
+		}
+		CurHpPercent = Hp / MaxHp;
+		bIsHpChange = true;
+	}
+
+	void SetDamage(float _Damage)
+	{
+		PrevHp = Hp;
+		PrevHpPercent = Hp / MaxHp;
+		Hp -= _Damage;
+		if (Hp < 0.0f)
+		{
+			Hp = 0.0f;
+		}
+		CurHpPercent = Hp / MaxHp;
+		bIsHpChange = true;
+	}
 };

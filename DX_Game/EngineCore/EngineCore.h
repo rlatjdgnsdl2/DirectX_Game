@@ -50,9 +50,16 @@ public:
 		SetGameInstance(std::make_shared<Type>());
 	}
 
+	ENGINEAPI float GetDeltaTime()
+	{
+		return DeltaTime;
+	}
+
 protected:
 
 private:
+	float DeltaTime;
+
 	UEngineWorkThreadPool ThreadPool;
 	std::shared_ptr<class UGameInstance> GameInstance;
 

@@ -6,7 +6,10 @@
 ADamageSkinActor::ADamageSkinActor()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-	std::vector<float> PosX = { 0.0f, 50.0f, 100.0f, 150.0f, 200.0f, 250.0f, 300.0f, 350.0f, 400.0f, 450.0f, 500.0f, 550.0f, 600.0f, 650.0f };
+	std::vector<float> PosX = {
+	-325.0f, -275.0f, -225.0f, -175.0f, -125.0f, -75.0f,
+	-25.0f, 25.0f, 75.0f, 125.0f, 175.0f, 225.0f, 275.0f, 325.0f
+	};
 	for (int i = 0; i < 14; i++)
 	{
 		DamageSkinRenderer* SpriteRenderer = CreateDefaultSubObject<DamageSkinRenderer>().get();
@@ -23,6 +26,8 @@ ADamageSkinActor::ADamageSkinActor()
 		SpriteRenderer->CreateAnimation("DamageSkin_57", "DamageSkin_9", 0, 4);
 		SpriteRenderer->CreateAnimation("DamageSkin_4948", "DamageSkin_10", 0, 4);
 		SpriteRenderer->CreateAnimation("DamageSkin_4949", "DamageSkin_11", 0, 4);
+		
+		SpriteRenderer->CreateAnimation("Miss", "DamageSkin_Miss", 0, 4);
 		SpriteRenderer->SetRelativeLocation(FVector(PosX[i], 0.0f));
 		SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::DamageSkin));
 
@@ -38,26 +43,29 @@ ADamageSkinActor::~ADamageSkinActor()
 void ADamageSkinActor::BeginPlay()
 {
 	AActor::BeginPlay();
+	if (Damage == 0.0f) {
+		SpriteRenderers[8]->ChangeAnimation("Miss");
+		return;
+	}
 	DamageString = std::to_string(Damage);
-
 	int DamageIndex = DamageString.size() - 1;
 	int RenderIndex = SpriteRenderers.size() - 1;
 	for (int i = 0; i <= DamageIndex; i++)
 	{
-		if (i == 4) 
+		if (i == 4)
 		{
 			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_4948");
 			RenderIndex--;
-			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_" + std::to_string(DamageString[DamageIndex-i]));
+			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_" + std::to_string(DamageString[DamageIndex - i]));
 		}
-		else if (i == 8) 
+		else if (i == 8)
 		{
 			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_4949");
 			RenderIndex--;
-			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_" + std::to_string(DamageString[DamageIndex-i]));
+			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_" + std::to_string(DamageString[DamageIndex - i]));
 		}
 		else {
-			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_" + std::to_string(DamageString[DamageIndex-i]));
+			SpriteRenderers[RenderIndex]->ChangeAnimation("DamageSkin_" + std::to_string(DamageString[DamageIndex - i]));
 		}
 		RenderIndex--;
 	}
@@ -66,7 +74,7 @@ void ADamageSkinActor::BeginPlay()
 void ADamageSkinActor::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	if (SpriteRenderers[0]->GetAlpha()==0.0f)
+	if (SpriteRenderers[0]->GetAlpha() == 0.0f)
 	{
 		Destroy();
 	}

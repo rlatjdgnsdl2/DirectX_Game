@@ -96,6 +96,7 @@ ADunkel_Boss::ADunkel_Boss()
 
 	GetWorld()->LinkCollisionProfile("BossAttack", "Player");
 
+	HP = 157500000000000.0f;
 
 }
 

@@ -39,6 +39,7 @@ private:
 
 
 	FVector MapSize;
+	FVector MapPos;
 
 	class ADunkel_Map* Map;
 	class ADunkel_Boss* BossDunkel;

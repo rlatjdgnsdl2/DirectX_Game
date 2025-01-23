@@ -7,6 +7,11 @@ UGameInstance* AActor::GetGameInstance()
 {
 	return GEngine->GetGameInstance();
 }
+
+float AActor::GetDeltaTime()
+{
+	return GEngine->GetDeltaTime();
+}
 AActor::AActor()
 {
 }

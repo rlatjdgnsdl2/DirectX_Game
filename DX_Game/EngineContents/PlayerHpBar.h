@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/ImageWidget.h>
+#include "Bar.h"
 
 //	Ό³Έν:
-class UPlayerHpBar :public UImageWidget
+class UPlayerHpBar :public UBar
 {
 public:
 	UPlayerHpBar();
@@ -14,15 +14,12 @@ public:
 
 	virtual void Tick(float _DeltaTime) override;
 
-	virtual void HpBarLerp(float _StartPercent, float _EndPercent, float _DeltaTime);
+	
 
 protected:
 
 private:
-	bool bIsHpChange = false;
-	float CurTime =0.0f;
-	float StartHpPercent;
-	float TargetHpPercent;
+	
 
 };
 

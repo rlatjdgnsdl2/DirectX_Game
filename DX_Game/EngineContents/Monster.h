@@ -23,21 +23,26 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-
+	void SetDamage(float _Damage) {
+		if (bIsDamagedable) {
+			HP -= _Damage;
+			if (HP <= 0.0f)
+			{
+				HP = 0.0f;
+			}
+		}
+	}
+	bool IsDamagedable() {
+		return bIsDamagedable;
+	}
 
 protected:
 	UFSMStateManager AnimaionFSM;
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 	std::map<std::string, class UCollision*> AttackCollisionMap;
-
-	
-
 	float HP = 0.0f;
 	bool bIsDamagedable;
-
-
-
 private:
 };
 

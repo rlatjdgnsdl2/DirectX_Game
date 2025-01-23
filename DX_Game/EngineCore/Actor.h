@@ -198,6 +198,7 @@ public:
 
 		return Result;
 	}
+	ENGINEAPI float GetDeltaTime();
 
 protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;

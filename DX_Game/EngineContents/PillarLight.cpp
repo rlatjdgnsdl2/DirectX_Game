@@ -22,9 +22,7 @@ APillarLight::APillarLight()
 	Collision->SetActive(false);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-			Player->SetHpPercentDamage(0.4f);
-			GetGameInstance<MyGameInstance>()->PlayerStatus.bIsHpChange = true;
+			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.4);
 			Collision->SetActive(false);
 		});
 

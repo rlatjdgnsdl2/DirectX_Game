@@ -85,18 +85,16 @@ void APlayer::Tick(float _DeltaTime)
 	MoveUpdate(_DeltaTime);
 
 	if (UEngineInput::IsDown('R')) {
-		DamageSkinFactory* actor = GetWorld()->SpawnActor<DamageSkinFactory>().get();
+		ADamageSkinFactory* actor = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
 		FDamageInfo Info;
 		Info.Damage = 100;
 		Info.HitDelay = 0.2f;
 		Info.MaxHitCount = 5;
 		actor->SetDamageInfo(Info);
 	}
-	/*if (UEngineInput::IsDown('Q')) {
-		ADamageSkinActor* actor = GetWorld()->SpawnActor<ADamageSkinActor>().get();
-		actor->SetDamage(999999999);
-		actor->AddActorLocation(FVector(0.0f, 10.0f, 0.0f));
-	}*/
+	if (UEngineInput::IsDown('Q')) {
+		GetGameInstance<MyGameInstance>()->PlayerStatus.FillMaxHp();
+	}
 }
 
 

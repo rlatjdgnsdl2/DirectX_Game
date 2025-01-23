@@ -25,6 +25,9 @@ private:
 	void UpdateUltimateDriveKeyDown(float _DeltaTime);
 	void StartUltimateDriveEnd();
 	void UpdateUltimateDriveEnd(float _DeltaTime);
+
+	float DelayTime = 0.0f;
+	float MpUseTime = 0.0f;
 	
 
 	

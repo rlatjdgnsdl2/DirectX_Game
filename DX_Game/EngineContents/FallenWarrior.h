@@ -20,17 +20,14 @@ protected:
 
 private:
 	UEngineRandom Random;
-	UFSMStateManager AnimaionFSM;
-
 	float NoDamageTime = 5.0f;
-	
-
+	float AttackDelay = 0.5f;
 	float WalkTime = 0.0f;
 	int Dir = 0;
-
-	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* AttackCollision;
 	class UMyCollision* ScopeCollision;
+
+	class USpriteRenderer* Barrior;
 
 	
 	

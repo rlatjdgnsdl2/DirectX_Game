@@ -4,17 +4,17 @@
 #include "DamageSkinActor.h"
 
 
-DamageSkinFactory::DamageSkinFactory()
+ADamageSkinFactory::ADamageSkinFactory()
 {
 
 }
 
-DamageSkinFactory::~DamageSkinFactory()
+ADamageSkinFactory::~ADamageSkinFactory()
 {
 
 }
 
-void DamageSkinFactory::Tick(float _DeltaTime)
+void ADamageSkinFactory::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	HitDelay -= _DeltaTime;
@@ -22,11 +22,10 @@ void DamageSkinFactory::Tick(float _DeltaTime)
 		if (HitDelay < 0.0f)
 		{
 			ADamageSkinActor* DamageSkinActor = GetWorld()->SpawnActor<ADamageSkinActor>().get();
-			DamageSkinActor->SetDamage(DamageInfo.Damage+DamageOffset);
-			DamageSkinActor->AddActorLocation(FVector(0.0f, OffsetY, 0.0f));
+			DamageSkinActor->SetDamage(DamageInfo.Damage);
+			DamageSkinActor->SetActorLocation(FVector(SpawnLocation.X, SpawnLocation.Y+OffsetY, 0.0f));
 			CurHitCount++;
 			HitDelay = DamageInfo.HitDelay;
-			DamageOffset += DamageOffset;
 			OffsetY += 40.0f;
 		}
 	}

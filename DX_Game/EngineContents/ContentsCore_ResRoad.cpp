@@ -154,6 +154,10 @@ void UContentsCore::LoadResources()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
+		Dir.Append("Player_MpBar");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
 
 
 	}

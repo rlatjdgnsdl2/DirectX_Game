@@ -4,6 +4,10 @@
 #include "PlayerFuncManager.h"
 
 #include "MyCollision.h"
+#include "DamageSkinFactory.h"
+#include <EngineCore/EngineCore.h>
+#include "Monster.h"
+#include "MyGameInstance.h"
 
 
 ASkill_UltimateDrive::ASkill_UltimateDrive()
@@ -35,10 +39,47 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 	Collision->SetCollisionProfileName("PlayerSkill");
 	Collision->SetScale3D(FVector(340.0f, 300.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-180.0f, 50.0f));
+	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+		{
+			DelayTime -= GetDeltaTime();
+			if (DelayTime < 0.0f)
+			{
+				AMonster* Monster = dynamic_cast<AMonster*>(_Right->GetActor());
+				if (Monster == nullptr)
+				{
+					return;
+				}
+				if (Monster->IsDamagedable())
+				{
+					ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
+					Factory->SetDamageInfo(DamageInfo);
+					Factory->SetSpawnLocation(_Right->GetWorldLocation() + FVector(0.0f, std::abs(_Right->GetWorldScale3D().hY())));
+					Monster->SetDamage(DamageInfo.Damage * DamageInfo.MaxHitCount);
+					DelayTime = 0.3f;
+				}
+				else {
+					ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
+					FDamageInfo DamageInfo;
+					DamageInfo.Damage = 0.0f;
+					DamageInfo.HitDelay = 0.1f;
+					DamageInfo.MaxHitCount = 3;
+					Factory->SetDamageInfo(DamageInfo);
+					Factory->SetSpawnLocation(_Right->GetWorldLocation() + FVector(0.0f, std::abs(_Right->GetWorldScale3D().hY())));
+					DelayTime = 0.3f;
+				}
+			}
+		});
+	GetWorld()->LinkCollisionProfile("PlayerSkill", "Monster");
+	GetWorld()->LinkCollisionProfile("PlayerSkill", "Boss");
 
 	FrameState.CreateState(Skill_Frame::First, std::bind(&ASkill_UltimateDrive::UpdateUltimateDrivePrev, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDrivePrev, this));
 	FrameState.CreateState(Skill_Frame::Second, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveKeyDown, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveKeyDown, this));
 	FrameState.CreateState(Skill_Frame::Third, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveEnd, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveEnd, this));
+
+	DamageInfo.Damage = 999999999;
+	DamageInfo.HitDelay = 0.1f;
+	DamageInfo.MaxHitCount = 3;
+	UseMp = 200.0f;
 }
 
 ASkill_UltimateDrive::~ASkill_UltimateDrive()
@@ -55,17 +96,18 @@ void ASkill_UltimateDrive::SetActiveTrue()
 
 void ASkill_UltimateDrive::StartUltimateDrivePrev()
 {
-	if (!PlayerLogic->bIsSkillable||!PlayerLogic->bIsGround)
+	DelayTime = 0.0f;
+	if (!PlayerLogic->bIsSkillable || !PlayerLogic->bIsGround)
 	{
 		SetActiveFalse();
 		return;
 	}
-	Collision->SetActive(false);
-	PlayerLogic->bIsUsingSkill =true;
+	Collision->SetActive(true);
+	PlayerLogic->bIsUsingSkill = true;
 	PlayerLogic->bIsSkillable = false;
 	PlayerLogic->bIsJumpable = false;
 	Player->ChangeAnimation("UltimateDrive_KeyDown");
-	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front",true);
+	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front", true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back", true);
 	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
@@ -73,7 +115,7 @@ void ASkill_UltimateDrive::StartUltimateDrivePrev()
 
 void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
 {
-	if (UEngineInput::IsUp(Key)||UEngineInput::IsFree(Key)) {
+	if (UEngineInput::IsUp(Key) || UEngineInput::IsFree(Key)) {
 		FrameState.ChangeState(Skill_Frame::Third);
 		return;
 	}
@@ -86,17 +128,22 @@ void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
 
 void ASkill_UltimateDrive::StartUltimateDriveKeyDown()
 {
-	Collision->SetActive(true);
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-140.0f, 70.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Back");
 	SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, 100.0f, static_cast<float>(Z_ORDER::Skill_Back)));
-
 }
 
 void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
 {
-	if (UEngineInput::IsUp(Key)||UEngineInput::IsFree(Key)) {
+	MpUseTime -= _DeltaTime;
+	if (MpUseTime < 0.0f)
+	{
+		GetGameInstance<MyGameInstance>()->PlayerStatus.UseMp(UseMp);
+		Collision->SetActive(true);
+		MpUseTime = 0.3f;
+	}
+	if (UEngineInput::IsUp(Key) || UEngineInput::IsFree(Key)) {
 		FrameState.ChangeState(Skill_Frame::Third);
 		return;
 	}
@@ -108,7 +155,7 @@ void ASkill_UltimateDrive::StartUltimateDriveEnd()
 	PlayerLogic->bIsSkillable = true;
 	PlayerLogic->bIsUsingSkill = false;
 	PlayerLogic->bIsJumpable = true;
-	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front",true);
+	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front", true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back", true);
 	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));

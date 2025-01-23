@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "FallenWarrior.h"
 
+#include "Player.h"
 #include "MyCollision.h"
+#include "MyGameInstance.h"
 
 
 
@@ -18,23 +20,34 @@ AFallenWarrior::AFallenWarrior()
 	SpriteRenderer->CreateAnimation("Die", "FallenWarrior_Die", 0, 13, 0.1f, false);
 	SpriteRenderer->CreateAnimation("Hit", "FallenWarrior_Hit", 0, 0, 0.1f, false);
 
+	Barrior = CreateDefaultSubObject<USpriteRenderer>().get();
+	Barrior->SetupAttachment(RootComponent);
+	Barrior->CreateAnimation("Barrior", "FallenWarrior_Barrior", 0, 7);
+	Barrior->SetRelativeLocation(FVector(0.0f, 40.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+
 	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
 	Collision->SetCollisionProfileName("Monster");
 	Collision->SetRelativeScale3D(FVector(50.0f, 90.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(10.0f, 45.0f));
+	
 
 	AttackCollision = CreateDefaultSubObject<UMyCollision>().get();
 	AttackCollision->SetupAttachment(RootComponent);
 	AttackCollision->SetCollisionProfileName("MonsterAttack");
-	AttackCollision->SetRelativeScale3D(FVector(120.0f, 90.0f, 1.0f));
+	AttackCollision->SetRelativeScale3D(FVector(100.0f, 90.0f, 1.0f));
 	AttackCollision->SetRelativeLocation(FVector(-50.0f, 45.0f));
 	AttackCollision->SetActive(false);
+	AttackCollision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+		{
+			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+			AttackCollision->SetActive(false);
+		});
 
 	ScopeCollision = CreateDefaultSubObject<UMyCollision>().get();
 	ScopeCollision->SetupAttachment(RootComponent);
 	ScopeCollision->SetCollisionProfileName("Scope");
-	ScopeCollision->SetRelativeScale3D(FVector(300.0f, 300.0f, 1.0f));
+	ScopeCollision->SetRelativeScale3D(FVector(200.0f, 200.0f, 1.0f));
 	ScopeCollision->SetRelativeLocation(FVector(-50.0f, 45.0f));
 	ScopeCollision->SetColor(UContentsConst::SCOPE_COLOR);
 
@@ -62,6 +75,7 @@ AFallenWarrior::AFallenWarrior()
 
 
 	HP = 300'0000'0000.0f;
+	bIsDamagedable = false;
 	
 }
 
@@ -74,7 +88,8 @@ void AFallenWarrior::BeginPlay()
 {
 	AMonster::BeginPlay();
 	AnimaionFSM.ChangeState(Monster_State::Spawn);
-	bIsDamagedable = false;
+	
+	Barrior->ChangeAnimation("Barrior");
 }
 
 void AFallenWarrior::Tick(float _DeltaTime)
@@ -85,12 +100,9 @@ void AFallenWarrior::Tick(float _DeltaTime)
 	if (NoDamageTime <= 0.0f)
 	{
 		bIsDamagedable = true;
+		Barrior->SetActive(false);
 	}
-	if (HP <= 0.0f)
-	{
-		AnimaionFSM.ChangeState(Monster_State::Die);
-		return;
-	}
+	
 	AnimaionFSM.Update(_DeltaTime);
 
 }
@@ -119,9 +131,15 @@ void AFallenWarrior::StartStand()
 
 void AFallenWarrior::UpdateStand(float _DeltaTime)
 {
+	if (HP <= 0.0f)
+	{
+		AnimaionFSM.ChangeState(Monster_State::Die);
+		return;
+	}
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		AnimaionFSM.ChangeState(Monster_State::Move);
+		return;
 	}
 }
 
@@ -134,6 +152,11 @@ void AFallenWarrior::StartMove()
 void AFallenWarrior::UpdateMove(float _DeltaTime)
 {
 	WalkTime -= _DeltaTime;
+	if (HP <= 0.0f)
+	{
+		AnimaionFSM.ChangeState(Monster_State::Die);
+		return;
+	}
 	if (WalkTime <= 0.0f)
 	{
 		Dir = Random.RandomInt(-1, 1);
@@ -155,15 +178,27 @@ void AFallenWarrior::StartAttack()
 {
 	SpriteRenderer->ChangeAnimation("Attack", true);
 	ScopeCollision->SetActive(false);
-	AttackCollision->SetActive(true);
+	
 	SpriteRenderer->SetRelativeLocation(FVector(-45.0f, 50.0f, static_cast<float>(Z_ORDER::Monster)));
 }
 
 void AFallenWarrior::UpdateAttack(float _DeltaTime)
 {
+	AttackDelay -= _DeltaTime;
+	if (AttackDelay <= 0.0f)
+	{
+		AttackCollision->SetActive(true);
+	}
+	if (HP <= 0.0f)
+	{
+		AnimaionFSM.ChangeState(Monster_State::Die);
+		return;
+	}
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
+		AttackDelay = 0.5f;
 		AnimaionFSM.ChangeState(Monster_State::Stand);
+		return;
 	}
 }
 

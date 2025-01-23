@@ -203,22 +203,23 @@ void UEngineCore::EngineFrame()
 	}
 
 	GEngine->Timer.TimeCheck();
-	float DeltaTime = GEngine->Timer.GetDeltaTime();
+	float _DeltaTime = GEngine->Timer.GetDeltaTime();
+	GEngine->DeltaTime = _DeltaTime;
 	if (true == GEngine->MainWindow.IsFocus())
 	{
-		UEngineInput::KeyCheck(DeltaTime);
+		UEngineInput::KeyCheck(_DeltaTime);
 	}
 	else {
 		UEngineInput::KeyReset();
 	}
 
-	GEngine->CurLevel->Tick(DeltaTime);
-	GEngine->CurLevel->Render(DeltaTime);
+	GEngine->CurLevel->Tick(_DeltaTime);
+	GEngine->CurLevel->Render(_DeltaTime);
 
-	GEngine->CurLevel->Collision(DeltaTime);
+	GEngine->CurLevel->Collision(_DeltaTime);
 
 
-	GEngine->CurLevel->Release(DeltaTime);
+	GEngine->CurLevel->Release(_DeltaTime);
 }
 
 void UEngineCore::EngineEnd()

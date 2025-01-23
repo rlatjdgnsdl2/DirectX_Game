@@ -46,8 +46,6 @@ public:
 		SpriteRenderer->ChangeAnimation(_Name);
 	}
 
-	void SetHpPercentDamage(float _Percent);
-
 	
 
 

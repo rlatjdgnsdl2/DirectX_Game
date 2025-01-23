@@ -23,6 +23,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsConst.cpp" />
     <ClCompile Include="ContentsCore_GraphicResRoad.cpp" />
     <ClCompile Include="ContentsEditorGUI.cpp" />
@@ -117,7 +121,15 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerHpMpBox.cpp">
+    <ClCompile Include="PlayerHpMpBoxBack.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerHpMpBoxFront.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBar.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -160,6 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActorFunction.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Bar.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -261,7 +277,15 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerHpMpBox.h">
+    <ClInclude Include="PlayerHpMpBoxBack.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerHpMpBoxFront.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBar.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -28,6 +28,7 @@ void UDunkel_GUI::OnGUI()
 	ImGui::Text("Player Pos : %f %f %f", Player->GetActorLocation().X, Player->GetActorLocation().Y, Player->GetActorLocation().Z);
 	ImGui::Text("Dunkel Pos : %f %f %f", Dunkel->GetActorLocation().X, Dunkel->GetActorLocation().Y, Dunkel->GetActorLocation().Z);
 	ImGui::Text("Player HP : %f",GetGameInstance<MyGameInstance>()->PlayerStatus.Hp);
+	ImGui::Text("Player MP : %f", GetGameInstance<MyGameInstance>()->PlayerStatus.Mp);
 	
 	if (ImGui::Button("DubugMode"))
 	{
