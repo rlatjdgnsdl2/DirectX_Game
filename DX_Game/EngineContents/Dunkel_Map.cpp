@@ -1,12 +1,13 @@
 #include "PreCompile.h"
 #include "Dunkel_Map.h"
 #include "Player.h"
+#include "MyCollision.h"
 
 
 ADunkel_Map::ADunkel_Map()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
-	BackRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	BackRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	BackRenderer->SetupAttachment(RootComponent);
 	BackRenderer->SetZ(static_cast<float>(Z_ORDER::BackGround));
 	BackRenderer->CreateAnimation("DunkelMapBackGround", "DunkelMapBackGround", 0, 9);
@@ -16,25 +17,23 @@ ADunkel_Map::ADunkel_Map()
 	SetActorLocation(FVector(0.0f, MapSize.hY() - 126.0f));
 
 	{
-		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
 		Collision->SetRelativeScale3D(FVector(100.0f, MapSize.Y, 1.0f));
 		Collision->AddRelativeLocation(FVector(-MapSize.hX() + 100.0f, 0.0f));
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-
 				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
 				float LeftEndArea = _Left->GetTransformRef().ZAxisWorldCenterRight();
 				float PlayerLeft = _Right->GetTransformRef().ZAxisWorldCenterLeft();
 				Player->AddActorLocation(FVector(LeftEndArea - PlayerLeft, 0.0f, 0.0f));
-
 			});
 
-		EndArea.insert({ "Left", Collision });
+		EndArea.insert({ "Left", Collision.get()});
 	}
 	{
-		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
 		Collision->SetRelativeScale3D(FVector(100.0f, MapSize.Y, 1.0f));
@@ -46,11 +45,11 @@ ADunkel_Map::ADunkel_Map()
 				float PlayerLeft = _Right->GetTransformRef().ZAxisWorldCenterRight();
 				Player->AddActorLocation(FVector(RightEndArea - PlayerLeft, 0.0f, 0.0f));
 			});
-		EndArea.insert({ "Right", Collision });
+		EndArea.insert({ "Right", Collision.get() });
 	}
 
 	{
-		std::shared_ptr<UCollision> Collision = CreateDefaultSubObject<UCollision>();
+		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
 		Collision->SetRelativeScale3D(FVector(MapSize.X, 100.0f, 1.0f));
@@ -79,7 +78,7 @@ ADunkel_Map::ADunkel_Map()
 					LogicValue.bIsGround = false;
 				}
 			});
-		EndArea.insert({ "Down", Collision });
+		EndArea.insert({ "Down", Collision.get() });
 	}
 
 
@@ -91,7 +90,7 @@ ADunkel_Map::ADunkel_Map()
 		SpriteRenderer->AddRelativeLocation(FVector(0.0f, -400.0f));
 		SpriteRenderer->SetTexture("DunkelMapFootHold.png", true);
 
-		FootHoldRenderer = SpriteRenderer;
+		FootHoldRenderer = SpriteRenderer.get();
 	}
 
 	{
@@ -103,7 +102,7 @@ ADunkel_Map::ADunkel_Map()
 		SpriteRenderer->CreateAnimation("DunkelMapObject_Sphere", "DunkelMapObject_Sphere", 0, 15);
 		SpriteRenderer->ChangeAnimation("DunkelMapObject_Sphere");
 
-		ObjectRenderers.push_back(SpriteRenderer);
+		ObjectRenderers.push_back(SpriteRenderer.get());
 	}
 	{
 
@@ -113,7 +112,7 @@ ADunkel_Map::ADunkel_Map()
 		SpriteRenderer->AddRelativeLocation(FVector(0.0f, -110.0f));
 		SpriteRenderer->CreateAnimation("DunkelMapObject_Stone", "DunkelMapObject_Stone", 0, 13);
 		SpriteRenderer->ChangeAnimation("DunkelMapObject_Stone");
-		ObjectRenderers.push_back(SpriteRenderer);
+		ObjectRenderers.push_back(SpriteRenderer.get());
 	}
 
 

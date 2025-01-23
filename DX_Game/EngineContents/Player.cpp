@@ -10,8 +10,10 @@
 #include "RightKey.h"
 #include "DownKey.h"
 #include "UpKey.h"
-#include "DamageSkinActor.h"
+#include "DamageSkinFactory.h"
 #include "MyGameInstance.h"
+
+
 
 
 
@@ -35,7 +37,7 @@ APlayer::APlayer()
 	Collision->SetCollisionProfileName("Player");
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
-	Collision->Unit.SetTexture("ImageTexture", "PlayerDebugCollisionBase.png");
+	Collision->SetColor(FVector::BLUE);
 
 	Job = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();
@@ -81,6 +83,20 @@ void APlayer::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 	CheckKey(_DeltaTime);
 	MoveUpdate(_DeltaTime);
+
+	if (UEngineInput::IsDown('R')) {
+		DamageSkinFactory* actor = GetWorld()->SpawnActor<DamageSkinFactory>().get();
+		FDamageInfo Info;
+		Info.Damage = 100;
+		Info.HitDelay = 0.2f;
+		Info.MaxHitCount = 5;
+		actor->SetDamageInfo(Info);
+	}
+	/*if (UEngineInput::IsDown('Q')) {
+		ADamageSkinActor* actor = GetWorld()->SpawnActor<ADamageSkinActor>().get();
+		actor->SetDamage(999999999);
+		actor->AddActorLocation(FVector(0.0f, 10.0f, 0.0f));
+	}*/
 }
 
 

@@ -13,10 +13,15 @@ public:
 	UMyCollision& operator=(UMyCollision&& _Other) noexcept = delete;
 
 	void DebugRender(class UEngineCamera* _Camera, float _DeltaTime) override;
+	void SetColor(FVector _Color)
+	{
+		Color = _Color;
+	}
 
 protected:
 
 private:
+	FVector Color = { 0.0f, 1.0f, 0.0f ,1.0f };
 	
 
 };

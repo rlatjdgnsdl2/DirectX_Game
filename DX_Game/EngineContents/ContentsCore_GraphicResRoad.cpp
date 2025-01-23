@@ -61,4 +61,10 @@ void UContentsCore::ContentsMaterialInit()
 		Mat->SetDepthStencilState("CollisionDebugDepth");
 		Mat->SetRasterizerState("CollisionDebugRas");
 	}
+
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("DamageSkinMaterial");
+		Mat->SetVertexShader("DamageSkinShader.fx");
+		Mat->SetPixelShader("DamageSkinShader.fx");
+	}
 }

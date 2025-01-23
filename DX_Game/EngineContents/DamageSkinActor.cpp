@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "DamageSkinActor.h"
+#include "DamageSkinRenderer.h"
 
 
 ADamageSkinActor::ADamageSkinActor()
@@ -8,7 +9,7 @@ ADamageSkinActor::ADamageSkinActor()
 	std::vector<float> PosX = { 0.0f, 50.0f, 100.0f, 150.0f, 200.0f, 250.0f, 300.0f, 350.0f, 400.0f, 450.0f, 500.0f, 550.0f, 600.0f, 650.0f };
 	for (int i = 0; i < 14; i++)
 	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
+		DamageSkinRenderer* SpriteRenderer = CreateDefaultSubObject<DamageSkinRenderer>().get();
 		SpriteRenderer->SetupAttachment(RootComponent);
 		SpriteRenderer->CreateAnimation("DamageSkin_48", "DamageSkin_0", 0, 4);
 		SpriteRenderer->CreateAnimation("DamageSkin_49", "DamageSkin_1", 0, 4);
@@ -65,7 +66,10 @@ void ADamageSkinActor::BeginPlay()
 void ADamageSkinActor::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	CurTime += _DeltaTime;
+	if (SpriteRenderers[0]->GetAlpha()==0.0f)
+	{
+		Destroy();
+	}
 
 
 }

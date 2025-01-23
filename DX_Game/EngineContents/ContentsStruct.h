@@ -104,6 +104,13 @@ struct FPlayerLogic
 	}
 };
 
+struct FDamageInfo 
+{
+	unsigned long long Damage;
+	int MaxHitCount;
+	float HitDelay;
+};
+
 struct FPlayerStatus
 {
 	std::string Name = "";

@@ -464,7 +464,9 @@ const TVector<float> TVector<float>::RED = TVector<float>(1.0f, 0.0f, 0.0f, 1.0f
 template<>
 const TVector<float> TVector<float>::BLUE = TVector<float>(0.0f, 0.0f, 1.0f, 1.0f);
 template<>
-const TVector<float> TVector<float>::GREEN = TVector<float>(0.0f, 1.0f, 0.0f, 1.0f);;
+const TVector<float> TVector<float>::GREEN = TVector<float>(0.0f, 1.0f, 0.0f, 1.0f);
+
+
 
 
 template<>
@@ -474,22 +476,22 @@ template<>
 const TVector<float> TVector<float>::ZERO = TVector<float>(0.0f, 0.0f, 0.0f, 1.0f);
 
 template<>
-const TVector<float> TVector<float>::LEFT = TVector<float>(-1.0f, 0.0f, 0.0f, 0.0f);;
+const TVector<float> TVector<float>::LEFT = TVector<float>(-1.0f, 0.0f, 0.0f, 0.0f);
 
 template<>
-const TVector<float> TVector<float>::RIGHT = TVector<float>(1.0f, 0.0f, 0.0f, 0.0f);;
+const TVector<float> TVector<float>::RIGHT = TVector<float>(1.0f, 0.0f, 0.0f, 0.0f);
 
 template<>
 const TVector<float> TVector<float>::UP = TVector<float>(0.0f, 1.0f, 0.0f, 0.0f);;
 
 template<>
-const TVector<float> TVector<float>::DOWN = TVector<float>(0.0f, -1.0f, 0.0f, 0.0f);;
+const TVector<float> TVector<float>::DOWN = TVector<float>(0.0f, -1.0f, 0.0f, 0.0f);
 
 template<>
-const TVector<float> TVector<float>::FORWARD = TVector<float>(0.0f, 0.0f, 1.0f, 0.0f);;
+const TVector<float> TVector<float>::FORWARD = TVector<float>(0.0f, 0.0f, 1.0f, 0.0f);
 
 template<>
-const TVector<float> TVector<float>::BACK = TVector<float>(0.0f, 0.0f, -1.0f, 0.0f);;
+const TVector<float> TVector<float>::BACK = TVector<float>(0.0f, 0.0f, -1.0f, 0.0f);
 
 
 class FQuat

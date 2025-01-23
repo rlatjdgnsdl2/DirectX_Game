@@ -113,7 +113,7 @@ void UEngineCamera::SetZSort(int _Order, bool _Value)
 void UEngineCamera::ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer)
 {
 	Renderers[_PrevGroupOrder].remove(_Renderer);
-	Renderers[_Renderer->GetOrder()].push_back(_Renderer);
+	Renderers[_Renderer->GetOrder()].push_front(_Renderer);
 }
 
 void UEngineCamera::CalculateViewAndProjection()

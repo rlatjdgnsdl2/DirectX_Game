@@ -23,9 +23,18 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ContentsConst.cpp" />
     <ClCompile Include="ContentsCore_GraphicResRoad.cpp" />
     <ClCompile Include="ContentsEditorGUI.cpp" />
     <ClCompile Include="DamageSkinActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DamageSkinFactory.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DamageSkinRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -163,6 +172,14 @@
     <ClInclude Include="ContentsStatic.h" />
     <ClInclude Include="ContentsStruct.h" />
     <ClInclude Include="DamageSkinActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DamageSkinFactory.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DamageSkinRenderer.h">
       <SubType>
       </SubType>
     </ClInclude>

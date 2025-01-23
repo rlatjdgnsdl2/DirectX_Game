@@ -130,8 +130,8 @@ protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	ENGINEAPI void CameraTransUpdate(UEngineCamera* _Camera) override;
 
-	void BeginPlay() override;
-	void ComponentTick(float _DeltaTime) override;
+	ENGINEAPI void BeginPlay() override;
+	ENGINEAPI void ComponentTick(float _DeltaTime) override;
 	FResultColor ColorData;
 	FUVValue UVValue;
 	FSpriteData SpriteData;

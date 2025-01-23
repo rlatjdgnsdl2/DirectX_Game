@@ -36,6 +36,7 @@ AFallenWarrior::AFallenWarrior()
 	ScopeCollision->SetCollisionProfileName("Scope");
 	ScopeCollision->SetRelativeScale3D(FVector(300.0f, 300.0f, 1.0f));
 	ScopeCollision->SetRelativeLocation(FVector(-50.0f, 45.0f));
+	ScopeCollision->SetColor(UContentsConst::SCOPE_COLOR);
 
 	ScopeCollision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{

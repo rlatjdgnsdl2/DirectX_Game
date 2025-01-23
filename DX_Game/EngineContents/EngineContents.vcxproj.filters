@@ -110,6 +110,13 @@
     <ClCompile Include="PlayerHpBar.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsConst.cpp">
+      <Filter>Header</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageSkinFactory.cpp">
+      <Filter>UI\DamageSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageSkinRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -224,6 +231,10 @@
     <ClInclude Include="PlayerHpBar.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="DamageSkinFactory.h">
+      <Filter>UI\DamageSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageSkinRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

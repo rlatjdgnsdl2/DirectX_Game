@@ -83,7 +83,7 @@ void ADunkel_GameMode::UpdateMapPattern(float _DeltaTime)
 	{
 		for (int i = 0; i < 2; i++) {
 			AFallenWarrior* FallenWarrior = GetWorld()->SpawnActor<AFallenWarrior>().get();
-			FallenWarrior->SetActorLocation(FVector(BossDunkel->GetActorLocation().X+FallenWarriorSpawnPosX[i], 0.0f, FallenWarriorSpawnZ));
+			FallenWarrior->SetActorLocation(FVector(BossDunkel->GetActorLocation().X+FallenWarriorSpawnPosX[i], 0.0f/*FallenWarriorSpawnZ*/));
 			FallenWarriorSpawnZ += 10.0f;
 		}
 		FallenWarriorSpawnZ = 10.0f;

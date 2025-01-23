@@ -14,7 +14,7 @@ public:
 
 	class USpriteRenderer* GetBackRenderer()
 	{
-		return BackRenderer.get();
+		return BackRenderer;
 	}
 
 
@@ -22,11 +22,11 @@ public:
 protected:
 
 private:
-	std::map<std::string, std::shared_ptr<class UCollision>> EndArea;
-	std::shared_ptr<class USpriteRenderer> FootHoldRenderer;
+	std::map<std::string, class UMyCollision*> EndArea;
+	class USpriteRenderer* FootHoldRenderer;
 
-	std::shared_ptr<class USpriteRenderer> BackRenderer;
-	std::list<std::shared_ptr<class USpriteRenderer>> ObjectRenderers;
+	class USpriteRenderer* BackRenderer;
+	std::list<class USpriteRenderer*> ObjectRenderers;
 
 	
 

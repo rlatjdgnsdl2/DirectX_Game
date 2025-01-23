@@ -1,7 +1,7 @@
 struct EngineVertex
 {
 	float4 POSITION : POSITION;
-	float4 UV : TEXCOORD;
+    float4 TEXCOORD : TEXCOORD;
 	float4 COLOR : COLOR;
 };
 
@@ -10,7 +10,7 @@ struct EngineVertex
 struct VertexShaderOutPut
 {
 	float4 SVPOSITION : SV_POSITION; 
-	float4 UV : TEXCOORD;  
+    float4 TEXCOORD : TEXCOORD;
 	float4 COLOR : COLOR;
 };
 
@@ -54,49 +54,41 @@ cbuffer FSpriteData : register(b1)
 	float4 Pivot; // 0.5 0.0f
 };
 
-cbuffer FUVValue : register(b2)
-{
-	float4 PlusUVValue;
-};
+
 
 // 버텍스쉐이더를 다 만들었다.
 VertexShaderOutPut CollisionDebug_VS(EngineVertex _Vertex)
 {
-	
-	
 	VertexShaderOutPut OutPut;
-	
-	
 	_Vertex.POSITION.x += (1.0f - Pivot.x) - 0.5f;
 	_Vertex.POSITION.y += (1.0f - Pivot.y) - 0.5f;
 	
 	OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
-	OutPut.UV = _Vertex.UV;
+    OutPut.TEXCOORD = _Vertex.TEXCOORD;
 	OutPut.COLOR = _Vertex.COLOR;
 	return OutPut;
 }
 
 
-Texture2D ImageTexture : register(t0);
-// 샘플러 1개가 필요합니다.
-SamplerState ImageSampler : register(s0);
 
 
 cbuffer ResultColor : register(b0)
 {
-	float4 PlusColor;
-	float4 MulColor;
+	float4 OutColor;
+
 };
 
 // 이미지를 샘플링해서 이미지를 보이게 만들고
 float4 CollisionPixel_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
-	float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    float4 UV = _Vertex.TEXCOORD;
+    float4 Color = OutColor;
 	
-	if (0.0f >= Color.a)
-	{
-		clip(-1);
-	}
-	
-    return Color;
+    float BorderThickness = 0.0f;
+    float IsBorder = step(UV.x, BorderThickness) + step(UV.y, BorderThickness) + step(1.0f - UV.x, BorderThickness) + step(1.0f - UV.y, BorderThickness);
+    if (IsBorder > 0.0f)
+    {
+        return Color;
+    }
+    return float4(0.0f, 0.0f, 0.0f, 0.0f);
 };

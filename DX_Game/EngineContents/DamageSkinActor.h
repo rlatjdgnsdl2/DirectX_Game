@@ -25,13 +25,16 @@ public:
 		}
 	};
 
+
+
 protected:
 
 private:
 	float CurTime = 0.0f;
 	unsigned long long Damage = 0;
+	
 	std::string DamageString;
-	std::vector<class USpriteRenderer*> SpriteRenderers;
+	std::vector<class DamageSkinRenderer*> SpriteRenderers;
 	std::vector<int> DamageNumber;
 
 };
