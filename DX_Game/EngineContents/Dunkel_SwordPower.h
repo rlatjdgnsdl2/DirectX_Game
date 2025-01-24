@@ -25,6 +25,7 @@ private:
 
 	int Dir = 1;
 	float SpawnTime = 0.0f;
+
 	FVector StartPos = FVector::ZERO;
 	
 

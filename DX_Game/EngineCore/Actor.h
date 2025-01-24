@@ -87,6 +87,8 @@ public:
 		return World;
 	}
 
+	
+
 	void SetActorLocation(const FVector& _Value)
 	{
 		if (nullptr == RootComponent)

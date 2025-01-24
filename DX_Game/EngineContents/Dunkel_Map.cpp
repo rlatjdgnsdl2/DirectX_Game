@@ -20,30 +20,29 @@ ADunkel_Map::ADunkel_Map()
 		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
-		Collision->SetRelativeScale3D(FVector(100.0f, MapSize.Y, 1.0f));
-		Collision->AddRelativeLocation(FVector(-MapSize.hX() + 100.0f, 0.0f));
+		Collision->SetRelativeScale3D(FVector(300.0f, MapSize.Y, 1.0f));
+		Collision->AddRelativeLocation(FVector(-MapSize.hX()-150.0f, 0.0f));
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+
 				float LeftEndArea = _Left->GetTransformRef().ZAxisWorldCenterRight();
-				float PlayerLeft = _Right->GetTransformRef().ZAxisWorldCenterLeft();
-				Player->AddActorLocation(FVector(LeftEndArea - PlayerLeft, 0.0f, 0.0f));
+				float RightLeft = _Right->GetTransformRef().ZAxisWorldCenterLeft();
+				_Right->GetActor()->AddActorLocation(FVector(LeftEndArea - RightLeft, 0.0f, 0.0f));
 			});
 
-		EndArea.insert({ "Left", Collision.get()});
+		EndArea.insert({ "Left", Collision.get() });
 	}
 	{
 		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
-		Collision->SetRelativeScale3D(FVector(100.0f, MapSize.Y, 1.0f));
-		Collision->AddRelativeLocation(FVector(MapSize.hX() - 60.0f, 0.0f));
+		Collision->SetRelativeScale3D(FVector(300.0f, MapSize.Y, 1.0f));
+		Collision->AddRelativeLocation(FVector(MapSize.hX() + 150.0f, 0.0f));
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
 				float RightEndArea = _Left->GetTransformRef().ZAxisWorldCenterLeft();
-				float PlayerLeft = _Right->GetTransformRef().ZAxisWorldCenterRight();
-				Player->AddActorLocation(FVector(RightEndArea - PlayerLeft, 0.0f, 0.0f));
+				float RightLeft = _Right->GetTransformRef().ZAxisWorldCenterRight();
+				_Right->GetActor()->AddActorLocation(FVector(RightEndArea - RightLeft, 0.0f, 0.0f));
 			});
 		EndArea.insert({ "Right", Collision.get() });
 	}
@@ -57,25 +56,31 @@ ADunkel_Map::ADunkel_Map()
 
 		Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				if (LogicValue.bIsFalling) {
-					LogicValue.SetGroundTrue();
-					float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
-					float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
-					Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
-					Player->GetPlayerLogic().SetGravityAccel(0.0f);
-					Player->GetPlayerLogic().SetVelocityX(0.0f);
-					Player->GetPlayerLogic().SetVelocityY(0.0f);
-					Player->GetPlayerLogic().SetDownableFloor(false);
+				if (_Right->GetCollisionProfileName() == "PLAYER")
+				{
+					APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+					FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+					if (LogicValue.bIsFalling) {
+						LogicValue.SetGroundTrue();
+						float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
+						float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
+						Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
+						Player->GetPlayerLogic().SetGravityAccel(0.0f);
+						Player->GetPlayerLogic().SetVelocityX(0.0f);
+						Player->GetPlayerLogic().SetVelocityY(0.0f);
+						Player->GetPlayerLogic().SetDownableFloor(false);
+					}
 				}
 			});
 		Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				if (LogicValue.bIsGround) {
-					LogicValue.bIsGround = false;
+				if (_Right->GetCollisionProfileName() == "PLAYER")
+				{
+					APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+					FPlayerLogic& LogicValue = Player->GetPlayerLogic();
+					if (LogicValue.bIsGround) {
+						LogicValue.bIsGround = false;
+					}
 				}
 			});
 		EndArea.insert({ "Down", Collision.get() });
@@ -117,6 +122,8 @@ ADunkel_Map::ADunkel_Map()
 
 
 	GetWorld()->LinkCollisionProfile("EndArea", "Player");
+	GetWorld()->LinkCollisionProfile("EndArea", "Boss");
+	GetWorld()->LinkCollisionProfile("EndArea", "Monster");
 
 
 

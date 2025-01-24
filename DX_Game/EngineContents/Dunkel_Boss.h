@@ -20,7 +20,15 @@ protected:
 
 private:
 	float CollisonSpawnTime = 0.0f;
+	float SlashCoolTime = 15.0f;
+	float SwordCoolTime = 30.0f;
+	float StandTime = 2.0f;
+
+	UEngineRandom Random;
 	
+	bool bIsScopePlayer = false;
+
+	void CheckDir();
 
 	void StartSpawn() override;
 	void UpdateSpawn(float _DeltaTime) override;
@@ -50,6 +58,7 @@ private:
 
 	void StartSword();
 	void UpdateSword(float _DeltaTime);
+	void SpawnSwordPower();
 
 	void StartUp();
 	void UpdateUp(float _DeltaTime);
