@@ -98,6 +98,7 @@ void ADunkel_GameMode::UpdateMapPattern(float _DeltaTime)
 {
 	FallenWarriorSpawnTime -= _DeltaTime;
 	PillarLightSpawnTime -= _DeltaTime;
+
 	// FallenWarrior
 	if (FallenWarriorSpawnTime <= 0.0f)
 	{

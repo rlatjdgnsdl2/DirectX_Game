@@ -20,18 +20,19 @@ public:
 
 	void MoveCamera(float _DeltaTime);
 
-	void UpdateMapPattern(float _DeltaTime);
 
 
 protected:
 
 private:
+	void UpdateMapPattern(float _DeltaTime);
+
 	std::vector<float> FallenWarriorSpawnPosX;
-	float FallenWarriorSpawnTime = 0.0f;
+	float FallenWarriorSpawnTime = 5.0f;
 	float FallenWarriorSpawnZ = 10.0f;
 
 	std::vector<float> PillarLightPosX;
-	float PillarLightSpawnTime = 0.0f;
+	float PillarLightSpawnTime = 10.0f;
 	float PillarLightSpawnZ = 10.0f;
 	int PillarLightSpawnCount = 0;
 	int PillarLightCount = 0;

@@ -126,6 +126,7 @@
     <ClCompile Include="PlayerHpMpBoxBack.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Boss.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -253,6 +254,7 @@
     <ClInclude Include="PlayerHpMpBoxBack.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="Boss.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

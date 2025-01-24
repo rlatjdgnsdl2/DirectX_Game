@@ -20,30 +20,23 @@ protected:
 
 private:
 	UEngineRandom Random;
+	class USpriteRenderer* Barrior;
+
 	float NoDamageTime = 5.0f;
 	float AttackDelay = 0.5f;
 	float WalkTime = 0.0f;
 	int Dir = 0;
-	class UMyCollision* AttackCollision;
-	class UMyCollision* ScopeCollision;
 
-	class USpriteRenderer* Barrior;
 
-	
-	
-
-	void StartSpawn();
-	void UpdateSpawn(float _DeltaTime);
-	void StartStand();
-	void UpdateStand(float _DeltaTime);
-	void StartMove();
-	void UpdateMove(float _DeltaTime);
-	void StartAttack();
-	void UpdateAttack(float _DeltaTime);
-	void StartDie();
-	void UpdateDie(float _DeltaTime);
-	void StartHit();
-	void UpdateHit(float _DeltaTime);
-
+	void StartSpawn() override;
+	void UpdateSpawn(float _DeltaTime) override;
+	void StartStand() override;
+	void UpdateStand(float _DeltaTime) override;
+	void StartMove() override;
+	void UpdateMove(float _DeltaTime) override;
+	void StartAttack() override;
+	void UpdateAttack(float _DeltaTime) override;
+	void StartDie() override;
+	void UpdateDie(float _DeltaTime) override;
 };
 

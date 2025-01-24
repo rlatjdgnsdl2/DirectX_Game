@@ -1,8 +1,8 @@
 #pragma once
-#include "Monster.h"
+#include "Boss.h"
 
 //	Ό³Έν:
-class ADunkel_Boss :public AMonster
+class ADunkel_Boss :public ABoss
 {
 public:
 	ADunkel_Boss();
@@ -19,7 +19,8 @@ public:
 protected:
 
 private:
-	float CurTime = 0.0f;
+	float CollisonSpawnTime = 0.0f;
+	
 
 	void StartDie();
 	void UpdateDie(float _DeltaTime);
