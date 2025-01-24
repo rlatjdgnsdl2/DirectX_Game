@@ -25,8 +25,6 @@ private:
 	float NoDamageTime = 5.0f;
 	float AttackDelay = 0.5f;
 	float WalkTime = 0.0f;
-	int Dir = 0;
-
 
 	void StartSpawn() override;
 	void UpdateSpawn(float _DeltaTime) override;

@@ -22,8 +22,15 @@ private:
 	float CollisonSpawnTime = 0.0f;
 	
 
-	void StartDie();
-	void UpdateDie(float _DeltaTime);
+	void StartSpawn() override;
+	void UpdateSpawn(float _DeltaTime) override;
+
+	void StartStand() override;
+	void UpdateStand(float _DeltaTime) override;
+
+	void StartDie() override;
+	void UpdateDie(float _DeltaTime) override;
+
 
 	void StartForce();
 	void UpdateForce(float _DeltaTime);
@@ -40,11 +47,6 @@ private:
 	void StartSlash_End();
 	void UpdateSlash_End(float _DeltaTime);
 
-	void StartSpawn();
-	void UpdateSpawn(float _DeltaTime);
-
-	void StartStand();
-	void UpdateStand(float _DeltaTime);
 
 	void StartSword();
 	void UpdateSword(float _DeltaTime);
@@ -54,8 +56,6 @@ private:
 
 	void StartDown();
 	void UpdateDown(float _DeltaTime);
-
-
 
 };
 

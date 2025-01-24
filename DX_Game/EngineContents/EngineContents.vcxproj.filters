@@ -127,6 +127,9 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Dunkel_SwordPower.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -255,6 +258,9 @@
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="Dunkel_SwordPower.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

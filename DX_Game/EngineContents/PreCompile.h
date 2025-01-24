@@ -7,6 +7,9 @@
 #pragma comment(lib, "EngineCore.lib")
 
 
+
+#include "MyCollision.h"
+#include "MyGameInstance.h"
 #include "ContentsPhysics.h"
 #include "ContentsEnum.h"
 #include "ContentsConst.h"

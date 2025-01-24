@@ -42,7 +42,8 @@ protected:
 	float HP = 0.0f;
 	bool bIsDamagedable = true;
 	bool bIsAttack = false;
-private:
+
+	int Dir = 1;
 
 	virtual void StartSpawn() {}
 	virtual void UpdateSpawn(float _DeltaTime) {}
@@ -58,6 +59,8 @@ private:
 
 	virtual void StartDie() {}
 	virtual void UpdateDie(float _DeltaTime) {}
+private:
+
 
 
 

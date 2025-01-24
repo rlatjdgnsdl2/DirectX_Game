@@ -55,6 +55,7 @@ void ADunkel_GameMode::BeginPlay()
 	MainCamera = GetWorld()->GetMainCamera()->GetCameraComponent().get();
 	MainCamera->SetZSort(0, true);
 	Dunkel_GUI->SetActive(true);
+	GetWorld()->DebugOn();
 
 
 }
