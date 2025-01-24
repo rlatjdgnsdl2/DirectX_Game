@@ -12,6 +12,10 @@ public:
 	ADownKey& operator=(const ADownKey& _Other) = delete;
 	ADownKey& operator=(ADownKey&& _Other) noexcept = delete;
 
+	void Tick(float _DeltaTime) override;
+	virtual void SetActiveTrue() override;
+	virtual void SetActiveFalse() override;
+
 protected:
 
 private:

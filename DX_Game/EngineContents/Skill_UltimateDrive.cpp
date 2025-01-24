@@ -103,9 +103,7 @@ void ASkill_UltimateDrive::StartUltimateDrivePrev()
 		return;
 	}
 	Collision->SetActive(true);
-	PlayerLogic->bIsUsingSkill = true;
-	PlayerLogic->bIsSkillable = false;
-	PlayerLogic->bIsJumpable = false;
+	PlayerLogic->StartUltimateDrive();
 	Player->ChangeAnimation("UltimateDrive_KeyDown");
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front", true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
@@ -152,9 +150,7 @@ void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
 void ASkill_UltimateDrive::StartUltimateDriveEnd()
 {
 	Collision->SetActive(false);
-	PlayerLogic->bIsSkillable = true;
-	PlayerLogic->bIsUsingSkill = false;
-	PlayerLogic->bIsJumpable = true;
+	PlayerLogic->EndUltimateDrive();
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front", true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back", true);

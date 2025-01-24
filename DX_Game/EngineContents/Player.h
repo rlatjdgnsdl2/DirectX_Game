@@ -46,6 +46,9 @@ public:
 		SpriteRenderer->ChangeAnimation(_Name);
 	}
 
+	void ProneCollision();
+	void StandCollision();
+
 	
 
 

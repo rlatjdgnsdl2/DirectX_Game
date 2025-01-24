@@ -97,6 +97,18 @@ void APlayer::Tick(float _DeltaTime)
 	}
 }
 
+void APlayer::ProneCollision()
+{
+	Collision->SetRelativeScale3D(FVector(60.0f,30.0f,1.0f));
+	Collision->SetRelativeLocation(FVector(0.0f, 15.0f));
+}
+
+void APlayer::StandCollision() 
+{
+	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
+	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
+}
+
 
 void APlayer::Gravity(float _DeltaTime)
 {

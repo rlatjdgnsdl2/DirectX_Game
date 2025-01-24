@@ -3,11 +3,11 @@ struct FPlayerLogic
 {
 	FVector Velocity = FVector::ZERO;
 	float GravityAccel = 0.0f;
-	bool bIsMoveable;
-	bool bIsJumpable;
-	bool bIsProneable;
-	bool bIsSkillable;
-	bool bIsDownableFloor;
+	bool bIsMoveable = true;
+	bool bIsJumpable = true;
+	bool bIsProneable = true;
+	bool bIsSkillable = true;
+	bool bIsDownableFloor = true;
 
 	bool bIsGround = false;
 	bool bIsJumping = true;
@@ -17,6 +17,28 @@ struct FPlayerLogic
 
 	int JumpCount = 0;
 	int JumpCountMax = 3;
+
+	void StartUltimateDrive() {
+		bIsUsingSkill = true;
+		bIsMoveable = true;
+		bIsJumpable = false;
+		bIsProneable = false;
+		bIsSkillable = false;
+	}
+	void EndUltimateDrive() {
+		bIsUsingSkill = false;
+		bIsJumpable = true;
+		bIsProneable = true;
+		bIsSkillable = true;
+	}
+
+	void PlayProne() {
+		bIsProne = true;
+		bIsMoveable = false;
+		bIsJumpable = true;
+		bIsProneable = false;
+		bIsSkillable = false;
+	}
 
 	void SetGravityAccel(float _Accel)
 	{
@@ -83,8 +105,8 @@ struct FPlayerLogic
 	void StartJump()
 	{
 		JumpCount = 1;
-		bIsGround = false;
 		bIsJumping = true;
+		bIsGround = false;
 		bIsFalling = false;
 	}
 
