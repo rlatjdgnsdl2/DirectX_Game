@@ -130,6 +130,15 @@
     <ClCompile Include="Dunkel_SwordPower.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
+    <ClCompile Include="Dunkel_Meteo.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBarEffect.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBarEffect.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -260,6 +269,15 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Dunkel_SwordPower.h">
       <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_Meteo.h">
+      <Filter>Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBarEffect.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBarEffect.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

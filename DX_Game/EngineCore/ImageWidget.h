@@ -5,6 +5,55 @@
 class UImageWidget : public UWidget
 {
 public:
+	class FrameAnimation
+	{
+	public:
+		UEngineSprite* Sprite = nullptr;
+		std::vector<int> FrameIndex;
+		std::vector<float> FrameTime;
+		std::map<int, UEngineDelegate> Events;
+
+		int CurIndex = 0;
+		int ResultIndex = 0;
+		float CurTime = 0.0f;
+		bool Loop = true;
+		bool IsEnd = false;
+
+		int GetCurIndex() 
+		{
+			return FrameIndex[CurIndex];
+		}
+
+
+
+		void Reset()
+		{
+			CurIndex = 0;
+			CurTime = 0;
+			ResultIndex = 0;
+			IsEnd = false;
+		}
+	};
+
+	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
+
+	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop = true);
+
+	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop = true);
+
+	// 내가 Idle인데 Idle 바꾸라고 했다. 
+	ENGINEAPI void ChangeAnimation(std::string_view _AnimationName, bool _Force = false);
+
+	ENGINEAPI void SetAnimationEvent(std::string_view _AnimationName, int _Frame, std::function<void()> _Function);
+
+	ENGINEAPI FrameAnimation* FindAnimation(std::string_view _AnimationName);
+
+private:
+	int CurIndex = 0;
+	float CurAnimationSpeed = 1.0f;
+	FrameAnimation* CurAnimation = nullptr;
+	std::map<std::string, FrameAnimation> FrameAnimations;
+public:
 	// constrcuter destructer
 	ENGINEAPI UImageWidget();
 	ENGINEAPI ~UImageWidget();
@@ -16,6 +65,7 @@ public:
 	UImageWidget& operator=(UImageWidget&& _Other) noexcept = delete;
 
 	ENGINEAPI void Render(UEngineCamera* Camera, float _DeltaTime) override;
+	ENGINEAPI void Tick(float _DeltaTime) override;
 
 	ENGINEAPI URenderUnit& GetRenderUnit()
 	{
@@ -24,8 +74,12 @@ public:
 
 	ENGINEAPI void SetSprite(std::string_view _Name, UINT _Index = 0);
 	ENGINEAPI void SetTexture(std::string_view _Name, bool AutoScale = false, float _Ratio = 1.0f);
-	ENGINEAPI void SetPivot(FVector _Pivot);
-	ENGINEAPI void SetCuttingSize(int _Index, FVector _Size);
+
+	ENGINEAPI void SetSpritePivot(FVector _Pivot);
+	ENGINEAPI void SetAnimationPivot(std::string_view AnimationName,FVector _Pivot);
+
+	ENGINEAPI void SetSpriteCuttingSize(FVector _Size);
+	ENGINEAPI void SetAnimationCuttingSize(std::string_view AnimationName, FVector _Size);
 
 	ENGINEAPI void SetAutoScale(bool _Value)
 	{
@@ -45,7 +99,6 @@ public:
 protected:
 
 private:
-	int CurIndex = 0;
 	bool IsAutoScale = true;
 	float AutoScaleRatio = 1.0f;
 	class UEngineSprite* Sprite = nullptr;

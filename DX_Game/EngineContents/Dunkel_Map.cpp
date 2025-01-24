@@ -20,8 +20,8 @@ ADunkel_Map::ADunkel_Map()
 		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
-		Collision->SetRelativeScale3D(FVector(300.0f, MapSize.Y, 1.0f));
-		Collision->AddRelativeLocation(FVector(-MapSize.hX()-150.0f, 0.0f));
+		Collision->SetRelativeScale3D(FVector(600.0f, MapSize.Y, 1.0f));
+		Collision->AddRelativeLocation(FVector(-MapSize.hX()-300.0f, 0.0f));
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
 
@@ -36,8 +36,8 @@ ADunkel_Map::ADunkel_Map()
 		std::shared_ptr<UMyCollision> Collision = CreateDefaultSubObject<UMyCollision>();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("EndArea");
-		Collision->SetRelativeScale3D(FVector(300.0f, MapSize.Y, 1.0f));
-		Collision->AddRelativeLocation(FVector(MapSize.hX() + 150.0f, 0.0f));
+		Collision->SetRelativeScale3D(FVector(600.0f, MapSize.Y, 1.0f));
+		Collision->AddRelativeLocation(FVector(MapSize.hX() + 300.0f, 0.0f));
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
 				float RightEndArea = _Left->GetTransformRef().ZAxisWorldCenterLeft();

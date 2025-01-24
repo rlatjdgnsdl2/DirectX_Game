@@ -13,12 +13,15 @@ public:
 	UPlayerHpBar& operator=(UPlayerHpBar&& _Other) noexcept = delete;
 
 	virtual void Tick(float _DeltaTime) override;
-
+	void SetPlayerHpBarEffect(class UPlayerHpBarEffect* _PlayerHpBarEffect) { PlayerHpBarEffect = _PlayerHpBarEffect; }
 	
 
 protected:
 
 private:
+	bool bIsPlayEffect = false;
+	class UPlayerHpBarEffect* PlayerHpBarEffect;
+	
 	
 
 };

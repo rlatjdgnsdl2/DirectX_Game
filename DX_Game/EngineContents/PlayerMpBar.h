@@ -13,10 +13,14 @@ public:
 	UPlayerMpBar& operator=(UPlayerMpBar&& _Other) noexcept = delete;
 
 	virtual void Tick(float _DeltaTime) override;
+	void SetPlayerMpBarEffect(class UPlayerMpBarEffect* _PlayerMpBarEffect) { PlayerMpBarEffect = _PlayerMpBarEffect; }
+
 
 protected:
 
 private:
-
+	class UPlayerMpBarEffect* PlayerMpBarEffect;
+	bool bIsPlayEffect = false;
+	
 };
 

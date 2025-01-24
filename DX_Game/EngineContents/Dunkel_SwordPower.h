@@ -13,7 +13,7 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void SetDir(int _Dir) { Dir = _Dir; }
+	void SetDir(float _Dir) { Dir = _Dir; }
 	void SetStartPos(FVector _Pos) { StartPos = _Pos; }
 
 
@@ -23,7 +23,7 @@ private:
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 
-	int Dir = 1;
+	float Dir = 1;
 	float SpawnTime = 0.0f;
 
 	FVector StartPos = FVector::ZERO;

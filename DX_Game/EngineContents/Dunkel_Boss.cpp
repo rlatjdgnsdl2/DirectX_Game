@@ -5,6 +5,7 @@
 #include "MyCollision.h"
 #include "MyGameInstance.h"
 #include "Dunkel_SwordPower.h"
+#include "Dunkel_Meteo.h"
 
 
 ADunkel_Boss::ADunkel_Boss()
@@ -147,6 +148,7 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	AMonster::Tick(_DeltaTime);
 	SlashCoolTime -= _DeltaTime;
 	SwordCoolTime -= _DeltaTime;
+	MeteoCoolTime -= _DeltaTime;
 	AnimaionFSM.Update(_DeltaTime);
 
 	if (UEngineInput::IsDown('1')) {
@@ -251,17 +253,18 @@ void ADunkel_Boss::UpdateStand(float _DeltaTime)
 				AnimaionFSM.ChangeState(DunkelAnim_State::Slash_Start);
 				return;
 			}
+			if (MeteoCoolTime < 0.0f)
+			{
+				AnimaionFSM.ChangeState(DunkelAnim_State::Meteo);
+				return;
+			}
 			int Num = Random.RandomInt(0, 9);
 			if (Num == 0 || Num == 1)
 			{
 				AnimaionFSM.ChangeState(DunkelAnim_State::Force);
 				return;
 			}
-			else if (Num == 2 || Num == 3)
-			{
-				AnimaionFSM.ChangeState(DunkelAnim_State::Meteo);
-				return;
-			}
+			
 			else
 			{
 				AnimaionFSM.ChangeState(DunkelAnim_State::Knockback);
@@ -284,6 +287,24 @@ void ADunkel_Boss::CheckDir()
 
 	}
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
+}
+
+void ADunkel_Boss::SpawnEliteMonster()
+{
+	int Num = Random.RandomInt(0, 4);
+	switch (Num) 
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	}
 }
 
 
@@ -349,8 +370,10 @@ void ADunkel_Boss::UpdateForce(float _DeltaTime)
 void ADunkel_Boss::StartMeteo()
 {
 	CheckDir();
+	MeteoCoolTime = 25.0f;
 	SpriteRenderer->ChangeAnimation("Meteo", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 320.0f, static_cast<float>(Z_ORDER::Boss)));
+	SpawnMeteo();
 }
 
 void ADunkel_Boss::UpdateMeteo(float _DeltaTime)
@@ -360,6 +383,42 @@ void ADunkel_Boss::UpdateMeteo(float _DeltaTime)
 		AnimaionFSM.ChangeState(DunkelAnim_State::Stand);
 		return;
 	}
+}
+
+void ADunkel_Boss::SpawnMeteo()
+{
+	FVector DunkelPos = GetActorLocation();
+	float Dir = 1.0f;
+	if (DunkelPos.X < 0)
+	{
+		Dir = 1.0f;
+	}
+	else 
+	{
+		Dir = -1.0f;
+	}
+
+	{
+		ADunkel_Meteo* Meteo = GetWorld()->SpawnActor<ADunkel_Meteo>().get();
+		Meteo->SetDir(Dir);
+		Meteo->SetStartPos(FVector(DunkelPos.X + (Dir * 1200.0f), 600.0f));
+	}
+	{
+		ADunkel_Meteo* Meteo = GetWorld()->SpawnActor<ADunkel_Meteo>().get();
+		Meteo->SetDir(Dir);
+		Meteo->SetStartPos(FVector(DunkelPos.X + (Dir * 900.0f), 500.0f));
+	}
+	{
+		ADunkel_Meteo* Meteo = GetWorld()->SpawnActor<ADunkel_Meteo>().get();
+		Meteo->SetDir(Dir);
+		Meteo->SetStartPos(FVector(DunkelPos.X + (Dir * 600.0f), 600.0f));
+	}
+	{
+		ADunkel_Meteo* Meteo = GetWorld()->SpawnActor<ADunkel_Meteo>().get();
+		Meteo->SetDir(Dir);
+		Meteo->SetStartPos(FVector(DunkelPos.X + (Dir * 00.0f), 500.0f));
+	}
+
 }
 
 void ADunkel_Boss::StartSlash_Start()
@@ -384,7 +443,7 @@ void ADunkel_Boss::StartSlash_End()
 
 	SpriteRenderer->ChangeAnimation("Slash_End", true);
 	SpriteRenderer->SetRelativeLocation(FVector(200.0f, 240.0f, static_cast<float>(Z_ORDER::Boss)));
-	AddActorLocation(FVector(-Dir*500, 0));
+	AddActorLocation(FVector(-Dir * 500, 0.0f));
 	GetCollision("Slash")->SetActive(true);
 
 }
@@ -432,7 +491,7 @@ void ADunkel_Boss::SpawnSwordPower()
 	CheckDir();
 	ADunkel_SwordPower* Power = GetWorld()->SpawnActor<ADunkel_SwordPower>().get();
 	Power->SetDir(Dir);
-	Power->SetStartPos(GetActorLocation() + FVector(-Dir * 330, 0));
+	Power->SetStartPos(GetActorLocation() + FVector(-Dir * 330, 0.0f));
 }
 
 void ADunkel_Boss::StartUp()

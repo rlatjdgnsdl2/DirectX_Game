@@ -43,7 +43,7 @@ protected:
 	bool bIsDamagedable = true;
 	bool bIsAttack = false;
 
-	int Dir = 1;
+	float Dir = 1.0f;
 
 	virtual void StartSpawn() {}
 	virtual void UpdateSpawn(float _DeltaTime) {}

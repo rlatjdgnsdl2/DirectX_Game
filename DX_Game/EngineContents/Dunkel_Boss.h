@@ -22,13 +22,19 @@ private:
 	float CollisonSpawnTime = 0.0f;
 	float SlashCoolTime = 15.0f;
 	float SwordCoolTime = 30.0f;
+	float MeteoCoolTime = 25.0f;
 	float StandTime = 2.0f;
+
+
+
 
 	UEngineRandom Random;
 	
 	bool bIsScopePlayer = false;
 
 	void CheckDir();
+
+	void SpawnEliteMonster();
 
 	void StartSpawn() override;
 	void UpdateSpawn(float _DeltaTime) override;
@@ -48,6 +54,7 @@ private:
 
 	void StartMeteo();
 	void UpdateMeteo(float _DeltaTime);
+	void SpawnMeteo();
 
 	void StartSlash_Start();
 	void UpdateSlash_Start(float _DeltaTime);

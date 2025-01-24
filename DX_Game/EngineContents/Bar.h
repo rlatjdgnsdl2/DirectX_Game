@@ -14,12 +14,13 @@ public:
 
 	virtual void BarLerp(float _StartPercent, float _EndPercent, float _DeltaTime ,bool& _bIsChange);
 
+	void SetCurTime(float _CurTime) { CurTime = _CurTime; }
+
 protected:
 	float CurTime = 0.0f;
 	float StartPercent;
-	float TargetPercent;
+	float TargetPercent;	
 private:
-
 
 };
 
