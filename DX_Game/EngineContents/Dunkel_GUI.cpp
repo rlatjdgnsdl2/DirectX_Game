@@ -146,5 +146,13 @@ void UDunkel_GUI::OnGUI()
 		}
 	}
 
+	if (ImGui::Button("Mogadin"))
+	{
+		if (Dunkel != nullptr)
+		{
+			GetWorld()->SpawnActor<AMogadin>();
+		}
+	}
+
 	
 }

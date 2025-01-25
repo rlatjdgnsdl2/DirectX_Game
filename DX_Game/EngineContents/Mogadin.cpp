@@ -12,9 +12,10 @@ AMogadin::AMogadin()
 		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("MonsterAttack");
-		Collision->SetRelativeScale3D(FVector(250.0f, 150.0f, 1.0f));
-		Collision->SetRelativeLocation(FVector(-130.0f, 60.0f, 0.0f));
+		Collision->SetRelativeScale3D(FVector(200.0f, 200.0f, 1.0f));
+		Collision->SetRelativeLocation(FVector(-130.0f, 80.0f, 0.0f));
 		Collision->SetCollisionStay(std::bind(&AMogadin::Slash, this, std::placeholders::_1, std::placeholders::_1));
+		Collision->SetColor(UContentsConst::ATTACK_COLOR);
 		Collision->SetActive(false);
 		InsertCollision("Slash", Collision);
 	}
@@ -71,7 +72,7 @@ void AMogadin::Tick(float _DeltaTime)
 void AMogadin::StartSlash()
 {
 	SpriteRenderer->ChangeAnimation("Slash", true);
-	SpriteRenderer->SetRelativeLocation(FVector(60.0f, 110.0f, UContentsConst::MONSTER_ZPOS));
+	SpriteRenderer->SetRelativeLocation(FVector(-30.0f, 110.0f, UContentsConst::MONSTER_ZPOS));
 }
 
 void AMogadin::UpdateSlash(float _DeltaTime)
@@ -109,7 +110,7 @@ void AMogadin::Slash(UCollision* _Left, UCollision* _Right)
 void AMogadin::StartChain()
 {
 	SpriteRenderer->ChangeAnimation("Chain", true);
-	SpriteRenderer->SetRelativeLocation(FVector(60.0f, 110.0f, UContentsConst::MONSTER_ZPOS));
+	SpriteRenderer->SetRelativeLocation(FVector(0.0f, 180.0f, UContentsConst::MONSTER_ZPOS));
 }
 
 void AMogadin::UpdateChain(float _DeltaTime)
@@ -121,6 +122,4 @@ void AMogadin::UpdateChain(float _DeltaTime)
 	}
 }
 
-void AMogadin::Chain(UCollision* _Left, UCollision* _Right)
-{
-}
+

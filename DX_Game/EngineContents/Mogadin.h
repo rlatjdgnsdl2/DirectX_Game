@@ -31,7 +31,7 @@ private:
 
 	void StartChain();
 	void UpdateChain(float _DeltaTime);
-	void Chain(class UCollision* _Left, class UCollision* _Right);
+
 
 };
 
