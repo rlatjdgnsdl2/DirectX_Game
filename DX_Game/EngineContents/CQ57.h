@@ -21,8 +21,12 @@ public:
 protected:
 
 private:
+	float CurTime = 0.0f;
+
 	bool bIsKnockBackCollisionSpawn = false;
 	float KnockBackCollisionSpawnTime = 1.0f;
+	float StartPosX = 0.0f;
+	float TargetPosX = 0.0f;
 
 	bool bIsPhantomBlowCollisionSpawn = false;
 	int PhantomBlowCount = 0;

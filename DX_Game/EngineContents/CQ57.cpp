@@ -7,8 +7,8 @@ ACQ57::ACQ57()
 {
 
 	SpriteRenderer->CreateAnimation("Spawn", "Elite_Spawn", 0, 7, 1.0f / 8, false);
-	SpriteRenderer->CreateAnimation("KnockBack", "CQ57_KnockBack", 0, 26, 1.0f / 13, false);
-	SpriteRenderer->CreateAnimation("PhantomBlow", "CQ57_PhantomBlow", 0, 13,0.1f, false);
+	SpriteRenderer->CreateAnimation("KnockBack", "CQ57_KnockBack", 0, 26, 1.0f / 12, false);
+	SpriteRenderer->CreateAnimation("PhantomBlow", "CQ57_PhantomBlow", 0, 13, 0.1f, false);
 
 	{
 		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
@@ -41,8 +41,6 @@ ACQ57::ACQ57()
 				UEngineRandom Random;
 				int Pattern = Random.RandomInt(1, 2);
 				FSM.ChangeState(Pattern);
-
-
 				return;
 			}
 		},
@@ -63,6 +61,8 @@ void ACQ57::BeginPlay()
 {
 	AMonster::BeginPlay();
 	FSM.ChangeState(0);
+	StartPosX = GetActorLocation().X;
+	TargetPosX = StartPosX + 400.0f*-Dir;
 }
 
 void ACQ57::Tick(float _DeltaTime)
@@ -79,6 +79,12 @@ void ACQ57::StartKnockBack()
 
 void ACQ57::UpdateKnockBack(float _DeltaTime)
 {
+	
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		Destroy();
+		return;
+	}
 	KnockBackCollisionSpawnTime -= _DeltaTime;
 	if (!bIsKnockBackCollisionSpawn)
 	{
@@ -88,10 +94,12 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 			bIsKnockBackCollisionSpawn = true;
 		}
 	}
-	if (SpriteRenderer->IsCurAnimationEnd())
+	else 
 	{
-		Destroy();
+		CurTime += _DeltaTime;
+		SetActorLocation(FVector(UEngineMath::Lerp(StartPosX, TargetPosX, UEngineMath::Clamp(CurTime*5,0.0f,1.0f)), 0.0f,1.0f));
 	}
+	
 }
 
 void ACQ57::KnockBack(UCollision* _Left, UCollision* _Right)
@@ -131,7 +139,7 @@ void ACQ57::UpdatePhantomBlow(float _DeltaTime)
 			{
 				PhantomBlowCollisionSpawnTime = 0.2f;
 			}
-			else 
+			else
 			{
 				PhantomBlowCollisionSpawnTime = 0.1f;
 			}
@@ -141,7 +149,10 @@ void ACQ57::UpdatePhantomBlow(float _DeltaTime)
 
 void ACQ57::PhantomBlow(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.07f);
-	bIsPhantomBlowCollisionSpawn = false;
-	GetCollision("PhantomBlow")->SetActive(false);
+	if (_Right->GetCollisionProfileName() == "PLAYER")
+	{
+		GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.07f);
+		bIsPhantomBlowCollisionSpawn = false;
+		GetCollision("PhantomBlow")->SetActive(false);
+	}
 }
