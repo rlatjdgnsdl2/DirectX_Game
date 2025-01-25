@@ -81,35 +81,27 @@ void AMogadin::UpdateSlash(float _DeltaTime)
 		Destroy();
 		return;
 	}
-	if (SlashCount < 0)
+	CurIndex = SpriteRenderer->GetCurIndex();
+	if (PrevIndex != CurIndex)
 	{
-		return;
-	}
-
-	SlashCollisionSpawnTime -= _DeltaTime;
-	if (!bIsSlashCollisionSpawn)
-	{
-		if (SlashCollisionSpawnTime < 0.0f)
+		switch (CurIndex)
 		{
+		case 8:
+		case 11:
+		case 13:
+		case 15:
 			GetCollision("Slash")->SetActive(true);
-			bIsSlashCollisionSpawn = true;
-			SlashCount--;
-			if (SlashCount == 3)
-			{
-				//PhantomBlowCollisionSpawnTime = 0.3f;
-			}
-			else
-			{
-				//PhantomBlowCollisionSpawnTime = 0.1f;
-			}
+			break;
 		}
+		PrevIndex = CurIndex;
 	}
+	
 }
 
 void AMogadin::Slash(UCollision* _Left, UCollision* _Right)
 {
 	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.09f);
-	GetCollision("KnockBack")->SetActive(false);
+	GetCollision("Slash")->SetActive(false);
 }
 
 void AMogadin::StartChain()

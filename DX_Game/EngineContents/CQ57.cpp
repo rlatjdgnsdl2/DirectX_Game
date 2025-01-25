@@ -98,25 +98,29 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 		return;
 	}
 	CurIndex = SpriteRenderer->GetCurIndex();
-	if (CurIndex >= 17  || CurIndex <= 12)
+	if (CurIndex >= 13)
 	{
-		return;
-	}
-	if (CurIndex == 16)
-	{
-		GetCollision("KnockBack")->SetActive(false);
-		return;
+		CurTime += _DeltaTime;
+		SetActorLocation(FVector(UEngineMath::Lerp(StartPosX, TargetPosX, UEngineMath::Clamp(CurTime / 0.1f, 0.0f, 1.0f)), 0.0f, 1.0f));
+		PrevIndex = CurIndex;
 	}
 	if (CurIndex != PrevIndex)
 	{
-		if (CurIndex == 13)
+		switch (CurIndex)
 		{
+		case 13:
 			GetCollision("KnockBack")->SetActive(true);
+			break;
+		case 16:
+			GetCollision("KnockBack")->SetActive(false);
+			break;
+		default:
+			PrevIndex = CurIndex;
+			return;
 		}
+		PrevIndex = CurIndex;
 	}
-	CurTime += _DeltaTime;
-	SetActorLocation(FVector(UEngineMath::Lerp(StartPosX, TargetPosX, UEngineMath::Clamp(CurTime / 0.1f, 0.0f, 1.0f)), 0.0f, 1.0f));
-	PrevIndex = CurIndex;
+
 }
 
 void ACQ57::KnockBack(UCollision* _Left, UCollision* _Right)
@@ -141,21 +145,28 @@ void ACQ57::UpdatePhantomBlow(float _DeltaTime)
 		return;
 	}
 	CurIndex = SpriteRenderer->GetCurIndex();
-	if (CurIndex > 7 || CurIndex == 0)
-	{
-		return;
-	}
 
 	if (CurIndex != PrevIndex)
 	{
-		GetCollision("PhantomBlow")->SetActive(true);
-		if (CurIndex == 4)
+		switch (CurIndex)
 		{
+		case 1:
+		case 2:
+		case 3:
+		case 5:
+		case 6:
+		case 7:
+			GetCollision("PhantomBlow")->SetActive(true);
+			break;
+		case 10:
 			GetCollision("PhantomBlow")->SetActive(false);
-
+			break;
+		default:
+			break;
 		}
 		PrevIndex = CurIndex;
 	}
+
 }
 
 void ACQ57::PhantomBlow(UCollision* _Left, UCollision* _Right)

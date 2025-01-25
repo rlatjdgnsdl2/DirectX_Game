@@ -21,12 +21,8 @@ public:
 protected:
 
 private:
-	bool bIsSlashCollisionSpawn = false;
-	int SlashCount = 4;
-	/*std::vector<float> slashDelayVec = {};*/
-	float SlashDelay = 0.1f;
-	float SlashCollisionSpawnTime = 0.8f;
-
+	int PrevIndex = 0;
+	int CurIndex = 0;
 
 
 	void StartSlash();
