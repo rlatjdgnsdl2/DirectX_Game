@@ -29,7 +29,7 @@ ADamageSkinActor::ADamageSkinActor()
 		
 		SpriteRenderer->CreateAnimation("Miss", "DamageSkin_Miss", 0, 0);
 		SpriteRenderer->SetRelativeLocation(FVector(PosX[i], 0.0f));
-		SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::DamageSkin));
+		SpriteRenderer->SetZ(UContentsConst::DAMAGESKIN_ZPOS);
 
 		SpriteRenderers.push_back(SpriteRenderer);
 	}

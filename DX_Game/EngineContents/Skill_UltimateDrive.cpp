@@ -106,9 +106,9 @@ void ASkill_UltimateDrive::StartUltimateDrivePrev()
 	PlayerLogic->StartUltimateDrive();
 	Player->ChangeAnimation("UltimateDrive_KeyDown");
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front", true);
-	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back", true);
-	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 }
 
 void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
@@ -127,9 +127,9 @@ void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
 void ASkill_UltimateDrive::StartUltimateDriveKeyDown()
 {
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Front");
-	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-140.0f, 70.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-140.0f, 70.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_KeyDown_Effect_Back");
-	SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, 100.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(100.0f, 100.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 }
 
 void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
@@ -152,9 +152,9 @@ void ASkill_UltimateDrive::StartUltimateDriveEnd()
 	Collision->SetActive(false);
 	PlayerLogic->EndUltimateDrive();
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front", true);
-	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Front)));
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back", true);
-	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(50.0f, 50.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 }
 
 void ASkill_UltimateDrive::UpdateUltimateDriveEnd(float _DeltaTime)

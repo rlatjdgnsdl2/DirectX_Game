@@ -139,6 +139,21 @@
     <ClCompile Include="PlayerMpBarEffect.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="CQ57.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Mogadin.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Khaliain.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Jurai.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Freyd.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -279,6 +294,21 @@
     <ClInclude Include="PlayerMpBarEffect.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="CQ57.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Mogadin.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Khaliain.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Jurai.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Freyd.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -331,6 +361,9 @@
     </Filter>
     <Filter Include="UI\DamageSkin">
       <UniqueIdentifier>{95a958ed-07a2-425b-8308-bd9385985ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dunkel\Elite_Monster">
+      <UniqueIdentifier>{ba42f159-4760-4cd9-90ba-258a5dc65435}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

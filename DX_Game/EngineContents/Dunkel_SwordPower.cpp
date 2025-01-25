@@ -10,7 +10,7 @@ ADunkel_SwordPower::ADunkel_SwordPower()
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
 	SpriteRenderer->AddRelativeLocation(FVector(0.0f, 270.0f));
-	SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::Skill_Front));
+	SpriteRenderer->SetZ(UContentsConst::P_EFFECT_FRONT_ZPOS);
 	SpriteRenderer->CreateAnimation("Effect", "Dunkel_SwordPower_Effect", 0, 7);
 
 	Collision = CreateDefaultSubObject<UMyCollision>().get();

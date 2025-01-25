@@ -153,5 +153,96 @@ void ADunkel_GameMode::ResLoad()
 		Dir.BackDir();
 	}
 
+	// Elite Monster
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Image\\Boss\\Boss_Dunkel\\Elite_Monster\\Chain_Effetc");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("CQ57\\CQ57_KnockBack");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("CQ57_PhantomBlow");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+		Dir.BackDir();
+
+		Dir.Append("Elite_Spawn");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Freyd\\Freyd_HeadShoot");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Freyd_HeadShoot_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Freyd_Inlage");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+		Dir.BackDir();
+
+		Dir.Append("Jurai\\Jurai_Chain");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Jurai_Sniping");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Jurai_Sniping_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Jurai_Sniping_Hit");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+		Dir.BackDir();
+
+
+		Dir.Append("Khaliain\\Khaliain_Chain");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Khaliain_Chain_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Khaliain_MagicSphere");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Khaliain_MagicSphere_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Khaliain_MagicSphere_hit");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+		Dir.BackDir();
+
+		Dir.Append("Mogadin\\Mogadin_Chain");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("Mogadin_Slash");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+
+
+
+
+	}
+
 
 }

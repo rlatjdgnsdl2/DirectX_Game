@@ -27,22 +27,31 @@ public:
 
 	void InsertCollision(std::string _Name, class UMyCollision* _Collision) {
 		std::string UpperName = UEngineString::ToUpper(_Name);
+		if (CollisionMap.find(UpperName) != CollisionMap.end())
+		{
+			MSGASSERT("이미 존재하는 콜리젼입니다.");
+			return;
+		}
 		CollisionMap.insert(std::make_pair(UpperName, _Collision));
 	}
 	UMyCollision* GetCollision(std::string _Name) {
 		std::string UpperName = UEngineString::ToUpper(_Name);
+		if (CollisionMap.find(UpperName) == CollisionMap.end())
+		{
+			MSGASSERT("존재하지 않는 콜리젼입니다.");
+			return nullptr;
+		}
 		return CollisionMap[UpperName];
 	}
 
 protected:
-	UFSMStateManager AnimaionFSM;
+	UFSMStateManager FSM;
 	class USpriteRenderer* SpriteRenderer;
 	std::map<std::string, class UMyCollision*> CollisionMap;
 
-	float HP = 0.0f;
+	double HP = 0.0;
 	bool bIsDamagedable = true;
-	bool bIsAttack = false;
-
+	bool bIsAttacking = false;
 	float Dir = 1.0f;
 
 	virtual void StartSpawn() {}
@@ -53,12 +62,12 @@ protected:
 
 	virtual void StartMove() {}
 	virtual void UpdateMove(float _DeltaTime) {}
+	
+	virtual void StartDie() {}
+	virtual void UpdateDie(float _DeltaTime) {}
 
 	virtual void StartAttack() {}
 	virtual void UpdateAttack(float _DeltaTime) {}
-
-	virtual void StartDie() {}
-	virtual void UpdateDie(float _DeltaTime) {}
 private:
 
 

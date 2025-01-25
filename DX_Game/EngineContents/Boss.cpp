@@ -4,7 +4,8 @@
 
 ABoss::ABoss() 
 {
-
+	UMyCollision* Collision = GetCollision("Character");
+	Collision->SetCollisionProfileName("Boss");
 }
 
 ABoss::~ABoss() 

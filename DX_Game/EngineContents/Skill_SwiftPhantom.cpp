@@ -92,20 +92,20 @@ void ASkill_SwiftPhantom::StartDoubleJump()
 	SpriteRenderers["Back"]->SetActive(true);
 	SpriteRenderers["Front"]->ChangeAnimation("SwiftPhantom_Effect_Front", true);
 	SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
-	SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-	SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 0.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 0.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 0.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 	if (UEngineInput::IsPress(VK_UP)) {
 		SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
 		SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
-		SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-		SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 10.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+		SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 10.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
+		SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 10.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 		Player->GetPlayerLogic().AddVelocityY(800.0f);
 	}
 	else {
 		SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
 		SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
-		SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-		SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+		SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
+		SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 
 		Player->GetPlayerLogic().SetVelocityX(-Player->GetActorTransform().Scale.X * 600.0f);
 		Player->GetPlayerLogic().AddVelocityY(250.0f);
@@ -152,8 +152,8 @@ void ASkill_SwiftPhantom::StartTripleJump()
 	SpriteRenderers["Back"]->ChangeAnimation("SwiftPhantom_Effect_Back", true);
 	SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
 	SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
-	SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Front)));
-	SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, static_cast<float>(Z_ORDER::Skill_Back)));
+	SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
+	SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
 }
 
 void ASkill_SwiftPhantom::UpdateTripleJump(float _DeltaTime)

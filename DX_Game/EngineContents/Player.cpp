@@ -29,7 +29,7 @@ APlayer::APlayer()
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
 	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
 	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
-	SpriteRenderer->SetZ(static_cast<float>(Z_ORDER::Player));
+	SpriteRenderer->SetZ(UContentsConst::PLAYER_ZPOS);
 
 	//Collision
 	Collision = CreateDefaultSubObject<UMyCollision>().get();
