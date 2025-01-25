@@ -1,18 +1,18 @@
 #pragma once
 
 // Ό³Έν :
-class Jurai
+class AJurai
 {
 public:
 	// constrcuter destructer
-	Jurai();
-	virtual ~Jurai();
+	AJurai();
+	virtual ~AJurai();
 
 	// delete Function
-	Jurai(const Jurai& _Other) = delete;
-	Jurai(Jurai&& _Other) noexcept = delete;
-	Jurai& operator=(const Jurai& _Other) = delete;
-	Jurai& operator=(Jurai&& _Other) noexcept = delete;
+	AJurai(const AJurai& _Other) = delete;
+	AJurai(AJurai&& _Other) noexcept = delete;
+	AJurai& operator=(const AJurai& _Other) = delete;
+	AJurai& operator=(AJurai&& _Other) noexcept = delete;
 
 protected:
 

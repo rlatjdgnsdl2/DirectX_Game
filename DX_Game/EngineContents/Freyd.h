@@ -1,18 +1,18 @@
 #pragma once
 
 // Ό³Έν :
-class Freyd
+class AFreyd
 {
 public:
 	// constrcuter destructer
-	Freyd();
-	virtual ~Freyd();
+	AFreyd();
+	virtual ~AFreyd();
 
 	// delete Function
-	Freyd(const Freyd& _Other) = delete;
-	Freyd(Freyd&& _Other) noexcept = delete;
-	Freyd& operator=(const Freyd& _Other) = delete;
-	Freyd& operator=(Freyd&& _Other) noexcept = delete;
+	AFreyd(const AFreyd& _Other) = delete;
+	AFreyd(AFreyd&& _Other) noexcept = delete;
+	AFreyd& operator=(const AFreyd& _Other) = delete;
+	AFreyd& operator=(AFreyd&& _Other) noexcept = delete;
 
 protected:
 

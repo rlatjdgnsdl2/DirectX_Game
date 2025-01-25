@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "Khaliain.h"
 
-Khaliain::Khaliain()
+AKhaliain::AKhaliain()
 {
 }
 
-Khaliain::~Khaliain()
+AKhaliain::~AKhaliain()
 {
 }
 

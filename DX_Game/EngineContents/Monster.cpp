@@ -28,6 +28,7 @@ AMonster::AMonster()
 		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
 		Collision->SetupAttachment(RootComponent);
 		Collision->SetCollisionProfileName("Scope");
+		Collision->SetActive(false);
 		Collision->SetColor(UContentsConst::SCOPE_COLOR);
 		InsertCollision("Scope", Collision);
 	}

@@ -25,8 +25,7 @@ private:
 	float MeteoCoolTime = 25.0f;
 	float StandTime = 2.0f;
 
-
-
+	std::list<int> EliteMonsterList {0,1,2,3,4};
 
 	UEngineRandom Random;
 	
@@ -34,7 +33,7 @@ private:
 
 	void CheckDir();
 
-	void SpawnEliteMonster();
+	void SpawnEliteMonster(int _Count);
 
 	void StartSpawn() override;
 	void UpdateSpawn(float _DeltaTime) override;

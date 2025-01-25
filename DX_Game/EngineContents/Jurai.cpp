@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "Jurai.h"
 
-Jurai::Jurai()
+AJurai::AJurai()
 {
 }
 
-Jurai::~Jurai()
+AJurai::~AJurai()
 {
 }
 

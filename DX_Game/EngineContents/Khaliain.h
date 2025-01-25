@@ -1,18 +1,18 @@
 #pragma once
 
 // Ό³Έν :
-class Khaliain
+class AKhaliain
 {
 public:
 	// constrcuter destructer
-	Khaliain();
-	virtual ~Khaliain();
+	AKhaliain();
+	virtual ~AKhaliain();
 
 	// delete Function
-	Khaliain(const Khaliain& _Other) = delete;
-	Khaliain(Khaliain&& _Other) noexcept = delete;
-	Khaliain& operator=(const Khaliain& _Other) = delete;
-	Khaliain& operator=(Khaliain&& _Other) noexcept = delete;
+	AKhaliain(const AKhaliain& _Other) = delete;
+	AKhaliain(AKhaliain&& _Other) noexcept = delete;
+	AKhaliain& operator=(const AKhaliain& _Other) = delete;
+	AKhaliain& operator=(AKhaliain&& _Other) noexcept = delete;
 
 protected:
 

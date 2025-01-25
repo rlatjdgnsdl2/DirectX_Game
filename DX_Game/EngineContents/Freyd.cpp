@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "Freyd.h"
 
-Freyd::Freyd()
+AFreyd::AFreyd()
 {
 }
 
-Freyd::~Freyd()
+AFreyd::~AFreyd()
 {
 }
 

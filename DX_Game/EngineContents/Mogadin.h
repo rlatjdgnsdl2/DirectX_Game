@@ -1,18 +1,18 @@
 #pragma once
 
 // Ό³Έν :
-class Mogadin
+class AMogadin
 {
 public:
 	// constrcuter destructer
-	Mogadin();
-	virtual ~Mogadin();
+	AMogadin();
+	virtual ~AMogadin();
 
 	// delete Function
-	Mogadin(const Mogadin& _Other) = delete;
-	Mogadin(Mogadin&& _Other) noexcept = delete;
-	Mogadin& operator=(const Mogadin& _Other) = delete;
-	Mogadin& operator=(Mogadin&& _Other) noexcept = delete;
+	AMogadin(const AMogadin& _Other) = delete;
+	AMogadin(AMogadin&& _Other) noexcept = delete;
+	AMogadin& operator=(const AMogadin& _Other) = delete;
+	AMogadin& operator=(AMogadin&& _Other) noexcept = delete;
 
 protected:
 

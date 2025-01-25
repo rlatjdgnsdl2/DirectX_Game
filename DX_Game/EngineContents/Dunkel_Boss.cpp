@@ -176,7 +176,7 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	}
 
 	if (UEngineInput::IsDown('0')) {
-
+		SpawnEliteMonster(1);
 	}
 
 
@@ -259,7 +259,7 @@ void ADunkel_Boss::UpdateStand(float _DeltaTime)
 				FSM.ChangeState(DunkelAnim_State::Force);
 				return;
 			}
-			
+
 			else
 			{
 				FSM.ChangeState(DunkelAnim_State::Knockback);
@@ -284,22 +284,38 @@ void ADunkel_Boss::CheckDir()
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
 }
 
-void ADunkel_Boss::SpawnEliteMonster()
+void ADunkel_Boss::SpawnEliteMonster(int _Count)
 {
-	int Num = Random.RandomInt(0, 4);
-	switch (Num) 
-	{
-	case 0:
-		break;
-	case 1:
-		break;
-	case 2:
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	}
+	/*std::shuffle(EliteMonsterList.begin(), EliteMonsterList.end(), Random.GetMtGen()); 
+
+	int Count = _Count;
+	std::list<int>::iterator iter = EliteMonsterList.begin();*/
+	GetWorld()->SpawnActor<ACQ57>();
+
+	//for (int i = 0; i < Count; i++)
+	//{
+	//	int Num = *iter;
+	//	switch (Num)
+	//	{
+	//	case 0:
+	//		GetWorld()->SpawnActor<ACQ57>();
+	//		break;
+	//	case 1:
+	//		GetWorld()->SpawnActor<AFreyd>();
+	//		break;
+	//	case 2:
+	//		GetWorld()->SpawnActor<AJurai>();
+	//		break;
+	//	case 3:
+	//		GetWorld()->SpawnActor<AKhaliain>();
+	//		break;
+	//	case 4:
+	//		GetWorld()->SpawnActor<AMogadin>();
+	//		break;
+	//	}
+	//	iter++;
+	//}
+
 }
 
 
@@ -388,7 +404,7 @@ void ADunkel_Boss::SpawnMeteo()
 	{
 		Dir = 1.0f;
 	}
-	else 
+	else
 	{
 		Dir = -1.0f;
 	}

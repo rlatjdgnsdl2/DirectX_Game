@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "Mogadin.h"
 
-Mogadin::Mogadin()
+AMogadin::AMogadin()
 {
 }
 
-Mogadin::~Mogadin()
+AMogadin::~AMogadin()
 {
 }
 
