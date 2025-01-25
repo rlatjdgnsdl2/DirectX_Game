@@ -8,7 +8,6 @@ enum class Skill_Frame
 	Third
 };
 
-
 enum class DunkelAnim_State {
 	None,
 	Die,
@@ -33,7 +32,8 @@ enum class Monster_State {
 	Hit,
 	Move,
 	Spawn,
-	Stand
+	Stand,
+	SelfDestroy
 };
 
 

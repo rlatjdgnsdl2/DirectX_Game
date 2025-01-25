@@ -6,6 +6,7 @@
 AMonster::AMonster()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
+
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
 	

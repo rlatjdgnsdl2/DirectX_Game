@@ -15,6 +15,11 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
+	void ChangeState(DunkelAnim_State _State) 
+	{
+		FSM.ChangeState(_State);
+	};
+
 
 protected:
 
@@ -25,15 +30,17 @@ private:
 	float MeteoCoolTime = 25.0f;
 	float StandTime = 2.0f;
 
-	std::list<int> EliteMonsterList {0,1,2,3,4};
+	std::vector<int> EliteMonsterList {0,1,2,3,4};
+	std::list<class AFallenWarrior*> FallenWarriorList;
 
 	UEngineRandom Random;
 	
 	bool bIsScopePlayer = false;
+	bool bIsAttacking = false;
 
 	void CheckDir();
 
-	void SpawnEliteMonster(int _Count);
+	void SpawnEliteMonster();
 
 	void StartSpawn() override;
 	void UpdateSpawn(float _DeltaTime) override;
@@ -72,5 +79,16 @@ private:
 	void StartDown();
 	void UpdateDown(float _DeltaTime);
 
+
+	void UpdateMapPattern(float _DeltaTime);
+
+	std::vector<float> FallenWarriorSpawnPosX;
+	float FallenWarriorSpawnTime = 5.0f;
+
+
+	std::vector<float> PillarLightPosX;
+	float PillarLightSpawnTime = 10.0f;
+	int PillarLightSpawnCount = 0;
+	int PillarLightCount = 0;
 };
 

@@ -18,7 +18,7 @@ public:
 protected:
 	void OnGUI() override;
 private:
-	class APlayer* Player;
-	class ADunkel_Boss* Dunkel;
+	class APlayer* Player = nullptr;
+	class ADunkel_Boss* Dunkel = nullptr;
 };
 

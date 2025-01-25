@@ -61,8 +61,19 @@ void ACQ57::BeginPlay()
 {
 	AMonster::BeginPlay();
 	FSM.ChangeState(0);
-	StartPosX = GetActorLocation().X;
-	TargetPosX = StartPosX + 400.0f*-Dir;
+	FVector PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();
+	UEngineRandom Random;
+	int Num = Random.RandomInt(0, 1);
+	if (Num == 0) 
+	{
+		Dir = 1;
+	}
+	else 
+	{
+		Dir = -1;
+	}
+	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
+	SetActorLocation(FVector(PlayerPos.X + 200.0f * Dir, 0.0f));
 }
 
 void ACQ57::Tick(float _DeltaTime)
@@ -75,6 +86,8 @@ void ACQ57::StartKnockBack()
 {
 	SpriteRenderer->ChangeAnimation("KnockBack", true);
 	SpriteRenderer->SetRelativeLocation(FVector(60.0f, 110.0f, UContentsConst::MONSTER_ZPOS));
+	StartPosX = GetActorLocation().X;
+	TargetPosX = StartPosX + 400.0f * -Dir;
 }
 
 void ACQ57::UpdateKnockBack(float _DeltaTime)
@@ -97,7 +110,7 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 	else 
 	{
 		CurTime += _DeltaTime;
-		SetActorLocation(FVector(UEngineMath::Lerp(StartPosX, TargetPosX, UEngineMath::Clamp(CurTime*5,0.0f,1.0f)), 0.0f,1.0f));
+		SetActorLocation(FVector(UEngineMath::Lerp(StartPosX, TargetPosX, UEngineMath::Clamp(CurTime*6,0.0f,1.0f)), 0.0f,1.0f));
 	}
 	
 }

@@ -37,7 +37,6 @@ APlayer::APlayer()
 	Collision->SetCollisionProfileName("Player");
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
-	Collision->SetColor(FVector::BLUE);
 
 	Job = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();

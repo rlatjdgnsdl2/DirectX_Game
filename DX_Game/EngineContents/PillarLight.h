@@ -20,8 +20,7 @@ protected:
 
 private:
 	bool bIsCollisionSpawn = false;
-	float CollisionSpawnTime = 2.0f;
-	float CollisionCloseTime = 0.3f;
+	float CollisionSpawnTime = 0.0f;
 	class USpriteRenderer* SpriteRenderer;
 	class UMyCollision* Collision;
 

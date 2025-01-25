@@ -5,6 +5,7 @@ class UContentsConst
 public:
 	// Color
 	static const FVector SCOPE_COLOR;
+	static const FVector ATTACK_COLOR;
 	static const FVector COLLISIONING_COLOR;
 
 	// ZPos

@@ -151,6 +151,10 @@ void ADunkel_GameMode::ResLoad()
 		Dir.Append("FallenWarrior_Barrior");
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
+
+		Dir.Append("FallenWarrior_SelfDestroy");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
 	}
 
 	// Elite Monster

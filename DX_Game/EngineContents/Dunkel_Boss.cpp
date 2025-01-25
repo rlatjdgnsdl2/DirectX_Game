@@ -13,6 +13,9 @@
 #include "Khaliain.h"
 #include "Mogadin.h"
 
+#include "FallenWarrior.h"
+#include "PillarLight.h"
+
 
 ADunkel_Boss::ADunkel_Boss()
 {
@@ -124,6 +127,13 @@ ADunkel_Boss::ADunkel_Boss()
 	FSM.CreateState(DunkelAnim_State::Sword, std::bind(&ADunkel_Boss::UpdateSword, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSword, this));
 
 	GetWorld()->LinkCollisionProfile("BossAttack", "Player");
+
+	FallenWarriorSpawnPosX = { -600.0f, -550.0f, -500.0f, -450.0f, -400.0f,
+						   -350.0f, -300.0f, -250.0f, -200.0f, -150.0f,
+						   -100.0f, -50.0f, 0.0f, 50.0f, 100.0f,
+						   150.0f, 200.0f, 250.0f, 300.0f, 350.0f,
+						   400.0f, 450.0f, 500.0f, 550.0f, 600.0f };
+	PillarLightPosX = { -520.0f,-395.0f, -270.0f,-145.0f,-20.0f,105.0f, 230.0f,355.0f,480.0f };
 }
 
 ADunkel_Boss::~ADunkel_Boss()
@@ -134,53 +144,20 @@ ADunkel_Boss::~ADunkel_Boss()
 void ADunkel_Boss::BeginPlay()
 {
 	AMonster::BeginPlay();
-	HP = UContentsConst::DUNKEL_HP;
+	MaxHp = UContentsConst::DUNKEL_HP;
+	Hp = UContentsConst::DUNKEL_HP;
 	FSM.ChangeState(DunkelAnim_State::Spawn);
 }
 
 void ADunkel_Boss::Tick(float _DeltaTime)
 {
 	AMonster::Tick(_DeltaTime);
+	HpPercent = static_cast<float>(Hp) / static_cast<float>(MaxHp);
 	SlashCoolTime -= _DeltaTime;
 	SwordCoolTime -= _DeltaTime;
 	MeteoCoolTime -= _DeltaTime;
+	UpdateMapPattern(_DeltaTime);
 	FSM.Update(_DeltaTime);
-
-	if (UEngineInput::IsDown('1')) {
-		FSM.ChangeState(DunkelAnim_State::Die);
-	}
-	if (UEngineInput::IsDown('2')) {
-		FSM.ChangeState(DunkelAnim_State::Force);
-	}
-	if (UEngineInput::IsDown('3')) {
-		FSM.ChangeState(DunkelAnim_State::Knockback);
-	}
-	if (UEngineInput::IsDown('4')) {
-		FSM.ChangeState(DunkelAnim_State::Meteo);
-	}
-	if (UEngineInput::IsDown('5')) {
-		FSM.ChangeState(DunkelAnim_State::Slash_Start);
-	}
-	if (UEngineInput::IsDown('6')) {
-		FSM.ChangeState(DunkelAnim_State::Spawn);
-	}
-	if (UEngineInput::IsDown('7')) {
-		FSM.ChangeState(DunkelAnim_State::Stand);
-	}
-
-	if (UEngineInput::IsDown('8')) {
-		FSM.ChangeState(DunkelAnim_State::Sword);
-	}
-	if (UEngineInput::IsDown('9')) {
-		FSM.ChangeState(DunkelAnim_State::Up);
-	}
-
-	if (UEngineInput::IsDown('0')) {
-		SpawnEliteMonster(1);
-	}
-
-
-
 }
 
 void ADunkel_Boss::StartSpawn()
@@ -211,6 +188,10 @@ void ADunkel_Boss::StartStand()
 
 void ADunkel_Boss::UpdateStand(float _DeltaTime)
 {
+	if (IsDebug()) 
+	{
+		return;
+	}
 	StandTime -= _DeltaTime;
 	if (StandTime < 0.0f)
 	{
@@ -279,42 +260,41 @@ void ADunkel_Boss::CheckDir()
 	}
 	else {
 		Dir = 1;
-
 	}
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
 }
 
-void ADunkel_Boss::SpawnEliteMonster(int _Count)
+void ADunkel_Boss::SpawnEliteMonster()
 {
-	/*std::shuffle(EliteMonsterList.begin(), EliteMonsterList.end(), Random.GetMtGen()); 
+	int Count = 2;
+	if (HpPercent < 0.51)
+	{
+		Count = 3;
+	}
 
-	int Count = _Count;
-	std::list<int>::iterator iter = EliteMonsterList.begin();*/
-	GetWorld()->SpawnActor<ACQ57>();
-
-	//for (int i = 0; i < Count; i++)
-	//{
-	//	int Num = *iter;
-	//	switch (Num)
-	//	{
-	//	case 0:
-	//		GetWorld()->SpawnActor<ACQ57>();
-	//		break;
-	//	case 1:
-	//		GetWorld()->SpawnActor<AFreyd>();
-	//		break;
-	//	case 2:
-	//		GetWorld()->SpawnActor<AJurai>();
-	//		break;
-	//	case 3:
-	//		GetWorld()->SpawnActor<AKhaliain>();
-	//		break;
-	//	case 4:
-	//		GetWorld()->SpawnActor<AMogadin>();
-	//		break;
-	//	}
-	//	iter++;
-	//}
+	std::shuffle(EliteMonsterList.begin(), EliteMonsterList.end(), Random.GetMtGen());
+	for (int i = 0; i < Count; i++)
+	{
+		int Num = EliteMonsterList[i];
+		switch (Num)
+		{
+		case 0:
+			GetWorld()->SpawnActor<ACQ57>();
+			break;
+		case 1:
+			GetWorld()->SpawnActor<AFreyd>();
+			break;
+		case 2:
+			GetWorld()->SpawnActor<AJurai>();
+			break;
+		case 3:
+			GetWorld()->SpawnActor<AKhaliain>();
+			break;
+		case 4:
+			GetWorld()->SpawnActor<AMogadin>();
+			break;
+		}
+	}
 
 }
 
@@ -545,5 +525,50 @@ void ADunkel_Boss::UpdateDown(float _DeltaTime)
 		CollisonSpawnTime = 0.0f;
 		FSM.ChangeState(DunkelAnim_State::Stand);
 		return;
+	}
+}
+
+
+void ADunkel_Boss::UpdateMapPattern(float _DeltaTime)
+{
+	FallenWarriorSpawnTime -= _DeltaTime;
+	PillarLightSpawnTime -= _DeltaTime;
+
+	// FallenWarrior
+	if (FallenWarriorSpawnTime <= 0.0f)
+	{
+		std::shuffle(FallenWarriorSpawnPosX.begin(), FallenWarriorSpawnPosX.end(), Random.GetMtGen());
+		for (int i = 0; i < 4; i++) {
+			AFallenWarrior* FallenWarrior = GetWorld()->SpawnActor<AFallenWarrior>().get();
+			FallenWarrior->SetActorLocation(FVector(FallenWarriorSpawnPosX[i], 0.0f));	
+		}
+		FallenWarriorSpawnTime = 30.0f;
+	}
+
+	// PillarLight
+	if (PillarLightSpawnTime <= 0.0f) {
+		int Index = Random.RandomInt(0, PillarLightPosX.size() - 1);
+		if (PillarLightSpawnCount < 3)
+		{
+			if (PillarLightCount < 4)
+			{
+				APillarLight* PillarLight = GetWorld()->SpawnActor<APillarLight>().get();
+				PillarLight->SetActorLocation(FVector(PillarLightPosX[Index], 0.0f));
+				PillarLightCount++;
+				PillarLightSpawnTime = 1.0f;
+			}
+			else
+			{
+				PillarLightCount = 0;
+				PillarLightSpawnCount++;
+				PillarLightSpawnTime = 10.0f;
+			}
+		}
+		else
+		{
+			PillarLightCount = 0;
+			PillarLightSpawnCount = 0;
+			PillarLightSpawnTime = 20.0f;
+		}
 	}
 }

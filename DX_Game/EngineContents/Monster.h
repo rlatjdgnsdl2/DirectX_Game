@@ -14,10 +14,10 @@ public:
 
 	void SetDamage(float _Damage) {
 		if (bIsDamagedable) {
-			HP -= _Damage;
-			if (HP <= 0.0f)
+			Hp -= _Damage;
+			if (Hp <= 0.0f)
 			{
-				HP = 0.0f;
+				Hp = 0.0f;
 			}
 		}
 	}
@@ -49,9 +49,11 @@ protected:
 	class USpriteRenderer* SpriteRenderer;
 	std::map<std::string, class UMyCollision*> CollisionMap;
 
-	double HP = 0.0;
+	double MaxHp = 0.0;
+	double Hp = 0.0;
+	float HpPercent = 1.0f;
+
 	bool bIsDamagedable = true;
-	bool bIsAttacking = false;
 	float Dir = 1.0f;
 
 	virtual void StartSpawn() {}

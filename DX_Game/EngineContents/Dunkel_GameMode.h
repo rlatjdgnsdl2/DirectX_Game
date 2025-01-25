@@ -25,28 +25,14 @@ public:
 protected:
 
 private:
-	void UpdateMapPattern(float _DeltaTime);
-
-	std::vector<float> FallenWarriorSpawnPosX;
-	float FallenWarriorSpawnTime = 5.0f;
-	float FallenWarriorSpawnZ = 10.0f;
-
-	std::vector<float> PillarLightPosX;
-	float PillarLightSpawnTime = 10.0f;
-	float PillarLightSpawnZ = 10.0f;
-	int PillarLightSpawnCount = 0;
-	int PillarLightCount = 0;
-
-
-
+	class ADunkel_Map* Map;
 	FVector MapSize;
 	FVector MapPos;
 
-	class ADunkel_Map* Map;
 	class ADunkel_Boss* BossDunkel;
 	class UDunkel_GUI* Dunkel_GUI;
 
-	UEngineRandom Random;
+
 	UEngineCamera* MainCamera = nullptr;
 	
 	

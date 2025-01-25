@@ -6,12 +6,12 @@
 #include "MyGameInstance.h"
 
 
-APillarLight::APillarLight() 
+APillarLight::APillarLight()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
-	SpriteRenderer->CreateAnimation("PillarLight", "PillarLight", 0, 30,2.0f/17,false);
+	SpriteRenderer->CreateAnimation("PillarLight", "PillarLight", 0, 30, 2.0f / 17, false);
 	SpriteRenderer->SetRelativeLocation(FVector(0.0f, 370.0f, 0.0f));
 
 	Collision = CreateDefaultSubObject<UMyCollision>().get();
@@ -29,7 +29,7 @@ APillarLight::APillarLight()
 
 }
 
-APillarLight::~APillarLight() 
+APillarLight::~APillarLight()
 {
 
 }
@@ -43,26 +43,23 @@ void APillarLight::BeginPlay()
 void APillarLight::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	CollisionSpawnTime -= _DeltaTime;
-	if (CollisionSpawnTime <= 0.0f)
+	CollisionSpawnTime += _DeltaTime;
+
+	if (CollisionSpawnTime >= 2.1f)
 	{
-		Collision->SetActive(true);
-		bIsCollisionSpawn = true;
-		CollisionSpawnTime = 1000.0f;
-	}
-	if (bIsCollisionSpawn) {
-		CollisionCloseTime -= _DeltaTime;
-		if (CollisionCloseTime <= 0.0f)
+		if (!bIsCollisionSpawn)
 		{
-			Collision->SetActive(false);
-			bIsCollisionSpawn = false;
-			CollisionCloseTime = 1000.0f;
+			Collision->SetActive(true);
+			bIsCollisionSpawn = true;
 		}
+	}
+	if (CollisionSpawnTime >= 2.4f) {
+		Collision->SetActive(false);
 	}
 
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		Destroy();
 	}
-	
+
 }

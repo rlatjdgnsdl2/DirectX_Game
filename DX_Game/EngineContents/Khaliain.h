@@ -1,7 +1,8 @@
 #pragma once
+#include <EngineCore/Actor.h>
 
 // Ό³Έν :
-class AKhaliain
+class AKhaliain : public AActor
 {
 public:
 	// constrcuter destructer
