@@ -92,10 +92,12 @@ void AMogadin::UpdateSlash(float _DeltaTime)
 		case 15:
 			GetCollision("Slash")->SetActive(true);
 			break;
+		case 16:
+			GetCollision("Slash")->SetActive(false);
+			break;
 		}
 		PrevIndex = CurIndex;
 	}
-	
 }
 
 void AMogadin::Slash(UCollision* _Left, UCollision* _Right)

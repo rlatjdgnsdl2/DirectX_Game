@@ -102,7 +102,6 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 	{
 		CurTime += _DeltaTime;
 		SetActorLocation(FVector(UEngineMath::Lerp(StartPosX, TargetPosX, UEngineMath::Clamp(CurTime / 0.1f, 0.0f, 1.0f)), 0.0f, 1.0f));
-		PrevIndex = CurIndex;
 	}
 	if (CurIndex != PrevIndex)
 	{
@@ -115,8 +114,7 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 			GetCollision("KnockBack")->SetActive(false);
 			break;
 		default:
-			PrevIndex = CurIndex;
-			return;
+			break;
 		}
 		PrevIndex = CurIndex;
 	}
