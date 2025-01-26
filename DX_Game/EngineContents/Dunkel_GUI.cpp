@@ -154,5 +154,31 @@ void UDunkel_GUI::OnGUI()
 		}
 	}
 
+	if (ImGui::Button("Freyd"))
+	{
+		if (Dunkel != nullptr)
+		{
+			GetWorld()->SpawnActor<AFreyd>();
+		}
+	}
+
+
+	if (ImGui::Button("Khaliain"))
+	{
+		if (Dunkel != nullptr)
+		{
+			GetWorld()->SpawnActor<AKhaliain>();
+		}
+	}
+
+
+	if (ImGui::Button("Jurai"))
+	{
+		if (Dunkel != nullptr)
+		{
+			GetWorld()->SpawnActor<AJurai>();
+		}
+	}
+
 	
 }

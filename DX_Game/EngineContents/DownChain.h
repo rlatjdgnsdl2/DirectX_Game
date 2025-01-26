@@ -24,8 +24,8 @@ private:
 	class USpriteRenderer* SpriteRenderer;
 	std::vector<class UMyCollision*> Collisions;
 
-	int PrevIndex;
-	int CurIndex;
+	int PrevIndex =0;
+	int CurIndex =0;
 
 };
 

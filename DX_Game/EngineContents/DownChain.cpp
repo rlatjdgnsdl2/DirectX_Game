@@ -130,6 +130,11 @@ void ADownChain::BeginPlay()
 void ADownChain::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+	if (SpriteRenderer->IsCurAnimationEnd())
+	{
+		Destroy();
+		return;
+	}
 	CurIndex = SpriteRenderer->GetCurIndex();
 	if (PrevIndex != CurIndex)
 	{

@@ -124,6 +124,7 @@ ADunkel_Map::ADunkel_Map()
 	GetWorld()->LinkCollisionProfile("EndArea", "Player");
 	GetWorld()->LinkCollisionProfile("EndArea", "Boss");
 	GetWorld()->LinkCollisionProfile("EndArea", "Monster");
+	GetWorld()->LinkCollisionProfile("EndArea", "EliteMonster");
 
 
 

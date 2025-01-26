@@ -17,12 +17,17 @@ ADunkel_GameMode::ADunkel_GameMode()
 
 	GetWorld()->CreateCollisionProfile("Player");
 	GetWorld()->CreateCollisionProfile("PlayerSkill");
+
 	GetWorld()->CreateCollisionProfile("Monster");
 	GetWorld()->CreateCollisionProfile("MonsterAttack");
+
 	GetWorld()->CreateCollisionProfile("Boss");
 	GetWorld()->CreateCollisionProfile("BossAttack");
+
+	GetWorld()->CreateCollisionProfile("EliteMonster");
+
 	GetWorld()->CreateCollisionProfile("Scope");
-	GetWorld()->CreateCollisionProfile("UI");
+	
 	GetWorld()->CreateCollisionProfile("EndArea");
 
 	Map = GetWorld()->SpawnActor<ADunkel_Map>().get();
