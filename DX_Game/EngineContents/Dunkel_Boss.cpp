@@ -16,6 +16,8 @@
 #include "FallenWarrior.h"
 #include "PillarLight.h"
 
+#include "DownChain.h"
+
 
 ADunkel_Boss::ADunkel_Boss()
 {
@@ -158,6 +160,11 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	MeteoCoolTime -= _DeltaTime;
 	UpdateMapPattern(_DeltaTime);
 	FSM.Update(_DeltaTime);
+
+	if (UEngineInput::IsDown('A'))
+	{
+		GetWorld()->SpawnActor<ADownChain>();
+	}
 }
 
 void ADunkel_Boss::StartSpawn()

@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Mogadin.h"
+#include "DownChain.h"
 
 AMogadin::AMogadin()
 {
@@ -117,6 +118,7 @@ void AMogadin::UpdateChain(float _DeltaTime)
 {
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
+		GetWorld()->SpawnActor<ADownChain>();
 		Destroy();
 		return;
 	}

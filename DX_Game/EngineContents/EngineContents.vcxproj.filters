@@ -154,6 +154,9 @@
     <ClCompile Include="Freyd.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClCompile>
+    <ClCompile Include="DownChain.cpp">
+      <Filter>Dunkel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -308,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="Freyd.h">
       <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DownChain.h">
+      <Filter>Dunkel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
