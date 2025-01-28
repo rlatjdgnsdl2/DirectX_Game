@@ -205,6 +205,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sniping.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="UIShortKey.cpp">
       <SubType>
       </SubType>
@@ -403,6 +407,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Skill_UltimateDrive.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Sniping.h">
       <SubType>
       </SubType>
     </ClInclude>

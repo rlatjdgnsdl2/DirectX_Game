@@ -8,7 +8,12 @@ AMogadin::AMogadin()
 	SpriteRenderer->CreateAnimation("Slash", "Mogadin_Slash", 0, 17, 1.0f / 12, false);
 	SpriteRenderer->CreateAnimation("Chain", "Mogadin_Chain", 0, 14, 0.1f, false);
 
-
+	{
+		UMyCollision* Collision = GetCollision("Character");
+		Collision->SetCollisionProfileName("EliteMonster");
+		Collision->SetRelativeScale3D(FVector(200.0f, 200.0f, 1.0f));
+		Collision->SetRelativeLocation(FVector(0.0f, 100.0f, 0.0f));
+	}
 	{
 		UMyCollision* Collision = CreateDefaultSubObject<UMyCollision>().get();
 		Collision->SetupAttachment(RootComponent);
@@ -61,7 +66,7 @@ void AMogadin::BeginPlay()
 		Dir = -1;
 	}
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
-	SetActorLocation(FVector(PlayerPos.X + 200.0f * Dir, 0.0f));
+	SetActorLocation(FVector(PlayerPos.X + 200.0f * Dir, PlayerPos.Y));
 }
 
 void AMogadin::Tick(float _DeltaTime)

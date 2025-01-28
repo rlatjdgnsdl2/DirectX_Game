@@ -154,10 +154,13 @@
     <ClCompile Include="Freyd.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClCompile>
-    <ClCompile Include="DownChain.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
     <ClCompile Include="Shot.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="DownChain.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Sniping.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClCompile>
   </ItemGroup>
@@ -315,10 +318,13 @@
     <ClInclude Include="Freyd.h">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClInclude>
-    <ClInclude Include="DownChain.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
     <ClInclude Include="Shot.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DownChain.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Sniping.h">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClInclude>
   </ItemGroup>

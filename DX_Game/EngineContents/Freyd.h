@@ -27,6 +27,8 @@ private:
 
 	void StartShot();
 	void UpdateShot(float _DeltaTime);
+
+	int Pattern = 0;
 	
 	void StartFist();
 	void UpdateFist(float _DeltaTime);

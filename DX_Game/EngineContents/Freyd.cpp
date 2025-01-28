@@ -25,7 +25,7 @@ AFreyd::AFreyd()
 		UMyCollision* Collision = GetCollision("Character");
 		Collision->SetCollisionProfileName("EliteMonster");
 		Collision->SetRelativeScale3D(FVector(200.0f, 200.0f, 1.0f));
-		Collision->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+		Collision->SetRelativeLocation(FVector(0.0f, 100.0f, 0.0f));
 	}
 
 	FSM.CreateState(0,
@@ -57,8 +57,8 @@ AFreyd::~AFreyd()
 void AFreyd::BeginPlay()
 {
 	AMonster::BeginPlay();
-	FSM.ChangeState(0);
 	FVector PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();
+	FSM.ChangeState(0);
 
 	int Num = Random.RandomInt(0, 1);
 	if (Num == 0)
