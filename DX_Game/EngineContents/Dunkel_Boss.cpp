@@ -161,14 +161,11 @@ void ADunkel_Boss::Tick(float _DeltaTime)
 	UpdateMapPattern(_DeltaTime);
 	FSM.Update(_DeltaTime);
 
-	if (UEngineInput::IsDown('A'))
-	{
-		GetWorld()->SpawnActor<ADownChain>();
-	}
 }
 
 void ADunkel_Boss::StartSpawn()
 {
+
 	SpriteRenderer->ChangeAnimation("Spawn", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-20.0f, 200.0f, UContentsConst::BOSS_ZPOS));
 }
@@ -325,6 +322,7 @@ void ADunkel_Boss::UpdateDie(float _DeltaTime)
 void ADunkel_Boss::StartKnockback()
 {
 	CheckDir();
+	SpawnEliteMonster();
 	SpriteRenderer->ChangeAnimation("Knockback", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-210.0f, 200.0f, UContentsConst::BOSS_ZPOS));
 }
@@ -351,6 +349,7 @@ void ADunkel_Boss::UpdateKnockback(float _DeltaTime)
 void ADunkel_Boss::StartForce()
 {
 	CheckDir();
+	SpawnEliteMonster();
 	SpriteRenderer->ChangeAnimation("Force", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-120.0f, 360.0f, UContentsConst::BOSS_ZPOS));
 }
@@ -368,6 +367,7 @@ void ADunkel_Boss::UpdateForce(float _DeltaTime)
 void ADunkel_Boss::StartMeteo()
 {
 	CheckDir();
+	SpawnEliteMonster();
 	MeteoCoolTime = 25.0f;
 	SpriteRenderer->ChangeAnimation("Meteo", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 320.0f, UContentsConst::BOSS_ZPOS));
@@ -422,6 +422,7 @@ void ADunkel_Boss::SpawnMeteo()
 void ADunkel_Boss::StartSlash_Start()
 {
 	CheckDir();
+	SpawnEliteMonster();
 	SpriteRenderer->ChangeAnimation("Slash_Start", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-60.0f, 170.0f, UContentsConst::BOSS_ZPOS));
 	SlashCoolTime = 15.0f;
@@ -467,6 +468,7 @@ void ADunkel_Boss::UpdateSlash_End(float _DeltaTime)
 void ADunkel_Boss::StartSword()
 {
 	CheckDir();
+	SpawnEliteMonster();
 	SpriteRenderer->ChangeAnimation("Sword", true);
 	SpriteRenderer->SetRelativeLocation(FVector(60.0f, 200.0f, UContentsConst::BOSS_ZPOS));
 	SwordCoolTime = 30.0f;
@@ -494,6 +496,7 @@ void ADunkel_Boss::SpawnSwordPower()
 
 void ADunkel_Boss::StartUp()
 {
+	SpawnEliteMonster();
 	SpriteRenderer->ChangeAnimation("Up", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-50.0f, 180.0f, UContentsConst::BOSS_ZPOS));
 	GetCollision("Character")->SetActive(false);
