@@ -163,6 +163,12 @@
     <ClCompile Include="Sniping.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClCompile>
+    <ClCompile Include="MagicSphere.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="UpChain.cpp">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -325,6 +331,12 @@
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClInclude>
     <ClInclude Include="Sniping.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicSphere.h">
+      <Filter>Dunkel\Elite_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="UpChain.h">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClInclude>
   </ItemGroup>

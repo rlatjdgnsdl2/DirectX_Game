@@ -107,6 +107,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MagicSphere.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Mogadin.cpp">
       <SubType>
       </SubType>
@@ -217,6 +221,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="UpChain.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="UpKey.cpp">
       <SubType>
       </SubType>
@@ -312,6 +320,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Khaliain.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MagicSphere.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -419,6 +431,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="UI_Icon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UpChain.h">
       <SubType>
       </SubType>
     </ClInclude>

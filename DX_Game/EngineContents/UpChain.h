@@ -2,18 +2,18 @@
 #include <EngineCore/Actor.h>
 
 // Ό³Έν :
-class AShot : public AActor
+class AUpChain : public AActor
 {
 public:
 	// constrcuter destructer
-	AShot();
-	virtual ~AShot();
+	AUpChain();
+	virtual ~AUpChain();
 
 	// delete Function
-	AShot(const AShot& _Other) = delete;
-	AShot(AShot&& _Other) noexcept = delete;
-	AShot& operator=(const AShot& _Other) = delete;
-	AShot& operator=(AShot&& _Other) noexcept = delete;
+	AUpChain(const AUpChain& _Other) = delete;
+	AUpChain(AUpChain&& _Other) noexcept = delete;
+	AUpChain& operator=(const AUpChain& _Other) = delete;
+	AUpChain& operator=(AUpChain&& _Other) noexcept = delete;
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
@@ -21,10 +21,9 @@ public:
 protected:
 
 private:
-	int PrevIndex = 0;
-	int CurIndex = 0;
 	class USpriteRenderer* SpriteRenderer = nullptr;
 	class UMyCollision* Collision = nullptr;
-
+	int PrevIndex = 0;
+	int CurIndex = 0;
 };
 

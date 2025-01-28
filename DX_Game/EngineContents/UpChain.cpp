@@ -1,13 +1,14 @@
 #include "PreCompile.h"
-#include "Shot.h"
+#include "UpChain.h"
 
-AShot::AShot()
+AUpChain::AUpChain()
 {
 	RootComponent = CreateDefaultSubObject<UDefaultSceneComponent>();
+
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
-	SpriteRenderer->CreateAnimation("Shot", "Freyd_HeadShoot_Effect", 0, 9, 0.15f, false);
-	SpriteRenderer->SetRelativeLocation(FVector(0.0f, 50.0f, UContentsConst::M_EFFECT_FRONT_ZPOS));
+	SpriteRenderer->CreateAnimation("Chain", "Khaliain_Chain_Effect", 0, 12, 0.15f, false);
+	SpriteRenderer->SetRelativeLocation(FVector(0.0f, 80.0f, UContentsConst::M_EFFECT_FRONT_ZPOS));
 
 	Collision = CreateDefaultSubObject<UMyCollision>().get();
 	Collision->SetupAttachment(RootComponent);
@@ -18,24 +19,22 @@ AShot::AShot()
 	Collision->SetActive(false);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.3f);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
 			Collision->SetActive(false);
 		});
-
 }
 
-AShot::~AShot()
+AUpChain::~AUpChain()
 {
-
 }
 
-void AShot::BeginPlay()
+void AUpChain::BeginPlay()
 {
 	AActor::BeginPlay();
-	SpriteRenderer->ChangeAnimation("Shot", true);
+	SpriteRenderer->ChangeAnimation("Chain", true);
 }
 
-void AShot::Tick(float _DeltaTime)
+void AUpChain::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	if (SpriteRenderer->IsCurAnimationEnd())
@@ -48,15 +47,20 @@ void AShot::Tick(float _DeltaTime)
 	{
 		switch (CurIndex)
 		{
-		case 8:
+		case 9:
+			Collision->SetActive(true);
+			break;
+		case 10:
+			Collision->SetActive(true);
+			break;
+		case 11:
+			Collision->SetActive(true);
+			break;
+		case 12:
 			Collision->SetActive(true);
 			break;
 		}
 		PrevIndex = CurIndex;
 	}
 }
-
-
-
-
 
