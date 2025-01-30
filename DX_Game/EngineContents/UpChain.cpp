@@ -19,7 +19,7 @@ AUpChain::AUpChain()
 	Collision->SetActive(false);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 			Collision->SetActive(false);
 		});
 }

@@ -18,7 +18,7 @@ AMagicSphere::AMagicSphere()
 	Collision->SetColor(UContentsConst::ATTACK_COLOR);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.15f);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.15f);
 			Collision->SetActive(false);
 		});
 }

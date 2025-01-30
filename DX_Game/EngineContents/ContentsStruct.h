@@ -138,76 +138,104 @@ struct FPlayerStatus
 	std::string Name = "";
 
 	int Level =1;
+
+	bool bIsFillable = true;
+	bool IsFillable()
+	{
+		return bIsFillable;
+	}
+	void SetFillable(bool _Value)
+	{
+		bIsFillable = _Value;
+	}
+	void SetFillTrue()
+	{
+		bIsFillable = true;
+	}
+	void SetFillFalse()
+	{
+		bIsFillable = false;
+	}
+
+
 	float MaxHp = 60000;
 	float PrevHp= 60000;
-	float Hp = 60000;
+	float CurHp = 60000;
+	bool bIsHpChange = false;
+	float CurHpPercent =1.0f;
+	float PrevHpPercent = 1.0f;
+
+	void FillMaxHp()
+	{
+		if (!bIsFillable) { return; }
+		PrevHp = CurHp;
+		PrevHpPercent = CurHp / MaxHp;
+		CurHp = MaxHp;
+		CurHpPercent = CurHp / MaxHp;
+		bIsHpChange = true;
+	}
 
 	float MaxMp =40000;
 	float PrevMp = 40000;
-	float Mp = 40000;
-	float Damage = 999999999;
-
-
-	bool bIsHpChange = false;
+	float CurMp = 40000;
 	bool bIsMpChange = false;
-	float CurHpPercent =1.0f;
-	float PrevHpPercent = 1.0f;
 	float CurMpPercent = 1.0f;
 	float PrevMpPercent = 1.0f;
 
 	void FillMaxMp()
 	{
-		PrevMp = Mp;
-		PrevMpPercent = Mp / MaxMp;
-		Mp = MaxMp;
-		CurMpPercent = Mp / MaxMp;
+		if (!bIsFillable) { return; }
+		PrevMp = CurMp;
+		PrevMpPercent = CurMp / MaxMp;
+		CurMp = MaxMp;
+		CurMpPercent = CurMp / MaxMp;
 		bIsMpChange = true;
+	}
+
+	void FillMaxHpMp()
+	{
+		FillMaxHp();
+		FillMaxMp();
 	}
 
 	void UseMp(float _Mp)
 	{
-		PrevMp = Mp;
-		PrevMpPercent = Mp / MaxMp;
-		Mp -= _Mp;
-		if (Mp < 0.0f)
+		PrevMp = CurMp;
+		PrevMpPercent = CurMp / MaxMp;
+		CurMp -= _Mp;
+		if (CurMp < 0.0f)
 		{
-			Mp = 0.0f;
+			CurMp = 0.0f;
 		}
-		CurMpPercent = Mp / MaxMp;
+		CurMpPercent = CurMp / MaxMp;
 		bIsMpChange = true;
 	}
 
-	void FillMaxHp()
+	float Damage = 999999999;
+	
+	void TakeHpPercentDamage(float _Percent) 
 	{
-		PrevHp = Hp;
-		PrevHpPercent = Hp /MaxHp;
-		Hp = MaxHp;
-		CurHpPercent =Hp /MaxHp;
-		bIsHpChange = true;
-	}
-	void SetHpPercentDamage(float _Percent) 
-	{
-		PrevHp = Hp;
-		PrevHpPercent = Hp / MaxHp;
-		Hp -= MaxHp * _Percent;
-		if (Hp < 0.0f)
+		PrevHp = CurHp;
+		PrevHpPercent = CurHp / MaxHp;
+		CurHp -= MaxHp * _Percent;
+		if (CurHp < 0.0f)
 		{
-			Hp = 0.0f;
+			CurHp = 0.0f;
 		}
-		CurHpPercent = Hp / MaxHp;
+		CurHpPercent = CurHp / MaxHp;
 		bIsHpChange = true;
 	}
 
-	void SetDamage(float _Damage)
+	void TakeDamage(float _Damage)
 	{
-		PrevHp = Hp;
-		PrevHpPercent = Hp / MaxHp;
-		Hp -= _Damage;
-		if (Hp < 0.0f)
+		PrevHp = CurHp;
+		PrevHpPercent = CurHp / MaxHp;
+		CurHp -= _Damage;
+		if (CurHp < 0.0f)
 		{
-			Hp = 0.0f;
+			CurHp = 0.0f;
 		}
-		CurHpPercent = Hp / MaxHp;
+		CurHpPercent = CurHp / MaxHp;
 		bIsHpChange = true;
 	}
 };

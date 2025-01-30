@@ -233,7 +233,7 @@ void AFallenWarrior::UpdateAttack(float _DeltaTime)
 
 void AFallenWarrior::Attack(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(AttackDamage);
+	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(AttackDamage);
 	GetCollision("Attack")->SetActive(false);
 }
 
@@ -289,7 +289,7 @@ void AFallenWarrior::UpdateSelfDestroy(float _DeltaTime)
 void AFallenWarrior::SelfDestroy(UCollision* _Left, UCollision* _Right)
 {
 	std::string ProfileName = _Right->GetCollisionProfileName();
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 	// 혼란상태이상추가
 	GetCollision("SelfDestroy")->SetActive(false);
 }

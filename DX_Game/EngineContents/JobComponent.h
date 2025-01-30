@@ -3,15 +3,15 @@
 
 
 //	Ό³Έν:
-class UJob : public UActorComponent
+class UJobComponent : public UActorComponent
 {
 public:
-	UJob();
-	virtual ~UJob();
-	UJob(const UJob& _Other) = delete;
-	UJob(UJob&& _Other) noexcept = delete;
-	UJob& operator=(const UJob& _Other) = delete;
-	UJob& operator=(UJob&& _Other) noexcept = delete;
+	UJobComponent();
+	virtual ~UJobComponent();
+	UJobComponent(const UJobComponent& _Other) = delete;
+	UJobComponent(UJobComponent&& _Other) noexcept = delete;
+	UJobComponent& operator=(const UJobComponent& _Other) = delete;
+	UJobComponent& operator=(UJobComponent&& _Other) noexcept = delete;
 
 	void InsertSkill(std::string_view _SkillName, std::shared_ptr<class ASkill> _Skill)
 	{

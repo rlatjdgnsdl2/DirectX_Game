@@ -95,7 +95,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Job.cpp">
+    <ClCompile Include="JobComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -138,6 +138,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -311,7 +315,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Job.h">
+    <ClInclude Include="JobComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -354,6 +358,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MyCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
       <SubType>
       </SubType>
     </ClInclude>

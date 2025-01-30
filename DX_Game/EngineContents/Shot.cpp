@@ -18,7 +18,7 @@ AShot::AShot()
 	Collision->SetActive(false);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.3f);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.3f);
 			Collision->SetActive(false);
 		});
 

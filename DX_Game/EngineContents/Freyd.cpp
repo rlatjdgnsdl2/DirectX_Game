@@ -33,8 +33,7 @@ AFreyd::AFreyd()
 		{
 			if (SpriteRenderer->IsCurAnimationEnd())
 			{
-				UEngineRandom Random;
-				int Pattern = Random.RandomInt(1, 2);
+				
 				FSM.ChangeState(Pattern);
 				return;
 			}
@@ -59,7 +58,7 @@ void AFreyd::BeginPlay()
 	AMonster::BeginPlay();
 	FVector PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();
 	FSM.ChangeState(0);
-
+	Pattern = Random.RandomInt(1, 2);
 	int Num = Random.RandomInt(0, 1);
 	if (Num == 0)
 	{
@@ -70,7 +69,14 @@ void AFreyd::BeginPlay()
 		Dir = -1;
 	}
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
-	SetActorLocation(FVector(PlayerPos.X + 200.0f * Dir, 0.0f));
+	if (Pattern == 1)
+	{
+		SetActorLocation(FVector(PlayerPos.X, 0.0f));
+	}
+	else
+	{
+		SetActorLocation(FVector(PlayerPos.X + 200.0f * Dir, 0.0f));
+	}
 
 }
 
@@ -141,7 +147,7 @@ void AFreyd::UpdateFist(float _DeltaTime)
 
 void AFreyd::Fist(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.05f);
+	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.05f);
 	GetCollision("Fist")->SetActive(false);
 }
 

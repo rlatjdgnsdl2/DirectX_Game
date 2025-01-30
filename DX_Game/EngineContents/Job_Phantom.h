@@ -1,8 +1,8 @@
 #pragma once
-#include "Job.h"
+#include "JobComponent.h"
 
 //	Ό³Έν:
-class UJob_Phantom : public UJob
+class UJob_Phantom : public UJobComponent
 {
 public:
 	UJob_Phantom();

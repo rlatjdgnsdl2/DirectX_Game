@@ -92,7 +92,7 @@ ADunkel_Boss::ADunkel_Boss()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.9f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.9f);
 				GetCollision("Slash")->SetActive(false);
 			});
 		InsertCollision("Slash", Collision);
@@ -108,7 +108,7 @@ ADunkel_Boss::ADunkel_Boss()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.6f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.6f);
 				//스턴 추가
 				GetCollision("Down")->SetActive(false);
 			});

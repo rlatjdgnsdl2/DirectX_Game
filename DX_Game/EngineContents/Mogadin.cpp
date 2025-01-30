@@ -109,7 +109,7 @@ void AMogadin::UpdateSlash(float _DeltaTime)
 
 void AMogadin::Slash(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.09f);
+	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.09f);
 	GetCollision("Slash")->SetActive(false);
 }
 

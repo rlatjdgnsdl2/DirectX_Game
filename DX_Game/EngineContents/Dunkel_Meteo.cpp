@@ -23,7 +23,7 @@ ADunkel_Meteo::ADunkel_Meteo()
 		{
 			if (_Right->GetCollisionProfileName() == "PLAYER")
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.4f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.4f);
 				Collision->SetActive(false);
 				AnimaionFSM.ChangeState(Skill_Frame::Third);
 				return;

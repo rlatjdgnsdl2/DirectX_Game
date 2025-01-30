@@ -18,7 +18,7 @@ ASniping::ASniping()
 	Collision->SetColor(UContentsConst::ATTACK_COLOR);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.6f);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.6f);
 			Destroy();
 			return;
 		});

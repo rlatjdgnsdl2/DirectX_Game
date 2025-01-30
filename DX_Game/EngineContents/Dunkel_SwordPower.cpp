@@ -22,7 +22,7 @@ ADunkel_SwordPower::ADunkel_SwordPower()
 		{
 			if (_Right->GetCollisionProfileName() == "PLAYER")
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(1.5f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(1.5f);
 			}
 		});
 

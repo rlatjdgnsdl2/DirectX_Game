@@ -82,7 +82,7 @@ void ACQ57::BeginPlay()
 		Dir = -1;
 	}
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
-	SetActorLocation(FVector(PlayerPos.X + 200.0f * Dir, PlayerPos.Y));
+	SetActorLocation(FVector(PlayerPos.X + 100.0f * Dir, PlayerPos.Y));
 }
 
 void ACQ57::Tick(float _DeltaTime)
@@ -132,7 +132,7 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 
 void ACQ57::KnockBack(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.2f);
+	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.2f);
 	GetCollision("KnockBack")->SetActive(false);
 }
 
@@ -178,6 +178,6 @@ void ACQ57::UpdatePhantomBlow(float _DeltaTime)
 
 void ACQ57::PhantomBlow(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.07f);
+	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.07f);
 	GetCollision("PhantomBlow")->SetActive(false);
 }

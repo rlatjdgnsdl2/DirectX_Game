@@ -70,7 +70,7 @@
     <ClCompile Include="Job_Phantom.cpp">
       <Filter>Job\Phantom</Filter>
     </ClCompile>
-    <ClCompile Include="Job.cpp">
+    <ClCompile Include="JobComponent.cpp">
       <Filter>Job</Filter>
     </ClCompile>
     <ClCompile Include="ActorFunction.cpp">
@@ -101,14 +101,8 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="MyCollision.cpp" />
-    <ClCompile Include="PlayerHpMpBoxFront.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Dunkel_HUD.cpp">
       <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHpBar.cpp">
-      <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="ContentsConst.cpp">
       <Filter>Header</Filter>
@@ -117,27 +111,12 @@
       <Filter>UI\DamageSkin</Filter>
     </ClCompile>
     <ClCompile Include="DamageSkinRenderer.cpp" />
-    <ClCompile Include="Bar.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMpBar.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHpMpBoxBack.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Dunkel_SwordPower.cpp">
       <Filter>Dunkel</Filter>
     </ClCompile>
     <ClCompile Include="Dunkel_Meteo.cpp">
       <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHpBarEffect.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerMpBarEffect.cpp">
-      <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="CQ57.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
@@ -169,6 +148,28 @@
     <ClCompile Include="UpChain.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Bar.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBar.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpBarEffect.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpMpBoxBack.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpMpBoxFront.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBar.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMpBarEffect.cpp">
+      <Filter>UI\Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -237,7 +238,7 @@
     <ClInclude Include="Job_Phantom.h">
       <Filter>Job\Phantom</Filter>
     </ClInclude>
-    <ClInclude Include="Job.h">
+    <ClInclude Include="JobComponent.h">
       <Filter>Job</Filter>
     </ClInclude>
     <ClInclude Include="ContentsStruct.h">
@@ -274,40 +275,19 @@
     <ClInclude Include="ContentsStatic.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHpMpBoxFront.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Dunkel_HUD.h">
       <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHpBar.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="DamageSkinFactory.h">
       <Filter>UI\DamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="DamageSkinRenderer.h" />
-    <ClInclude Include="Bar.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMpBar.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHpMpBoxBack.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Dunkel_SwordPower.h">
       <Filter>Dunkel</Filter>
     </ClInclude>
     <ClInclude Include="Dunkel_Meteo.h">
       <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHpBarEffect.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMpBarEffect.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="CQ57.h">
       <Filter>Dunkel\Elite_Monster</Filter>
@@ -339,6 +319,28 @@
     <ClInclude Include="UpChain.h">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Bar.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBar.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpBarEffect.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpMpBoxBack.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHpMpBoxFront.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBar.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMpBarEffect.h">
+      <Filter>UI\Bar</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -394,6 +396,9 @@
     </Filter>
     <Filter Include="Dunkel\Elite_Monster">
       <UniqueIdentifier>{ba42f159-4760-4cd9-90ba-258a5dc65435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Bar">
+      <UniqueIdentifier>{93428362-5cf1-450b-8d8f-4217739ca9c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

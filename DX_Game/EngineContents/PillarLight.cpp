@@ -22,7 +22,7 @@ APillarLight::APillarLight()
 	Collision->SetActive(false);
 	Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 		{
-			GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.4);
+			GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.4);
 			Collision->SetActive(false);
 		});
 

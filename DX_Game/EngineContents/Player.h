@@ -36,9 +36,9 @@ public:
 		return SpriteRenderer;
 	}
 
-	class UJob* GetPlayerJob()
+	class UJobComponent* GetPlayerJob()
 	{
-		return Job;
+		return JobComponent;
 	}
 
 	void ChangeAnimation(std::string_view _Name)
@@ -49,16 +49,19 @@ public:
 	void ProneCollision();
 	void StandCollision();
 
-	
+	void SetPysicComponent(class UPhysicComponent* _PysicComponent);
+	void SetVelocity(FVector _Velocity);
+	void AddVelocity(FVector _Velocity);
 
 
 protected:
 
 private:
 	FPlayerLogic PlayerLogic;
-	class USpriteRenderer* SpriteRenderer;
-	class UMyCollision* Collision;
-	class UJob* Job;
+	class USpriteRenderer* SpriteRenderer = nullptr;
+	class UMyCollision* Collision = nullptr;
+	class UJobComponent* JobComponent = nullptr;
+	class UPhysicComponent* PysicComponent = nullptr;
 
 	
 

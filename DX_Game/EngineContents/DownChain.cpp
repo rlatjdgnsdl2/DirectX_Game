@@ -22,7 +22,7 @@ ADownChain::ADownChain()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 				Collisions[0]->SetActive(false);
 			});
 		Collisions.push_back(Collision);
@@ -38,7 +38,7 @@ ADownChain::ADownChain()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 				Collisions[1]->SetActive(false);
 			});
 		Collision->SetColor(UContentsConst::ATTACK_COLOR);
@@ -54,7 +54,7 @@ ADownChain::ADownChain()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 				Collisions[2]->SetActive(false);
 			});
 		Collision->SetColor(UContentsConst::ATTACK_COLOR);
@@ -70,7 +70,7 @@ ADownChain::ADownChain()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 				Collisions[3]->SetActive(false);
 			});
 		Collision->SetColor(UContentsConst::ATTACK_COLOR);
@@ -86,7 +86,7 @@ ADownChain::ADownChain()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 				Collisions[4]->SetActive(false);
 			});
 		Collision->SetColor(UContentsConst::ATTACK_COLOR);
@@ -102,7 +102,7 @@ ADownChain::ADownChain()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				GetGameInstance<MyGameInstance>()->PlayerStatus.SetHpPercentDamage(0.1f);
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.1f);
 				Collisions[5]->SetActive(false);
 			});
 		Collision->SetColor(UContentsConst::ATTACK_COLOR);

@@ -5,6 +5,9 @@
 #include <EngineCore/EngineCore.h>
 
 #include "PlayerFuncManager.h"
+#include "PhysicsComponent.h"
+
+
 #include "Job_Phantom.h"
 #include "LeftKey.h"
 #include "RightKey.h"
@@ -38,7 +41,7 @@ APlayer::APlayer()
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
 
-	Job = CreateDefaultSubObject<UJob_Phantom>().get();
+	JobComponent = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();
 
 	
@@ -106,6 +109,34 @@ void APlayer::StandCollision()
 {
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
+}
+
+void APlayer::SetPysicComponent(UPhysicComponent* _PysicComponent)
+{
+	if (nullptr == _PysicComponent) 
+	{ 
+		return; 
+	}
+	PysicComponent = _PysicComponent;
+	PysicComponent->SetupAttachment(this->RootComponent);
+}
+
+void APlayer::SetVelocity(FVector _Velocity)
+{
+	if (nullptr == PysicComponent)
+	{
+		return;
+	}
+	PysicComponent->SetVelocity(_Velocity);
+}
+
+void APlayer::AddVelocity(FVector _Velocity)
+{
+	if (nullptr == PysicComponent)
+	{
+		return;
+	}
+	PysicComponent->AddVelocity(_Velocity);
 }
 
 
