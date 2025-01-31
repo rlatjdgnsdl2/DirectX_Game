@@ -1,42 +1,61 @@
 #include "PreCompile.h"
 #include "PhysicsComponent.h"
+#include "ContentsPhysics.h"
 
-UPhysicComponent::UPhysicComponent()
+UPhysicsComponent::UPhysicsComponent()
 {
 }
 
-UPhysicComponent::~UPhysicComponent()
+UPhysicsComponent::~UPhysicsComponent()
 {
 }
 
-void UPhysicComponent::BeginPlay()
+void UPhysicsComponent::BeginPlay()
 {
-	USceneComponent::BeginPlay();
+	UActorComponent::BeginPlay();
 }
 
-void UPhysicComponent::ComponentTick(float _DeltaTime)
+void UPhysicsComponent::ComponentTick(float _DeltaTime)
 {
-	USceneComponent::ComponentTick(_DeltaTime);
-	AActor* Actor = GetActor();
-	if (nullptr == Actor)
+	UActorComponent::ComponentTick(_DeltaTime);
+	if (nullptr == GetActor())
 	{
 		return;
 	}
-	if (true)
+
+	if (Velocity.Y!=0.0f)
 	{
-		Gravity(Actor, _DeltaTime);
+		Gravity(_DeltaTime);
+	}
+	UpdateVelocity(_DeltaTime);
+	UpdateForce(_DeltaTime);
+}
+
+void UPhysicsComponent::Gravity(float _DeltaTime)
+{
+	Velocity.Y = UContentsPysics::ApplyGravity(Velocity.Y, _DeltaTime);
+	if (Velocity.Y < 0.0f)
+	{
+		bIsFalling = true;
+		bIsJumping = false;
+	}
+	else if (Velocity.Y > 0.0f)
+	{
+		bIsFalling = false;
+		bIsJumping = true;
 	}
 }
 
-void UPhysicComponent::Gravity(AActor* _Actor, float _DeltaTimte)
+void UPhysicsComponent::UpdateVelocity(float _DeltaTimte)
 {
-	AActor* Actor = _Actor;
-	Actor->AddActorLocation(FVector(0.0f, Velocity.Y* _DeltaTimte, 0.0f));
+	GetActor()->AddActorLocation(Velocity * _DeltaTimte);
 }
 
-void UPhysicComponent::Move(AActor* _Actor, float _DeltaTimte)
+void UPhysicsComponent::UpdateForce(float _DeltaTimte)
 {
-	AActor* Actor = _Actor;
-	Actor->AddActorLocation(FVector(Velocity.X* _DeltaTimte, 0.0f, 0.0f));
+	GetActor()->AddActorLocation(Force * _DeltaTimte);
 }
+
+
+
 

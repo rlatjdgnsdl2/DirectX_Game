@@ -15,7 +15,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-	void ChangeState(DunkelAnim_State _State) 
+	void ChangeState(EDunkelAnim_State _State) 
 	{
 		FSM.ChangeState(_State);
 	};

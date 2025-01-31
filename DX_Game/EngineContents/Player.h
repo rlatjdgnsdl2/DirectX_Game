@@ -36,9 +36,13 @@ public:
 		return SpriteRenderer;
 	}
 
-	class UJobComponent* GetPlayerJob()
+	class UJobComponent* GetJobComponent()
 	{
 		return JobComponent;
+	}
+	class UPhysicsComponent* GetPysicComponent()
+	{
+		return PysicsComponent;
 	}
 
 	void ChangeAnimation(std::string_view _Name)
@@ -46,33 +50,49 @@ public:
 		SpriteRenderer->ChangeAnimation(_Name);
 	}
 
+	UFSMStateManager& GetFSM()
+	{
+		return FSM;
+	}
+
 	void ProneCollision();
 	void StandCollision();
-
-	void SetPysicComponent(class UPhysicComponent* _PysicComponent);
-	void SetVelocity(FVector _Velocity);
-	void AddVelocity(FVector _Velocity);
-
 
 protected:
 
 private:
 	FPlayerLogic PlayerLogic;
+	UFSMStateManager FSM;
+
 	class USpriteRenderer* SpriteRenderer = nullptr;
 	class UMyCollision* Collision = nullptr;
+
 	class UJobComponent* JobComponent = nullptr;
-	class UPhysicComponent* PysicComponent = nullptr;
+	class UPhysicsComponent* PysicsComponent = nullptr;
 
-	
-
-	//	방향키
-	std::map<std::string, class APlayerFunction*> DirFunctionMap;
-	//  방향키 제외키
 	class UPlayerFuncManager* PlayerFuncManager;
 
-	void CheckKey(float _DeltaTime);
-	void Gravity(float _DeltaTime);
-	void MoveUpdate(float _DeltaTime);
+	
+	/*void Gravity(float _DeltaTime);
+	void MoveUpdate(float _DeltaTime);*/
+
+	void Start_Idle();
+	void Update_Idle(float _DeltaTime);
+
+	void Start_Move_Left();
+	void Update_Move_Left(float _DeltaTime);
+
+	void Start_Move_Right();
+	void Update_Move_Right(float _DeltaTime);
+	
+	void Start_Jump();
+	void Update_Jump(float _DeltaTime);
+
+	void Start_Prone();
+	void Update_Prone(float _DeltaTime);
+
+	void Start_Ultimate_Drive();
+	void Update_Ultimate_Drive(float _DeltaTime);
 
 };
 

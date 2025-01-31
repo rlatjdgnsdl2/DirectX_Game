@@ -23,7 +23,7 @@ public:
 		FrameState.Update(_DeltaTime);
 	}
 
-	void ChangeState(Skill_Frame _Frame)
+	void ChangeState(ESkill_Frame _Frame)
 	{
 		FrameState.ChangeState(_Frame);
 	};

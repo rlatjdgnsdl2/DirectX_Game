@@ -16,61 +16,54 @@ public:
 
 	virtual void BeginPlay() override;
 
-	void SetFuncName(int _Key, std::string _FuncName)
+	void SetFuncName(int _Key, EPlayer_Function _Name)
 	{
-		std::string UpperName = UEngineString::ToUpper(_FuncName);
-		std::map<int, std::string>::iterator FindIter = FuncNameMap.begin();
-		std::map<int, std::string>::iterator EndIter = FuncNameMap.end();
+		std::map<int, EPlayer_Function>::iterator FindIter = FuncNameMap.begin();
+		std::map<int, EPlayer_Function>::iterator EndIter = FuncNameMap.end();
 
+		// 기존에 등록되어있던 단축키 제거
 		for (; FindIter != EndIter; ++FindIter)
 		{
-			std::string FindName = FindIter->second;
-			if (FindName == UpperName)
+			EPlayer_Function FindName = FindIter->second;
+			if (FindName == _Name)
 			{
 				FuncNameMap.erase(FindIter);
 				break;
 			}
 		}
-		if (FuncNameMap.contains(_Key))
-		{
-			FuncNameMap[_Key] = UpperName;
-		}
-		else
-		{
-			FuncNameMap.insert(std::make_pair(_Key, UpperName));
-		}
+		// 새로운 단축키 등록
+		FuncNameMap[_Key] = _Name;
 	}
 
-	std::string GetFuncName(int _Key)
+	EPlayer_Function GetFuncName(int _Key)
 	{
 		if (FuncNameMap.contains(_Key))
 		{
 			return FuncNameMap[_Key];
 		}
-		return "";
+		return EPlayer_Function::None;
 	}
 
-	void SetFunc(std::string _FuncName, UEngineDelegate& _Func)
+	void SetFunc(int _Key, EPlayer_Function _Name, UEngineDelegate& _Func)
 	{
-		std::string UpperName = UEngineString::ToUpper(_FuncName);
-		if (FuncMap.contains(UpperName))
-		{
-			FuncMap[UpperName] = _Func;
-		}
-		else
-		{
-			FuncMap.insert(std::make_pair(UpperName, _Func));
-		}
+		SetFunc(_Name, _Func);
+		SetFuncName(_Key, _Name);
 	}
-	int GetKey(std::string _FuncName)
+
+
+	void SetFunc(EPlayer_Function _Name, UEngineDelegate& _Func)
 	{
-		std::string UpperName = UEngineString::ToUpper(_FuncName);
-		std::map<int, std::string>::iterator FindIter = FuncNameMap.begin();
-		std::map<int, std::string>::iterator EndIter = FuncNameMap.end();
+		FuncMap[_Name] = _Func;
+	}
+
+	int GetKey(EPlayer_Function _Name)
+	{
+		std::map<int, EPlayer_Function>::iterator FindIter = FuncNameMap.begin();
+		std::map<int, EPlayer_Function>::iterator EndIter = FuncNameMap.end();
 		for (; FindIter != EndIter; ++FindIter)
 		{
-			std::string FindName = FindIter->second;
-			if (FindName == UpperName)
+			EPlayer_Function FindName = FindIter->second;
+			if (FindName == _Name)
 			{
 				return FindIter->first;
 			}
@@ -78,30 +71,38 @@ public:
 		return -1;
 	}
 
-	UEngineDelegate GetFunc(std::string _FuncName)
+	UEngineDelegate GetFunc(int _Key)
 	{
-		std::string UpperName = UEngineString::ToUpper(_FuncName);
-		if (FuncMap.contains(UpperName))
+		EPlayer_Function Name =GetFuncName(_Key);
+		if (FuncMap.contains(Name))
 		{
-			return FuncMap[UpperName];
+			return FuncMap[Name];
+		}
+		else {
+			return UEngineDelegate([]() {});
+		}
+	}
+	UEngineDelegate GetFunc(EPlayer_Function _Name)
+	{
+		if (FuncMap.contains(_Name))
+		{
+			return FuncMap[_Name];
 		}
 		else {
 			return UEngineDelegate([]() {});
 		}
 	}
 
-	
-
-
 protected:
 
 private:
 	class APlayer* Player;
-	std::map<int, std::string> FuncNameMap;
-	std::map<std::string, UEngineDelegate> FuncMap;
+	std::map<int, EPlayer_Function> FuncNameMap;
+	std::map<EPlayer_Function, UEngineDelegate> FuncMap;
 
 
-	
+
+
 
 
 

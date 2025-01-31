@@ -57,7 +57,7 @@ AFallenWarrior::AFallenWarrior()
 				}
 				SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
 				GetCollision("Scope")->SetActive(false);
-				FSM.ChangeState(Monster_State::Attack);
+				FSM.ChangeState(EMonster_State::Attack);
 
 			});
 	}
@@ -74,12 +74,12 @@ AFallenWarrior::AFallenWarrior()
 		InsertCollision("SelfDestroy", Collision);
 	}
 
-	FSM.CreateState(Monster_State::Spawn, std::bind(&AFallenWarrior::UpdateSpawn, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartSpawn, this));
-	FSM.CreateState(Monster_State::Stand, std::bind(&AFallenWarrior::UpdateStand, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartStand, this));
-	FSM.CreateState(Monster_State::Move, std::bind(&AFallenWarrior::UpdateMove, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartMove, this));
-	FSM.CreateState(Monster_State::Attack, std::bind(&AFallenWarrior::UpdateAttack, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartAttack, this));
-	FSM.CreateState(Monster_State::Die, std::bind(&AFallenWarrior::UpdateDie, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartDie, this));
-	FSM.CreateState(Monster_State::SelfDestroy, std::bind(&AFallenWarrior::UpdateSelfDestroy, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartSelfDestroy, this));
+	FSM.CreateState(EMonster_State::Spawn, std::bind(&AFallenWarrior::UpdateSpawn, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartSpawn, this));
+	FSM.CreateState(EMonster_State::Stand, std::bind(&AFallenWarrior::UpdateStand, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartStand, this));
+	FSM.CreateState(EMonster_State::Move, std::bind(&AFallenWarrior::UpdateMove, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartMove, this));
+	FSM.CreateState(EMonster_State::Attack, std::bind(&AFallenWarrior::UpdateAttack, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartAttack, this));
+	FSM.CreateState(EMonster_State::Die, std::bind(&AFallenWarrior::UpdateDie, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartDie, this));
+	FSM.CreateState(EMonster_State::SelfDestroy, std::bind(&AFallenWarrior::UpdateSelfDestroy, this, std::placeholders::_1), std::bind(&AFallenWarrior::StartSelfDestroy, this));
 
 
 	// Monster, MonsterAttack, Scope
@@ -97,7 +97,7 @@ void AFallenWarrior::BeginPlay()
 	AMonster::BeginPlay();
 	Hp = UContentsConst::FALLEN_WARRIOR_HP;
 	bIsDamagedable = false;
-	FSM.ChangeState(Monster_State::Spawn);
+	FSM.ChangeState(EMonster_State::Spawn);
 	
 }
 
@@ -130,7 +130,7 @@ void AFallenWarrior::UpdateSpawn(float _DeltaTime)
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		BarriorRenderer->ChangeAnimation("Barrior");
-		FSM.ChangeState(Monster_State::Stand);
+		FSM.ChangeState(EMonster_State::Stand);
 	}
 }
 
@@ -146,17 +146,17 @@ void AFallenWarrior::UpdateStand(float _DeltaTime)
 {
 	if (Hp <= 0.0f)
 	{
-		FSM.ChangeState(Monster_State::Die);
+		FSM.ChangeState(EMonster_State::Die);
 		return;
 	}
 	if (SelfDestroyTime <= 0.0f)
 	{
-		FSM.ChangeState(Monster_State::SelfDestroy);
+		FSM.ChangeState(EMonster_State::SelfDestroy);
 		return;
 	}
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(Monster_State::Move);
+		FSM.ChangeState(EMonster_State::Move);
 		return;
 	}
 }
@@ -172,7 +172,7 @@ void AFallenWarrior::UpdateMove(float _DeltaTime)
 	WalkTime += _DeltaTime;
 	if (Hp <= 0.0f)
 	{
-		FSM.ChangeState(Monster_State::Die);
+		FSM.ChangeState(EMonster_State::Die);
 		return;
 	}
 	if (WalkTime >= 2.0f)
@@ -180,7 +180,7 @@ void AFallenWarrior::UpdateMove(float _DeltaTime)
 		Dir = Random.RandomInt(-1, 1);
 		if (Dir == 0)
 		{
-			FSM.ChangeState(Monster_State::Stand);
+			FSM.ChangeState(EMonster_State::Stand);
 			return;
 		}
 		else
@@ -205,7 +205,7 @@ void AFallenWarrior::UpdateAttack(float _DeltaTime)
 	AttackCollisionActiveTime += _DeltaTime;
 	if (Hp <= 0.0f)
 	{
-		FSM.ChangeState(Monster_State::Die);
+		FSM.ChangeState(EMonster_State::Die);
 		return;
 	}
 	if (!bIsAttackCollisionActive) {
@@ -226,7 +226,7 @@ void AFallenWarrior::UpdateAttack(float _DeltaTime)
 	{
 		bIsAttackCollisionActive = false;
 		AttackCollisionActiveTime = 0.0f;
-		FSM.ChangeState(Monster_State::Stand);
+		FSM.ChangeState(EMonster_State::Stand);
 		return;
 	}
 }

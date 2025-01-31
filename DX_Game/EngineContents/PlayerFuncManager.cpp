@@ -5,7 +5,7 @@
 
 #include "Player.h"
 #include "Skill.h"
-#include "Job.h"
+#include "JobComponent.h"
 
 UPlayerFuncManager::UPlayerFuncManager()
 {
@@ -22,34 +22,31 @@ void UPlayerFuncManager::BeginPlay()
 {
 	UActorComponent::BeginPlay();
 	Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
-
 	{
 		UEngineDelegate NewFunc;
 		NewFunc += ([this]()
 			{
-				ASkill* Skill = Player->GetPlayerJob()->GetSkill("SwiftPhantom");
+				ASkill* Skill = Player->GetJobComponent()->GetSkill(EPlayer_Function::Swift_Phantom);
 				if (nullptr != Skill) {
 					if (false == Skill->IsActive()) {
 						Skill->SetActiveTrue();
 					}
 				}
 			});
-		SetFunc("SwiftPhantom", NewFunc);
-		SetFuncName('C', "SwiftPhantom");
+		SetFunc('C',EPlayer_Function::Swift_Phantom, NewFunc);
 	}
 
 	{
 		UEngineDelegate NewFunc;
 		NewFunc += ([this]()
 			{
-				ASkill* Skill = Player->GetPlayerJob()->GetSkill("UltimateDrive");
+				ASkill* Skill = Player->GetJobComponent()->GetSkill(EPlayer_Function::Ultimate_Drive);
 				if (nullptr != Skill) {
 					if (false==Skill->IsActive()) {
 						Skill->SetActiveTrue();
 					}
 				}
 			});
-		SetFunc("UltimateDrive", NewFunc);
-		SetFuncName('Z', "UltimateDrive");
+		SetFunc('Z', EPlayer_Function::Ultimate_Drive, NewFunc);
 	}
 }

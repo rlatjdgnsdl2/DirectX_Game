@@ -1,14 +1,38 @@
 #pragma once
 
 
-enum class Skill_Frame
+enum class EPlayer_State
+{
+	None = 0,
+	Idle,
+	Move_Left,
+	Move_Right,
+	Prone,
+	Jump,
+	Ultimate_Drive,
+	NormalAttack,
+	KnockBack,
+};
+
+enum class EPlayer_Function 
+{
+	None = 0,
+	Left,
+	Right,
+	Up,
+	Down,
+	Swift_Phantom,
+	Ultimate_Drive,
+};
+
+enum class ESkill_Frame
 {
 	First,
 	Second,
 	Third
 };
 
-enum class DunkelAnim_State {
+enum class EDunkelAnim_State {
 	None,
 	Die,
 	Down,
@@ -24,7 +48,7 @@ enum class DunkelAnim_State {
 };
 
 
-enum class Monster_State {
+enum class EMonster_State {
 	None,
 	Attack,
 	NoDamageMode,

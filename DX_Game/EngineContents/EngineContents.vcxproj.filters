@@ -34,9 +34,6 @@
     <ClCompile Include="Skill_UltimateDrive.cpp">
       <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClCompile>
-    <ClCompile Include="Player_CheckKey.cpp">
-      <Filter>Character\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Player_Skill.cpp">
       <Filter>Character\Player</Filter>
     </ClCompile>
@@ -78,18 +75,6 @@
     </ClCompile>
     <ClCompile Include="PlayerFunction.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="DownKey.cpp">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="LeftKey.cpp">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="RightKey.cpp">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="UpKey.cpp">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClCompile>
     <ClCompile Include="PillarLight.cpp">
       <Filter>Dunkel</Filter>
@@ -170,6 +155,21 @@
       <Filter>UI\Bar</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="Player_Idle.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Move.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Jump.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_UltimateDrive.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Prone.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -249,18 +249,6 @@
     </ClInclude>
     <ClInclude Include="PlayerFunction.h">
       <Filter>Character\Player\ActorFunction</Filter>
-    </ClInclude>
-    <ClInclude Include="DownKey.h">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
-    </ClInclude>
-    <ClInclude Include="LeftKey.h">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
-    </ClInclude>
-    <ClInclude Include="RightKey.h">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
-    </ClInclude>
-    <ClInclude Include="UpKey.h">
-      <Filter>Character\Player\ActorFunction\DirFunction</Filter>
     </ClInclude>
     <ClInclude Include="PillarLight.h">
       <Filter>Dunkel</Filter>
@@ -388,9 +376,6 @@
     <Filter Include="Character\Player\ActorFunction\Skill">
       <UniqueIdentifier>{9ba949de-09f2-4144-9c2a-50e050317e72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character\Player\ActorFunction\DirFunction">
-      <UniqueIdentifier>{45e81a9d-bd5d-4571-ba5b-85217de460db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI\DamageSkin">
       <UniqueIdentifier>{95a958ed-07a2-425b-8308-bd9385985ad7}</UniqueIdentifier>
     </Filter>
@@ -399,6 +384,9 @@
     </Filter>
     <Filter Include="UI\Bar">
       <UniqueIdentifier>{93428362-5cf1-450b-8d8f-4217739ca9c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character\Player\PlayerState">
+      <UniqueIdentifier>{88c4e182-c8e8-45f8-8fe6-fe59b2282e4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

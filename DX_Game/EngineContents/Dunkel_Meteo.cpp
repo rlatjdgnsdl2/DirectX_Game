@@ -25,17 +25,17 @@ ADunkel_Meteo::ADunkel_Meteo()
 			{
 				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.4f);
 				Collision->SetActive(false);
-				AnimaionFSM.ChangeState(Skill_Frame::Third);
+				AnimaionFSM.ChangeState(ESkill_Frame::Third);
 				return;
 			}
 			
 		});
 
-	AnimaionFSM.CreateState(Skill_Frame::First, [this](float _DeltaTime)
+	AnimaionFSM.CreateState(ESkill_Frame::First, [this](float _DeltaTime)
 		{
 			if (SpriteRenderer->IsCurAnimationEnd())
 			{
-				AnimaionFSM.ChangeState(Skill_Frame::Second);
+				AnimaionFSM.ChangeState(ESkill_Frame::Second);
 				return;
 			}
 
@@ -46,12 +46,12 @@ ADunkel_Meteo::ADunkel_Meteo()
 			SetActorLocation(StartPos);
 			SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
 		});
-	AnimaionFSM.CreateState(Skill_Frame::Second, [this](float _DeltaTime)
+	AnimaionFSM.CreateState(ESkill_Frame::Second, [this](float _DeltaTime)
 		{
 			AddActorLocation(FVector(-Dir*50.0f * _DeltaTime, -25.0f * _DeltaTime, 0.0f));
 			if(GetActorLocation().Y <=0.0f)
 			{
-				AnimaionFSM.ChangeState(Skill_Frame::Third);
+				AnimaionFSM.ChangeState(ESkill_Frame::Third);
 				return;
 			}
 		},
@@ -59,7 +59,7 @@ ADunkel_Meteo::ADunkel_Meteo()
 		{
 			SpriteRenderer->ChangeAnimation("Meteo_Update");
 		});
-	AnimaionFSM.CreateState(Skill_Frame::Third, [this](float _DeltaTime)
+	AnimaionFSM.CreateState(ESkill_Frame::Third, [this](float _DeltaTime)
 		{
 			if (SpriteRenderer->IsCurAnimationEnd())
 			{
@@ -83,7 +83,7 @@ ADunkel_Meteo::~ADunkel_Meteo()
 void ADunkel_Meteo::BeginPlay()
 {
 	AActor::BeginPlay();
-	AnimaionFSM.ChangeState(Skill_Frame::First);
+	AnimaionFSM.ChangeState(ESkill_Frame::First);
 }
 
 void ADunkel_Meteo::Tick(float _DeltaTime)

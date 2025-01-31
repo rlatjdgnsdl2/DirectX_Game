@@ -19,9 +19,9 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		SpriteRenderer->CreateAnimation("SwiftPhantom_Effect_Back", "SwiftPhantom_Effect_Back", 0, 3, 0.1f, false);
 		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer.get()));
 	}
-	FrameState.CreateState(Skill_Frame::First, std::bind(&ASkill_SwiftPhantom::UpdateJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartJump, this));
-	FrameState.CreateState(Skill_Frame::Second, std::bind(&ASkill_SwiftPhantom::UpdateDoubleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartDoubleJump, this));
-	FrameState.CreateState(Skill_Frame::Third, std::bind(&ASkill_SwiftPhantom::UpdateTripleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartTripleJump, this));
+	FrameState.CreateState(ESkill_Frame::First, std::bind(&ASkill_SwiftPhantom::UpdateJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartJump, this));
+	FrameState.CreateState(ESkill_Frame::Second, std::bind(&ASkill_SwiftPhantom::UpdateDoubleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartDoubleJump, this));
+	FrameState.CreateState(ESkill_Frame::Third, std::bind(&ASkill_SwiftPhantom::UpdateTripleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartTripleJump, this));
 }
 
 ASkill_SwiftPhantom::~ASkill_SwiftPhantom()
@@ -33,8 +33,8 @@ ASkill_SwiftPhantom::~ASkill_SwiftPhantom()
 void ASkill_SwiftPhantom::SetActiveTrue()
 {
 	ASkill::SetActiveTrue();
-	Key = Player->GetPlayerFuncManager()->GetKey("SwiftPhantom");
-	ChangeState(Skill_Frame::First);
+	Key = Player->GetPlayerFuncManager()->GetKey(EPlayer_Function::Swift_Phantom);
+	ChangeState(ESkill_Frame::First);
 }
 
 void ASkill_SwiftPhantom::StartJump()
@@ -81,7 +81,7 @@ void ASkill_SwiftPhantom::UpdateJump(float _DeltaTime)
 	{
 		PlayerLogic->PlusJumpCount();
 		PlayerLogic->bIsMoveable = false;
-		ChangeState(Skill_Frame::Second);
+		ChangeState(ESkill_Frame::Second);
 		return;
 	}
 }
@@ -129,7 +129,7 @@ void ASkill_SwiftPhantom::UpdateDoubleJump(float _DeltaTime)
 	if (UEngineInput::IsDown(Key))
 	{
 		PlayerLogic->PlusJumpCount();
-		ChangeState(Skill_Frame::Third);
+		ChangeState(ESkill_Frame::Third);
 		return;
 
 	}

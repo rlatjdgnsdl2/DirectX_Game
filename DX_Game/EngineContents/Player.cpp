@@ -27,8 +27,8 @@ APlayer::APlayer()
 	//Sprite
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>().get();
 	SpriteRenderer->SetupAttachment(RootComponent);
-	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2, 1.0f / 3);
-	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3, 1.0f / 4);
+	SpriteRenderer->CreateAnimation("Stand", "Player_Stand.png", 0, 2);
+	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
 	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
 	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
@@ -41,9 +41,16 @@ APlayer::APlayer()
 	Collision->SetRelativeScale3D(FVector(30.0f, 60.0f, 1.0f));
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
 
-	JobComponent = CreateDefaultSubObject<UJob_Phantom>().get();
 	PlayerFuncManager = CreateDefaultSubObject<UPlayerFuncManager>().get();
+	JobComponent = CreateDefaultSubObject<UJob_Phantom>().get();
+	PysicsComponent = CreateDefaultSubObject<UPhysicsComponent>().get();
 
+	FSM.CreateState(EPlayer_State::None, [](float) {}, []() {});
+	FSM.CreateState(EPlayer_State::Idle, std::bind(&APlayer::Update_Idle,this,std::placeholders::_1), std::bind(&APlayer::Start_Idle, this));
+	FSM.CreateState(EPlayer_State::Move_Left, std::bind(&APlayer::Update_Move_Left, this, std::placeholders::_1), std::bind(&APlayer::Start_Move_Left, this));
+	FSM.CreateState(EPlayer_State::Move_Right, std::bind(&APlayer::Update_Move_Right, this, std::placeholders::_1), std::bind(&APlayer::Start_Move_Right, this));
+	FSM.CreateState(EPlayer_State::Jump, std::bind(&APlayer::Update_Jump, this, std::placeholders::_1), std::bind(&APlayer::Start_Jump, this));
+	FSM.CreateState(EPlayer_State::Ultimate_Drive, std::bind(&APlayer::Update_Ultimate_Drive, this, std::placeholders::_1), std::bind(&APlayer::Start_Ultimate_Drive, this));
 	
 }
 
@@ -55,48 +62,14 @@ APlayer::~APlayer()
 void APlayer::BeginPlay()
 {
 	AActor::BeginPlay();	
-	//Dir
-	{
-		std::shared_ptr<APlayerFunction> PlayerFunc = GetWorld()->SpawnActor<ALeftKey>();
-		PlayerFunc->SetOwner(this);
-		DirFunctionMap.insert(std::make_pair("VK_LEFT", PlayerFunc.get()));
-	}
-	{
-		std::shared_ptr<APlayerFunction> PlayerFunc = GetWorld()->SpawnActor<ARightKey>();
-		PlayerFunc->SetOwner(this);
-		DirFunctionMap.insert(std::make_pair("VK_RIGHT", PlayerFunc.get()));
-	}
-	{
-		std::shared_ptr<APlayerFunction> PlayerFunc = GetWorld()->SpawnActor<ADownKey>();
-		PlayerFunc->SetOwner(this);
-		DirFunctionMap.insert(std::make_pair("VK_DOWN", PlayerFunc.get()));
-	}
-	{
-		std::shared_ptr<APlayerFunction> PlayerFunc = GetWorld()->SpawnActor<AUpKey>();
-		PlayerFunc->SetOwner(this);
-		DirFunctionMap.insert(std::make_pair("VK_UP", PlayerFunc.get()));
-	}
-	
+	FSM.ChangeState(EPlayer_State::Idle);
 	
 }
 
 void APlayer::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-	CheckKey(_DeltaTime);
-	MoveUpdate(_DeltaTime);
-
-	if (UEngineInput::IsDown('R')) {
-		ADamageSkinFactory* actor = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
-		FDamageInfo Info;
-		Info.Damage = 100;
-		Info.HitDelay = 0.2f;
-		Info.MaxHitCount = 5;
-		actor->SetDamageInfo(Info);
-	}
-	if (UEngineInput::IsDown('Q')) {
-		GetGameInstance<MyGameInstance>()->PlayerStatus.FillMaxHp();
-	}
+	FSM.Update(_DeltaTime);
 }
 
 void APlayer::ProneCollision()
@@ -111,59 +84,33 @@ void APlayer::StandCollision()
 	Collision->SetRelativeLocation(FVector(-10.0f, 30.0f));
 }
 
-void APlayer::SetPysicComponent(UPhysicComponent* _PysicComponent)
-{
-	if (nullptr == _PysicComponent) 
-	{ 
-		return; 
-	}
-	PysicComponent = _PysicComponent;
-	PysicComponent->SetupAttachment(this->RootComponent);
-}
-
-void APlayer::SetVelocity(FVector _Velocity)
-{
-	if (nullptr == PysicComponent)
-	{
-		return;
-	}
-	PysicComponent->SetVelocity(_Velocity);
-}
-
-void APlayer::AddVelocity(FVector _Velocity)
-{
-	if (nullptr == PysicComponent)
-	{
-		return;
-	}
-	PysicComponent->AddVelocity(_Velocity);
-}
 
 
-void APlayer::Gravity(float _DeltaTime)
-{
-	if (!PlayerLogic.bIsGround) {
-		PlayerLogic.GravityAccel += UContentsPhysicsConst::GravityAcc * _DeltaTime;
 
-		AddActorLocation(FVector(0.0f, -PlayerLogic.GravityAccel * _DeltaTime,0.0f));
-		if (PlayerLogic.GravityAccel > PlayerLogic.Velocity.Y)
-		{
-			PlayerLogic.bIsFalling = true;
-			PlayerLogic.bIsJumping = false;
-		}
-		else if (PlayerLogic.GravityAccel < PlayerLogic.Velocity.Y)
-		{
-			PlayerLogic.bIsFalling = false;
-			PlayerLogic.bIsJumping = true;
-		}
-	}
-}
+//void APlayer::Gravity(float _DeltaTime)
+//{
+//	if (!PlayerLogic.bIsGround) {
+//		PlayerLogic.GravityAccel += UContentsPhysicsConst::GravityAcc * _DeltaTime;
+//
+//		AddActorLocation(FVector(0.0f, -PlayerLogic.GravityAccel * _DeltaTime,0.0f));
+//		if (PlayerLogic.GravityAccel > PlayerLogic.Velocity.Y)
+//		{
+//			PlayerLogic.bIsFalling = true;
+//			PlayerLogic.bIsJumping = false;
+//		}
+//		else if (PlayerLogic.GravityAccel < PlayerLogic.Velocity.Y)
+//		{
+//			PlayerLogic.bIsFalling = false;
+//			PlayerLogic.bIsJumping = true;
+//		}
+//	}
+//}
 
-void APlayer::MoveUpdate(float _DeltaTime)
-{
-	Gravity(_DeltaTime);
-	AddActorLocation(PlayerLogic.Velocity * _DeltaTime);
-}
+//void APlayer::MoveUpdate(float _DeltaTime)
+//{
+//	Gravity(_DeltaTime);
+//	AddActorLocation(PlayerLogic.Velocity * _DeltaTime);
+//}
 
 
 

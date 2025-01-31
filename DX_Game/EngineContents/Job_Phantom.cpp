@@ -2,24 +2,31 @@
 #include "Job_Phantom.h"
 
 #include "Player.h"
+
+#include "PlayerFunction.h"
+
+
+
 #include "Skill_UltimateDrive.h"
 #include "Skill_SwiftPhantom.h"
 
 
 UJob_Phantom::UJob_Phantom() 
 {
+
+	
 	{
-		std::shared_ptr<ASkill_UltimateDrive> Skill = GetWorld()->SpawnActor<ASkill_UltimateDrive>();
+		ASkill_UltimateDrive* Skill = GetWorld()->SpawnActor<ASkill_UltimateDrive>().get();
 		Skill->SetOwner(GetActor());
 		Skill->SetActiveFalse();
-		InsertSkill("UltimateDrive", Skill);
+		InsertSkill(EPlayer_Function::Ultimate_Drive, Skill);
 	}
 
 	{
-		std::shared_ptr<ASkill_SwiftPhantom> Skill = GetWorld()->SpawnActor<ASkill_SwiftPhantom>();
+		ASkill_SwiftPhantom* Skill = GetWorld()->SpawnActor<ASkill_SwiftPhantom>().get();
 		Skill->SetOwner(GetActor());
 		Skill->SetActiveFalse();
-		InsertSkill("SwiftPhantom", Skill);
+		InsertSkill(EPlayer_Function::Swift_Phantom, Skill);
 	}
 }
 

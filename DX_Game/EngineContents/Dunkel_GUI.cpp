@@ -12,6 +12,7 @@
 #include "Khaliain.h"
 #include "Mogadin.h"
 
+
 UDunkel_GUI::UDunkel_GUI()
 {
 
@@ -33,7 +34,9 @@ void UDunkel_GUI::OnGUI()
 	{
 		Player = dynamic_cast<APlayer*>(GetWorld()->GetMainPawn());
 	}
+	
 	ImGui::Text("Player Pos : %f %f %f", Player->GetActorLocation().X, Player->GetActorLocation().Y, Player->GetActorLocation().Z);
+	ImGui::Text("Player State : %d ", static_cast<int>(Player->GetFSM().GetCurStateValue<EPlayer_State>()));
 	ImGui::Text("Player HP : %f", GetGameInstance<MyGameInstance>()->PlayerStatus.CurHp);
 	ImGui::Text("Player MP : %f", GetGameInstance<MyGameInstance>()->PlayerStatus.CurMp);
 	if (Dunkel != nullptr)
@@ -61,7 +64,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Spawn);
+			Dunkel->ChangeState(EDunkelAnim_State::Spawn);
 		}
 	}
 
@@ -69,7 +72,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Stand);
+			Dunkel->ChangeState(EDunkelAnim_State::Stand);
 		}
 	}
 
@@ -77,7 +80,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Die);
+			Dunkel->ChangeState(EDunkelAnim_State::Die);
 		}
 	}
 
@@ -85,7 +88,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Spawn);
+			Dunkel->ChangeState(EDunkelAnim_State::Spawn);
 		}
 	}
 
@@ -93,7 +96,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Force);
+			Dunkel->ChangeState(EDunkelAnim_State::Force);
 		}
 	}
 
@@ -101,7 +104,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Knockback);
+			Dunkel->ChangeState(EDunkelAnim_State::Knockback);
 		}
 	}
 
@@ -109,7 +112,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Meteo);
+			Dunkel->ChangeState(EDunkelAnim_State::Meteo);
 		}
 	}
 
@@ -117,7 +120,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Slash_Start);
+			Dunkel->ChangeState(EDunkelAnim_State::Slash_Start);
 		}
 	}
 
@@ -125,7 +128,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Sword);
+			Dunkel->ChangeState(EDunkelAnim_State::Sword);
 		}
 	}
 
@@ -133,7 +136,7 @@ void UDunkel_GUI::OnGUI()
 	{
 		if (Dunkel != nullptr)
 		{
-			Dunkel->ChangeState(DunkelAnim_State::Up);
+			Dunkel->ChangeState(EDunkelAnim_State::Up);
 		}
 	}
 

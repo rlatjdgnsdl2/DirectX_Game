@@ -17,6 +17,10 @@ public:
 	{
 		Key = _Key;
 	}
+	virtual int GetKey()
+	{
+		return Key;
+	}
 
 protected:
 	class APlayer* Player;

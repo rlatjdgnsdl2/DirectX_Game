@@ -115,18 +115,18 @@ ADunkel_Boss::ADunkel_Boss()
 		InsertCollision("Down", Collision);
 	}
 
-	FSM.CreateState(DunkelAnim_State::Spawn, std::bind(&ADunkel_Boss::UpdateSpawn, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSpawn, this));
-	FSM.CreateState(DunkelAnim_State::Stand, std::bind(&ADunkel_Boss::UpdateStand, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartStand, this));
-	FSM.CreateState(DunkelAnim_State::Die, std::bind(&ADunkel_Boss::UpdateDie, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartDie, this));
+	FSM.CreateState(EDunkelAnim_State::Spawn, std::bind(&ADunkel_Boss::UpdateSpawn, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSpawn, this));
+	FSM.CreateState(EDunkelAnim_State::Stand, std::bind(&ADunkel_Boss::UpdateStand, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartStand, this));
+	FSM.CreateState(EDunkelAnim_State::Die, std::bind(&ADunkel_Boss::UpdateDie, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartDie, this));
 
-	FSM.CreateState(DunkelAnim_State::Up, std::bind(&ADunkel_Boss::UpdateUp, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartUp, this));
-	FSM.CreateState(DunkelAnim_State::Down, std::bind(&ADunkel_Boss::UpdateDown, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartDown, this));
-	FSM.CreateState(DunkelAnim_State::Force, std::bind(&ADunkel_Boss::UpdateForce, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartForce, this));
-	FSM.CreateState(DunkelAnim_State::Knockback, std::bind(&ADunkel_Boss::UpdateKnockback, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartKnockback, this));
-	FSM.CreateState(DunkelAnim_State::Meteo, std::bind(&ADunkel_Boss::UpdateMeteo, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartMeteo, this));
-	FSM.CreateState(DunkelAnim_State::Slash_Start, std::bind(&ADunkel_Boss::UpdateSlash_Start, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSlash_Start, this));
-	FSM.CreateState(DunkelAnim_State::Slash_End, std::bind(&ADunkel_Boss::UpdateSlash_End, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSlash_End, this));
-	FSM.CreateState(DunkelAnim_State::Sword, std::bind(&ADunkel_Boss::UpdateSword, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSword, this));
+	FSM.CreateState(EDunkelAnim_State::Up, std::bind(&ADunkel_Boss::UpdateUp, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartUp, this));
+	FSM.CreateState(EDunkelAnim_State::Down, std::bind(&ADunkel_Boss::UpdateDown, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartDown, this));
+	FSM.CreateState(EDunkelAnim_State::Force, std::bind(&ADunkel_Boss::UpdateForce, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartForce, this));
+	FSM.CreateState(EDunkelAnim_State::Knockback, std::bind(&ADunkel_Boss::UpdateKnockback, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartKnockback, this));
+	FSM.CreateState(EDunkelAnim_State::Meteo, std::bind(&ADunkel_Boss::UpdateMeteo, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartMeteo, this));
+	FSM.CreateState(EDunkelAnim_State::Slash_Start, std::bind(&ADunkel_Boss::UpdateSlash_Start, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSlash_Start, this));
+	FSM.CreateState(EDunkelAnim_State::Slash_End, std::bind(&ADunkel_Boss::UpdateSlash_End, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSlash_End, this));
+	FSM.CreateState(EDunkelAnim_State::Sword, std::bind(&ADunkel_Boss::UpdateSword, this, std::placeholders::_1), std::bind(&ADunkel_Boss::StartSword, this));
 
 	GetWorld()->LinkCollisionProfile("BossAttack", "Player");
 
@@ -148,7 +148,7 @@ void ADunkel_Boss::BeginPlay()
 	AMonster::BeginPlay();
 	MaxHp = UContentsConst::DUNKEL_HP;
 	Hp = UContentsConst::DUNKEL_HP;
-	FSM.ChangeState(DunkelAnim_State::Spawn);
+	FSM.ChangeState(EDunkelAnim_State::Spawn);
 }
 
 void ADunkel_Boss::Tick(float _DeltaTime)
@@ -174,7 +174,7 @@ void ADunkel_Boss::UpdateSpawn(float _DeltaTime)
 {
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
@@ -204,24 +204,24 @@ void ADunkel_Boss::UpdateStand(float _DeltaTime)
 		{
 			if (SwordCoolTime < 0.0f)
 			{
-				FSM.ChangeState(DunkelAnim_State::Sword);
+				FSM.ChangeState(EDunkelAnim_State::Sword);
 				return;
 			}
 			if (SlashCoolTime < 0.0f)
 			{
 
-				FSM.ChangeState(DunkelAnim_State::Slash_Start);
+				FSM.ChangeState(EDunkelAnim_State::Slash_Start);
 				return;
 			}
 			int Num = Random.RandomInt(0, 9);
 			if (Num == 0 || Num == 2)
 			{
-				FSM.ChangeState(DunkelAnim_State::Up);
+				FSM.ChangeState(EDunkelAnim_State::Up);
 				return;
 			}
 			else
 			{
-				FSM.ChangeState(DunkelAnim_State::Knockback);
+				FSM.ChangeState(EDunkelAnim_State::Knockback);
 				return;
 			}
 		}
@@ -230,24 +230,24 @@ void ADunkel_Boss::UpdateStand(float _DeltaTime)
 		{
 			if (SlashCoolTime < 0.0f)
 			{
-				FSM.ChangeState(DunkelAnim_State::Slash_Start);
+				FSM.ChangeState(EDunkelAnim_State::Slash_Start);
 				return;
 			}
 			if (MeteoCoolTime < 0.0f)
 			{
-				FSM.ChangeState(DunkelAnim_State::Meteo);
+				FSM.ChangeState(EDunkelAnim_State::Meteo);
 				return;
 			}
 			int Num = Random.RandomInt(0, 9);
 			if (Num == 0 || Num == 1)
 			{
-				FSM.ChangeState(DunkelAnim_State::Force);
+				FSM.ChangeState(EDunkelAnim_State::Force);
 				return;
 			}
 
 			else
 			{
-				FSM.ChangeState(DunkelAnim_State::Knockback);
+				FSM.ChangeState(EDunkelAnim_State::Knockback);
 				return;
 			}
 		}
@@ -342,7 +342,7 @@ void ADunkel_Boss::UpdateKnockback(float _DeltaTime)
 	}
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
@@ -358,7 +358,7 @@ void ADunkel_Boss::UpdateForce(float _DeltaTime)
 {
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
@@ -378,7 +378,7 @@ void ADunkel_Boss::UpdateMeteo(float _DeltaTime)
 {
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
@@ -432,7 +432,7 @@ void ADunkel_Boss::UpdateSlash_Start(float _DeltaTime)
 {
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Slash_End);
+		FSM.ChangeState(EDunkelAnim_State::Slash_End);
 		return;
 	}
 }
@@ -457,7 +457,7 @@ void ADunkel_Boss::UpdateSlash_End(float _DeltaTime)
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		CollisonSpawnTime = 0.0f;
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
@@ -481,7 +481,7 @@ void ADunkel_Boss::UpdateSword(float _DeltaTime)
 
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
@@ -506,7 +506,7 @@ void ADunkel_Boss::UpdateUp(float _DeltaTime)
 {
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
-		FSM.ChangeState(DunkelAnim_State::Down);
+		FSM.ChangeState(EDunkelAnim_State::Down);
 		return;
 	}
 }
@@ -533,7 +533,7 @@ void ADunkel_Boss::UpdateDown(float _DeltaTime)
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		CollisonSpawnTime = 0.0f;
-		FSM.ChangeState(DunkelAnim_State::Stand);
+		FSM.ChangeState(EDunkelAnim_State::Stand);
 		return;
 	}
 }
