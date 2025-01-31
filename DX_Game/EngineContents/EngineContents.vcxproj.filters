@@ -43,26 +43,8 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Dunkel_GameMode.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="Dunkel_Map.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="Dunkel_Boss.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="FallenWarrior.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
     <ClCompile Include="ContentsEditorGUI.cpp">
       <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Dunkel_GUI.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="Dunkel_ResRoad.cpp">
-      <Filter>Dunkel</Filter>
     </ClCompile>
     <ClCompile Include="Job_Phantom.cpp">
       <Filter>Job\Phantom</Filter>
@@ -76,9 +58,6 @@
     <ClCompile Include="PlayerFunction.cpp">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClCompile>
-    <ClCompile Include="PillarLight.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
     <ClCompile Include="DamageSkinActor.cpp">
       <Filter>UI\DamageSkin</Filter>
     </ClCompile>
@@ -86,9 +65,6 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="MyCollision.cpp" />
-    <ClCompile Include="Dunkel_HUD.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
     <ClCompile Include="ContentsConst.cpp">
       <Filter>Header</Filter>
     </ClCompile>
@@ -97,12 +73,6 @@
     </ClCompile>
     <ClCompile Include="DamageSkinRenderer.cpp" />
     <ClCompile Include="Boss.cpp" />
-    <ClCompile Include="Dunkel_SwordPower.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
-    <ClCompile Include="Dunkel_Meteo.cpp">
-      <Filter>Dunkel</Filter>
-    </ClCompile>
     <ClCompile Include="CQ57.cpp">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClCompile>
@@ -161,7 +131,7 @@
     <ClCompile Include="Player_Move.cpp">
       <Filter>Character\Player\PlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="Player_Jump.cpp">
+    <ClCompile Include="Player_Swift_Phantom.cpp">
       <Filter>Character\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="Player_UltimateDrive.cpp">
@@ -169,6 +139,36 @@
     </ClCompile>
     <ClCompile Include="Player_Prone.cpp">
       <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_Boss.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_GameMode.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_GUI.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_HUD.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_Map.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_Meteo.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_ResRoad.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="Dunkel_SwordPower.cpp">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClCompile>
+    <ClCompile Include="FallenWarrior.cpp">
+      <Filter>Dunkel\MapPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="PillarLight.cpp">
+      <Filter>Dunkel\MapPattern</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,26 +214,11 @@
     <ClInclude Include="Monster.h">
       <Filter>Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Dunkel_GameMode.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="Dunkel_Map.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="Dunkel_Boss.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="FallenWarrior.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="MyGameInstance.h">
       <Filter>Character\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Dunkel_GUI.h">
-      <Filter>Dunkel</Filter>
     </ClInclude>
     <ClInclude Include="Job_Phantom.h">
       <Filter>Job\Phantom</Filter>
@@ -250,9 +235,6 @@
     <ClInclude Include="PlayerFunction.h">
       <Filter>Character\Player\ActorFunction</Filter>
     </ClInclude>
-    <ClInclude Include="PillarLight.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
     <ClInclude Include="DamageSkinActor.h">
       <Filter>UI\DamageSkin</Filter>
     </ClInclude>
@@ -263,20 +245,11 @@
     <ClInclude Include="ContentsStatic.h">
       <Filter>Header</Filter>
     </ClInclude>
-    <ClInclude Include="Dunkel_HUD.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
     <ClInclude Include="DamageSkinFactory.h">
       <Filter>UI\DamageSkin</Filter>
     </ClInclude>
     <ClInclude Include="DamageSkinRenderer.h" />
     <ClInclude Include="Boss.h" />
-    <ClInclude Include="Dunkel_SwordPower.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
-    <ClInclude Include="Dunkel_Meteo.h">
-      <Filter>Dunkel</Filter>
-    </ClInclude>
     <ClInclude Include="CQ57.h">
       <Filter>Dunkel\Elite_Monster</Filter>
     </ClInclude>
@@ -329,6 +302,33 @@
       <Filter>UI\Bar</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="Dunkel_Boss.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_GameMode.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_GUI.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_HUD.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_Map.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_Meteo.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="Dunkel_SwordPower.h">
+      <Filter>Dunkel\Dunkel</Filter>
+    </ClInclude>
+    <ClInclude Include="FallenWarrior.h">
+      <Filter>Dunkel\MapPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="PillarLight.h">
+      <Filter>Dunkel\MapPattern</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -387,6 +387,12 @@
     </Filter>
     <Filter Include="Character\Player\PlayerState">
       <UniqueIdentifier>{88c4e182-c8e8-45f8-8fe6-fe59b2282e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dunkel\Dunkel">
+      <UniqueIdentifier>{d1f9ef01-f887-4d09-9c89-8b3be0b994d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dunkel\MapPattern">
+      <UniqueIdentifier>{ffdf76bd-c529-42ab-9f82-6ccecf9974a7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

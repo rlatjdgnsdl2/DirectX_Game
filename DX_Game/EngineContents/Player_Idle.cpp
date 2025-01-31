@@ -12,8 +12,6 @@ void APlayer::Start_Idle()
 {
 	SpriteRenderer->ChangeAnimation("Stand");
 	PysicsComponent->SetVelocity(FVector::ZERO);
-
-
 }
 
 void APlayer::Update_Idle(float _DeltaTime)
@@ -28,17 +26,13 @@ void APlayer::Update_Idle(float _DeltaTime)
 		FSM.ChangeState(EPlayer_State::Move_Right);
 		return;
 	}
-	/*if (UEngineInput::IsDown(VK_DOWN)) {
+	if (UEngineInput::IsDown(VK_DOWN)) {
 
 		FSM.ChangeState(EPlayer_State::Prone);
 		return;
 
-	}*/
-	if (UEngineInput::IsPress(VK_UP))
-	{
-		//FSM.ChangeState(EPlayer_State::Move);
-		return;
 	}
+
 
 	{
 		int Key = PlayerFuncManager->GetKey(EPlayer_Function::Ultimate_Drive);
@@ -49,6 +43,19 @@ void APlayer::Update_Idle(float _DeltaTime)
 		if (UEngineInput::IsPress(Key))
 		{
 			FSM.ChangeState(EPlayer_State::Ultimate_Drive);
+			return;
+		}
+	}
+
+	{
+		int Key = PlayerFuncManager->GetKey(EPlayer_Function::Swift_Phantom);
+		if (Key == -1)
+		{
+			return;
+		}
+		if (UEngineInput::IsPress(Key))
+		{
+			FSM.ChangeState(EPlayer_State::Swift_Phantom);
 			return;
 		}
 	}

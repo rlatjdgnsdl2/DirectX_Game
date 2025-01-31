@@ -97,14 +97,7 @@ void ASkill_UltimateDrive::SetActiveTrue()
 void ASkill_UltimateDrive::StartUltimateDrivePrev()
 {
 	DelayTime = 0.0f;
-	if (!PlayerLogic->bIsSkillable || !PlayerLogic->bIsGround)
-	{
-		SetActiveFalse();
-		return;
-	}
 	Collision->SetActive(true);
-	PlayerLogic->StartUltimateDrive();
-	Player->ChangeAnimation("UltimateDrive_KeyDown");
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_Start_Effect_Front", true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_Start_Effect_Back", true);
@@ -150,7 +143,6 @@ void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
 void ASkill_UltimateDrive::StartUltimateDriveEnd()
 {
 	Collision->SetActive(false);
-	PlayerLogic->EndUltimateDrive();
 	SpriteRenderers["Front"]->ChangeAnimation("UltimateDrive_End_Effect_Front", true);
 	SpriteRenderers["Front"]->SetRelativeLocation(FVector(-100.0f, 50.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 	SpriteRenderers["Back"]->ChangeAnimation("UltimateDrive_End_Effect_Back", true);

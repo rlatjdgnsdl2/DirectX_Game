@@ -178,7 +178,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Player_Idle.cpp" />
-    <ClCompile Include="Player_Jump.cpp" />
+    <ClCompile Include="Player_Swift_Phantom.cpp" />
     <ClCompile Include="Player_Move.cpp" />
     <ClCompile Include="Player_Prone.cpp" />
     <ClCompile Include="Player_UltimateDrive.cpp" />

@@ -4,13 +4,19 @@
 enum class EPlayer_State
 {
 	None = 0,
+
+	// 기본
 	Idle,
 	Move_Left,
 	Move_Right,
 	Prone,
-	Jump,
+	
+
+	// skill
 	Ultimate_Drive,
-	NormalAttack,
+	Swift_Phantom,
+
+	// 상태이상
 	KnockBack,
 };
 
@@ -19,8 +25,11 @@ enum class EPlayer_Function
 	None = 0,
 	Left,
 	Right,
-	Up,
+	Jump,
+	Prone,
+	Rope,
 	Down,
+
 	Swift_Phantom,
 	Ultimate_Drive,
 };

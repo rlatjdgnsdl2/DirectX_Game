@@ -26,30 +26,27 @@ public:
 	void AddVelocityX(float _X) { Velocity.X += _X; }
 	void AddVelocityY(float _Y) { Velocity.Y += _Y; }
 
-	void SetForce(FVector _Force) { Force = _Force; }
-	void SetForceX(float _X) { Force.X = _X; }
-	void SetForceY(float _Y) { Force.Y = _Y; }
+	
+	bool IsGround() { return bIsGround; }
+	bool IsJumping() { return bIsJumping; }
+	bool IsFalling() { return bIsFalling; }
 
-	void AddForce(FVector _Force) { Force += _Force; }
-	void AddForceX(float _X) { Force.X += _X; }
-	void AddForceY(float _Y) { Force.Y += _Y; }
+	void SetGroundTrue() { bIsGround = true; }
+	void SetGroundFalse() { bIsGround = false; }
+
+	
 
 protected:
 
 private:
 	FVector Velocity = FVector(0.0f, 0.0f, 0.0f);
-	FVector Force = FVector(0.0f, 0.0f, 0.0f);
-	bool bIsGravity = false;
 
-	bool bIsGround = false;
+	bool bIsGround = true;
 	bool bIsJumping = false;
 	bool bIsFalling = false;
 
-
-
 	void Gravity(float _DeltaTimte);
 	void UpdateVelocity(float _DeltaTimte);
-	void UpdateForce(float _DeltaTimte);
 
 
 

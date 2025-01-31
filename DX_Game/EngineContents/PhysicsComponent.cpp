@@ -23,12 +23,11 @@ void UPhysicsComponent::ComponentTick(float _DeltaTime)
 		return;
 	}
 
-	if (Velocity.Y!=0.0f)
+	if (!bIsGround)
 	{
 		Gravity(_DeltaTime);
 	}
 	UpdateVelocity(_DeltaTime);
-	UpdateForce(_DeltaTime);
 }
 
 void UPhysicsComponent::Gravity(float _DeltaTime)
@@ -51,10 +50,7 @@ void UPhysicsComponent::UpdateVelocity(float _DeltaTimte)
 	GetActor()->AddActorLocation(Velocity * _DeltaTimte);
 }
 
-void UPhysicsComponent::UpdateForce(float _DeltaTimte)
-{
-	GetActor()->AddActorLocation(Force * _DeltaTimte);
-}
+
 
 
 

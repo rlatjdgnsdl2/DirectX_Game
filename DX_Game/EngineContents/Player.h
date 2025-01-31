@@ -85,8 +85,8 @@ private:
 	void Start_Move_Right();
 	void Update_Move_Right(float _DeltaTime);
 	
-	void Start_Jump();
-	void Update_Jump(float _DeltaTime);
+	void Start_Swift_Phantom();
+	void Update_Swift_Phantom(float _DeltaTime);
 
 	void Start_Prone();
 	void Update_Prone(float _DeltaTime);

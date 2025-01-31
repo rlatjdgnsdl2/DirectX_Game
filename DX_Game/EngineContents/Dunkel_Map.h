@@ -24,8 +24,8 @@ protected:
 private:
 	std::map<std::string, class UMyCollision*> EndArea;
 	class USpriteRenderer* FootHoldRenderer;
-
 	class USpriteRenderer* BackRenderer;
+
 	std::list<class USpriteRenderer*> ObjectRenderers;
 
 	

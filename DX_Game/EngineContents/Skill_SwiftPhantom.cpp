@@ -3,6 +3,7 @@
 
 #include "Player.h"
 #include "PlayerFuncManager.h"
+#include "PhysicsComponent.h"
 
 
 ASkill_SwiftPhantom::ASkill_SwiftPhantom()
@@ -41,46 +42,18 @@ void ASkill_SwiftPhantom::StartJump()
 {
 	SpriteRenderers["Front"]->SetActive(false);
 	SpriteRenderers["Back"]->SetActive(false);
-	if (!PlayerLogic->bIsJumpable)
-	{
-		SetActiveFalse();
-		return;
-	}
-	if (!PlayerLogic->bIsUsingSkill) {
-		Player->ChangeAnimation("Jump");
-	}
-	if (UEngineInput::IsPress(VK_DOWN) || UEngineInput::IsDown(VK_DOWN)) {
-		if (PlayerLogic->bIsDownableFloor) {
-			PlayerLogic->StartJump();
-			PlayerLogic->StartFalling();
-			Player->GetPlayerLogic().SetVelocityY(-200.0f);
-		}
-	}
-	else {
-		PlayerLogic->StartJump();
-		PlayerLogic->SetVelocityY(670.0f);
-	}
 }
 
 void ASkill_SwiftPhantom::UpdateJump(float _DeltaTime)
 {
-	if (PlayerLogic->bIsGround)
+	if (Player->GetPysicComponent()->IsGround())
 	{
-		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
 		return;
-	}
-	if (UEngineInput::IsPress(VK_LEFT)|| UEngineInput::IsDown(VK_LEFT)) {
-		Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-	}
-	else if (UEngineInput::IsPress(VK_RIGHT)|| UEngineInput::IsDown(VK_RIGHT)) {
-		Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
 	}
 
 	if (UEngineInput::IsDown(Key))
 	{
-		PlayerLogic->PlusJumpCount();
-		PlayerLogic->bIsMoveable = false;
 		ChangeState(ESkill_Frame::Second);
 		return;
 	}
@@ -99,36 +72,28 @@ void ASkill_SwiftPhantom::StartDoubleJump()
 		SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, -90.0f));
 		SpriteRenderers["Front"]->SetRelativeLocation(FVector(0.0f, 10.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 		SpriteRenderers["Back"]->SetRelativeLocation(FVector(0.0f, 10.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
-		Player->GetPlayerLogic().AddVelocityY(800.0f);
+		Player->GetPysicComponent()->AddVelocityY(800.0f);
 	}
 	else {
 		SpriteRenderers["Front"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
 		SpriteRenderers["Back"]->SetRotation(FVector(0.0f, 0.0f, 0.0f));
 		SpriteRenderers["Front"]->SetRelativeLocation(FVector(30.0f, 30.0f, UContentsConst::P_EFFECT_FRONT_ZPOS));
 		SpriteRenderers["Back"]->SetRelativeLocation(FVector(30.0f, 30.0f, UContentsConst::P_EFFECT_BACK_ZPOS));
-
-		Player->GetPlayerLogic().SetVelocityX(-Player->GetActorTransform().Scale.X * 600.0f);
-		Player->GetPlayerLogic().AddVelocityY(250.0f);
+		Player->GetPysicComponent()->SetVelocityX(-Player->GetActorTransform().Scale.X * 600.0f);
+		Player->GetPysicComponent()->AddVelocityY(250.0f);
 	}
 }
 
 void ASkill_SwiftPhantom::UpdateDoubleJump(float _DeltaTime)
 {
-	if (PlayerLogic->bIsGround)
+	if (Player->GetPysicComponent()->IsGround())
 	{
-		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
 		return;
 	}
-	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
-		Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));
-	}
-	else if (UEngineInput::IsPress(VK_RIGHT) || UEngineInput::IsDown(VK_RIGHT)) {
-		Player->SetActorRelativeScale3D(FVector(-1.0f, 1.0f, 1.0f));
-	}
+	
 	if (UEngineInput::IsDown(Key))
 	{
-		PlayerLogic->PlusJumpCount();
 		ChangeState(ESkill_Frame::Third);
 		return;
 
@@ -143,8 +108,8 @@ void ASkill_SwiftPhantom::UpdateDoubleJump(float _DeltaTime)
 
 void ASkill_SwiftPhantom::StartTripleJump()
 {
-	Player->GetPlayerLogic().SetVelocityX(-Player->GetActorTransform().Scale.X * 800.0f);
-	Player->GetPlayerLogic().AddVelocityY(250.0f);
+	Player->GetPysicComponent()->SetVelocityX(-Player->GetActorTransform().Scale.X * 800.0f);
+	Player->GetPysicComponent()->AddVelocityY(250.0f);
 
 	SpriteRenderers["Front"]->SetActive(true);
 	SpriteRenderers["Back"]->SetActive(true);
@@ -158,10 +123,10 @@ void ASkill_SwiftPhantom::StartTripleJump()
 
 void ASkill_SwiftPhantom::UpdateTripleJump(float _DeltaTime)
 {
-	if (PlayerLogic->bIsGround)
+	if (Player->GetPysicComponent()->IsGround())
 	{
-		PlayerLogic->SetGroundTrue();
 		SetActiveFalse();
+		return;
 	}
 	if (UEngineInput::IsPress(VK_LEFT) || UEngineInput::IsDown(VK_LEFT)) {
 		Player->SetActorRelativeScale3D(FVector(1.0f, 1.0f, 1.0f));

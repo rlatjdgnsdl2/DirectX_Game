@@ -9,10 +9,7 @@
 
 
 #include "Job_Phantom.h"
-#include "LeftKey.h"
-#include "RightKey.h"
-#include "DownKey.h"
-#include "UpKey.h"
+
 #include "DamageSkinFactory.h"
 #include "MyGameInstance.h"
 
@@ -31,8 +28,8 @@ APlayer::APlayer()
 	SpriteRenderer->CreateAnimation("Walk", "Player_Walk.png", 0, 3);
 	SpriteRenderer->CreateAnimation("Jump", "Player_Jump.png", 0, 0);
 	SpriteRenderer->CreateAnimation("Prone", "Player_Prone.png", 0, 0);
-	SpriteRenderer->CreateAnimation("UltimateDrive_KeyDown", "Player_UltimateDrive_KeyDown.png", 0, 5);
-	SpriteRenderer->SetZ(UContentsConst::PLAYER_ZPOS);
+	SpriteRenderer->CreateAnimation("UltimateDrive", "Player_UltimateDrive_KeyDown.png", 0, 5);
+	SpriteRenderer->SetRelativeLocation(FVector(0.0f,0.0f,UContentsConst::PLAYER_ZPOS));
 
 	//Collision
 	Collision = CreateDefaultSubObject<UMyCollision>().get();
@@ -47,9 +44,10 @@ APlayer::APlayer()
 
 	FSM.CreateState(EPlayer_State::None, [](float) {}, []() {});
 	FSM.CreateState(EPlayer_State::Idle, std::bind(&APlayer::Update_Idle,this,std::placeholders::_1), std::bind(&APlayer::Start_Idle, this));
+	FSM.CreateState(EPlayer_State::Prone, std::bind(&APlayer::Update_Prone, this, std::placeholders::_1), std::bind(&APlayer::Start_Prone, this));
 	FSM.CreateState(EPlayer_State::Move_Left, std::bind(&APlayer::Update_Move_Left, this, std::placeholders::_1), std::bind(&APlayer::Start_Move_Left, this));
 	FSM.CreateState(EPlayer_State::Move_Right, std::bind(&APlayer::Update_Move_Right, this, std::placeholders::_1), std::bind(&APlayer::Start_Move_Right, this));
-	FSM.CreateState(EPlayer_State::Jump, std::bind(&APlayer::Update_Jump, this, std::placeholders::_1), std::bind(&APlayer::Start_Jump, this));
+	FSM.CreateState(EPlayer_State::Swift_Phantom, std::bind(&APlayer::Update_Swift_Phantom, this, std::placeholders::_1), std::bind(&APlayer::Start_Swift_Phantom, this));
 	FSM.CreateState(EPlayer_State::Ultimate_Drive, std::bind(&APlayer::Update_Ultimate_Drive, this, std::placeholders::_1), std::bind(&APlayer::Start_Ultimate_Drive, this));
 	
 }

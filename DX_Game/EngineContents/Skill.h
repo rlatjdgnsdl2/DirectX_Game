@@ -30,9 +30,9 @@ public:
 
 
 protected:
-	UFSMStateManager FrameState;
 	std::map<std::string, class USpriteRenderer*> SpriteRenderers;
 	class UMyCollision* Collision;
+	UFSMStateManager FrameState;
 	FDamageInfo DamageInfo;
 	float UseMp;
 
