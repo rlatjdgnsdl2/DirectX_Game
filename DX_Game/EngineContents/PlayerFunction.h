@@ -25,7 +25,6 @@ public:
 protected:
 	class APlayer* Player;
 	int Key = -1;
-	FPlayerLogic* PlayerLogic;
 private:
 };
 

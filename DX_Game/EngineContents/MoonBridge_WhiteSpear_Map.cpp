@@ -58,26 +58,11 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 
 		Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				if (LogicValue.bIsFalling) {
-					LogicValue.SetGroundTrue();
-					float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
-					float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
-					Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
-					Player->GetPlayerLogic().SetGravityAccel(0.0f);
-					Player->GetPlayerLogic().SetVelocityX(0.0f);
-					Player->GetPlayerLogic().SetVelocityY(0.0f);
-					Player->GetPlayerLogic().SetDownableFloor(false);
-				}
+				
 			});
 		Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				if (LogicValue.bIsGround) {
-					LogicValue.bIsGround = false;
-				}
+				
 			});
 		EndArea.insert({ "Down", Collision });
 	}
@@ -91,26 +76,11 @@ AMoonBridge_WhiteSpear_Map::AMoonBridge_WhiteSpear_Map()
 
 		Collision->SetCollisionEnter([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				if (LogicValue.bIsFalling) {
-					LogicValue.SetGroundTrue();
-					float DownEndAreaTop = _Left->GetTransformRef().ZAxisWorldCenterTop();
-					float PlayerBottom = _Right->GetTransformRef().ZAxisWorldCenterBottom();
-					Player->AddActorLocation(FVector(0.0f, DownEndAreaTop - PlayerBottom, 0.0f));
-					Player->GetPlayerLogic().SetGravityAccel(0.0f);
-					Player->GetPlayerLogic().SetVelocityX(0.0f);
-					Player->GetPlayerLogic().SetVelocityY(0.0f);
-					Player->GetPlayerLogic().SetDownableFloor(true);
-				}
+				
 			});
 		Collision->SetCollisionEnd([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				if (LogicValue.bIsGround) {
-					LogicValue.bIsGround = false;
-				}
+				
 			});
 		FootHoldCollisions.push_back(Collision);
 	}

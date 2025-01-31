@@ -13,6 +13,6 @@ class MyGameInstance : public UGameInstance, public ISerializObject
 {
 public:
 	FPlayerStatus PlayerStatus;
-	FPlayerLogic PlayerLogic;
+	
 };
 

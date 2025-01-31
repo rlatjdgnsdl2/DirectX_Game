@@ -70,15 +70,7 @@ ADunkel_Boss::ADunkel_Boss()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
-				float Dir = GetActorTransform().Scale.X;
-				FPlayerLogic& LogicValue = Player->GetPlayerLogic();
-				LogicValue.SetVelocityX(-Dir * 1000.0f);
-				LogicValue.SetVelocityY(1000.0f);
-				LogicValue.SetGravityAccel(0.0f);
-				LogicValue.bIsJumpable = false;
-				LogicValue.SetDownableFloor(false);
-				GetCollision("KnockBack")->SetActive(false);
+				
 			});
 		InsertCollision("Knockback", Collision);
 	}

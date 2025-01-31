@@ -16,10 +16,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float _DeltaTime) override;
 
-	FPlayerLogic& GetPlayerLogic()
-	{
-		return PlayerLogic;
-	}
+
 
 	class UPlayerFuncManager* GetPlayerFuncManager()
 	{
@@ -61,7 +58,6 @@ public:
 protected:
 
 private:
-	FPlayerLogic PlayerLogic;
 	UFSMStateManager FSM;
 
 	class USpriteRenderer* SpriteRenderer = nullptr;
@@ -72,10 +68,9 @@ private:
 
 	class UPlayerFuncManager* PlayerFuncManager;
 
-	
-	/*void Gravity(float _DeltaTime);
-	void MoveUpdate(float _DeltaTime);*/
+	bool IsDownableFloor = false;
 
+	
 	void Start_Idle();
 	void Update_Idle(float _DeltaTime);
 
