@@ -20,9 +20,9 @@ ASkill_SwiftPhantom::ASkill_SwiftPhantom()
 		SpriteRenderer->CreateAnimation("SwiftPhantom_Effect_Back", "SwiftPhantom_Effect_Back", 0, 3, 0.1f, false);
 		SpriteRenderers.insert(std::make_pair("Back", SpriteRenderer.get()));
 	}
-	FrameState.CreateState(ESkill_Frame::First, std::bind(&ASkill_SwiftPhantom::UpdateJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartJump, this));
-	FrameState.CreateState(ESkill_Frame::Second, std::bind(&ASkill_SwiftPhantom::UpdateDoubleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartDoubleJump, this));
-	FrameState.CreateState(ESkill_Frame::Third, std::bind(&ASkill_SwiftPhantom::UpdateTripleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartTripleJump, this));
+	FSM.CreateState(ESkill_Frame::First, std::bind(&ASkill_SwiftPhantom::UpdateJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartJump, this));
+	FSM.CreateState(ESkill_Frame::Second, std::bind(&ASkill_SwiftPhantom::UpdateDoubleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartDoubleJump, this));
+	FSM.CreateState(ESkill_Frame::Third, std::bind(&ASkill_SwiftPhantom::UpdateTripleJump, this, std::placeholders::_1), std::bind(&ASkill_SwiftPhantom::StartTripleJump, this));
 }
 
 ASkill_SwiftPhantom::~ASkill_SwiftPhantom()

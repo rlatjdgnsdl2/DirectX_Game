@@ -89,5 +89,8 @@ private:
 	void Start_Ultimate_Drive();
 	void Update_Ultimate_Drive(float _DeltaTime);
 
+	void Start_Rift_Break();
+	void Update_Rift_Break(float _DeltaTime);
+
 };
 

@@ -49,4 +49,18 @@ void UPlayerFuncManager::BeginPlay()
 			});
 		SetFunc('Z', EPlayer_Function::Ultimate_Drive, NewFunc);
 	}
+
+	{
+		UEngineDelegate NewFunc;
+		NewFunc += ([this]()
+			{
+				ASkill* Skill = Player->GetJobComponent()->GetSkill(EPlayer_Function::Rift_Break);
+				if (nullptr != Skill) {
+					if (false == Skill->IsActive()) {
+						Skill->SetActiveTrue();
+					}
+				}
+			});
+		SetFunc('W', EPlayer_Function::Rift_Break, NewFunc);
+	}
 }

@@ -38,6 +38,9 @@ ADunkel_GameMode::ADunkel_GameMode()
 	Dunkel_GUI = UEngineGUI::CreateGUIWindow<UDunkel_GUI>("Dunkel_GUI").get();
 	Dunkel_GUI->Dunkel = BossDunkel;
 
+	GetWorld()->LinkCollisionProfile("PlayerSkill", "Monster");
+	GetWorld()->LinkCollisionProfile("PlayerSkill", "Boss");
+
 }
 
 ADunkel_GameMode::~ADunkel_GameMode()

@@ -49,6 +49,7 @@ APlayer::APlayer()
 	FSM.CreateState(EPlayer_State::Move_Right, std::bind(&APlayer::Update_Move_Right, this, std::placeholders::_1), std::bind(&APlayer::Start_Move_Right, this));
 	FSM.CreateState(EPlayer_State::Swift_Phantom, std::bind(&APlayer::Update_Swift_Phantom, this, std::placeholders::_1), std::bind(&APlayer::Start_Swift_Phantom, this));
 	FSM.CreateState(EPlayer_State::Ultimate_Drive, std::bind(&APlayer::Update_Ultimate_Drive, this, std::placeholders::_1), std::bind(&APlayer::Start_Ultimate_Drive, this));
+	FSM.CreateState(EPlayer_State::Rift_Break, std::bind(&APlayer::Update_Rift_Break, this, std::placeholders::_1), std::bind(&APlayer::Start_Rift_Break, this));
 	
 }
 
@@ -84,31 +85,6 @@ void APlayer::StandCollision()
 
 
 
-
-//void APlayer::Gravity(float _DeltaTime)
-//{
-//	if (!PlayerLogic.bIsGround) {
-//		PlayerLogic.GravityAccel += UContentsPhysicsConst::GravityAcc * _DeltaTime;
-//
-//		AddActorLocation(FVector(0.0f, -PlayerLogic.GravityAccel * _DeltaTime,0.0f));
-//		if (PlayerLogic.GravityAccel > PlayerLogic.Velocity.Y)
-//		{
-//			PlayerLogic.bIsFalling = true;
-//			PlayerLogic.bIsJumping = false;
-//		}
-//		else if (PlayerLogic.GravityAccel < PlayerLogic.Velocity.Y)
-//		{
-//			PlayerLogic.bIsFalling = false;
-//			PlayerLogic.bIsJumping = true;
-//		}
-//	}
-//}
-
-//void APlayer::MoveUpdate(float _DeltaTime)
-//{
-//	Gravity(_DeltaTime);
-//	AddActorLocation(PlayerLogic.Velocity * _DeltaTime);
-//}
 
 
 

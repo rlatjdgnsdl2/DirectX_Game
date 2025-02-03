@@ -3,9 +3,9 @@
 #include "Player.h"
 #include "PlayerFuncManager.h"
 
+#include <EngineCore/EngineCore.h>
 #include "MyCollision.h"
 #include "DamageSkinFactory.h"
-#include <EngineCore/EngineCore.h>
 #include "Monster.h"
 #include "MyGameInstance.h"
 
@@ -69,12 +69,11 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 				}
 			}
 		});
-	GetWorld()->LinkCollisionProfile("PlayerSkill", "Monster");
-	GetWorld()->LinkCollisionProfile("PlayerSkill", "Boss");
+	
 
-	FrameState.CreateState(ESkill_Frame::First, std::bind(&ASkill_UltimateDrive::UpdateUltimateDrivePrev, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDrivePrev, this));
-	FrameState.CreateState(ESkill_Frame::Second, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveKeyDown, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveKeyDown, this));
-	FrameState.CreateState(ESkill_Frame::Third, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveEnd, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveEnd, this));
+	FSM.CreateState(ESkill_Frame::First, std::bind(&ASkill_UltimateDrive::UpdateUltimateDrivePrev, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDrivePrev, this));
+	FSM.CreateState(ESkill_Frame::Second, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveKeyDown, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveKeyDown, this));
+	FSM.CreateState(ESkill_Frame::Third, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveEnd, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveEnd, this));
 
 	DamageInfo.Damage = 999999999;
 	DamageInfo.HitDelay = 0.1f;
@@ -107,12 +106,12 @@ void ASkill_UltimateDrive::StartUltimateDrivePrev()
 void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
 {
 	if (UEngineInput::IsUp(Key) || UEngineInput::IsFree(Key)) {
-		FrameState.ChangeState(ESkill_Frame::Third);
+		FSM.ChangeState(ESkill_Frame::Third);
 		return;
 	}
 	if (SpriteRenderers["Front"]->IsCurAnimationEnd())
 	{
-		FrameState.ChangeState(ESkill_Frame::Second);
+		FSM.ChangeState(ESkill_Frame::Second);
 		return;
 	}
 }
@@ -135,7 +134,7 @@ void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
 		MpUseTime = 0.3f;
 	}
 	if (UEngineInput::IsUp(Key) || UEngineInput::IsFree(Key)) {
-		FrameState.ChangeState(ESkill_Frame::Third);
+		FSM.ChangeState(ESkill_Frame::Third);
 		return;
 	}
 }
@@ -153,7 +152,7 @@ void ASkill_UltimateDrive::UpdateUltimateDriveEnd(float _DeltaTime)
 {
 	if (UEngineInput::IsDown(Key) || UEngineInput::IsPress(Key))
 	{
-		FrameState.ChangeState(ESkill_Frame::First);
+		FSM.ChangeState(ESkill_Frame::First);
 		return;
 	}
 	if (SpriteRenderers["Front"]->IsCurAnimationEnd()) {

@@ -24,6 +24,12 @@ void APlayer::Update_Move_Left(float _DeltaTime)
 		FSM.ChangeState(EPlayer_State::Move_Right);
 		return;
 	}
+	if (UEngineInput::IsDown(VK_DOWN))
+	{
+		FSM.ChangeState(EPlayer_State::Prone);
+		return;
+	}
+
 	if (UEngineInput::IsFree(VK_LEFT))
 	{
 		FSM.ChangeState(EPlayer_State::Idle);

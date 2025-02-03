@@ -178,6 +178,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Player_Idle.cpp" />
+    <ClCompile Include="Player_Rift_Break.cpp" />
     <ClCompile Include="Player_Swift_Phantom.cpp" />
     <ClCompile Include="Player_Move.cpp" />
     <ClCompile Include="Player_Prone.cpp" />
@@ -194,6 +195,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Skill_RiftBreak.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -395,6 +400,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Skill.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Skill_RiftBreak.h">
       <SubType>
       </SubType>
     </ClInclude>

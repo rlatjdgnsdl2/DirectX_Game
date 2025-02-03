@@ -20,19 +20,19 @@ public:
 
 	void Update(float _DeltaTime)
 	{
-		FrameState.Update(_DeltaTime);
+		FSM.Update(_DeltaTime);
 	}
 
 	void ChangeState(ESkill_Frame _Frame)
 	{
-		FrameState.ChangeState(_Frame);
+		FSM.ChangeState(_Frame);
 	};
 
 
 protected:
 	std::map<std::string, class USpriteRenderer*> SpriteRenderers;
 	class UMyCollision* Collision;
-	UFSMStateManager FrameState;
+	UFSMStateManager FSM;
 	FDamageInfo DamageInfo;
 	float UseMp;
 

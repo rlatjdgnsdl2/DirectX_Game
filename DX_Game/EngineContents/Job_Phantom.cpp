@@ -9,6 +9,7 @@
 
 #include "Skill_UltimateDrive.h"
 #include "Skill_SwiftPhantom.h"
+#include "Skill_RiftBreak.h"
 
 
 UJob_Phantom::UJob_Phantom() 
@@ -27,6 +28,14 @@ UJob_Phantom::UJob_Phantom()
 		Skill->SetOwner(GetActor());
 		Skill->SetActiveFalse();
 		InsertSkill(EPlayer_Function::Swift_Phantom, Skill);
+	}
+
+
+	{
+		ASkill_RiftBreak* Skill = GetWorld()->SpawnActor<ASkill_RiftBreak>().get();
+		Skill->SetOwner(GetActor());
+		Skill->SetActiveFalse();
+		InsertSkill(EPlayer_Function::Rift_Break, Skill);
 	}
 }
 

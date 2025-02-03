@@ -68,6 +68,16 @@ void UContentsCore::LoadResources()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
+		Dir.Append("RiftBreak_Back_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("RiftBreak_Front_Effect");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+
+
 	}
 
 	UEngineSprite::CreateSpriteToMeta("Player_Stand.png", ".sdata");

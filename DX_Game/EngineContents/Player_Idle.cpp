@@ -59,4 +59,17 @@ void APlayer::Update_Idle(float _DeltaTime)
 			return;
 		}
 	}
+
+	{
+		int Key = PlayerFuncManager->GetKey(EPlayer_Function::Rift_Break);
+		if (Key == -1)
+		{
+			return;
+		}
+		if (UEngineInput::IsPress(Key))
+		{
+			FSM.ChangeState(EPlayer_State::Rift_Break);
+			return;
+		}
+	}
 }

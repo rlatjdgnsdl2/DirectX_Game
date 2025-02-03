@@ -170,6 +170,12 @@
     <ClCompile Include="PillarLight.cpp">
       <Filter>Dunkel\MapPattern</Filter>
     </ClCompile>
+    <ClCompile Include="Skill_RiftBreak.cpp">
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Rift_Break.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -328,6 +334,9 @@
     </ClInclude>
     <ClInclude Include="PillarLight.h">
       <Filter>Dunkel\MapPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill_RiftBreak.h">
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
