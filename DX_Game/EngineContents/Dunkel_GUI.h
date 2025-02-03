@@ -20,5 +20,7 @@ protected:
 private:
 	class APlayer* Player = nullptr;
 	class ADunkel_Boss* Dunkel = nullptr;
+
+	
 };
 
