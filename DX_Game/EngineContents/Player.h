@@ -52,6 +52,11 @@ public:
 		return FSM;
 	}
 
+	void ChangeState(EPlayer_State _State)
+	{
+		FSM.ChangeState(_State);
+	}
+
 	void ProneCollision();
 	void StandCollision();
 
@@ -91,6 +96,9 @@ private:
 
 	void Start_Rift_Break();
 	void Update_Rift_Break(float _DeltaTime);
+
+	void Start_Defying_Fate();
+	void Update_Defying_Fate(float _DeltaTime);
 
 };
 

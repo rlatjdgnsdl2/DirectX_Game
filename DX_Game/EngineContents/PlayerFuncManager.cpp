@@ -63,4 +63,18 @@ void UPlayerFuncManager::BeginPlay()
 			});
 		SetFunc('W', EPlayer_Function::Rift_Break, NewFunc);
 	}
+
+	{
+		UEngineDelegate NewFunc;
+		NewFunc += ([this]()
+			{
+				ASkill* Skill = Player->GetJobComponent()->GetSkill(EPlayer_Function::Defying_Fate);
+				if (nullptr != Skill) {
+					if (false == Skill->IsActive()) {
+						Skill->SetActiveTrue();
+					}
+				}
+			});
+		SetFunc('R', EPlayer_Function::Defying_Fate, NewFunc);
+	}
 }

@@ -16,10 +16,16 @@ public:
 	{
 		DamageInfo = _DamageInfo;
 		HitDelay = DamageInfo.HitDelay;
+		
+
 	}
-	void SetSpawnLocation(FVector _SpawnLocation)
+	void SetSpawnLocation();
+	
+
+	void SetMonsterCollision(class UCollision* _Monster)
 	{
-		SpawnLocation = _SpawnLocation;
+		MonsterColl = _Monster;
+		SetSpawnLocation();
 	}
 	void Tick(float _DeltaTime) override;
 	
@@ -27,10 +33,17 @@ public:
 protected:
 
 private:
+	UEngineRandom Random;
 	FDamageInfo DamageInfo;
 	FVector SpawnLocation;
 	float HitDelay = 0.0f;
 	int CurHitCount =0;
+
+	class UCollision* MonsterColl = nullptr;
+
+
+	int CurCycle = 0;
+
 	float OffsetY = 0.0f;
 
 

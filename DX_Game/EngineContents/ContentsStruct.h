@@ -1,9 +1,11 @@
 ﻿#pragma once
 struct FDamageInfo 
 {
-	unsigned long long Damage;
-	int MaxHitCount;
-	float HitDelay;
+	unsigned long long Damage = 0;
+	int MaxHitCount =0;
+	int MaxHitCycle = 1;
+	float HitDelay =0.1f;
+	
 };
 
 struct FPlayerStatus

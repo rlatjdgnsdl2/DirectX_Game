@@ -16,6 +16,7 @@ enum class EPlayer_State
 	Ultimate_Drive,
 	Swift_Phantom,
 	Rift_Break,
+	Defying_Fate,
 
 	// 상태이상
 	KnockBack,
@@ -34,6 +35,7 @@ enum class EPlayer_Function
 	Swift_Phantom,
 	Ultimate_Drive,
 	Rift_Break,
+	Defying_Fate
 };
 
 enum class ESkill_Frame

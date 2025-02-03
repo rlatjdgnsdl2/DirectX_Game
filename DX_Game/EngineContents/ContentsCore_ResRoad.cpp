@@ -76,6 +76,18 @@ void UContentsCore::LoadResources()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 		Dir.BackDir();
 
+		Dir.Append("DefyingFate_Start");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DefyingFate_Update");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
+		Dir.Append("DefyingFate_End");
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+		Dir.BackDir();
+
 
 
 	}

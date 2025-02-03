@@ -176,6 +176,12 @@
     <ClCompile Include="Player_Rift_Break.cpp">
       <Filter>Character\Player\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="Skill_DefyingFate.cpp">
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Player_Defying_Fate.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">
@@ -336,6 +342,9 @@
       <Filter>Dunkel\MapPattern</Filter>
     </ClInclude>
     <ClInclude Include="Skill_RiftBreak.h">
+      <Filter>Character\Player\ActorFunction\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill_DefyingFate.h">
       <Filter>Character\Player\ActorFunction\Skill</Filter>
     </ClInclude>
   </ItemGroup>

@@ -37,24 +37,12 @@ ASkill_RiftBreak::ASkill_RiftBreak()
 			{
 				return;
 			}
-			if (Monster->IsDamagedable())
-			{
-				ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
-				Factory->SetDamageInfo(DamageInfo);
-				Factory->SetSpawnLocation(_Right->GetWorldLocation() + FVector(0.0f, std::abs(_Right->GetWorldScale3D().hY())));
-				Monster->SetDamage(DamageInfo.Damage * DamageInfo.MaxHitCount);
 
-			}
-			else
-			{
-				ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
-				FDamageInfo DamageInfo;
-				DamageInfo.Damage = 0.0f;
-				DamageInfo.HitDelay = 0.1f;
-				DamageInfo.MaxHitCount = 3;
-				Factory->SetDamageInfo(DamageInfo);
-				Factory->SetSpawnLocation(_Right->GetWorldLocation() + FVector(0.0f, std::abs(_Right->GetWorldScale3D().hY())));
-			}
+			ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
+			Factory->SetDamageInfo(DamageInfo);
+			Factory->SetMonsterCollision(_Right);
+
+
 
 		});
 

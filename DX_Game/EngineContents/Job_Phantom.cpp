@@ -10,6 +10,7 @@
 #include "Skill_UltimateDrive.h"
 #include "Skill_SwiftPhantom.h"
 #include "Skill_RiftBreak.h"
+#include "Skill_DefyingFate.h"
 
 
 UJob_Phantom::UJob_Phantom() 
@@ -36,6 +37,13 @@ UJob_Phantom::UJob_Phantom()
 		Skill->SetOwner(GetActor());
 		Skill->SetActiveFalse();
 		InsertSkill(EPlayer_Function::Rift_Break, Skill);
+	}
+
+	{
+		ASkill_DefyingFate* Skill = GetWorld()->SpawnActor<ASkill_DefyingFate>().get();
+		Skill->SetOwner(GetActor());
+		Skill->SetActiveFalse();
+		InsertSkill(EPlayer_Function::Defying_Fate, Skill);
 	}
 }
 

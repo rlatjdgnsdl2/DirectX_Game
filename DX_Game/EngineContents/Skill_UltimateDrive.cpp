@@ -49,27 +49,13 @@ ASkill_UltimateDrive::ASkill_UltimateDrive()
 				{
 					return;
 				}
-				if (Monster->IsDamagedable())
-				{
-					ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
-					Factory->SetDamageInfo(DamageInfo);
-					Factory->SetSpawnLocation(_Right->GetWorldLocation() + FVector(0.0f, std::abs(_Right->GetWorldScale3D().hY())));
-					Monster->SetDamage(DamageInfo.Damage * DamageInfo.MaxHitCount);
-					DelayTime = 0.3f;
-				}
-				else {
-					ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
-					FDamageInfo DamageInfo;
-					DamageInfo.Damage = 0.0f;
-					DamageInfo.HitDelay = 0.1f;
-					DamageInfo.MaxHitCount = 3;
-					Factory->SetDamageInfo(DamageInfo);
-					Factory->SetSpawnLocation(_Right->GetWorldLocation() + FVector(0.0f, std::abs(_Right->GetWorldScale3D().hY())));
-					DelayTime = 0.3f;
-				}
+				ADamageSkinFactory* Factory = GetWorld()->SpawnActor<ADamageSkinFactory>().get();
+				Factory->SetDamageInfo(DamageInfo);
+				Factory->SetMonsterCollision(_Right);
+				DelayTime = 0.3f;
 			}
 		});
-	
+
 
 	FSM.CreateState(ESkill_Frame::First, std::bind(&ASkill_UltimateDrive::UpdateUltimateDrivePrev, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDrivePrev, this));
 	FSM.CreateState(ESkill_Frame::Second, std::bind(&ASkill_UltimateDrive::UpdateUltimateDriveKeyDown, this, std::placeholders::_1), std::bind(&ASkill_UltimateDrive::StartUltimateDriveKeyDown, this));
