@@ -182,6 +182,9 @@
     <ClCompile Include="Player_Defying_Fate.cpp">
       <Filter>Character\Player\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="Player_KnockBack.cpp">
+      <Filter>Character\Player\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ContentsCore.h">

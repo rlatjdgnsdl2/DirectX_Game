@@ -40,6 +40,7 @@ ADunkel_GameMode::ADunkel_GameMode()
 
 	GetWorld()->LinkCollisionProfile("PlayerSkill", "Monster");
 	GetWorld()->LinkCollisionProfile("PlayerSkill", "Boss");
+	GetWorld()->LinkCollisionProfile("MonsterAttack", "Player");
 
 }
 

@@ -6,6 +6,7 @@
 #include "MyGameInstance.h"
 #include "Dunkel_SwordPower.h"
 #include "Dunkel_Meteo.h"
+#include "PhysicsComponent.h"
 
 #include "CQ57.h"
 #include "Freyd.h"
@@ -19,6 +20,7 @@
 #include "DownChain.h"
 
 
+
 ADunkel_Boss::ADunkel_Boss()
 {
 	SpriteRenderer->CreateAnimation("Spawn", "Dunkel_Spawn", 0, 31, 3.0f / 32, false);
@@ -30,9 +32,9 @@ ADunkel_Boss::ADunkel_Boss()
 	SpriteRenderer->CreateAnimation("Force", "Dunkel_Force", 0, 24, 0.1f, false);
 	SpriteRenderer->CreateAnimation("Knockback", "Dunkel_Knockback", 0, 29, 2.0f / 16, false);
 	SpriteRenderer->CreateAnimation("Meteo", "Dunkel_Meteo", 0, 23, 0.1f, false);
-	SpriteRenderer->CreateAnimation("Slash_Start", "Dunkel_Slash_Start", 0, 10, 0.1f, false);
+	SpriteRenderer->CreateAnimation("Slash_Start", "Dunkel_Slash_Start", 0, 10, 0.13f, false);
 	SpriteRenderer->CreateAnimation("Slash_End", "Dunkel_Slash_End", 0, 15, 0.1f, false);
-	SpriteRenderer->CreateAnimation("Sword", "Dunkel_SwordPower", 0, 19, 3.0f / 20, false);
+	SpriteRenderer->CreateAnimation("Sword", "Dunkel_SwordPower", 0, 19, 4.0f / 20, false);
 
 
 	{
@@ -70,7 +72,14 @@ ADunkel_Boss::ADunkel_Boss()
 		Collision->SetActive(false);
 		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
 			{
-				
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				if (Player == nullptr)
+				{
+					return;
+				}
+				Player->ChangeState(EPlayer_State::KnockBack);
+				Player->GetPysicComponent()->SetVelocity(FVector(-Dir*1000.0f, 1000.0f, 0.0f));
+				GetCollision("Knockback")->SetActive(false);
 			});
 		InsertCollision("Knockback", Collision);
 	}
@@ -160,6 +169,10 @@ void ADunkel_Boss::StartSpawn()
 
 	SpriteRenderer->ChangeAnimation("Spawn", true);
 	SpriteRenderer->SetRelativeLocation(FVector(-20.0f, 200.0f, UContentsConst::BOSS_ZPOS));
+	
+	SlashCoolTime = 0.0f;
+	SwordCoolTime = 0.0f;
+	MeteoCoolTime = 0.0f;
 }
 
 void ADunkel_Boss::UpdateSpawn(float _DeltaTime)
@@ -463,14 +476,19 @@ void ADunkel_Boss::StartSword()
 	SpawnEliteMonster();
 	SpriteRenderer->ChangeAnimation("Sword", true);
 	SpriteRenderer->SetRelativeLocation(FVector(60.0f, 200.0f, UContentsConst::BOSS_ZPOS));
-	SwordCoolTime = 30.0f;
-	SpawnSwordPower();
-
 }
 
 void ADunkel_Boss::UpdateSword(float _DeltaTime)
 {
-
+	
+	if (SpriteRenderer->GetCurIndex() == 12) 
+	{
+		if (SwordCoolTime < 0.0f)
+		{
+			SpawnSwordPower();
+			SwordCoolTime = 30.0f;
+		}
+	}
 	if (SpriteRenderer->IsCurAnimationEnd())
 	{
 		FSM.ChangeState(EDunkelAnim_State::Stand);

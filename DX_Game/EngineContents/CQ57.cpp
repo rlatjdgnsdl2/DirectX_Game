@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "CQ57.h"
 #include "MyGameInstance.h"
+#include "Player.h"
+#include "PhysicsComponent.h"
 
 
 ACQ57::ACQ57()
@@ -25,7 +27,18 @@ ACQ57::ACQ57()
 		Collision->SetCollisionProfileName("MonsterAttack");
 		Collision->SetRelativeScale3D(FVector(250.0f, 150.0f, 1.0f));
 		Collision->SetRelativeLocation(FVector(-130.0f, 60.0f, 0.0f));
-		Collision->SetCollisionStay(std::bind(&ACQ57::KnockBack, this, std::placeholders::_1, std::placeholders::_1));
+		Collision->SetCollisionStay([this](UCollision* _Left, UCollision* _Right)
+			{
+				APlayer* Player = dynamic_cast<APlayer*>(_Right->GetActor());
+				if (Player == nullptr)
+				{
+					return;
+				}
+				Player->ChangeState(EPlayer_State::KnockBack);
+				Player->GetPysicComponent()->SetVelocity(FVector(-Dir * 1000.0f, 1000.0f, 0.0f));
+				GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.2f);
+				GetCollision("Knockback")->SetActive(false);
+			});
 		Collision->SetActive(false);
 		InsertCollision("KnockBack", Collision);
 	}
@@ -132,8 +145,8 @@ void ACQ57::UpdateKnockBack(float _DeltaTime)
 
 void ACQ57::KnockBack(UCollision* _Left, UCollision* _Right)
 {
-	GetGameInstance<MyGameInstance>()->PlayerStatus.TakeHpPercentDamage(0.2f);
-	GetCollision("KnockBack")->SetActive(false);
+	
+
 }
 
 

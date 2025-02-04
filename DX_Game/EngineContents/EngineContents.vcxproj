@@ -179,6 +179,7 @@
     </ClCompile>
     <ClCompile Include="Player_Defying_Fate.cpp" />
     <ClCompile Include="Player_Idle.cpp" />
+    <ClCompile Include="Player_KnockBack.cpp" />
     <ClCompile Include="Player_Rift_Break.cpp" />
     <ClCompile Include="Player_Swift_Phantom.cpp" />
     <ClCompile Include="Player_Move.cpp" />

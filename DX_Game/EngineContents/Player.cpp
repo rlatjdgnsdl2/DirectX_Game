@@ -51,6 +51,7 @@ APlayer::APlayer()
 	FSM.CreateState(EPlayer_State::Ultimate_Drive, std::bind(&APlayer::Update_Ultimate_Drive, this, std::placeholders::_1), std::bind(&APlayer::Start_Ultimate_Drive, this));
 	FSM.CreateState(EPlayer_State::Rift_Break, std::bind(&APlayer::Update_Rift_Break, this, std::placeholders::_1), std::bind(&APlayer::Start_Rift_Break, this));
 	FSM.CreateState(EPlayer_State::Defying_Fate, std::bind(&APlayer::Update_Defying_Fate, this, std::placeholders::_1), std::bind(&APlayer::Start_Defying_Fate, this));
+	FSM.CreateState(EPlayer_State::KnockBack, std::bind(&APlayer::Update_KnockBack, this, std::placeholders::_1), std::bind(&APlayer::Start_KnockBack, this));
 	
 }
 

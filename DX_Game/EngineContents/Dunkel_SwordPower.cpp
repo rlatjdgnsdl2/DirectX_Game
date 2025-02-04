@@ -36,8 +36,8 @@ void ADunkel_SwordPower::BeginPlay()
 {
 	AActor::BeginPlay();
 	SpriteRenderer->ChangeAnimation("Effect", true);
-	SpriteRenderer->SetActive(false);
-	Collision->SetActive(false);
+	SpriteRenderer->SetActive(true);
+	Collision->SetActive(true);
 	SetActorLocation(StartPos);
 	SetActorRelativeScale3D(FVector(Dir, 1.0f, 1.0f));
 
@@ -47,13 +47,10 @@ void ADunkel_SwordPower::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	SpawnTime += _DeltaTime;
-	if (SpawnTime > (3.0f / 20) * 12)
-	{
-		SpriteRenderer->SetActive(true);
-		Collision->SetActive(true);
-		AddActorLocation(FVector(-Dir * 1500.0f * _DeltaTime, 0.0f, 0.0f));
 
-	}
+	AddActorLocation(FVector(-Dir * 1500.0f * _DeltaTime, 0.0f, 0.0f));
+
+
 	if (SpawnTime > 5.0f)
 	{
 		Destroy();

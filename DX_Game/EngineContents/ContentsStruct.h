@@ -13,6 +13,17 @@ struct FPlayerStatus
 	std::string Name = "";
 
 	int Level =1;
+	float KnockBackTime = 2.0f;
+
+	bool IsKnockBack(float _DeltaTime)
+	{
+		KnockBackTime -= _DeltaTime;
+		if (KnockBackTime < 0.0f)
+		{
+			return false;
+		}
+		return true;
+	}
 
 	bool bIsFillable = true;
 	bool IsFillable()

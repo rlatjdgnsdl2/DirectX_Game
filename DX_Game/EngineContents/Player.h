@@ -100,5 +100,8 @@ private:
 	void Start_Defying_Fate();
 	void Update_Defying_Fate(float _DeltaTime);
 
+	void Start_KnockBack();
+	void Update_KnockBack(float _DeltaTime);
+
 };
 

@@ -10,6 +10,7 @@
 #include "MyGameInstance.h"
 
 
+
 ASkill_UltimateDrive::ASkill_UltimateDrive()
 {
 
@@ -95,6 +96,12 @@ void ASkill_UltimateDrive::UpdateUltimateDrivePrev(float _DeltaTime)
 		FSM.ChangeState(ESkill_Frame::Third);
 		return;
 	}
+	EPlayer_State State = Player->GetFSM().GetCurStateValue<EPlayer_State>();
+	if (!(State ==EPlayer_State::Ultimate_Drive))
+	{
+		SetActiveFalse();
+		return;
+	}
 	if (SpriteRenderers["Front"]->IsCurAnimationEnd())
 	{
 		FSM.ChangeState(ESkill_Frame::Second);
@@ -113,6 +120,12 @@ void ASkill_UltimateDrive::StartUltimateDriveKeyDown()
 void ASkill_UltimateDrive::UpdateUltimateDriveKeyDown(float _DeltaTime)
 {
 	MpUseTime -= _DeltaTime;
+	EPlayer_State State = Player->GetFSM().GetCurStateValue<EPlayer_State>();
+	if (!(State == EPlayer_State::Ultimate_Drive))
+	{
+		SetActiveFalse();
+		return;
+	}
 	if (MpUseTime < 0.0f)
 	{
 		GetGameInstance<MyGameInstance>()->PlayerStatus.UseMp(UseMp);
@@ -136,6 +149,12 @@ void ASkill_UltimateDrive::StartUltimateDriveEnd()
 
 void ASkill_UltimateDrive::UpdateUltimateDriveEnd(float _DeltaTime)
 {
+	EPlayer_State State = Player->GetFSM().GetCurStateValue<EPlayer_State>();
+	if (!(State == EPlayer_State::Ultimate_Drive))
+	{
+		SetActiveFalse();
+		return;
+	}
 	if (UEngineInput::IsDown(Key) || UEngineInput::IsPress(Key))
 	{
 		FSM.ChangeState(ESkill_Frame::First);

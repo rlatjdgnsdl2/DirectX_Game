@@ -41,6 +41,10 @@ void UDunkel_GUI::OnGUI()
 	ImGui::Text("Player State : %d ", static_cast<int>(Player->GetFSM().GetCurStateValue<EPlayer_State>()));
 	ImGui::Text("Player HP : %f", GetGameInstance<MyGameInstance>()->PlayerStatus.CurHp);
 	ImGui::Text("Player MP : %f", GetGameInstance<MyGameInstance>()->PlayerStatus.CurMp);
+	if (ImGui::Button("Fill MaxHp, MaxMp"))
+	{
+		GetGameInstance<MyGameInstance>()->PlayerStatus.FillMaxHpMp();
+	}
 
 	if (Dunkel != nullptr)
 	{
@@ -192,8 +196,9 @@ void UDunkel_GUI::OnGUI()
 	ImGui::Text("Move - Dir Key");
 
 	ImGui::Text("6thSkill - %c", static_cast<char>(Player->GetPlayerFuncManager()->GetKey(EPlayer_Function::Defying_Fate)));
-	ImGui::Text("Skill - Z KeyPress");
-	ImGui::Text("Skill - W KeyPress");
+
+	ImGui::Text("Ultimate_Drive - %c", static_cast<char>(Player->GetPlayerFuncManager()->GetKey(EPlayer_Function::Ultimate_Drive)));
+	ImGui::Text("Rift_Break - %c", static_cast<char>(Player->GetPlayerFuncManager()->GetKey(EPlayer_Function::Rift_Break)));
 	ImGui::Text("Jump - C Key");
 
 
