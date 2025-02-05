@@ -498,7 +498,6 @@ void ADunkel_Boss::UpdateSword(float _DeltaTime)
 
 void ADunkel_Boss::SpawnSwordPower()
 {
-	CheckDir();
 	ADunkel_SwordPower* Power = GetWorld()->SpawnActor<ADunkel_SwordPower>().get();
 	Power->SetDir(Dir);
 	Power->SetStartPos(GetActorLocation() + FVector(-Dir * 330, 0.0f));
